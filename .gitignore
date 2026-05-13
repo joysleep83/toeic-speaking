@@ -1,0 +1,16 @@
+# Environment variables — never commit actual keys
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencies (add relevant ones once a stack is chosen)
+node_modules/
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>토익 스피킹 연습</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ① 파트 선택 -->
+  <div id="screen-select" class="screen active">
+    <header>
+      <h1>토익 스피킹</h1>
+      <p class="subtitle">연습할 파트를 선택하세요</p>
+    </header>
+    <div class="part-grid">
+      <div class="part-card" data-part="1">
+        <span class="part-badge">Part 1</span>
+        <p class="part-type">사진 묘사</p>
+        <p class="part-times">준비 30초 · 답변 45초</p>
+      </div>
+      <div class="part-card" data-part="2">
+        <span class="part-badge">Part 2</span>
+        <p class="part-type">질문에 답하기</p>
+        <p class="part-times">준비 3초 · 답변 30초</p>
+      </div>
+      <div class="part-card" data-part="3">
+        <span class="part-badge">Part 3</span>
+        <p class="part-type">정보를 활용한 답변</p>
+        <p class="part-times">준비 30초 · 답변 30초</p>
+      </div>
+      <div class="part-card" data-part="4">
+        <span class="part-badge">Part 4</span>
+        <p class="part-type">제안 / 의견 제시</p>
+        <p class="part-times">준비 45초 · 답변 60초</p>
+      </div>
+      <div class="part-card" data-part="5">
+        <span class="part-badge">Part 5</span>
+        <p class="part-type">정보 제공</p>
+        <p class="part-times">준비 45초 · 답변 60초</p>
+      </div>
+      <div class="part-card" data-part="6">
+        <span class="part-badge">Part 6</span>
+        <p class="part-type">의견 제시</p>
+        <p class="part-times">준비 45초 · 답변 60초</p>
+      </div>
+    </div>
+    <button id="btn-random" class="btn-random">🎲 랜덤 출제</button>
+    <button id="btn-go-study" class="btn-study">📚 학습 과정</button>
+    <button id="btn-go-history" class="btn-history">📊 학습 기록 보기</button>
+  </div>
+
+  <!-- ② 문제 생성 로딩 -->
+  <div id="screen-loading" class="screen">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>문제 생성 중...</p>
+    </div>
+  </div>
+
+  <!-- ③ 문제 + 준비 타이머 -->
+  <div id="screen-question" class="screen">
+    <div class="question-header">
+      <button id="btn-back" class="btn-back">← 파트 선택</button>
+      <span id="q-part-badge" class="part-badge-lg"></span>
+      <span id="q-mode-badge" class="mode-badge hidden"></span>
+    </div>
+    <div class="question-body">
+      <p id="q-type" class="q-type"></p>
+      <p id="q-instruction" class="q-instruction"></p>
+      <p id="q-content" class="q-content"></p>
+    </div>
+    <div class="timer-section">
+      <p id="timer-label" class="timer-label">준비 시간</p>
+      <div id="timer-display" class="timer-display">00</div>
+      <div class="timer-bar-container">
+        <div id="timer-bar" class="timer-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 녹음 화면 -->
+  <div id="screen-record" class="screen">
+    <div class="rec-header">
+      <button id="btn-rec-back" class="btn-back">← 파트 선택</button>
+      <span id="rec-part-badge" class="part-badge-lg"></span>
+    </div>
+    <div class="rec-question-box">
+      <p id="rec-question" class="rec-question-text"></p>
+    </div>
+    <div class="timer-section">
+      <p class="timer-label">답변 시간</p>
+      <div id="rec-timer-display" class="timer-display answer">00</div>
+      <div class="timer-bar-container">
+        <div id="rec-timer-bar" class="timer-bar answer"></div>
+      </div>
+    </div>
+    <div class="recording-section">
+      <div class="waveform" id="waveform"></div>
+      <p class="recording-label" id="recording-label">● 녹음 중...</p>
+    </div>
+    <div class="transcript-box">
+      <p class="transcript-label">실시간 변환</p>
+      <p id="live-transcript" class="live-transcript">말하기를 시작하세요...</p>
+    </div>
+    <div id="text-input-fallback" class="hidden">
+      <p class="fallback-notice">⚠️ 이 브라우저는 음성 인식을 지원하지 않습니다. 답변을 직접 입력하세요.</p>
+      <textarea id="fallback-textarea" rows="4" placeholder="영어로 답변을 입력하세요..."></textarea>
+    </div>
+    <button id="btn-stop-record" class="btn-stop">■ 답변 완료</button>
+  </div>
+
+  <!-- ⑤ AI 분석 로딩 -->
+  <div id="screen-analyzing" class="screen">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>AI 분석 중...</p>
+      <p class="analyzing-sub">채점 및 피드백을 생성하고 있습니다</p>
+    </div>
+  </div>
+
+  <!-- ⑥ 피드백 화면 -->
+  <div id="screen-feedback" class="screen">
+    <div class="feedback-header">
+      <button id="btn-feedback-home" class="btn-back">← 처음으로</button>
+      <span id="fb-part-badge" class="part-badge-lg"></span>
+    </div>
+    <div class="score-card">
+      <div class="score-left">
+        <div id="fb-grade" class="grade-badge">--</div>
+        <div class="score-number-row">
+          <span id="fb-total" class="total-score">---</span>
+          <span class="score-max">/ 200</span>
+        </div>
+        <p class="score-sub-label">예측 점수</p>
+      </div>
+      <div class="score-right">
+        <canvas id="radar-chart" width="170" height="170"></canvas>
+      </div>
+    </div>
+    <div class="overall-comment-box">
+      <p id="fb-overall-comment"></p>
+    </div>
+    <div class="answer-compare">
+      <div class="answer-box">
+        <h3 class="answer-box-title user-title">내 답변</h3>
+        <p id="fb-user-answer"></p>
+      </div>
+      <div class="answer-box">
+        <h3 class="answer-box-title sample-title">모범 답안</h3>
+        <p id="fb-sample-answer"></p>
+      </div>
+    </div>
+    <div class="feedback-accordion" id="feedback-accordion"></div>
+    <button id="btn-save" class="btn-save">저장하기 →</button>
+    <button id="btn-retry-question" class="btn-secondary-sm">같은 문제 다시 연습</button>
+  </div>
+
+  <!-- ⑦ 히스토리 대시보드 -->
+  <div id="screen-history" class="screen">
+    <div class="history-header">
+      <button id="btn-history-home" class="btn-back">← 처음으로</button>
+      <h2 class="history-title">학습 히스토리</h2>
+      <div class="history-actions-row">
+        <button id="btn-export" class="btn-icon-sm">↓ 내보내기</button>
+        <button id="btn-clear-all" class="btn-icon-sm btn-danger-sm">🗑</button>
+      </div>
+    </div>
+    <div class="summary-cards">
+      <div class="summary-card">
+        <p class="summary-label">총 학습</p>
+        <p class="summary-value" id="stat-count">0</p>
+        <p class="summary-unit">회</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-label">최근 점수</p>
+        <p class="summary-value" id="stat-recent">--</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-label">평균 점수</p>
+        <p class="summary-value" id="stat-avg">--</p>
+      </div>
+    </div>
+    <div id="history-empty" class="history-empty hidden">
+      <p class="empty-icon">📚</p>
+      <p>아직 학습 기록이 없습니다.</p>
+      <p class="empty-sub">문제를 풀고 결과를 저장해보세요!</p>
+      <button id="btn-start-practice" class="btn-primary" style="margin-top:16px">첫 번째 연습 시작하기</button>
+    </div>
+    <div id="history-content" class="hidden">
+      <div class="chart-card">
+        <h3 class="chart-title">점수 추이</h3>
+        <div class="trend-chart-container">
+          <canvas id="trend-chart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3 class="chart-title">평균 역량 분석</h3>
+        <div class="radar-center">
+          <canvas id="avg-radar-chart" width="200" height="200"></canvas>
+        </div>
+      </div>
+      <div id="weak-part-banner" class="weak-banner hidden">
+        <div>
+          <p class="weak-label">⚠️ 취약 파트</p>
+          <p id="weak-part-text" class="weak-value"></p>
+        </div>
+        <button id="btn-weak-challenge" class="btn-challenge">다시 도전 →</button>
+      </div>
+      <div id="weak-area-banner" class="weak-area-banner hidden">
+        <p class="weak-label">🎯 집중 개선 영역</p>
+        <p id="weak-area-text" class="weak-area-value"></p>
+      </div>
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all">전체</button>
+        <button class="filter-tab" data-filter="1">Part 1</button>
+        <button class="filter-tab" data-filter="2">Part 2</button>
+        <button class="filter-tab" data-filter="3">Part 3</button>
+        <button class="filter-tab" data-filter="4">Part 4</button>
+        <button class="filter-tab" data-filter="5">Part 5</button>
+        <button class="filter-tab" data-filter="6">Part 6</button>
+      </div>
+      <div class="history-list" id="history-list"></div>
+    </div>
+  </div>
+
+  <!-- ⑧ 히스토리 상세 보기 -->
+  <div id="screen-history-detail" class="screen">
+    <div class="feedback-header">
+      <button id="btn-detail-back" class="btn-back">← 목록으로</button>
+      <span id="hd-part-badge" class="part-badge-lg"></span>
+    </div>
+    <p id="hd-date" class="hd-date"></p>
+    <div class="score-card">
+      <div class="score-left">
+        <div id="hd-grade" class="grade-badge">--</div>
+        <div class="score-number-row">
+          <span id="hd-total" class="total-score">---</span>
+          <span class="score-max">/ 200</span>
+        </div>
+        <p class="score-sub-label">예측 점수</p>
+      </div>
+      <div class="score-right">
+        <canvas id="hd-radar-chart" width="170" height="170"></canvas>
+      </div>
+    </div>
+    <div class="overall-comment-box">
+      <p id="hd-overall-comment"></p>
+    </div>
+    <div class="answer-compare">
+      <div class="answer-box">
+        <h3 class="answer-box-title user-title">내 답변</h3>
+        <p id="hd-user-answer"></p>
+      </div>
+      <div class="answer-box">
+        <h3 class="answer-box-title sample-title">모범 답안</h3>
+        <p id="hd-sample-answer"></p>
+      </div>
+    </div>
+    <div class="feedback-accordion" id="hd-feedback-accordion"></div>
+    <button id="btn-hd-retry" class="btn-random" style="margin-top:8px">같은 파트 다시 도전 →</button>
+  </div>
+
+  <!-- ⑨ 학습 과정 홈 -->
+  <div id="screen-study" class="screen">
+    <div class="study-top-header">
+      <button class="btn-back" id="btn-study-home">← 처음으로</button>
+      <h2 class="study-page-title">학습 과정</h2>
+    </div>
+    <div class="study-overall-bar">
+      <div class="sob-labels">
+        <span>전체 진도</span>
+        <span id="study-overall-label">0 / 21 완료</span>
+      </div>
+      <div class="sob-track">
+        <div id="study-overall-fill" class="sob-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div id="study-module-list" class="study-module-list"></div>
+  </div>
+
+  <!-- ⑩ 학습 레슨 뷰어 -->
+  <div id="screen-study-lesson" class="screen">
+    <div class="lesson-top-header">
+      <button class="btn-back" id="btn-lesson-back">← 목록으로</button>
+      <span id="lesson-module-name" class="lesson-module-tag"></span>
+    </div>
+    <div class="lesson-title-area">
+      <h2 id="lesson-title" class="lesson-title"></h2>
+      <span id="lesson-duration" class="lesson-duration"></span>
+    </div>
+    <div id="lesson-dots" class="lesson-dots"></div>
+    <div id="lesson-content-area" class="lesson-content-area"></div>
+    <div class="lesson-bottom-nav">
+      <button id="btn-lesson-prev" class="lbn-btn lbn-prev">← 이전</button>
+      <button id="btn-lesson-done" class="lbn-btn lbn-done">✓ 완료</button>
+      <button id="btn-lesson-next" class="lbn-btn lbn-next">다음 →</button>
+    </div>
+  </div>
+
+  <!-- 에러 토스트 -->
+  <div id="error-toast" class="error-toast hidden">
+    <span id="error-message"></span>
+    <button onclick="hideError()">×</button>
+  </div>
+
+  <!-- 성공 토스트 -->
+  <div id="success-toast" class="success-toast hidden">
+    <span id="success-message"></span>
+  </div>
+
+  <script src="study-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

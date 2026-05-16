@@ -1,11 +1,12 @@
-// ── Constants ──────────────────────────────────────────────
+// ── Constants ──────────────────────────────────────────────────
 const STORAGE_KEY = 'toeic_speaking_history';
 
+// 서버/네트워크 완전 불가 시 사용하는 로컬 샘플 문제 (AI 불필요)
 const LOCAL_QUESTIONS = {
   1: [
     { part: 1, instruction: '사진을 보고 45초 동안 묘사하세요. 준비 시간 30초.', question: '[Photo: A woman is standing at a coffee shop counter, ordering from a barista. Pastries are displayed in a glass case, and other customers are seated at tables in the background.]', prep_time: 30, answer_time: 45 },
     { part: 1, instruction: '사진을 보고 45초 동안 묘사하세요. 준비 시간 30초.', question: '[Photo: Two colleagues are having a meeting in a modern office. One person is pointing at a laptop screen while the other takes notes. Plants and a whiteboard are visible in the background.]', prep_time: 30, answer_time: 45 },
-    { part: 1, instruction: '사진을 보고 45초 동안 묘사하세요. 준비 시간 30초.', question: "[Photo: A busy farmer's market on a sunny day. Vendors are selling fresh vegetables and fruits. Shoppers are walking through the aisles with bags and baskets.]", prep_time: 30, answer_time: 45 }
+    { part: 1, instruction: '사진을 보고 45초 동안 묘사하세요. 준비 시간 30초.', question: '[Photo: A busy farmer\'s market on a sunny day. Vendors are selling fresh vegetables and fruits. Shoppers are walking through the aisles with bags and baskets.]', prep_time: 30, answer_time: 45 }
   ],
   2: [
     { part: 2, instruction: '친구가 직장 생활에 대한 설문을 하고 있습니다. 준비 없이 30초 안에 답하세요.', question: 'Imagine a friend is surveying you about work habits.\n\nQuestion: Do you prefer working independently or as part of a team, and why?', prep_time: 3, answer_time: 30 },
@@ -18,8 +19,8 @@ const LOCAL_QUESTIONS = {
     { part: 3, instruction: '다음 교육 일정을 보고 질문에 답하세요. 준비 시간 30초.', question: 'New Employee Orientation Schedule\n• Day 1 (Mon): Company overview & HR policies, 9 AM–12 PM\n• Day 2 (Tue): Department introduction & team lunch, 10 AM–3 PM\n• Day 3 (Wed): Systems training (IT), 9 AM–5 PM\n• Day 4 (Thu): Job-specific training with manager, 9 AM–5 PM\n• Day 5 (Fri): Q&A session & evaluation, 2–4 PM\n\nQuestion: On which day does the new employee receive job-specific training with their manager?', prep_time: 30, answer_time: 30 }
   ],
   4: [
-    { part: 4, instruction: '음성 메시지를 듣고 문제를 해결하는 답변을 제안하세요. 준비 시간 45초.', question: "Hi, this is Alex from Marketing. I'm trying to book a conference room for tomorrow's client presentation at 2 PM, but Room A is already reserved and there are no other rooms available in the system. The client is very important and we really need a proper meeting space. Could you help me figure out what to do?", prep_time: 45, answer_time: 60 },
-    { part: 4, instruction: '음성 메시지를 듣고 문제를 해결하는 답변을 제안하세요. 준비 시간 45초.', question: "Hello, I'm a customer calling about an order I placed two weeks ago. The tracking shows it was delivered, but I never received the package. I've already checked with my neighbors and the building manager. This was a birthday gift for my daughter and her birthday is this weekend. What can you do for me?", prep_time: 45, answer_time: 60 },
+    { part: 4, instruction: '음성 메시지를 듣고 문제를 해결하는 답변을 제안하세요. 준비 시간 45초.', question: 'Hi, this is Alex from Marketing. I\'m trying to book a conference room for tomorrow\'s client presentation at 2 PM, but Room A is already reserved and there are no other rooms available in the system. The client is very important and we really need a proper meeting space. Could you help me figure out what to do?', prep_time: 45, answer_time: 60 },
+    { part: 4, instruction: '음성 메시지를 듣고 문제를 해결하는 답변을 제안하세요. 준비 시간 45초.', question: 'Hello, I\'m a customer calling about an order I placed two weeks ago. The tracking shows it was delivered, but I never received the package. I\'ve already checked with my neighbors and the building manager. This was a birthday gift for my daughter and her birthday is this weekend. What can you do for me?', prep_time: 45, answer_time: 60 },
     { part: 4, instruction: '음성 메시지를 듣고 문제를 해결하는 답변을 제안하세요. 준비 시간 45초.', question: 'Hi, this is Jamie from IT. The software update scheduled for tonight requires all computers to restart. However, the finance team needs systems running through midnight for end-of-month reporting. If we delay the update, a security vulnerability stays open. What would you recommend?', prep_time: 45, answer_time: 60 }
   ],
   5: [
@@ -30,7 +31,7 @@ const LOCAL_QUESTIONS = {
   6: [
     { part: 6, instruction: '다음 주제에 대해 자신의 의견을 제시하세요. 준비 시간 45초.', question: 'Some people believe that technology has made communication between people less meaningful and personal. Do you agree or disagree? Use specific reasons and examples to support your opinion.', prep_time: 45, answer_time: 60 },
     { part: 6, instruction: '다음 주제에 대해 자신의 의견을 제시하세요. 준비 시간 45초.', question: 'It is often said that "failure is the best teacher." Do you agree or disagree? Support your answer with specific reasons and examples from your own experience.', prep_time: 45, answer_time: 60 },
-    { part: 6, instruction: '다음 주제에 대해 자신의 의견을 제시하세요. 준븤 시간 45초.', question: 'Some people believe that reading books is more beneficial than watching videos or movies for personal development. Others think visual media can be equally educational. What is your view? Use specific reasons and examples.', prep_time: 45, answer_time: 60 }
+    { part: 6, instruction: '다음 주제에 대해 자신의 의견을 제시하세요. 준비 시간 45초.', question: 'Some people believe that reading books is more beneficial than watching videos or movies for personal development. Others think visual media can be equally educational. What is your view? Use specific reasons and examples.', prep_time: 45, answer_time: 60 }
   ]
 };
 
@@ -82,9 +83,11 @@ let currentFeedback   = null;
 let currentDetailId   = null;
 let currentFilter     = 'all';
 
+// Step 1 timer
 let timerInterval = null;
 let timerTotal    = 0;
 
+// Step 2 recording
 let recognition      = null;
 let isRecording      = false;
 let finalTranscript  = '';
@@ -92,16 +95,142 @@ let recTimerInterval = null;
 let recTimerTotal    = 0;
 let waveformInterval = null;
 
+// Chart instances
 let radarChart    = null;
 let trendChart    = null;
 let avgRadarChart = null;
 let hdRadarChart  = null;
+
+// Part 1 generated image
+let currentImageSrc = null;
+
+// ── TTS ────────────────────────────────────────────────────────
+function speak(btn, text) {
+  if (!text || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  if (btn.classList.contains('speaking')) {
+    btn.classList.remove('speaking');
+    return;
+  }
+  document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
+  const utt = new SpeechSynthesisUtterance(text.trim());
+  utt.lang = 'en-US';
+  utt.rate = 0.9;
+  btn.classList.add('speaking');
+  utt.onend   = () => btn.classList.remove('speaking');
+  utt.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(utt);
+}
+
+function speakEl(btn, id) {
+  const el = document.getElementById(id);
+  if (el) speak(btn, el.textContent);
+}
 
 // ── Screen management ──────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(`screen-${id}`).classList.add('active');
 }
+
+function togglePracticeFolder() {
+  const content = document.getElementById('practice-folder-content');
+  const arrow   = document.getElementById('pf-arrow');
+  const isOpen  = !content.classList.contains('hidden');
+  content.classList.toggle('hidden', isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function toggleExerciseFolder() {
+  const content = document.getElementById('exercise-folder-content');
+  const arrow   = document.getElementById('ef-arrow');
+  const isOpen  = !content.classList.contains('hidden');
+  content.classList.toggle('hidden', isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function toggleStudyFolder() {
+  const content = document.getElementById('study-folder-content');
+  const arrow   = document.getElementById('sf-arrow');
+  const isOpen  = !content.classList.contains('hidden');
+  if (!isOpen && !content.hasChildNodes()) renderStudyFolderContent();
+  content.classList.toggle('hidden', isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function renderStudyFolderContent() {
+  document.getElementById('study-folder-content').innerHTML =
+    `<div class="study-folder-module-list">${
+      STUDY_MODULES.map(mod => `
+        <div class="study-module-card" onclick="openModule('${mod.id}')">
+          <div class="smc-body">
+            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
+            <div class="smc-info">
+              <div class="smc-title">${mod.title}</div>
+              <div class="smc-subtitle">${mod.subtitle}</div>
+            </div>
+            <div class="smc-right"><span class="smc-arrow">›</span></div>
+          </div>
+        </div>`).join('')
+    }</div>`;
+}
+
+// ── 연습 문제 목록 화면 ────────────────────────────────────────
+function showPracticeList(part) {
+  document.getElementById('pl-part-badge').textContent = `Part ${part}`;
+  document.getElementById('pl-type').textContent       = PART_TYPE_LABEL[part] || '';
+
+  const items = PRACTICE_DATA[part] || [];
+  document.getElementById('practice-item-list').innerHTML = items.map((item, idx) => {
+    const imgHtml = item.image
+      ? `<img class="pi-img" src="${item.image}" alt="사진 묘사">`
+      : '';
+    const qSpeakBtn = !item.image
+      ? `<button class="speak-btn" onclick="speakEl(this,'pq-${idx}')" title="소리로 듣기">🔊</button>`
+      : '';
+    return `
+    <div class="practice-item">
+      <div class="practice-item-q">
+        <div class="practice-item-num">문제 ${idx + 1}</div>
+        ${imgHtml ? `<div class="pi-img-wrap">${imgHtml}</div>` : ''}
+        <div class="pi-question-row">
+          <p class="practice-item-question" id="pq-${idx}">${item.question}</p>
+          ${qSpeakBtn}
+        </div>
+      </div>
+      <button class="practice-item-toggle" onclick="togglePracticeAnswer(this)">
+        <span>모범 답안 · 해설 보기</span>
+        <span>▼</span>
+      </button>
+      <div class="practice-item-answer">
+        <div class="answer-section-header">
+          <div class="answer-section-label model">모범 답안</div>
+          <button class="speak-btn" onclick="speakEl(this,'pa-${idx}')" title="소리로 듣기">🔊</button>
+        </div>
+        <p class="answer-text" id="pa-${idx}">${item.model_answer}</p>
+        <div class="answer-section-label explain">답안 해설</div>
+        <div class="explain-text">${item.explanation}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  showScreen('practice-list');
+}
+
+function togglePracticeAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  const arrow  = btn.querySelector('span:last-child');
+  const isOpen = answer.classList.contains('open');
+  answer.classList.toggle('open', !isOpen);
+  arrow.textContent = isOpen ? '▼' : '▲';
+  btn.querySelector('span:first-child').textContent = isOpen ? '모범 답안 · 해설 보기' : '접기';
+}
+
+document.getElementById('btn-practice-back').addEventListener('click', () => showScreen('select'));
+
+// ══════════════════════════════════════════════════════════════
+// STEP 1 — Question & Prep Timer
+// ══════════════════════════════════════════════════════════════
 
 function clearTimer() {
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
@@ -134,6 +263,7 @@ function enterAnswerPhase() { showRecordScreen(); }
 
 function showQuestion(question) {
   currentQuestion = question;
+  currentImageSrc = null;
   document.getElementById('q-part-badge').textContent = `Part ${question.part}`;
   document.getElementById('q-type').textContent        = PART_TYPE_LABEL[question.part] || '';
   document.getElementById('q-instruction').textContent = question.instruction;
@@ -150,8 +280,59 @@ function showQuestion(question) {
     badge.classList.remove('hidden');
   }
 
+  // Part 1: 이미지 생성
+  const imageWrap      = document.getElementById('q-image-wrap');
+  const qContentWrap   = document.getElementById('q-content-wrap');
+  const imageLoading   = document.getElementById('q-image-loading');
+  const qPhoto         = document.getElementById('q-photo');
+
+  if (question.part === 1) {
+    const match = question.question.match(/\[Photo:\s*([\s\S]*?)\]/i);
+    const desc = match ? match[1].trim() : question.question;
+    qContentWrap.classList.add('hidden');
+    imageWrap.classList.remove('hidden');
+    imageLoading.classList.remove('hidden');
+    qPhoto.classList.add('hidden');
+    generateQuestionImage(desc);
+  } else {
+    qContentWrap.classList.remove('hidden');
+    imageWrap.classList.add('hidden');
+  }
+
   showScreen('question');
   startTimer(question.prep_time);
+}
+
+async function generateQuestionImage(description) {
+  try {
+    const res  = await fetch('/api/generate-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: `${description}, realistic photograph, high quality, natural lighting` })
+    });
+    const data = await res.json();
+
+    const imageLoading  = document.getElementById('q-image-loading');
+    const qPhoto        = document.getElementById('q-photo');
+    const qContentWrap  = document.getElementById('q-content-wrap');
+
+    if (!res.ok || (!data.url && !data.b64)) {
+      imageLoading.classList.add('hidden');
+      qContentWrap.classList.remove('hidden');
+      return;
+    }
+
+    const src = data.url || `data:image/png;base64,${data.b64}`;
+    currentImageSrc = src;
+    qPhoto.src = src;
+    qPhoto.onload  = () => { imageLoading.classList.add('hidden'); qPhoto.classList.remove('hidden'); };
+    qPhoto.onerror = () => { imageLoading.classList.add('hidden'); qContentWrap.classList.remove('hidden'); };
+  } catch {
+    const imageLoading = document.getElementById('q-image-loading');
+    if (imageLoading) imageLoading.classList.add('hidden');
+    const qContentWrap = document.getElementById('q-content-wrap');
+    if (qContentWrap) qContentWrap.classList.remove('hidden');
+  }
 }
 
 async function generateQuestion(part) {
@@ -166,19 +347,39 @@ async function generateQuestion(part) {
     const data = await res.json();
     if (!res.ok) {
       if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('select'); return; }
+      // 서버 오류 — 로컬 샘플로 계속 진행
       showQuestion(pickLocalQuestion(part));
       return;
     }
     showQuestion(data);
   } catch {
+    // 네트워크 완전 불가 — 로컬 샘플로 계속 진행
     showQuestion(pickLocalQuestion(part));
   }
 }
 
+// ══════════════════════════════════════════════════════════════
+// STEP 2 — Recording
+// ══════════════════════════════════════════════════════════════
+
 function showRecordScreen() {
   finalTranscript = '';
   document.getElementById('rec-part-badge').textContent  = `Part ${currentQuestion.part}`;
-  document.getElementById('rec-question').textContent    = currentQuestion.question;
+
+  // Part 1: 이미지 표시 / 텍스트는 간략히
+  const recPhoto    = document.getElementById('rec-photo');
+  const recSpeakBtn = document.getElementById('rec-speak-btn');
+  if (currentQuestion.part === 1 && currentImageSrc) {
+    recPhoto.src = currentImageSrc;
+    recPhoto.classList.remove('hidden');
+    document.getElementById('rec-question').textContent = '사진을 보며 묘사하세요.';
+    recSpeakBtn.classList.add('hidden');
+  } else {
+    recPhoto.classList.add('hidden');
+    document.getElementById('rec-question').textContent = currentQuestion.question;
+    recSpeakBtn.classList.remove('hidden');
+  }
+
   document.getElementById('live-transcript').textContent = '말하기를 시작하세요...';
   document.getElementById('btn-stop-record').disabled    = false;
 
@@ -274,6 +475,10 @@ function startRecordTimer(seconds) {
   }, 1000);
 }
 
+// ══════════════════════════════════════════════════════════════
+// STEP 2 — AI Analysis & Feedback
+// ══════════════════════════════════════════════════════════════
+
 function offlineFeedback() {
   return {
     scores: { pronunciation: 0, intonation: 0, grammar: 0, content: 0, fluency: 0 },
@@ -302,6 +507,7 @@ async function analyzeAnswer() {
     const data = await res.json();
     if (!res.ok) {
       if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('record'); return; }
+      // 503 등 — 오프라인 피드백으로 계속 진행
       currentFeedback = offlineFeedback();
       showFeedback(currentFeedback);
       return;
@@ -309,6 +515,7 @@ async function analyzeAnswer() {
     currentFeedback = data;
     showFeedback(data);
   } catch {
+    // 네트워크 없음(file:// 포함) — 오프라인 피드백으로 계속 진행
     currentFeedback = offlineFeedback();
     showFeedback(currentFeedback);
   }
@@ -399,6 +606,10 @@ function toggleAccordion(btn) {
   if (!open) { body.classList.add('open'); arrow.textContent = '▲'; }
 }
 
+// ══════════════════════════════════════════════════════════════
+// STEP 3 — LocalStorage
+// ══════════════════════════════════════════════════════════════
+
 function getHistory() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
 }
@@ -437,6 +648,7 @@ function exportHistory() {
   URL.revokeObjectURL(url);
 }
 
+// ── Save result (Step 2 → Step 3) ─────────────────────────────
 function saveResult() {
   if (!currentFeedback) return;
   saveRecord({
@@ -462,10 +674,18 @@ function saveResult() {
   showSuccess('학습 기록이 저장되었습니다');
 }
 
+// ══════════════════════════════════════════════════════════════
+// STEP 3 — History Dashboard
+// ══════════════════════════════════════════════════════════════
+
 function showHistoryScreen() {
   const history = getHistory();
   currentFilter = 'all';
+
+  // Reset filter tab UI
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
+
+  // Summary stats
   document.getElementById('stat-count').textContent = history.length;
   if (history.length > 0) {
     document.getElementById('stat-recent').textContent = history[0].total_score ?? '--';
@@ -497,11 +717,13 @@ function showHistoryScreen() {
 function renderTrendChart(history) {
   const ctx = document.getElementById('trend-chart').getContext('2d');
   if (trendChart) trendChart.destroy();
-  const chronological = [...history].reverse();
-  const labels = chronological.map(r =>
+
+  const chronological = [...history].reverse(); // oldest first
+  const labels = chronological.map((r, i) =>
     new Date(r.date).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' })
   );
   const scores = chronological.map(r => r.total_score);
+
   trendChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -534,16 +756,20 @@ function renderTrendChart(history) {
 function renderAvgRadarChart(history) {
   const ctx = document.getElementById('avg-radar-chart').getContext('2d');
   if (avgRadarChart) avgRadarChart.destroy();
+
   const dims = ['pronunciation', 'intonation', 'grammar', 'content', 'fluency'];
   const avgScores = {};
   dims.forEach(d => {
     avgScores[d] = history.reduce((s, r) => s + (r.scores?.[d] ?? 0), 0) / history.length;
   });
+
   avgRadarChart = makeRadarChart(ctx, avgScores);
 }
 
 function renderWeakAnalysis(history) {
   if (history.length === 0) return;
+
+  // Part averages
   const partMap = {};
   history.forEach(r => {
     if (!partMap[r.part]) partMap[r.part] = [];
@@ -563,6 +789,7 @@ function renderWeakAnalysis(history) {
     weakPartBanner.classList.add('hidden');
   }
 
+  // Dimension averages
   const dims = ['pronunciation', 'intonation', 'grammar', 'content', 'fluency'];
   const dimAvgs = dims.map(d => ({
     name: d,
@@ -583,10 +810,12 @@ function renderWeakAnalysis(history) {
 function renderHistoryList(history, filter) {
   const filtered = filter === 'all' ? history : history.filter(r => r.part === parseInt(filter));
   const list = document.getElementById('history-list');
+
   if (filtered.length === 0) {
     list.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px">해당 파트의 기록이 없습니다.</p>';
     return;
   }
+
   list.innerHTML = filtered.map(r => {
     const date  = new Date(r.date).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
     const warn  = (r.total_score || 0) <= 140 ? '<span class="warn-icon">⚠️</span>' : '';
@@ -613,10 +842,12 @@ function renderHistoryList(history, filter) {
   }).join('');
 }
 
+// ── History detail view ────────────────────────────────────────
 function showHistoryDetail(id) {
   const record = getHistory().find(r => r.id === id);
   if (!record) return;
   currentDetailId = id;
+
   document.getElementById('hd-part-badge').textContent    = `Part ${record.part}`;
   document.getElementById('hd-date').textContent          =
     new Date(record.date).toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
@@ -624,10 +855,13 @@ function showHistoryDetail(id) {
   document.getElementById('hd-overall-comment').textContent = record.overall_comment || '';
   document.getElementById('hd-user-answer').textContent   = record.user_answer || '(답변 없음)';
   document.getElementById('hd-sample-answer').textContent = record.sample_answer || '';
+
   const gradeEl = document.getElementById('hd-grade');
   gradeEl.textContent      = record.grade || '--';
   gradeEl.style.background = GRADE_COLORS[record.grade] || '#6B7280';
+
   document.getElementById('btn-hd-retry').onclick = () => generateQuestion(record.part);
+
   renderAccordion('hd-feedback-accordion', record.scores, record.feedback);
   showScreen('history-detail');
   requestAnimationFrame(() => {
@@ -637,6 +871,7 @@ function showHistoryDetail(id) {
   });
 }
 
+// ── Inline-called helpers ──────────────────────────────────────
 function retryFromHistory(part, event) {
   event.stopPropagation();
   fullCleanup();
@@ -647,15 +882,20 @@ function confirmDeleteRecord(id, event) {
   event.stopPropagation();
   if (!confirm('이 기록을 삭제하시겠습니까?')) return;
   deleteRecord(id);
-  showHistoryScreen();
+  showHistoryScreen(); // refresh
 }
 
+// ── Cleanup ────────────────────────────────────────────────────
 function fullCleanup() {
   clearTimer();
   clearRecordTimer();
   clearWaveform();
   if (recognition) { isRecording = false; try { recognition.stop(); } catch {} }
 }
+
+// ══════════════════════════════════════════════════════════════
+// Toasts
+// ══════════════════════════════════════════════════════════════
 
 function showError(msg) {
   document.getElementById('error-message').textContent = msg;
@@ -671,18 +911,30 @@ function showSuccess(msg) {
   setTimeout(() => el.classList.add('hidden'), 3000);
 }
 
+// ══════════════════════════════════════════════════════════════
 // Event Listeners
+// ══════════════════════════════════════════════════════════════
+
+// Select screen
 document.querySelectorAll('.part-card').forEach(card => {
   card.addEventListener('click', () => generateQuestion(parseInt(card.dataset.part, 10)));
 });
 document.getElementById('btn-random').addEventListener('click', () => generateQuestion(Math.ceil(Math.random() * 6)));
 document.getElementById('btn-go-history').addEventListener('click', showHistoryScreen);
+
+// Question screen
 document.getElementById('btn-back').addEventListener('click', () => { clearTimer(); showScreen('select'); });
+
+// Recording screen
 document.getElementById('btn-rec-back').addEventListener('click', () => { fullCleanup(); showScreen('select'); });
 document.getElementById('btn-stop-record').addEventListener('click', stopRecording);
+
+// Feedback screen
 document.getElementById('btn-feedback-home').addEventListener('click', () => { fullCleanup(); showScreen('select'); });
 document.getElementById('btn-save').addEventListener('click', saveResult);
 document.getElementById('btn-retry-question').addEventListener('click', () => { fullCleanup(); showQuestion(currentQuestion); });
+
+// History dashboard
 document.getElementById('btn-history-home').addEventListener('click', () => showScreen('select'));
 document.getElementById('btn-export').addEventListener('click', exportHistory);
 document.getElementById('btn-clear-all').addEventListener('click', () => {
@@ -691,6 +943,8 @@ document.getElementById('btn-clear-all').addEventListener('click', () => {
   showHistoryScreen();
 });
 document.getElementById('btn-start-practice').addEventListener('click', () => showScreen('select'));
+
+// Filter tabs
 document.getElementById('filter-tabs').addEventListener('click', (e) => {
   const tab = e.target.closest('.filter-tab');
   if (!tab) return;
@@ -698,33 +952,20 @@ document.getElementById('filter-tabs').addEventListener('click', (e) => {
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t === tab));
   renderHistoryList(getHistory(), currentFilter);
 });
+
+// History detail
 document.getElementById('btn-detail-back').addEventListener('click', showHistoryScreen);
-document.getElementById('btn-go-study').addEventListener('click', showStudyScreen);
 
-// Study
-const STUDY_KEY = 'toeic_study_done';
-function getStudyDone() {
-  try { return new Set(JSON.parse(localStorage.getItem(STUDY_KEY) || '[]')); } catch { return new Set(); }
-}
-function markLessonDone(lessonId) {
-  const done = getStudyDone(); done.add(lessonId);
-  localStorage.setItem(STUDY_KEY, JSON.stringify([...done]));
-}
-function isLessonDone(lessonId) { return getStudyDone().has(lessonId); }
-function totalLessons() { return STUDY_MODULES.reduce((s, m) => s + m.lessons.length, 0); }
-function doneLessons()  { const done = getStudyDone(); return STUDY_MODULES.reduce((s, m) => s + m.lessons.filter(l => done.has(l.id)).length, 0); }
+// Study (btn-go-study 제거 — 폴더로 전환)
 
+// ══════════════════════════════════════════════════════════════
+// STUDY — 학습 과정
+// ══════════════════════════════════════════════════════════════
+
+// ── 학습 홈 ──────────────────────────────────────────────────
 function showStudyScreen() {
-  const total = totalLessons();
-  const done  = doneLessons();
-  document.getElementById('study-overall-label').textContent = `${done} / ${total} 완료`;
-  document.getElementById('study-overall-fill').style.width  = `${Math.round(done / total * 100)}%`;
   const list = document.getElementById('study-module-list');
-  list.innerHTML = STUDY_MODULES.map(mod => {
-    const mDone  = mod.lessons.filter(l => isLessonDone(l.id)).length;
-    const mTotal = mod.lessons.length;
-    const pct    = Math.round(mDone / mTotal * 100);
-    return `
+  list.innerHTML = STUDY_MODULES.map(mod => `
       <div class="study-module-card" onclick="openModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -733,15 +974,11 @@ function showStudyScreen() {
             <div class="smc-subtitle">${mod.subtitle}</div>
           </div>
           <div class="smc-right">
-            <span class="smc-count">${mDone}/${mTotal} 완료</span>
             <span class="smc-arrow">›</span>
           </div>
         </div>
-        <div class="smc-progress-bar">
-          <div class="smc-progress-fill" style="width:${pct}%;background:${mod.color}"></div>
-        </div>
-      </div>`;
-  }).join('');
+      </div>`).join('');
+
   showScreen('study');
 }
 
@@ -751,35 +988,38 @@ function openModule(moduleId) {
   openLesson(mod.lessons[0].id);
 }
 
+// ── 레슨 뷰어 ───────────────────────────────────────────────
 let currentLessonId = null;
 
 function openLesson(lessonId) {
   currentLessonId = lessonId;
+
+  // 어느 모듈에 속하는지 찾기
   let mod, lesson, lessonIdx;
   for (const m of STUDY_MODULES) {
     const idx = m.lessons.findIndex(l => l.id === lessonId);
     if (idx !== -1) { mod = m; lesson = m.lessons[idx]; lessonIdx = idx; break; }
   }
   if (!mod) return;
+
   document.getElementById('lesson-module-name').textContent = mod.title;
   document.getElementById('lesson-title').textContent       = lesson.title;
   document.getElementById('lesson-duration').textContent    = '⏱ ' + lesson.duration;
+
+  // 점 인디케이터
   const dots = document.getElementById('lesson-dots');
   dots.innerHTML = mod.lessons.map((l, i) => {
-    const cls = isLessonDone(l.id) ? 'done' : (i === lessonIdx ? 'active' : '');
+    const cls = i === lessonIdx ? 'active' : '';
     return `<div class="lesson-dot ${cls}" onclick="openLesson('${l.id}')"></div>`;
   }).join('');
-  const btnDone = document.getElementById('btn-lesson-done');
-  if (isLessonDone(lessonId)) {
-    btnDone.textContent = '✓ 완료됨';
-    btnDone.classList.add('completed');
-  } else {
-    btnDone.textContent = '✓ 완료';
-    btnDone.classList.remove('completed');
-  }
+
+  // 이전/다음 버튼
   document.getElementById('btn-lesson-prev').disabled = (lessonIdx === 0 && STUDY_MODULES.indexOf(mod) === 0);
   document.getElementById('btn-lesson-next').disabled = (lessonIdx === mod.lessons.length - 1 && STUDY_MODULES.indexOf(mod) === STUDY_MODULES.length - 1);
+
+  // 컨텐츠 렌더링
   document.getElementById('lesson-content-area').innerHTML = lesson.content.map(renderBlock).join('');
+
   showScreen('study-lesson');
   document.getElementById('screen-study-lesson').scrollTop = 0;
 }
@@ -814,25 +1054,32 @@ function nextLesson() {
   if (nextId) openLesson(nextId);
 }
 
+// ── 컨텐츠 블록 렌더러 ────────────────────────────────────────
 function renderBlock(block) {
   switch (block.type) {
     case 'heading':
       return `<div class="cb-heading">${block.text}</div>`;
+
     case 'text':
       return `<p class="cb-text">${block.text}</p>`;
+
     case 'tip': {
       const cls = block.icon === '⚠️' ? 'tip-warn' : block.icon === '🎯' ? 'tip-success' : 'tip-info';
       return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${block.text}</div>`;
     }
+
     case 'list':
       return `<ul class="cb-list">${block.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+
     case 'numbered':
       return `<ol class="cb-numbered">${block.items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+
     case 'table': {
       const ths = block.headers.map(h => `<th>${h}</th>`).join('');
       const trs = block.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
       return `<div class="cb-table-wrap"><table class="cb-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
     }
+
     case 'structure':
       return `<div class="cb-structure">${block.steps.map(s => `
         <div class="cb-step">
@@ -842,6 +1089,7 @@ function renderBlock(block) {
             <div class="step-desc">${s.desc}</div>
           </div>
         </div>`).join('')}</div>`;
+
     case 'example': {
       const rows = block.items.map(i => `
         <div class="expr-item">
@@ -850,20 +1098,14 @@ function renderBlock(block) {
         </div>`).join('');
       return `<div class="cb-expression"><div class="cb-expr-label">${block.label}</div>${rows}</div>`;
     }
+
     default:
       return '';
   }
 }
 
-document.getElementById('btn-study-home').addEventListener('click', showStudyScreen);
-document.getElementById('btn-lesson-back').addEventListener('click', showStudyScreen);
-document.getElementById('btn-lesson-done').addEventListener('click', () => {
-  if (!currentLessonId) return;
-  markLessonDone(currentLessonId);
-  const btn = document.getElementById('btn-lesson-done');
-  btn.textContent = '✓ 완료됨';
-  btn.classList.add('completed');
-  showSuccess('레슨을 완료했습니다!');
-});
+// ── 학습 화면 이벤트 ─────────────────────────────────────────
+document.getElementById('btn-study-home').addEventListener('click', () => showScreen('select'));
+document.getElementById('btn-lesson-back').addEventListener('click', () => showScreen('select'));
 document.getElementById('btn-lesson-prev').addEventListener('click', prevLesson);
 document.getElementById('btn-lesson-next').addEventListener('click', nextLesson);

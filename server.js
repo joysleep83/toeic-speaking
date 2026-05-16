@@ -8,25 +8,33 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
 
+// ── Practice images — explicit route so large PNGs always deliver ──
+app.get('/practice-images/:file', (req, res) => {
+  const file = req.params.file;
+  if (!/^[\w.-]+$/.test(file)) return res.status(400).end();
+  const filePath = join(__dirname, 'public', 'practice-images', file);
+  res.setHeader('Cache-Control', 'no-store');
+  res.sendFile(filePath, err => { if (err && !res.headersSent) res.status(404).end(); });
+});
+
 // ── Static: root index.html + public/ for assets ───────────────
 app.use(express.static(join(__dirname, 'public')));
 app.get('/', (_req, res) => res.sendFile(join(__dirname, 'public', 'index.html')));
 
-// ── 4 free non-Chinese models (tried in order) ─────────────────
-// 문제 생성: JSON 구조화 출력이 우수한 모델 우선
+// ── 문제 생성 모델 (JSON 구조화 출력 우수, 2026-05 기준 무료) ──
 const QUESTION_MODELS = [
-  'meta-llama/llama-3.3-70b-instruct:free',       // Meta (미국)
-  'google/gemma-3-27b-it:free',                    // Google (미국)
-  'mistralai/mistral-small-3.1-24b-instruct:free', // Mistral (프랑스)
-  'nvidia/llama-3.3-nemotron-super-49b-v1:free'    // NVIDIA (미국)
+  'openai/gpt-oss-20b:free',                       // OpenAI OSS 20B — 빠른 JSON
+  'google/gemma-4-31b-it:free',                    // Google Gemma 4 31B
+  'meta-llama/llama-3.3-70b-instruct:free',        // Meta Llama 3.3 70B
+  'google/gemma-4-26b-a4b-it:free'                 // Google Gemma 4 26B — 폴백
 ];
 
-// AI 채점: 평가·추론 능력이 우수한 모델 우선
+// ── AI 채점 모델 (추론·평가·한국어 강점, 2026-05 기준 무료) ───
 const ANALYSIS_MODELS = [
-  'meta-llama/llama-3.3-70b-instruct:free',        // Meta (미국)
-  'nvidia/llama-3.3-nemotron-super-49b-v1:free',   // NVIDIA (미국)
-  'google/gemma-3-27b-it:free',                    // Google (미국)
-  'mistralai/mistral-small-3.1-24b-instruct:free'  // Mistral (프랑스)
+  'openai/gpt-oss-120b:free',               // OpenAI OSS 120B — 구조화 출력·tool-use 특화
+  'nvidia/nemotron-3-super-120b-a12b:free', // NVIDIA Nemotron Super 120B — 1M ctx 추론
+  'qwen/qwen3-next-80b-a3b-instruct:free',  // Qwen3 80B — 한국어·영어 혼용 강점
+  'meta-llama/llama-3.3-70b-instruct:free'  // Llama 3.3 70B — 안정적 폴백
 ];
 
 const PART_CONFIG = {
@@ -86,16 +94,25 @@ Respond with ONLY valid JSON — no markdown, no explanation, no code block:
 }
 
 function buildAnalysisPrompt(question, userAnswer) {
-  return `[TOEIC Speaking Grading]
-Part: ${question.part}
-Instruction: ${question.instruction}
+  return `You are a certified TOEIC Speaking examiner. Evaluate strictly and output ONLY valid JSON — no markdown, no explanation.
+
+[Part ${question.part}] ${question.instruction}
 Question: ${question.question}
-User Answer: "${userAnswer || '(no answer provided)'}"
+User Answer: "${userAnswer || '(no answer — score 0 on all dimensions)'}"
 
-Evaluate strictly and respond with ONLY valid JSON (no markdown, no text outside JSON):
-{"scores":{"pronunciation":2,"intonation":2,"grammar":2,"content":2,"fluency":2},"total_score":150,"grade":"IM","feedback":{"pronunciation":"Korean feedback","intonation":"Korean feedback","grammar":"Korean feedback","content":"Korean feedback","fluency":"Korean feedback"},"sample_answer":"A high-scoring English answer","overall_comment":"Korean overall summary"}
+Score each dimension 0–3:
+  0 = very poor  1 = below average  2 = acceptable  3 = strong
+• pronunciation — accuracy of individual sounds and word stress
+• intonation    — natural pitch variation and sentence rhythm
+• grammar       — correct tense, agreement, and sentence structure
+• content       — relevance, completeness, and supporting detail
+• fluency       — smooth delivery without excessive pauses or fillers
 
-Replace all values with your actual evaluation. grades: AL(190-200) IH(160-180) IM(130-150) IL(110-120) NH(~100).`;
+Grade scale (based on sum of 5 scores):
+  15 → 200 AL   12–14 → 160–180 IH   8–11 → 130–150 IM   4–7 → 110–120 IL   0–3 → 100 NH
+
+Output ONLY this JSON with real evaluated values (all feedback fields MUST be written in Korean):
+{"scores":{"pronunciation":N,"intonation":N,"grammar":N,"content":N,"fluency":N},"total_score":N,"grade":"XX","feedback":{"pronunciation":"한국어 피드백","intonation":"한국어 피드백","grammar":"한국어 피드백","content":"한국어 피드백","fluency":"한국어 피드백"},"sample_answer":"Full high-scoring English model answer","overall_comment":"2–3문장 한국어 종합 평가"}`;
 }
 
 // ── Generic OpenRouter call ────────────────────────────────────
@@ -175,7 +192,7 @@ app.post('/api/analyze-answer', async (req, res) => {
     const result = await tryModels(
       ANALYSIS_MODELS,
       [{ role: 'user', content: buildAnalysisPrompt(question, userAnswer) }],
-      20000,
+      30000,
       (content) => {
         const match = content.match(/\{[\s\S]*\}/);
         if (!match) throw new Error('No JSON');
@@ -188,6 +205,61 @@ app.post('/api/analyze-answer', async (req, res) => {
       return res.status(429).json({ error: 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.' });
     console.error('[a-all-failed]', err.message);
     return res.status(503).json({ error: '분석에 실패했습니다. 잠시 후 다시 시도해주세요.' });
+  }
+});
+
+// ── Part 1: Image generation ──────────────────────────────────
+// 중국 모델 제외 — Black Forest Labs(독일) 모델 우선/폴백
+const IMAGE_MODELS = [
+  'black-forest-labs/flux-schnell:free',  // 무료 — 먼저 시도
+  'black-forest-labs/flux.2-klein-4b'     // 최저가 유료 폴백 ($0.014/MP)
+];
+
+async function tryImageGeneration(prompt) {
+  for (const model of IMAGE_MODELS) {
+    const controller = new AbortController();
+    const timeoutId  = setTimeout(() => controller.abort(), 30000);
+    try {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model,
+          messages: [{ role: 'user', content: prompt }],
+          modalities: ['image']
+        }),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      if (response.status === 429) { const e = new Error('rate_limit'); e.status = 429; throw e; }
+      if (!response.ok) { console.log(`[img-skip] ${model}: HTTP ${response.status}`); continue; }
+      const data = await response.json();
+      const dataUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+      if (dataUrl) return { dataUrl };
+      console.log(`[img-skip] ${model}: no image in response`);
+    } catch (err) {
+      clearTimeout(timeoutId);
+      if (err.status === 429) throw err;
+      console.log(`[img-skip] ${model}: ${err.message}`);
+    }
+  }
+  throw new Error('all image models failed');
+}
+
+app.post('/api/generate-image', async (req, res) => {
+  const { prompt } = req.body ?? {};
+  if (!prompt) return res.status(400).json({ error: '프롬프트가 없습니다.' });
+
+  try {
+    const { dataUrl } = await tryImageGeneration(prompt);
+    return res.json({ url: dataUrl });
+  } catch (err) {
+    if (err.status === 429) return res.status(429).json({ error: 'API 요청 한도 초과.' });
+    console.error('[img-all-failed]', err.message);
+    return res.status(503).json({ error: '이미지 생성 실패' });
   }
 });
 

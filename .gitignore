@@ -14,3 +14,9 @@ node_modules/
 __pycache__/
 *.pyc
 .venv/
+
+# Source image folder (already copied to public/practice-images/)
+part1pick/
+
+# Claude Code local memory
+.claude/

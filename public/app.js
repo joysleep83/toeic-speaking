@@ -175,6 +175,32 @@ function renderStudyFolderContent() {
     }</div>`;
 }
 
+function toggleGrammarFolder() {
+  const content = document.getElementById('grammar-folder-content');
+  const arrow   = document.getElementById('gf-arrow');
+  const isOpen  = !content.classList.contains('hidden');
+  if (!isOpen && !content.hasChildNodes()) renderGrammarFolderContent();
+  content.classList.toggle('hidden', isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function renderGrammarFolderContent() {
+  document.getElementById('grammar-folder-content').innerHTML =
+    `<div class="study-folder-module-list">${
+      GRAMMAR_MODULES.map(mod => `
+        <div class="study-module-card" onclick="openGrammarModule('${mod.id}')">
+          <div class="smc-body">
+            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
+            <div class="smc-info">
+              <div class="smc-title">${mod.title}</div>
+              <div class="smc-subtitle">${mod.subtitle}</div>
+            </div>
+            <div class="smc-right"><span class="smc-arrow">›</span></div>
+          </div>
+        </div>`).join('')
+    }</div>`;
+}
+
 // ── 연습 문제 목록 화면 ────────────────────────────────────────
 function showPracticeList(part) {
   document.getElementById('pl-part-badge').textContent = `Part ${part}`;
@@ -988,15 +1014,31 @@ function openModule(moduleId) {
   openLesson(mod.lessons[0].id);
 }
 
+function openGrammarModule(moduleId) {
+  const mod = GRAMMAR_MODULES.find(m => m.id === moduleId);
+  if (!mod) return;
+  openGrammarLesson(mod.lessons[0].id);
+}
+
 // ── 레슨 뷰어 ───────────────────────────────────────────────
-let currentLessonId = null;
+let currentLessonId      = null;
+let currentLessonContext = 'study'; // 'study' | 'grammar'
 
 function openLesson(lessonId) {
-  currentLessonId = lessonId;
+  currentLessonId      = lessonId;
+  currentLessonContext = 'study';
+  _renderLessonView(lessonId, STUDY_MODULES, 'openLesson');
+}
 
-  // 어느 모듈에 속하는지 찾기
+function openGrammarLesson(lessonId) {
+  currentLessonId      = lessonId;
+  currentLessonContext = 'grammar';
+  _renderLessonView(lessonId, GRAMMAR_MODULES, 'openGrammarLesson');
+}
+
+function _renderLessonView(lessonId, modules, openFn) {
   let mod, lesson, lessonIdx;
-  for (const m of STUDY_MODULES) {
+  for (const m of modules) {
     const idx = m.lessons.findIndex(l => l.id === lessonId);
     if (idx !== -1) { mod = m; lesson = m.lessons[idx]; lessonIdx = idx; break; }
   }
@@ -1006,18 +1048,15 @@ function openLesson(lessonId) {
   document.getElementById('lesson-title').textContent       = lesson.title;
   document.getElementById('lesson-duration').textContent    = '⏱ ' + lesson.duration;
 
-  // 점 인디케이터
   const dots = document.getElementById('lesson-dots');
   dots.innerHTML = mod.lessons.map((l, i) => {
     const cls = i === lessonIdx ? 'active' : '';
-    return `<div class="lesson-dot ${cls}" onclick="openLesson('${l.id}')"></div>`;
+    return `<div class="lesson-dot ${cls}" onclick="${openFn}('${l.id}')"></div>`;
   }).join('');
 
-  // 이전/다음 버튼
-  document.getElementById('btn-lesson-prev').disabled = (lessonIdx === 0 && STUDY_MODULES.indexOf(mod) === 0);
-  document.getElementById('btn-lesson-next').disabled = (lessonIdx === mod.lessons.length - 1 && STUDY_MODULES.indexOf(mod) === STUDY_MODULES.length - 1);
+  document.getElementById('btn-lesson-prev').disabled = (lessonIdx === 0 && modules.indexOf(mod) === 0);
+  document.getElementById('btn-lesson-next').disabled = (lessonIdx === mod.lessons.length - 1 && modules.indexOf(mod) === modules.length - 1);
 
-  // 컨텐츠 렌더링
   document.getElementById('lesson-content-area').innerHTML = lesson.content.map(renderBlock).join('');
 
   showScreen('study-lesson');
@@ -1025,33 +1064,37 @@ function openLesson(lessonId) {
 }
 
 function prevLesson() {
+  const modules = currentLessonContext === 'grammar' ? GRAMMAR_MODULES : STUDY_MODULES;
+  const openFn  = currentLessonContext === 'grammar' ? openGrammarLesson : openLesson;
   let prevId = null;
-  for (let mi = 0; mi < STUDY_MODULES.length; mi++) {
-    const m = STUDY_MODULES[mi];
+  for (let mi = 0; mi < modules.length; mi++) {
+    const m = modules[mi];
     for (let li = 0; li < m.lessons.length; li++) {
       if (m.lessons[li].id === currentLessonId) {
         if (li > 0) prevId = m.lessons[li - 1].id;
-        else if (mi > 0) { const pm = STUDY_MODULES[mi - 1]; prevId = pm.lessons[pm.lessons.length - 1].id; }
+        else if (mi > 0) { const pm = modules[mi - 1]; prevId = pm.lessons[pm.lessons.length - 1].id; }
         break;
       }
     }
   }
-  if (prevId) openLesson(prevId);
+  if (prevId) openFn(prevId);
 }
 
 function nextLesson() {
+  const modules = currentLessonContext === 'grammar' ? GRAMMAR_MODULES : STUDY_MODULES;
+  const openFn  = currentLessonContext === 'grammar' ? openGrammarLesson : openLesson;
   let nextId = null;
-  for (let mi = 0; mi < STUDY_MODULES.length; mi++) {
-    const m = STUDY_MODULES[mi];
+  for (let mi = 0; mi < modules.length; mi++) {
+    const m = modules[mi];
     for (let li = 0; li < m.lessons.length; li++) {
       if (m.lessons[li].id === currentLessonId) {
         if (li < m.lessons.length - 1) nextId = m.lessons[li + 1].id;
-        else if (mi < STUDY_MODULES.length - 1) nextId = STUDY_MODULES[mi + 1].lessons[0].id;
+        else if (mi < modules.length - 1) nextId = modules[mi + 1].lessons[0].id;
         break;
       }
     }
   }
-  if (nextId) openLesson(nextId);
+  if (nextId) openFn(nextId);
 }
 
 // ── 컨텐츠 블록 렌더러 ────────────────────────────────────────
@@ -1109,3 +1152,4 @@ document.getElementById('btn-study-home').addEventListener('click', () => showSc
 document.getElementById('btn-lesson-back').addEventListener('click', () => showScreen('select'));
 document.getElementById('btn-lesson-prev').addEventListener('click', prevLesson);
 document.getElementById('btn-lesson-next').addEventListener('click', nextLesson);
+

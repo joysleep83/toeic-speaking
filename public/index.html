@@ -91,6 +91,17 @@
       </button>
       <div class="practice-folder-content hidden" id="study-folder-content"></div>
     </div>
+    <div class="practice-folder-card" style="margin-top:10px">
+      <button class="practice-folder-header" onclick="toggleGrammarFolder()">
+        <span class="pf-icon">📝</span>
+        <div class="pf-info">
+          <span class="pf-title">문법 강의</span>
+          <span class="pf-sub">시제 · 전치사 · 비교급 · 고득점 구문</span>
+        </div>
+        <span class="pf-arrow" id="gf-arrow">▼</span>
+      </button>
+      <div class="practice-folder-content hidden" id="grammar-folder-content"></div>
+    </div>
     <button id="btn-go-history" class="btn-history">📊 학습 기록 보기</button>
   </div>
 
@@ -416,6 +427,7 @@
   </div>
 
   <script src="study-data.js"></script>
+  <script src="grammar-data.js"></script>
   <script src="practice-data.js"></script>
   <script src="app.js"></script>
 </body>

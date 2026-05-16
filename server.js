@@ -115,15 +115,23 @@ Output ONLY this JSON with real evaluated values (all feedback fields MUST be wr
 {"scores":{"pronunciation":N,"intonation":N,"grammar":N,"content":N,"fluency":N},"total_score":N,"grade":"XX","feedback":{"pronunciation":"한국어 피드백","intonation":"한국어 피드백","grammar":"한국어 피드백","content":"한국어 피드백","fluency":"한국어 피드백"},"sample_answer":"Full high-scoring English model answer","overall_comment":"2–3문장 한국어 종합 평가"}`;
 }
 
-// ── Generic OpenRouter call ────────────────────────────────────
-async function callOpenRouter(model, messages, timeoutMs) {
+// ── Unified AI call (Google AI Studio 또는 OpenRouter) ────────
+async function callAI(model, messages, timeoutMs) {
+  const isGoogleAI = model.startsWith('gemini-');
+  const url = isGoogleAI
+    ? 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'
+    : 'https://openrouter.ai/api/v1/chat/completions';
+  const apiKey = isGoogleAI
+    ? process.env.GOOGLE_AI_API_KEY
+    : process.env.OPENROUTER_API_KEY;
+
   const controller = new AbortController();
   const timeoutId  = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const res = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ model, messages }),
@@ -140,12 +148,12 @@ async function callOpenRouter(model, messages, timeoutMs) {
   }
 }
 
-// 4개 모델을 순서대로 시도 — 429는 즉시 전파, 나머지는 다음 모델로
+// 모델을 순서대로 시도 — 429는 즉시 전파, 나머지는 다음 모델로
 async function tryModels(models, messages, timeoutMs, parse) {
   let lastErr;
   for (const model of models) {
     try {
-      const content = await callOpenRouter(model, messages, timeoutMs);
+      const content = await callAI(model, messages, timeoutMs);
       return parse(content, model);
     } catch (err) {
       if (err.status === 429) throw err;

@@ -102,6 +102,17 @@
       </button>
       <div class="practice-folder-content hidden" id="grammar-folder-content"></div>
     </div>
+    <div class="practice-folder-card" style="margin-top:10px">
+      <button class="practice-folder-header" onclick="toggleVocabFolder()">
+        <span class="pf-icon">📖</span>
+        <div class="pf-info">
+          <span class="pf-title">빈출단어</span>
+          <span class="pf-sub">단원별 핵심 어휘 · 예문 · 학습 팁</span>
+        </div>
+        <span class="pf-arrow" id="vf-arrow">▼</span>
+      </button>
+      <div class="practice-folder-content hidden" id="vocab-folder-content"></div>
+    </div>
     <button id="btn-go-history" class="btn-history">📊 학습 기록 보기</button>
   </div>
 
@@ -415,6 +426,16 @@
     <div id="practice-item-list" class="practice-item-list"></div>
   </div>
 
+  <!-- ⑫ 빈출단어 화면 -->
+  <div id="screen-vocab" class="screen">
+    <div class="study-top-header">
+      <button class="btn-back" onclick="showScreen('select')">← 처음으로</button>
+      <h2 id="vocab-screen-title" class="study-page-title"></h2>
+    </div>
+    <p id="vocab-word-count" class="vocab-word-count"></p>
+    <div id="vocab-word-list" class="vocab-word-list"></div>
+  </div>
+
   <!-- 에러 토스트 -->
   <div id="error-toast" class="error-toast hidden">
     <span id="error-message"></span>
@@ -429,6 +450,7 @@
   <script src="study-data.js"></script>
   <script src="grammar-data.js"></script>
   <script src="practice-data.js"></script>
+  <script src="빈출단어/vocab-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

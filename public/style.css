@@ -424,6 +424,62 @@ header h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
 .answer-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
 .answer-section-header .answer-section-label { margin-bottom: 0; }
 
+/* ── Vocab screen ── */
+#screen-vocab { gap: 12px; overflow-y: auto; padding-bottom: 40px; }
+
+.vocab-word-count { font-size: .82rem; color: var(--muted); font-weight: 600; padding: 0 2px; }
+
+.vocab-word-list { display: flex; flex-direction: column; gap: 10px; }
+
+.vocab-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color .15s, box-shadow .15s;
+}
+.vocab-card:hover { border-color: #E0E7FF; }
+.vocab-card.vocab-card-open { border-color: var(--primary); }
+
+.vocab-card-front { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+
+.vocab-left { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; max-width: 48%; }
+.vocab-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: 1; min-width: 0; text-align: right; }
+
+.vocab-word-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.vocab-word { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+.vocab-pos { font-size: .7rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+.vocab-expand-hint { font-size: .73rem; color: var(--muted); }
+
+.vocab-meaning-item { font-size: .9rem; font-weight: 600; color: #1E293B; display: block; line-height: 1.55; }
+.vocab-meaning-pos-inline { font-size: .68rem; color: var(--muted); font-style: italic; margin-right: 2px; }
+
+.vocab-card-back { margin-top: 14px; border-top: 1px solid #F3F4F6; padding-top: 12px; }
+.vocab-card-back.hidden { display: none; }
+
+.vocab-example {
+  font-size: .88rem;
+  line-height: 1.7;
+  color: #1E293B;
+  font-style: italic;
+  background: #F8FAFF;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.vocab-tip {
+  font-size: .82rem;
+  line-height: 1.65;
+  color: #374151;
+  background: #FFFBEB;
+  border-left: 3px solid var(--warning);
+  border-radius: 0 8px 8px 0;
+  padding: 8px 12px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .part-grid { grid-template-columns: 1fr; }

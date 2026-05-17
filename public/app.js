@@ -184,6 +184,82 @@ function toggleGrammarFolder() {
   arrow.classList.toggle('open', !isOpen);
 }
 
+function toggleVocabFolder() {
+  const content = document.getElementById('vocab-folder-content');
+  const arrow   = document.getElementById('vf-arrow');
+  const isOpen  = !content.classList.contains('hidden');
+  if (!isOpen && !content.hasChildNodes()) renderVocabFolderContent();
+  content.classList.toggle('hidden', isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function renderVocabFolderContent() {
+  document.getElementById('vocab-folder-content').innerHTML =
+    `<div class="study-folder-module-list">${
+      VOCAB_MODULES.map(mod => `
+        <div class="study-module-card" onclick="openVocabModule('${mod.id}')">
+          <div class="smc-body">
+            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
+            <div class="smc-text">
+              <p class="smc-title">${mod.moduleTitle}</p>
+              <p class="smc-sub">${mod.words.length}개 단어</p>
+            </div>
+          </div>
+          <span class="smc-arrow">›</span>
+        </div>
+      `).join('')
+    }</div>`;
+}
+
+function renderVocabMeanings(meaning) {
+  return meaning.split('·').map(part => {
+    const s = part.trim();
+    const m = s.match(/^([a-z]+\.(?:\/[a-z]+\.)*)\s+(.+)/);
+    if (m) {
+      return `<span class="vocab-meaning-item"><span class="vocab-meaning-pos-inline">${m[1]}</span> ${m[2]}</span>`;
+    }
+    return `<span class="vocab-meaning-item">${s}</span>`;
+  }).join('');
+}
+
+function openVocabModule(moduleId) {
+  const mod = VOCAB_MODULES.find(m => m.id === moduleId);
+  if (!mod) return;
+  document.getElementById('vocab-screen-title').textContent = mod.moduleTitle;
+  document.getElementById('vocab-word-count').textContent = `총 ${mod.words.length}개 단어`;
+  document.getElementById('vocab-word-list').innerHTML = mod.words.map(w => `
+    <div class="vocab-card" onclick="toggleVocabCard(this)">
+      <div class="vocab-card-front">
+        <div class="vocab-left">
+          <div class="vocab-word-row">
+            <span class="vocab-word">${w.word}</span>
+            <span class="vocab-pos">${w.pos}</span>
+          </div>
+          <span class="vocab-expand-hint">탭하여 예문 보기 ▼</span>
+        </div>
+        <div class="vocab-right">
+          ${renderVocabMeanings(w.meaning)}
+        </div>
+      </div>
+      <div class="vocab-card-back hidden">
+        <p class="vocab-example">"${w.example}"</p>
+        <p class="vocab-tip">💡 ${w.tip}</p>
+      </div>
+    </div>
+  `).join('');
+  showScreen('vocab');
+  document.getElementById('screen-vocab').scrollTop = 0;
+}
+
+function toggleVocabCard(card) {
+  const back = card.querySelector('.vocab-card-back');
+  const hint = card.querySelector('.vocab-expand-hint');
+  const isOpen = !back.classList.contains('hidden');
+  back.classList.toggle('hidden', isOpen);
+  hint.textContent = isOpen ? '탭하여 예문 보기 ▼' : '접기 ▲';
+  card.classList.toggle('vocab-card-open', !isOpen);
+}
+
 function renderGrammarFolderContent() {
   document.getElementById('grammar-folder-content').innerHTML =
     `<div class="study-folder-module-list">${

@@ -432,7 +432,10 @@
       <button class="btn-back" onclick="showScreen('select')">← 처음으로</button>
       <h2 id="vocab-screen-title" class="study-page-title"></h2>
     </div>
-    <p id="vocab-word-count" class="vocab-word-count"></p>
+    <div class="vocab-toolbar">
+      <p id="vocab-word-count" class="vocab-word-count"></p>
+      <button id="vocab-filter-btn" class="vocab-filter-btn" onclick="toggleVocabFilter()">☆ 복습만 보기</button>
+    </div>
     <div id="vocab-word-list" class="vocab-word-list"></div>
   </div>
 

@@ -222,33 +222,134 @@ function renderVocabMeanings(meaning) {
   }).join('');
 }
 
+let vocabShowBookmarksOnly = false;
+
+function getVocabBookmarks() {
+  try { return new Set(JSON.parse(localStorage.getItem('vocab_bookmarks') || '[]')); }
+  catch { return new Set(); }
+}
+
+function saveVocabBookmarks(set) {
+  try { localStorage.setItem('vocab_bookmarks', JSON.stringify([...set])); } catch {}
+}
+
+function toggleVocabBookmark(word, event) {
+  event.stopPropagation();
+  const bookmarks = getVocabBookmarks();
+  if (bookmarks.has(word)) bookmarks.delete(word);
+  else bookmarks.add(word);
+  saveVocabBookmarks(bookmarks);
+
+  const card = event.currentTarget.closest('.vocab-card');
+  const btn = event.currentTarget;
+  const isMarked = bookmarks.has(word);
+  btn.textContent = isMarked ? '★' : '☆';
+  btn.classList.toggle('vocab-bookmark-active', isMarked);
+  card.classList.toggle('vocab-card-bookmarked', isMarked);
+
+  updateVocabToolbar();
+  if (vocabShowBookmarksOnly && !isMarked) card.style.display = 'none';
+}
+
+function updateVocabToolbar() {
+  const bookmarks = getVocabBookmarks();
+  const filterBtn = document.getElementById('vocab-filter-btn');
+  if (!filterBtn) return;
+  const n = bookmarks.size;
+  filterBtn.textContent = vocabShowBookmarksOnly
+    ? `★ 복습만 보기 (${n}개) ✓`
+    : `☆ 복습만 보기${n > 0 ? ` (${n}개)` : ''}`;
+}
+
+function toggleVocabFilter() {
+  vocabShowBookmarksOnly = !vocabShowBookmarksOnly;
+  const bookmarks = getVocabBookmarks();
+  const filterBtn = document.getElementById('vocab-filter-btn');
+  if (filterBtn) filterBtn.classList.toggle('vocab-filter-active', vocabShowBookmarksOnly);
+  document.querySelectorAll('#vocab-word-list .vocab-card').forEach(card => {
+    card.style.display = (vocabShowBookmarksOnly && !bookmarks.has(card.dataset.word)) ? 'none' : '';
+  });
+  updateVocabToolbar();
+}
+
+function getPhoneticCache() {
+  try { return JSON.parse(localStorage.getItem('vocab_phonetics_cache') || '{}'); }
+  catch { return {}; }
+}
+
+async function loadVocabPhonetics(words) {
+  const cache = getPhoneticCache();
+  const toFetch = words.filter(w => cache[w.word] === undefined);
+
+  if (toFetch.length > 0) {
+    const results = await Promise.all(toFetch.map(async w => {
+      try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(w.word)}`);
+        if (!res.ok) return [w.word, ''];
+        const data = await res.json();
+        const phonetic = data[0]?.phonetic || data[0]?.phonetics?.find(p => p.text)?.text || '';
+        return [w.word, phonetic];
+      } catch { return [w.word, '']; }
+    }));
+    results.forEach(([word, ph]) => { cache[word] = ph; });
+    try { localStorage.setItem('vocab_phonetics_cache', JSON.stringify(cache)); } catch {}
+  }
+
+  words.forEach(w => {
+    const span = document.querySelector(`.vocab-phonetic[data-word="${CSS.escape(w.word)}"]`);
+    if (span) span.textContent = cache[w.word] || '';
+  });
+}
+
 function openVocabModule(moduleId) {
   const mod = VOCAB_MODULES.find(m => m.id === moduleId);
   if (!mod) return;
   document.getElementById('vocab-screen-title').textContent = mod.moduleTitle;
   document.getElementById('vocab-word-count').textContent = `총 ${mod.words.length}개 단어`;
+
   document.getElementById('vocab-word-list').innerHTML = mod.words.map(w => `
-    <div class="vocab-card" onclick="toggleVocabCard(this)">
+    <div class="vocab-card" data-word="${w.word}" onclick="toggleVocabCard(this)">
       <div class="vocab-card-front">
         <div class="vocab-left">
           <div class="vocab-word-row">
             <span class="vocab-word">${w.word}</span>
             <span class="vocab-pos">${w.pos}</span>
           </div>
+          <span class="vocab-phonetic" data-word="${w.word}"></span>
           <span class="vocab-expand-hint">탭하여 예문 보기 ▼</span>
         </div>
         <div class="vocab-right">
+          <button class="vocab-bookmark-btn" onclick="toggleVocabBookmark('${w.word}', event)">☆</button>
           ${renderVocabMeanings(w.meaning)}
         </div>
       </div>
       <div class="vocab-card-back hidden">
         <p class="vocab-example">"${w.example}"</p>
+        ${w.exampleKo ? `<p class="vocab-example-ko">${w.exampleKo}</p>` : ''}
         <p class="vocab-tip">💡 ${w.tip}</p>
       </div>
     </div>
   `).join('');
+
+  // 저장된 북마크 상태 복원
+  const bookmarks = getVocabBookmarks();
+  document.querySelectorAll('#vocab-word-list .vocab-card').forEach(card => {
+    if (bookmarks.has(card.dataset.word)) {
+      card.classList.add('vocab-card-bookmarked');
+      const btn = card.querySelector('.vocab-bookmark-btn');
+      if (btn) { btn.textContent = '★'; btn.classList.add('vocab-bookmark-active'); }
+    }
+  });
+
+  // 필터 초기화
+  vocabShowBookmarksOnly = false;
+  const filterBtn = document.getElementById('vocab-filter-btn');
+  if (filterBtn) filterBtn.classList.remove('vocab-filter-active');
+  updateVocabToolbar();
+
   showScreen('vocab');
   document.getElementById('screen-vocab').scrollTop = 0;
+  loadVocabPhonetics(mod.words);
 }
 
 function toggleVocabCard(card) {

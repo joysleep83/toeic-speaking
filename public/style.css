@@ -427,7 +427,11 @@ header h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
 /* ── Vocab screen ── */
 #screen-vocab { gap: 12px; overflow-y: auto; padding-bottom: 40px; }
 
-.vocab-word-count { font-size: .82rem; color: var(--muted); font-weight: 600; padding: 0 2px; }
+.vocab-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0 2px; }
+.vocab-word-count { font-size: .82rem; color: var(--muted); font-weight: 600; }
+.vocab-filter-btn { font-size: .76rem; font-weight: 600; color: #6B7280; background: #F3F4F6; border: 1.5px solid #E5E7EB; border-radius: 999px; padding: 4px 13px; cursor: pointer; transition: all .15s; white-space: nowrap; }
+.vocab-filter-btn:hover { background: #FEF3C7; border-color: #FCD34D; color: #B45309; }
+.vocab-filter-btn.vocab-filter-active { background: #FEF3C7; border-color: #F59E0B; color: #B45309; }
 
 .vocab-word-list { display: flex; flex-direction: column; gap: 10px; }
 
@@ -442,6 +446,8 @@ header h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
 }
 .vocab-card:hover { border-color: #E0E7FF; }
 .vocab-card.vocab-card-open { border-color: var(--primary); }
+.vocab-card.vocab-card-bookmarked { border-color: #FCD34D; background: linear-gradient(135deg, #FFFBEB 0%, #fff 60%); }
+.vocab-card.vocab-card-bookmarked.vocab-card-open { border-color: #F59E0B; }
 
 .vocab-card-front { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 
@@ -451,6 +457,10 @@ header h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
 .vocab-word-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .vocab-word { font-size: 1.1rem; font-weight: 800; color: var(--text); }
 .vocab-pos { font-size: .7rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+.vocab-phonetic { font-size: .78rem; color: #6B7280; font-style: italic; letter-spacing: .02em; min-height: .78rem; }
+.vocab-bookmark-btn { background: none; border: none; cursor: pointer; font-size: 1.15rem; color: #D1D5DB; padding: 0 0 2px; line-height: 1; transition: color .15s, transform .1s; align-self: flex-end; flex-shrink: 0; }
+.vocab-bookmark-btn:hover { color: #F59E0B; transform: scale(1.2); }
+.vocab-bookmark-btn.vocab-bookmark-active { color: #F59E0B; }
 .vocab-expand-hint { font-size: .73rem; color: var(--muted); }
 
 .vocab-meaning-item { font-size: .9rem; font-weight: 600; color: #1E293B; display: block; line-height: 1.55; }
@@ -468,6 +478,16 @@ header h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
   border-left: 3px solid var(--primary);
   border-radius: 0 8px 8px 0;
   padding: 10px 12px;
+  margin-bottom: 4px;
+}
+.vocab-example-ko {
+  font-size: .82rem;
+  line-height: 1.6;
+  color: #4B5563;
+  background: #F1F5F9;
+  border-left: 3px solid #A5B4FC;
+  border-radius: 0 8px 8px 0;
+  padding: 7px 12px;
   margin-bottom: 10px;
 }
 .vocab-tip {

@@ -18,5 +18,8 @@ __pycache__/
 # Source image folder (already copied to public/practice-images/)
 part1pick/
 
+# Local backup folder
+backup/
+
 # Claude Code local memory
 .claude/

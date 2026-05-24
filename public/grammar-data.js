@@ -1,5 +1,5 @@
 // ── TOEIC Speaking 문법 강의 데이터 ─────────────────────────────
-// 8개 모듈 · 24개 레슨
+// 8개 모듈 · 28개 레슨
 
 const GRAMMAR_MODULES = [
 
@@ -333,7 +333,7 @@ const GRAMMAR_MODULES = [
         ]
       },
       {
-        id: 'g4l3', title: '전치사 관용 표현 — 자주 틀리는 50가지', duration: '14분',
+        id: 'g4l3', title: '전치사 핵심 의미 + IN · ON · AT 표현', duration: '5분',
         content: [
           { type: 'text', text: '전치사는 단어마다 고정된 짝이 있습니다. 무작정 외우기보다 각 전치사의 핵심 이미지를 먼저 이해하면 왜 그 전치사를 쓰는지 납득이 되어 훨씬 오래 기억됩니다.' },
           { type: 'heading', text: '핵심 전치사 10가지 — 기본 의미' },
@@ -349,7 +349,6 @@ const GRAMMAR_MODULES = [
             ['to', '방향·목적지', '"~을 향해" 나아간다'],
             ['by', '옆에·수단', '"옆에서, ~을 통해서"'],
           ]},
-
           { type: 'heading', text: 'IN — 안에·분야·상태' },
           { type: 'example', label: 'in: 분야·상태의 "안"에 속함', items: [
             { en: 'interested in', ko: '~에 관심이 있는 (그 분야 "안"으로 들어가 있다)' },
@@ -359,7 +358,6 @@ const GRAMMAR_MODULES = [
             { en: 'result in', ko: '~로 이어지다, ~라는 결과 "안"에 도달하다' },
             { en: 'arrive in', ko: '(도시·국가처럼 넓은 곳) "안"으로 들어가다' },
           ]},
-
           { type: 'heading', text: 'ON — 위에·집중·근거' },
           { type: 'example', label: 'on: 특정 대상 "위에 올라타" 집중', items: [
             { en: 'depend on / rely on', ko: '~에 의존하다 (그것 "위에" 체중을 싣는다)' },
@@ -368,7 +366,6 @@ const GRAMMAR_MODULES = [
             { en: 'comment on', ko: '~에 대해 언급하다 (그것 "위에" 의견을 얹는다)' },
             { en: 'based on', ko: '~에 기반하여 (그것을 토대 "위에" 세운다)' },
           ]},
-
           { type: 'heading', text: 'AT — 특정 지점·능력·반응' },
           { type: 'example', label: 'at: "딱 그 지점"을 겨냥', items: [
             { en: 'good at / skilled at / excellent at', ko: '~에 능숙한 (그 능력 지점에 도달해 있다)' },
@@ -377,7 +374,12 @@ const GRAMMAR_MODULES = [
             { en: 'aim at / look at / glance at', ko: '~을 겨냥하다 / ~을 보다 (그 지점을 향한다)' },
             { en: 'arrive at', ko: '(건물·역·작은 장소) "딱 그 지점"에 도착하다' },
           ]},
-
+        ]
+      },
+      {
+        id: 'g4l4', title: 'FOR · OF · WITH · ABOUT 관용 표현', duration: '5분',
+        content: [
+          { type: 'text', text: '전치사 핵심 의미(앞 레슨)를 바탕으로 FOR·OF·WITH·ABOUT 고정 표현을 이어서 학습합니다.' },
           { type: 'heading', text: 'FOR — 목적·역할·이익' },
           { type: 'example', label: 'for: "~을 위해, ~을 향해"', items: [
             { en: 'responsible for', ko: '~에 책임이 있는 (그것을 "위해" 답해야 한다)' },
@@ -388,7 +390,6 @@ const GRAMMAR_MODULES = [
             { en: 'account for', ko: '~을 설명하다, ~을 차지하다' },
             { en: 'wait for / look for / search for', ko: '~을 기다리다 / ~을 찾다' },
           ]},
-
           { type: 'heading', text: 'OF — 소유·구성·감정 대상' },
           { type: 'example', label: 'of: "~의 일부", ~에서 분리', items: [
             { en: 'afraid of / scared of', ko: '~을 두려워하는 (그것에서 멀어지고 싶다)' },
@@ -398,7 +399,6 @@ const GRAMMAR_MODULES = [
             { en: 'consist of', ko: '~으로 구성되다 (그것들의 모임)' },
             { en: 'take advantage of', ko: '~을 이용하다 (그 기회의 이점을 취한다)' },
           ]},
-
           { type: 'heading', text: 'WITH — 동반·동의·처리' },
           { type: 'example', label: 'with: "함께" 있거나 연관', items: [
             { en: 'satisfied with / pleased with', ko: '~에 만족한 (그것과 "함께" 있어 좋다)' },
@@ -408,7 +408,6 @@ const GRAMMAR_MODULES = [
             { en: 'familiar with', ko: '~에 익숙한 (그것과 "함께한" 경험이 있다)' },
             { en: 'help with', ko: '~을 돕다 (그것을 "함께" 해결한다)' },
           ]},
-
           { type: 'heading', text: 'ABOUT — 관련·걱정·화제' },
           { type: 'example', label: 'about: "~에 관해" 주변을 맴돌다', items: [
             { en: 'worried about / concerned about', ko: '~을 걱정하는 (그것 주변을 맴도는 불안)' },
@@ -417,7 +416,12 @@ const GRAMMAR_MODULES = [
             { en: 'talk about / think about / care about', ko: '~에 대해 말하다 / 생각하다 / 신경 쓰다' },
             { en: 'learn about / ask about', ko: '~에 대해 배우다 / ~에 대해 물어보다' },
           ]},
-
+        ]
+      },
+      {
+        id: 'g4l5', title: 'FROM · TO · BY + 자주 틀리는 오류 TOP 10', duration: '5분',
+        content: [
+          { type: 'text', text: 'FROM·TO·BY 표현을 마무리하고, 자주 틀리는 전치사 오류 TOP 10을 확인합니다.' },
           { type: 'heading', text: 'FROM — 출발점·분리·기원' },
           { type: 'example', label: 'from: "출발점에서 멀어진다"', items: [
             { en: 'different from', ko: '~와 다른 (그 기준점에서 "벗어나" 있다)' },
@@ -427,7 +431,6 @@ const GRAMMAR_MODULES = [
             { en: 'graduate from / retire from', ko: '~을 졸업하다 / ~에서 은퇴하다 (그곳을 떠난다)' },
             { en: 'free from / separate from', ko: '~으로부터 자유로운 / ~와 분리된' },
           ]},
-
           { type: 'heading', text: 'TO — 방향·소속·결과' },
           { type: 'example', label: 'to: "~을 향해" 나아간다', items: [
             { en: 'married to', ko: '~와 결혼한 (그 사람을 "향해" 묶인다)' },
@@ -437,14 +440,12 @@ const GRAMMAR_MODULES = [
             { en: 'lead to / contribute to', ko: '~로 이어지다 / ~에 기여하다' },
             { en: 'respond to / react to', ko: '~에 답하다 / ~에 반응하다 (그것을 향해 돌아온다)' },
           ]},
-
           { type: 'heading', text: 'BY — 수단·행위자·기준' },
           { type: 'example', label: 'by: "옆에서, ~을 통해서"', items: [
             { en: 'impressed by / moved by', ko: '~에 감동받은 (그것에 "의해" 움직인다)' },
             { en: 'caused by / followed by', ko: '~에 의해 야기된 / ~에 뒤이어' },
             { en: 'surrounded by', ko: '~에 둘러싸인 (그것들이 "옆에" 빽빽이 있다)' },
           ]},
-
           { type: 'heading', text: '자주 틀리는 전치사 오류 TOP 10' },
           { type: 'example', label: '오류 교정 — 전치사 의미로 이유 확인', items: [
             { en: '❌ interested ON → ✅ interested IN', ko: 'in: 그 분야의 "안"에 관심이 들어가 있다' },
@@ -458,7 +459,6 @@ const GRAMMAR_MODULES = [
             { en: '❌ suffer WITH → ✅ suffer FROM', ko: 'from: 그것에서 벗어나지 못하는 고통' },
             { en: '❌ consist FROM → ✅ consist OF', ko: 'of: 그것들이 모여 "일부"를 이룬다' },
           ]},
-
           { type: 'tip', icon: '💡', text: '외울 때 전치사의 핵심 이미지를 함께 떠올리세요. "in = 안에" → interested IN (그 분야 안으로 들어가는 느낌), "on = 위에" → depend ON (그 위에 기댄다)처럼 이미지화하면 기억이 훨씬 오래 갑니다.' }
         ]
       }

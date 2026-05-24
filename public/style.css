@@ -472,10 +472,13 @@ body {
 
 .cb-expression { display: flex; flex-direction: column; gap: 0; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
 .cb-expr-label { font-size: .75rem; font-weight: 700; color: white; background: var(--primary); padding: 7px 12px; }
-.expr-item { display: flex; gap: 0; border-bottom: 1px solid #F3F4F6; }
+.expr-item { display: flex; flex-direction: column; border-bottom: 1px solid #E5E7EB; }
 .expr-item:last-child { border-bottom: none; }
-.expr-en { flex: 1; padding: 9px 12px; font-size: .85rem; font-style: italic; color: #1E40AF; background: #EFF6FF; font-weight: 500; }
-.expr-ko { flex: 1; padding: 9px 12px; font-size: .83rem; color: #374151; background: white; }
+.expr-en-wrap { display: flex; align-items: flex-start; gap: 8px; background: #EFF6FF; padding: 10px 10px 8px 14px; }
+.expr-en-wrap .expr-en { flex: 1; padding: 0; background: transparent; font-size: .9rem; font-style: normal; font-weight: 600; color: #1D4ED8; line-height: 1.7; }
+.expr-en-wrap .speak-btn { width: 26px; height: 26px; font-size: .78rem; flex-shrink: 0; margin-top: 2px; }
+.expr-en { flex: 1; padding: 10px 14px 8px; font-size: .9rem; font-style: normal; color: #1D4ED8; background: #EFF6FF; font-weight: 600; line-height: 1.7; }
+.expr-ko { padding: 6px 14px 10px; font-size: .82rem; color: #6B7280; background: white; line-height: 1.55; }
 
 .cb-example-block { background: #F8FAFC; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
 .cb-example-label { font-size: .75rem; font-weight: 700; color: white; background: #374151; padding: 7px 12px; }
@@ -592,6 +595,12 @@ body {
 
 .vocab-card-back { margin-top: 14px; border-top: 1px solid #F3F4F6; padding-top: 12px; }
 .vocab-card-back.hidden { display: none; }
+
+.vocab-example-wrap { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+.vocab-example-wrap .vocab-example { flex: 1; margin-bottom: 0; }
+.vocab-example-wrap .speak-btn { flex-shrink: 0; margin-top: 3px; }
+
+.vocab-word-row .speak-btn { width: 26px; height: 26px; font-size: .78rem; }
 
 .vocab-example {
   font-size: .88rem;

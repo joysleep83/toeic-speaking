@@ -300,6 +300,7 @@ function openVocabModule(moduleId) {
           <div class="vocab-word-row">
             <span class="vocab-word">${w.word}</span>
             <span class="vocab-pos">${w.pos}</span>
+            <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.closest('.vocab-word-row').querySelector('.vocab-word').textContent)" title="소리로 듣기">🔊</button>
           </div>
           <span class="vocab-phonetic" data-word="${w.word}"></span>
           <span class="vocab-expand-hint">탭하여 예문 보기 ▼</span>
@@ -310,7 +311,10 @@ function openVocabModule(moduleId) {
         </div>
       </div>
       <div class="vocab-card-back hidden">
-        <p class="vocab-example">"${w.example}"</p>
+        <div class="vocab-example-wrap">
+          <p class="vocab-example">"${w.example}"</p>
+          <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.previousElementSibling.textContent.trim())" title="소리로 듣기">🔊</button>
+        </div>
         ${w.exampleKo ? `<p class="vocab-example-ko">${w.exampleKo}</p>` : ''}
         <p class="vocab-tip">💡 ${w.tip}</p>
       </div>
@@ -1289,7 +1293,10 @@ function renderBlock(block) {
     case 'example': {
       const rows = block.items.map(i => `
         <div class="expr-item">
-          <div class="expr-en">${i.en}</div>
+          <div class="expr-en-wrap">
+            <div class="expr-en">${i.en}</div>
+            <button class="speak-btn" onclick="speak(this, this.previousElementSibling.textContent.trim())" title="소리로 듣기">🔊</button>
+          </div>
           <div class="expr-ko">${i.ko}</div>
         </div>`).join('');
       return `<div class="cb-expression"><div class="cb-expr-label">${block.label}</div>${rows}</div>`;

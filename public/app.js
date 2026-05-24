@@ -82,6 +82,7 @@ let currentPart       = null;
 let currentFeedback   = null;
 let currentDetailId   = null;
 let currentFilter     = 'all';
+let currentTab        = 'practice';
 
 // Step 1 timer
 let timerInterval = null;
@@ -133,82 +134,67 @@ function showScreen(id) {
   document.getElementById(`screen-${id}`).classList.add('active');
 }
 
-function togglePracticeFolder() {
-  const content = document.getElementById('practice-folder-content');
-  const arrow   = document.getElementById('pf-arrow');
-  const isOpen  = !content.classList.contains('hidden');
-  content.classList.toggle('hidden', isOpen);
-  arrow.classList.toggle('open', !isOpen);
+// ── Navigation ────────────────────────────────────────────────
+function navTo(tab) {
+  if (isRecording) {
+    if (!confirm('녹음을 중단하고 다른 메뉴로 이동하시겠습니까?')) return;
+  }
+  fullCleanup();
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.tab === tab)
+  );
+  switch (tab) {
+    case 'practice': showScreen('practice'); break;
+    case 'exercise': showScreen('exercise'); break;
+    case 'study':    showStudyScreen();      break;
+    case 'grammar':  showGrammarScreen();    break;
+    case 'vocab':    showVocabHomeScreen();  break;
+    case 'history':  showHistoryScreen();    break;
+  }
 }
 
-function toggleExerciseFolder() {
-  const content = document.getElementById('exercise-folder-content');
-  const arrow   = document.getElementById('ef-arrow');
-  const isOpen  = !content.classList.contains('hidden');
-  content.classList.toggle('hidden', isOpen);
-  arrow.classList.toggle('open', !isOpen);
+function setActiveTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.tab === tab)
+  );
 }
 
-function toggleStudyFolder() {
-  const content = document.getElementById('study-folder-content');
-  const arrow   = document.getElementById('sf-arrow');
-  const isOpen  = !content.classList.contains('hidden');
-  if (!isOpen && !content.hasChildNodes()) renderStudyFolderContent();
-  content.classList.toggle('hidden', isOpen);
-  arrow.classList.toggle('open', !isOpen);
-}
-
-function renderStudyFolderContent() {
-  document.getElementById('study-folder-content').innerHTML =
-    `<div class="study-folder-module-list">${
-      STUDY_MODULES.map(mod => `
-        <div class="study-module-card" onclick="openModule('${mod.id}')">
-          <div class="smc-body">
-            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
-            <div class="smc-info">
-              <div class="smc-title">${mod.title}</div>
-              <div class="smc-subtitle">${mod.subtitle}</div>
-            </div>
-            <div class="smc-right"><span class="smc-arrow">›</span></div>
+function showGrammarScreen() {
+  const list = document.getElementById('grammar-module-list');
+  if (!list.hasChildNodes()) {
+    list.innerHTML = GRAMMAR_MODULES.map(mod => `
+      <div class="study-module-card" onclick="openGrammarModule('${mod.id}')">
+        <div class="smc-body">
+          <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
+          <div class="smc-info">
+            <div class="smc-title">${mod.title}</div>
+            <div class="smc-subtitle">${mod.subtitle}</div>
           </div>
-        </div>`).join('')
-    }</div>`;
-}
-
-function toggleGrammarFolder() {
-  const content = document.getElementById('grammar-folder-content');
-  const arrow   = document.getElementById('gf-arrow');
-  const isOpen  = !content.classList.contains('hidden');
-  if (!isOpen && !content.hasChildNodes()) renderGrammarFolderContent();
-  content.classList.toggle('hidden', isOpen);
-  arrow.classList.toggle('open', !isOpen);
-}
-
-function toggleVocabFolder() {
-  const content = document.getElementById('vocab-folder-content');
-  const arrow   = document.getElementById('vf-arrow');
-  const isOpen  = !content.classList.contains('hidden');
-  if (!isOpen && !content.hasChildNodes()) renderVocabFolderContent();
-  content.classList.toggle('hidden', isOpen);
-  arrow.classList.toggle('open', !isOpen);
-}
-
-function renderVocabFolderContent() {
-  document.getElementById('vocab-folder-content').innerHTML =
-    `<div class="study-folder-module-list">${
-      VOCAB_MODULES.map(mod => `
-        <div class="study-module-card" onclick="openVocabModule('${mod.id}')">
-          <div class="smc-body">
-            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
-            <div class="smc-text">
-              <p class="smc-title">${mod.moduleTitle}</p>
-              <p class="smc-sub">${mod.words.length}개 단어</p>
-            </div>
-          </div>
-          <span class="smc-arrow">›</span>
+          <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
-      `).join('')
-    }</div>`;
+      </div>`).join('');
+  }
+  showScreen('grammar');
+}
+
+function showVocabHomeScreen() {
+  const list = document.getElementById('vocab-module-list');
+  if (!list.hasChildNodes()) {
+    list.innerHTML = VOCAB_MODULES.map(mod => `
+      <div class="study-module-card" onclick="openVocabModule('${mod.id}')">
+        <div class="smc-body">
+          <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
+          <div class="smc-info">
+            <div class="smc-title">${mod.moduleTitle}</div>
+            <div class="smc-subtitle">${mod.words.length}개 단어</div>
+          </div>
+          <div class="smc-right"><span class="smc-arrow">›</span></div>
+        </div>
+      </div>`).join('');
+  }
+  showScreen('vocab-home');
 }
 
 function renderVocabMeanings(meaning) {
@@ -347,6 +333,7 @@ function openVocabModule(moduleId) {
   if (filterBtn) filterBtn.classList.remove('vocab-filter-active');
   updateVocabToolbar();
 
+  setActiveTab('vocab');
   showScreen('vocab');
   document.getElementById('screen-vocab').scrollTop = 0;
   loadVocabPhonetics(mod.words);
@@ -361,22 +348,6 @@ function toggleVocabCard(card) {
   card.classList.toggle('vocab-card-open', !isOpen);
 }
 
-function renderGrammarFolderContent() {
-  document.getElementById('grammar-folder-content').innerHTML =
-    `<div class="study-folder-module-list">${
-      GRAMMAR_MODULES.map(mod => `
-        <div class="study-module-card" onclick="openGrammarModule('${mod.id}')">
-          <div class="smc-body">
-            <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
-            <div class="smc-info">
-              <div class="smc-title">${mod.title}</div>
-              <div class="smc-subtitle">${mod.subtitle}</div>
-            </div>
-            <div class="smc-right"><span class="smc-arrow">›</span></div>
-          </div>
-        </div>`).join('')
-    }</div>`;
-}
 
 // ── 연습 문제 목록 화면 ────────────────────────────────────────
 function showPracticeList(part) {
@@ -417,6 +388,7 @@ function showPracticeList(part) {
     </div>`;
   }).join('');
 
+  setActiveTab('exercise');
   showScreen('practice-list');
 }
 
@@ -429,7 +401,7 @@ function togglePracticeAnswer(btn) {
   btn.querySelector('span:first-child').textContent = isOpen ? '모범 답안 · 해설 보기' : '접기';
 }
 
-document.getElementById('btn-practice-back').addEventListener('click', () => showScreen('select'));
+document.getElementById('btn-practice-back').addEventListener('click', () => showScreen('exercise'));
 
 // ══════════════════════════════════════════════════════════════
 // STEP 1 — Question & Prep Timer
@@ -549,7 +521,7 @@ async function generateQuestion(part) {
     });
     const data = await res.json();
     if (!res.ok) {
-      if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('select'); return; }
+      if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('practice'); return; }
       // 서버 오류 — 로컬 샘플로 계속 진행
       showQuestion(pickLocalQuestion(part));
       return;
@@ -709,7 +681,7 @@ async function analyzeAnswer() {
     });
     const data = await res.json();
     if (!res.ok) {
-      if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('record'); return; }
+      if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('practice'); return; }
       // 503 등 — 오프라인 피드백으로 계속 진행
       currentFeedback = offlineFeedback();
       showFeedback(currentFeedback);
@@ -1118,34 +1090,38 @@ function showSuccess(msg) {
 // Event Listeners
 // ══════════════════════════════════════════════════════════════
 
-// Select screen
+// Practice screen
 document.querySelectorAll('.part-card').forEach(card => {
-  card.addEventListener('click', () => generateQuestion(parseInt(card.dataset.part, 10)));
+  card.addEventListener('click', () => {
+    setActiveTab('practice');
+    generateQuestion(parseInt(card.dataset.part, 10));
+  });
 });
-document.getElementById('btn-random').addEventListener('click', () => generateQuestion(Math.ceil(Math.random() * 6)));
-document.getElementById('btn-go-history').addEventListener('click', showHistoryScreen);
+document.getElementById('btn-random').addEventListener('click', () => {
+  setActiveTab('practice');
+  generateQuestion(Math.ceil(Math.random() * 6));
+});
 
 // Question screen
-document.getElementById('btn-back').addEventListener('click', () => { clearTimer(); showScreen('select'); });
+document.getElementById('btn-back').addEventListener('click', () => { clearTimer(); showScreen('practice'); });
 
 // Recording screen
-document.getElementById('btn-rec-back').addEventListener('click', () => { fullCleanup(); showScreen('select'); });
+document.getElementById('btn-rec-back').addEventListener('click', () => { fullCleanup(); showScreen('practice'); });
 document.getElementById('btn-stop-record').addEventListener('click', stopRecording);
 
 // Feedback screen
-document.getElementById('btn-feedback-home').addEventListener('click', () => { fullCleanup(); showScreen('select'); });
+document.getElementById('btn-feedback-home').addEventListener('click', () => { fullCleanup(); showScreen('practice'); });
 document.getElementById('btn-save').addEventListener('click', saveResult);
 document.getElementById('btn-retry-question').addEventListener('click', () => { fullCleanup(); showQuestion(currentQuestion); });
 
 // History dashboard
-document.getElementById('btn-history-home').addEventListener('click', () => showScreen('select'));
 document.getElementById('btn-export').addEventListener('click', exportHistory);
 document.getElementById('btn-clear-all').addEventListener('click', () => {
   if (!confirm('모든 학습 기록을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) return;
   clearHistory();
   showHistoryScreen();
 });
-document.getElementById('btn-start-practice').addEventListener('click', () => showScreen('select'));
+document.getElementById('btn-start-practice').addEventListener('click', () => navTo('practice'));
 
 // Filter tabs
 document.getElementById('filter-tabs').addEventListener('click', (e) => {
@@ -1159,7 +1135,8 @@ document.getElementById('filter-tabs').addEventListener('click', (e) => {
 // History detail
 document.getElementById('btn-detail-back').addEventListener('click', showHistoryScreen);
 
-// Study (btn-go-study 제거 — 폴더로 전환)
+// Vocab back
+document.getElementById('btn-vocab-back').addEventListener('click', showVocabHomeScreen);
 
 // ══════════════════════════════════════════════════════════════
 // STUDY — 학습 과정
@@ -1168,7 +1145,8 @@ document.getElementById('btn-detail-back').addEventListener('click', showHistory
 // ── 학습 홈 ──────────────────────────────────────────────────
 function showStudyScreen() {
   const list = document.getElementById('study-module-list');
-  list.innerHTML = STUDY_MODULES.map(mod => `
+  if (!list.hasChildNodes()) {
+    list.innerHTML = STUDY_MODULES.map(mod => `
       <div class="study-module-card" onclick="openModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -1176,12 +1154,10 @@ function showStudyScreen() {
             <div class="smc-title">${mod.title}</div>
             <div class="smc-subtitle">${mod.subtitle}</div>
           </div>
-          <div class="smc-right">
-            <span class="smc-arrow">›</span>
-          </div>
+          <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
-
+  }
   showScreen('study');
 }
 
@@ -1325,8 +1301,10 @@ function renderBlock(block) {
 }
 
 // ── 학습 화면 이벤트 ─────────────────────────────────────────
-document.getElementById('btn-study-home').addEventListener('click', () => showScreen('select'));
-document.getElementById('btn-lesson-back').addEventListener('click', () => showScreen('select'));
+document.getElementById('btn-lesson-back').addEventListener('click', () => {
+  if (currentLessonContext === 'grammar') showGrammarScreen();
+  else showStudyScreen();
+});
 document.getElementById('btn-lesson-prev').addEventListener('click', prevLesson);
 document.getElementById('btn-lesson-next').addEventListener('click', nextLesson);
 

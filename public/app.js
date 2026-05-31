@@ -106,6 +106,19 @@ let hdRadarChart  = null;
 let currentImageSrc = null;
 
 // ── TTS ────────────────────────────────────────────────────────
+function cleanForSpeech(text) {
+  return text
+    .replace(/\(.*?\)/g, '')           // 괄호 내용 제거
+    .replace(/\[.*?\]/g, '')           // 대괄호 내용 제거
+    .replace(/[\u{1F000}-\u{1FFFF}]/gu, '') // 이모지(보충 다국어 평면)
+    .replace(/[\u{2600}-\u{27BF}]/gu, '')   // 기타 기호/이모지
+    .replace(/[\u{FE00}-\u{FE0F}]/gu, '')   // 변형 선택자
+    .replace(/[☐☑☒✓✔✗✘□■●○◆◇▶►★☆]/g, '') // 체크박스·불릿 기호
+    .replace(/[#*_~`]/g, '')           // 마크다운 서식 기호
+    .replace(/\s+/g, ' ')              // 연속 공백 정리
+    .trim();
+}
+
 function speak(btn, text) {
   if (!text || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
@@ -114,7 +127,9 @@ function speak(btn, text) {
     return;
   }
   document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
-  const utt = new SpeechSynthesisUtterance(text.trim());
+  const cleaned = cleanForSpeech(text);
+  if (!cleaned) return;
+  const utt = new SpeechSynthesisUtterance(cleaned);
   utt.lang = 'en-US';
   utt.rate = 0.9;
   btn.classList.add('speaking');

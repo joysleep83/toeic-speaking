@@ -3,6 +3,89 @@ const STORAGE_KEY      = 'toeic_speaking_history';
 const OPIC_STORAGE_KEY    = 'opic_history';
 const OPIC_JP_STORAGE_KEY = 'opic_jp_history';
 
+// ── 가나 50음도 데이터 ─────────────────────────────────────────
+// h = 히라가나, k = 카타카나, r = 로마자, null = 해당 음 없음
+const _KANA_DATA = {
+  basic: [
+    { h:['あ','い','う','え','お'], k:['ア','イ','ウ','エ','オ'], r:['a','i','u','e','o'] },
+    { h:['か','き','く','け','こ'], k:['カ','キ','ク','ケ','コ'], r:['ka','ki','ku','ke','ko'] },
+    { h:['さ','し','す','せ','そ'], k:['サ','シ','ス','セ','ソ'], r:['sa','shi','su','se','so'] },
+    { h:['た','ち','つ','て','と'], k:['タ','チ','ツ','テ','ト'], r:['ta','chi','tsu','te','to'] },
+    { h:['な','に','ぬ','ね','の'], k:['ナ','ニ','ヌ','ネ','ノ'], r:['na','ni','nu','ne','no'] },
+    { h:['は','ひ','ふ','へ','ほ'], k:['ハ','ヒ','フ','ヘ','ホ'], r:['ha','hi','fu','he','ho'] },
+    { h:['ま','み','む','め','も'], k:['マ','ミ','ム','メ','モ'], r:['ma','mi','mu','me','mo'] },
+    { h:['や',null,'ゆ',null,'よ'], k:['ヤ',null,'ユ',null,'ヨ'], r:['ya',null,'yu',null,'yo'] },
+    { h:['ら','り','る','れ','ろ'], k:['ラ','リ','ル','レ','ロ'], r:['ra','ri','ru','re','ro'] },
+    { h:['わ',null,null,null,'を'], k:['ワ',null,null,null,'ヲ'], r:['wa',null,null,null,'wo'] },
+    { h:['ん',null,null,null,null], k:['ン',null,null,null,null], r:['n',null,null,null,null], single:true },
+  ],
+  daku: [
+    { h:['が','ぎ','ぐ','げ','ご'], k:['ガ','ギ','グ','ゲ','ゴ'], r:['ga','gi','gu','ge','go'] },
+    { h:['ざ','じ','ず','ぜ','ぞ'], k:['ザ','ジ','ズ','ゼ','ゾ'], r:['za','ji','zu','ze','zo'] },
+    { h:['だ','ぢ','づ','で','ど'], k:['ダ','ヂ','ヅ','デ','ド'], r:['da','di','du','de','do'] },
+    { h:['ば','び','ぶ','べ','ぼ'], k:['バ','ビ','ブ','ベ','ボ'], r:['ba','bi','bu','be','bo'] },
+    { h:['ぱ','ぴ','ぷ','ぺ','ぽ'], k:['パ','ピ','プ','ペ','ポ'], r:['pa','pi','pu','pe','po'] },
+  ],
+  yoon: [
+    { h:['きゃ','きゅ','きょ'], k:['キャ','キュ','キョ'], r:['kya','kyu','kyo'] },
+    { h:['しゃ','しゅ','しょ'], k:['シャ','シュ','ショ'], r:['sha','shu','sho'] },
+    { h:['ちゃ','ちゅ','ちょ'], k:['チャ','チュ','チョ'], r:['cha','chu','cho'] },
+    { h:['にゃ','にゅ','にょ'], k:['ニャ','ニュ','ニョ'], r:['nya','nyu','nyo'] },
+    { h:['ひゃ','ひゅ','ひょ'], k:['ヒャ','ヒュ','ヒョ'], r:['hya','hyu','hyo'] },
+    { h:['みゃ','みゅ','みょ'], k:['ミャ','ミュ','ミョ'], r:['mya','myu','myo'] },
+    { h:['りゃ','りゅ','りょ'], k:['リャ','リュ','リョ'], r:['rya','ryu','ryo'] },
+    { h:['ぎゃ','ぎゅ','ぎょ'], k:['ギャ','ギュ','ギョ'], r:['gya','gyu','gyo'] },
+    { h:['じゃ','じゅ','じょ'], k:['ジャ','ジュ','ジョ'], r:['ja','ju','jo'] },
+    { h:['びゃ','びゅ','びょ'], k:['ビャ','ビュ','ビョ'], r:['bya','byu','byo'] },
+    { h:['ぴゃ','ぴゅ','ぴょ'], k:['ピャ','ピュ','ピョ'], r:['pya','pyu','pyo'] },
+  ]
+};
+
+function renderKanaTable(kanaType) {
+  const key = kanaType === 'hiragana' ? 'h' : 'k';
+
+  const cell = (ch, ro) => ch
+    ? `<td><b class="kana-ch">${ch}</b><span class="kana-ro">${ro}</span></td>`
+    : `<td class="kana-mt"></td>`;
+
+  const basicRows = _KANA_DATA.basic.map(row => {
+    if (row.single) {
+      return `<tr><td colspan="5" class="kana-single"><b class="kana-ch">${row[key][0]}</b><span class="kana-ro">${row.r[0]}</span></td></tr>`;
+    }
+    return `<tr>${row[key].map((c, i) => cell(c, row.r[i])).join('')}</tr>`;
+  }).join('');
+
+  const dakuRows = _KANA_DATA.daku.map(row =>
+    `<tr>${row[key].map((c, i) => cell(c, row.r[i])).join('')}</tr>`
+  ).join('');
+
+  const yoonRows = _KANA_DATA.yoon.map(row => {
+    const base = row[key][0].slice(0, 1);
+    return `<tr><th class="kana-rl">${base}</th>${row[key].map((c, i) => cell(c, row.r[i])).join('')}</tr>`;
+  }).join('');
+
+  const tbl5 = (title, rows, hdrs) => `
+    <div class="kana-sec">
+      <div class="kana-stitle">${title}</div>
+      <table class="kana-tbl">
+        <thead><tr>${hdrs.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+
+  return `<div class="kana-view">
+    ${tbl5('清音 — 기본 46자', basicRows, ['a','i','u','e','o'])}
+    ${tbl5('濁音・半濁音 — 탁음・반탁음', dakuRows, ['a','i','u','e','o'])}
+    <div class="kana-sec">
+      <div class="kana-stitle">拗音 — 조합음</div>
+      <table class="kana-tbl kana-yoon">
+        <thead><tr><th></th><th>〜ゃ</th><th>〜ゅ</th><th>〜ょ</th></tr></thead>
+        <tbody>${yoonRows}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
 // 서버/네트워크 완전 불가 시 사용하는 로컬 샘플 문제 (AI 불필요)
 const LOCAL_QUESTIONS = {
   1: [
@@ -392,7 +475,7 @@ function showVocabHomeScreen() {
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
           <div class="smc-info">
             <div class="smc-title">${mod.moduleTitle}</div>
-            <div class="smc-subtitle">${mod.words.length}개 단어</div>
+            <div class="smc-subtitle">${mod.type === 'kana-table' ? '일람표 · 탁음 · 요음' : mod.words.length + '개 단어'}</div>
           </div>
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
@@ -515,6 +598,19 @@ function openVocabModule(moduleId) {
   if (!mod) return;
   const vocabTitleEl = document.getElementById('vocab-screen-title');
   vocabTitleEl.innerHTML = currentMode === 'opic-jp' ? applyJpFurigana(mod.moduleTitle) : mod.moduleTitle;
+
+  // ── 가나 테이블 모듈 ─────────────────────────────────────────
+  if (mod.type === 'kana-table') {
+    document.getElementById('vocab-word-count').textContent =
+      mod.kanaType === 'hiragana' ? '청음 46자 · 탁음 · 요음' : '청음 46자 · 탁음 · 요음 · 장음ー';
+    document.getElementById('vocab-word-list').innerHTML = renderKanaTable(mod.kanaType);
+    document.getElementById('vocab-filter-btn').style.display = 'none';
+    setActiveTab('vocab');
+    showScreen('vocab');
+    document.getElementById('screen-vocab').scrollTop = 0;
+    return;
+  }
+  document.getElementById('vocab-filter-btn').style.display = '';
   document.getElementById('vocab-word-count').textContent = `총 ${mod.words.length}개 단어`;
 
   let vocabHtml = mod.words.map(w => `

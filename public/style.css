@@ -699,6 +699,47 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
   padding: 8px 12px;
 }
 
+/* ── 가나 50음도 테이블 ── */
+.kana-view        { padding: 4px 0 12px; }
+.kana-sec         { margin-bottom: 20px; }
+.kana-stitle      {
+  font-size: .75rem; font-weight: 700; letter-spacing: .03em;
+  color: #374151; background: #F3F4F6;
+  padding: 5px 10px; border-radius: 6px;
+  margin-bottom: 8px;
+}
+.kana-tbl         { width: 100%; border-collapse: collapse; }
+.kana-tbl thead th {
+  font-size: .62rem; color: #9CA3AF; font-weight: 600;
+  padding: 2px 0; text-align: center; text-transform: uppercase;
+}
+.kana-tbl td      {
+  text-align: center; padding: 6px 2px;
+  border-radius: 6px; cursor: default;
+  transition: background .15s;
+}
+.kana-tbl td:hover { background: var(--primary-light); }
+.kana-ch          {
+  display: block; font-size: 1.35rem; font-weight: 400;
+  color: var(--text); line-height: 1.1;
+  font-family: 'Hiragino Kana', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+}
+.kana-ro          {
+  display: block; font-size: .58rem;
+  color: var(--muted); margin-top: 1px; font-weight: 500;
+}
+.kana-mt          { opacity: 0; pointer-events: none; }
+.kana-single      {
+  text-align: center; padding: 6px 0;
+  background: #F9FAFB; border-radius: 6px;
+}
+.kana-yoon        { width: auto; }
+.kana-yoon th.kana-rl {
+  font-size: .75rem; font-weight: 600;
+  color: var(--muted); padding-right: 6px;
+  text-align: right; vertical-align: middle;
+}
+
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .part-grid { grid-template-columns: 1fr; }

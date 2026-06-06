@@ -12,7 +12,14 @@
   <!-- ══ 최상단 고정 네비게이션 ══ -->
   <nav id="app-nav">
     <div class="nav-inner">
-      <div class="nav-brand">TOEIC 스피킹</div>
+      <div class="nav-top-bar">
+        <div class="nav-brand" id="nav-brand-text">TOEIC 스피킹</div>
+        <div class="mode-switch">
+          <button class="mode-switch-btn active" data-mode="toeic" onclick="switchMode('toeic')">TOEIC</button>
+          <button class="mode-switch-btn" data-mode="opic" onclick="switchMode('opic')">OPIc</button>
+          <button class="mode-switch-btn" data-mode="opic-jp" onclick="switchMode('opic-jp')">OPIc日</button>
+        </div>
+      </div>
       <div class="nav-tabs-row">
         <button class="nav-tab active" data-tab="practice" onclick="navTo('practice')">
           <span class="nav-icon">📝</span>
@@ -42,7 +49,109 @@
     </div>
   </nav>
 
-  <!-- ① 실전문제 -->
+  <!-- ① OPIc 日本語 실전문제 -->
+  <div id="screen-opic-jp-practice" class="screen">
+    <div class="screen-section-header ssh-opic-jp">
+      <h2 class="screen-section-title">OPIc 日本語 実戦練習</h2>
+      <p class="screen-section-sub">주제별 AI 일본어 문제 생성 · 실시간 채점</p>
+    </div>
+    <div class="part-grid">
+      <div class="part-card opic-jp-topic-card" data-topic="1">
+        <span class="part-badge opic-jp-badge-desc">描写型</span>
+        <p class="part-type">自己紹介</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="2">
+        <span class="part-badge opic-jp-badge-desc">描写型</span>
+        <p class="part-type">日課・日常</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="3">
+        <span class="part-badge opic-jp-badge-desc">描写型</span>
+        <p class="part-type">住まい・近所</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="4">
+        <span class="part-badge opic-jp-badge-exp">経験型</span>
+        <p class="part-type">趣味・余暇</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="5">
+        <span class="part-badge opic-jp-badge-exp">経験型</span>
+        <p class="part-type">旅行</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="6">
+        <span class="part-badge opic-jp-badge-desc">描写型</span>
+        <p class="part-type">職場・学校</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="7">
+        <span class="part-badge opic-jp-badge-role">ロールプレイ</span>
+        <p class="part-type">ロールプレイ</p>
+        <p class="part-times">답변 90초</p>
+      </div>
+      <div class="part-card opic-jp-topic-card" data-topic="8">
+        <span class="part-badge opic-jp-badge-exp">経験型</span>
+        <p class="part-type">経験・比較</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+    </div>
+    <button id="btn-opic-jp-random" class="btn-random">🎲 ランダム出題</button>
+  </div>
+
+  <!-- ① OPIc 실전문제 -->
+  <div id="screen-opic-practice" class="screen">
+    <div class="screen-section-header ssh-opic">
+      <h2 class="screen-section-title">OPIc 실전 연습</h2>
+      <p class="screen-section-sub">주제별 AI 문제 생성 · 실시간 채점</p>
+    </div>
+    <div class="part-grid">
+      <div class="part-card opic-topic-card" data-topic="1">
+        <span class="part-badge opic-badge-desc">묘사형</span>
+        <p class="part-type">자기소개</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="2">
+        <span class="part-badge opic-badge-desc">묘사형</span>
+        <p class="part-type">일상 & 루틴</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="3">
+        <span class="part-badge opic-badge-desc">묘사형</span>
+        <p class="part-type">거주지 & 동네</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="4">
+        <span class="part-badge opic-badge-exp">경험형</span>
+        <p class="part-type">취미 & 여가</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="5">
+        <span class="part-badge opic-badge-exp">경험형</span>
+        <p class="part-type">여행</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="6">
+        <span class="part-badge opic-badge-desc">묘사형</span>
+        <p class="part-type">직장 & 학교</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="7">
+        <span class="part-badge opic-badge-role">롤플레이형</span>
+        <p class="part-type">롤플레이</p>
+        <p class="part-times">답변 90초</p>
+      </div>
+      <div class="part-card opic-topic-card" data-topic="8">
+        <span class="part-badge opic-badge-exp">경험형</span>
+        <p class="part-type">경험 & 비교</p>
+        <p class="part-times">답변 2분</p>
+      </div>
+    </div>
+    <button id="btn-opic-random" class="btn-random">🎲 랜덤 출제</button>
+  </div>
+
+  <!-- ① TOEIC 실전문제 -->
   <div id="screen-practice" class="screen active">
     <div class="screen-section-header ssh-practice">
       <h2 class="screen-section-title">실전 연습</h2>
@@ -306,7 +415,7 @@
         <div id="fb-grade" class="grade-badge">--</div>
         <div class="score-number-row">
           <span id="fb-total" class="total-score">---</span>
-          <span class="score-max">/ 200</span>
+          <span class="score-max" id="fb-score-max">/ 200</span>
         </div>
         <p class="score-sub-label">예측 점수</p>
       </div>
@@ -355,7 +464,7 @@
         <div id="hd-grade" class="grade-badge">--</div>
         <div class="score-number-row">
           <span id="hd-total" class="total-score">---</span>
-          <span class="score-max">/ 200</span>
+          <span class="score-max" id="hd-score-max">/ 200</span>
         </div>
         <p class="score-sub-label">예측 점수</p>
       </div>
@@ -443,9 +552,16 @@
   </div>
 
   <script src="study-data.js"></script>
+  <script src="opic-study-data.js"></script>
+  <script src="opic-jp-study-data.js"></script>
+  <script src="opic-jp-grammar-data.js"></script>
   <script src="grammar-data.js"></script>
   <script src="practice-data.js"></script>
+  <script src="opic-practice-data.js"></script>
+  <script src="opic-jp-practice-data.js"></script>
   <script src="빈출단어/vocab-data.js"></script>
+  <script src="빈출단어/opic-vocab-data.js"></script>
+  <script src="빈출단어/opic-jp-vocab-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

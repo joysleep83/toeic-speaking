@@ -12,7 +12,24 @@
   --card:          #FFFFFF;
   --shadow:        0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.06);
   --radius:        12px;
-  --nav-h:         64px;
+  --nav-h:         72px;
+  --opic-primary:       #0D9488;
+  --opic-primary-light: #CCFBF1;
+}
+
+body.opic-mode {
+  --primary:       #0D9488;
+  --primary-light: #CCFBF1;
+}
+
+body.opic-jp-mode {
+  --primary:       #DC2626;
+  --primary-light: #FEE2E2;
+}
+
+:root {
+  --opic-jp-primary:       #DC2626;
+  --opic-jp-primary-light: #FEE2E2;
 }
 
 body {
@@ -37,14 +54,48 @@ body {
   margin: 0 auto;
 }
 
+.nav-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px 2px;
+}
+
 .nav-brand {
-  text-align: center;
   font-size: .7rem;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: 6px 16px 2px;
+}
+
+.mode-switch {
+  display: flex;
+  background: #F3F4F6;
+  border-radius: 999px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.mode-switch-btn {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 999px;
+  font-size: .63rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: #9CA3AF;
+  background: transparent;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: all .18s;
+  white-space: nowrap;
+}
+
+.mode-switch-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,.12);
 }
 
 .nav-tabs-row {
@@ -107,12 +158,26 @@ body {
 .ssh-study    .screen-section-title { color: #5B21B6; }
 .ssh-grammar  .screen-section-title { color: #92400E; }
 .ssh-vocab    .screen-section-title { color: #9D174D; }
+.ssh-opic     .screen-section-title { color: #0F766E; }
 
 .ssh-practice { border-bottom-color: #C7D2FE; }
 .ssh-exercise { border-bottom-color: #A7F3D0; }
 .ssh-study    { border-bottom-color: #DDD6FE; }
 .ssh-grammar  { border-bottom-color: #FDE68A; }
 .ssh-vocab    { border-bottom-color: #FBCFE8; }
+.ssh-opic     { border-bottom-color: #99F6E4; }
+
+/* OPIc 질문 유형 배지 */
+.opic-badge-desc { color: #0F766E; background: #CCFBF1; }
+.opic-badge-exp  { color: #92400E; background: #FEF3C7; }
+.opic-badge-role { color: #BE185D; background: #FCE7F3; }
+
+/* OPIc 日本語 배지 & 섹션 */
+.opic-jp-badge-desc { color: #991B1B; background: #FEE2E2; }
+.opic-jp-badge-exp  { color: #92400E; background: #FEF3C7; }
+.opic-jp-badge-role { color: #6B21A8; background: #F3E8FF; }
+.ssh-opic-jp .screen-section-title { color: #991B1B; }
+.ssh-opic-jp { border-bottom-color: #FECACA; }
 
 .part-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
 

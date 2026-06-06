@@ -1,5 +1,7 @@
 // ── Constants ──────────────────────────────────────────────────
-const STORAGE_KEY = 'toeic_speaking_history';
+const STORAGE_KEY      = 'toeic_speaking_history';
+const OPIC_STORAGE_KEY    = 'opic_history';
+const OPIC_JP_STORAGE_KEY = 'opic_jp_history';
 
 // 서버/네트워크 완전 불가 시 사용하는 로컬 샘플 문제 (AI 불필요)
 const LOCAL_QUESTIONS = {
@@ -74,9 +76,108 @@ const GRADE_COLORS = {
   NH: '#EF4444'
 };
 
+// ── OPIc config ────────────────────────────────────────────────
+const OPIC_PART_TYPE_LABEL = {
+  1: 'Self-Introduction',
+  2: 'Daily Routine',
+  3: 'Home & Neighborhood',
+  4: 'Hobbies & Leisure',
+  5: 'Travel',
+  6: 'Work & School',
+  7: 'Role-play',
+  8: 'Experiences & Comparisons'
+};
+
+const OPIC_TOPIC_LABEL = {
+  1: '자기소개',
+  2: '일상 & 루틴',
+  3: '거주지 & 동네',
+  4: '취미 & 여가',
+  5: '여행',
+  6: '직장 & 학교',
+  7: '롤플레이',
+  8: '경험 & 비교'
+};
+
+const OPIC_PART_NAME_KO = {
+  1: '자기소개',
+  2: '일상 & 루틴',
+  3: '거주지 & 동네',
+  4: '취미 & 여가',
+  5: '여행',
+  6: '직장 & 학교',
+  7: '롤플레이',
+  8: '경험 & 비교'
+};
+
+const OPIC_SCORE_LABELS = {
+  task_completion: '과제 완성도',
+  discourse:       '담화 구성',
+  vocabulary:      '어휘력',
+  grammar:         '문법',
+  fluency:         '유창성'
+};
+
+// ── OPIc 日本語 config ─────────────────────────────────────
+const OPIC_JP_PART_TYPE_LABEL = {
+  1: 'Self-Introduction (自己紹介)',
+  2: 'Daily Routine (日課・日常)',
+  3: 'Home & Neighborhood (住まい・近所)',
+  4: 'Hobbies & Leisure (趣味・余暇)',
+  5: 'Travel (旅行)',
+  6: 'Work & School (職場・学校)',
+  7: 'Role-play (ロールプレイ)',
+  8: 'Experiences & Comparisons (経験・比較)'
+};
+
+const OPIC_JP_TOPIC_LABEL = {
+  1: '自己紹介',
+  2: '日課・日常',
+  3: '住まい・近所',
+  4: '趣味・余暇',
+  5: '旅行',
+  6: '職場・学校',
+  7: 'ロールプレイ',
+  8: '経験・比較'
+};
+
+const OPIC_JP_PART_NAME_KO = {
+  1: '自己紹介',
+  2: '日課・日常',
+  3: '住まい・近所',
+  4: '趣味・余暇',
+  5: '旅行',
+  6: '職場・学校',
+  7: 'ロールプレイ',
+  8: '経験・比較'
+};
+
+const LOCAL_OPIC_JP_QUESTIONS = {
+  1: [{ topic: 1, part: 1, type: 'Self-Introduction', instruction: '自己紹介をしてください。2分間答えてください。', question: '自己紹介をお願いします。お名前とお仕事、趣味などについて教えてください。', prep_time: 5, answer_time: 120, ai_generated: false }],
+  2: [{ topic: 2, part: 2, type: 'Daily Routine', instruction: '普段の一日について教えてください。', question: '平日の一日のスケジュールについて詳しく教えてください。', prep_time: 5, answer_time: 120, ai_generated: false }],
+  3: [{ topic: 3, part: 3, type: 'Home & Neighborhood', instruction: '住まいや近所について教えてください。', question: '今住んでいる場所について教えてください。どんな家に住んでいますか？', prep_time: 5, answer_time: 120, ai_generated: false }],
+  4: [{ topic: 4, part: 4, type: 'Hobbies & Leisure', instruction: '趣味や余暇の過ごし方について教えてください。', question: '趣味や余暇の過ごし方について教えてください。', prep_time: 5, answer_time: 120, ai_generated: false }],
+  5: [{ topic: 5, part: 5, type: 'Travel', instruction: '旅行について教えてください。', question: '印象に残っている旅行について教えてください。', prep_time: 5, answer_time: 120, ai_generated: false }],
+  6: [{ topic: 6, part: 6, type: 'Work & School', instruction: 'お仕事や学校について教えてください。', question: 'お仕事または学校について教えてください。普段どんなことをしていますか？', prep_time: 5, answer_time: 120, ai_generated: false }],
+  7: [{ topic: 7, part: 7, type: 'Role-play', instruction: 'ロールプレイをしてみましょう。', question: 'ロールプレイをしてみましょう。レストランに電話して、来週の土曜日の夜7時に4名で予約をしてください。', prep_time: 20, answer_time: 90, ai_generated: false }],
+  8: [{ topic: 8, part: 8, type: 'Experiences & Comparisons', instruction: '経験や変化について教えてください。', question: '予想外のことが起きた時の経験を教えてください。その時どう対応しましたか？', prep_time: 10, answer_time: 120, ai_generated: false }]
+};
+
+const LOCAL_OPIC_QUESTIONS = {
+  1: [{ topic: 1, part: 1, type: 'Self-Introduction', instruction: '자기소개에 대해 2분 동안 답변하세요.', question: 'Please introduce yourself. Tell me about who you are, what you do, and what kind of person you are.', prep_time: 5, answer_time: 120, ai_generated: false }],
+  2: [{ topic: 2, part: 2, type: 'Daily Routine', instruction: '하루 일과에 대해 2분 동안 답변하세요.', question: 'Describe your typical weekday from the time you wake up to when you go to bed.', prep_time: 5, answer_time: 120, ai_generated: false }],
+  3: [{ topic: 3, part: 3, type: 'Home & Neighborhood', instruction: '거주지와 동네에 대해 2분 동안 답변하세요.', question: 'Tell me about the place where you live. Describe your home and the neighborhood around it.', prep_time: 5, answer_time: 120, ai_generated: false }],
+  4: [{ topic: 4, part: 4, type: 'Hobbies & Leisure', instruction: '취미와 여가 활동에 대해 2분 동안 답변하세요.', question: 'What do you enjoy doing in your free time? Tell me about your hobbies and interests in detail.', prep_time: 5, answer_time: 120, ai_generated: false }],
+  5: [{ topic: 5, part: 5, type: 'Travel', instruction: '여행 경험에 대해 2분 동안 답변하세요.', question: 'Tell me about a trip that was memorable for you. Where did you go and what made it special?', prep_time: 5, answer_time: 120, ai_generated: false }],
+  6: [{ topic: 6, part: 6, type: 'Work & School', instruction: '직장 또는 학교에 대해 2분 동안 답변하세요.', question: 'Tell me about your job or school. What do you usually do there on a typical day?', prep_time: 5, answer_time: 120, ai_generated: false }],
+  7: [{ topic: 7, part: 7, type: 'Role-play', instruction: '롤플레이 상황에서 90초 동안 답변하세요.', question: "I'd like you to role-play. You want to book a table at a restaurant for four people next Saturday at 7 PM. Call and make the reservation.", prep_time: 20, answer_time: 90, ai_generated: false }],
+  8: [{ topic: 8, part: 8, type: 'Experiences & Comparisons', instruction: '경험이나 변화에 대해 2분 동안 답변하세요.', question: 'Tell me about a time when you faced an unexpected problem. What happened and how did you handle it?', prep_time: 10, answer_time: 120, ai_generated: false }]
+};
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 // ── State ──────────────────────────────────────────────────────
+let currentMode       = 'toeic'; // 'toeic' | 'opic'
 let currentQuestion   = null;
 let currentPart       = null;
 let currentFeedback   = null;
@@ -130,8 +231,8 @@ function speak(btn, text) {
   const cleaned = cleanForSpeech(text);
   if (!cleaned) return;
   const utt = new SpeechSynthesisUtterance(cleaned);
-  utt.lang = 'en-US';
-  utt.rate = 0.9;
+  utt.lang = currentMode === 'opic-jp' ? 'ja-JP' : 'en-US';
+  utt.rate = currentMode === 'opic-jp' ? 0.85 : 0.9;
   btn.classList.add('speaking');
   utt.onend   = () => btn.classList.remove('speaking');
   utt.onerror = () => btn.classList.remove('speaking');
@@ -160,13 +261,74 @@ function navTo(tab) {
     t.classList.toggle('active', t.dataset.tab === tab)
   );
   switch (tab) {
-    case 'practice': showScreen('practice'); break;
-    case 'exercise': showScreen('exercise'); break;
+    case 'practice':
+      if (currentMode === 'opic')    showScreen('opic-practice');
+      else if (currentMode === 'opic-jp') showScreen('opic-jp-practice');
+      else showScreen('practice');
+      break;
+    case 'exercise': showExerciseScreen(); break;
     case 'study':    showStudyScreen();      break;
     case 'grammar':  showGrammarScreen();    break;
     case 'vocab':    showVocabHomeScreen();  break;
     case 'history':  showHistoryScreen();    break;
   }
+}
+
+function switchMode(mode) {
+  if (currentMode === mode) return;
+  if (isRecording) {
+    if (!confirm('녹음을 중단하고 모드를 전환하시겠습니까?')) return;
+  }
+  fullCleanup();
+  currentMode = mode;
+  document.body.classList.remove('opic-mode', 'opic-jp-mode');
+  if (mode === 'opic')    document.body.classList.add('opic-mode');
+  if (mode === 'opic-jp') document.body.classList.add('opic-jp-mode');
+  document.querySelectorAll('.mode-switch-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  const brandNames = { toeic: 'TOEIC 스피킹', opic: 'OPIc', 'opic-jp': 'OPIc 日本語' };
+  document.getElementById('nav-brand-text').textContent = brandNames[mode] || 'TOEIC 스피킹';
+  navTo('practice');
+}
+
+function showExerciseScreen() {
+  const isOpJp = currentMode === 'opic-jp';
+  const isOp = currentMode === 'opic' || isOpJp;
+  const header = document.querySelector('.ssh-exercise .screen-section-title');
+  const sub    = document.querySelector('.ssh-exercise .screen-section-sub');
+  const grid   = document.querySelector('.exercise-part-grid');
+
+  if (isOp) {
+    if (header) header.textContent = isOpJp ? 'OPIc 日本語 練習問題' : 'OPIc 연습 문제';
+    if (sub)    sub.textContent    = isOpJp ? '주제별 일본어 샘플 문제 · 모범 답안 · 해설' : '주제별 샘플 문제 · 모범 답안 · 해설';
+    const exItems = isOpJp ? [
+      [1,'自己紹介','描写型'], [2,'日課・日常','描写型'], [3,'住まい・近所','描写型'],
+      [4,'趣味・余暇','経験型'], [5,'旅行','経験型'], [6,'職場・学校','描写型'],
+      [7,'ロールプレイ','RP型'], [8,'経験・比較','経験型']
+    ] : [
+      [1,'자기소개','묘사형'], [2,'일상·루틴','묘사형'], [3,'거주지·동네','묘사형'],
+      [4,'취미·여가','경험형'], [5,'여행','경험형'], [6,'직장·학교','묘사형'],
+      [7,'롤플레이','롤플레이형'], [8,'경험·비교','경험형']
+    ];
+    if (grid) grid.innerHTML = exItems.map(([t, label, qtype]) =>
+      `<button class="exercise-part-btn opic-ex-btn" onclick="showPracticeList(${t})">${label}<span>${qtype}</span></button>`
+    ).join('');
+  } else {
+    if (header) header.textContent = '연습 문제';
+    if (sub)    sub.textContent    = '파트별 샘플 문제 · 모범 답안 · 해설';
+    if (grid) grid.innerHTML = [
+      [1,'Part 1','사진 묘사'],
+      [2,'Part 2','질문에 답하기'],
+      [3,'Part 3','정보 활용 답변'],
+      [4,'Part 4','제안 / 의견'],
+      [5,'Part 5','의견 제시'],
+      [6,'Part 6','추상적 의견']
+    ].map(([t, label, sub2]) =>
+      `<button class="exercise-part-btn" onclick="showPracticeList(${t})">${label}<span>${sub2}</span></button>`
+    ).join('');
+  }
+  showScreen('exercise');
 }
 
 function setActiveTab(tab) {
@@ -177,9 +339,12 @@ function setActiveTab(tab) {
 }
 
 function showGrammarScreen() {
-  const list = document.getElementById('grammar-module-list');
-  if (!list.hasChildNodes()) {
-    list.innerHTML = GRAMMAR_MODULES.map(mod => `
+  const modules = currentMode === 'opic-jp' ? OPIC_JP_GRAMMAR_MODULES : GRAMMAR_MODULES;
+  const list    = document.getElementById('grammar-module-list');
+
+  list.dataset.renderedMode = list.dataset.renderedMode || '';
+  if (list.dataset.renderedMode !== currentMode) {
+    list.innerHTML = modules.map(mod => `
       <div class="study-module-card" onclick="openGrammarModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -190,14 +355,30 @@ function showGrammarScreen() {
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
+    list.dataset.renderedMode = currentMode;
   }
+
+  const headerTitle = document.querySelector('.ssh-grammar .screen-section-title');
+  const headerSub   = document.querySelector('.ssh-grammar .screen-section-sub');
+  if (currentMode === 'opic-jp') {
+    if (headerTitle) headerTitle.textContent = 'OPIc 日本語 文法';
+    if (headerSub)   headerSub.textContent   = '동사 활용 · 조사 · 시제 · 비교 · 빈출 문형';
+  } else {
+    if (headerTitle) headerTitle.textContent = '문법 강의';
+    if (headerSub)   headerSub.textContent   = '시제 · 전치사 · 비교급 · 고득점 구문';
+  }
+
   showScreen('grammar');
 }
 
 function showVocabHomeScreen() {
-  const list = document.getElementById('vocab-module-list');
-  if (!list.hasChildNodes()) {
-    list.innerHTML = VOCAB_MODULES.map(mod => `
+  const modules = currentMode === 'opic-jp' ? OPIC_JP_VOCAB_MODULES
+    : currentMode === 'opic' ? OPIC_VOCAB_MODULES : VOCAB_MODULES;
+  const list    = document.getElementById('vocab-module-list');
+
+  list.dataset.renderedMode = list.dataset.renderedMode || '';
+  if (list.dataset.renderedMode !== currentMode) {
+    list.innerHTML = modules.map(mod => `
       <div class="study-module-card" onclick="openVocabModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -208,7 +389,22 @@ function showVocabHomeScreen() {
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
+    list.dataset.renderedMode = currentMode;
   }
+
+  const headerTitle = document.querySelector('.ssh-vocab .screen-section-title');
+  const headerSub   = document.querySelector('.ssh-vocab .screen-section-sub');
+  if (currentMode === 'opic-jp') {
+    if (headerTitle) headerTitle.textContent = 'OPIc 日本語 核心表現';
+    if (headerSub)   headerSub.textContent   = '주제별 일본어 필수 표현 · 고득점 담화 연결어';
+  } else if (currentMode === 'opic') {
+    if (headerTitle) headerTitle.textContent = 'OPIc 핵심 어휘';
+    if (headerSub)   headerSub.textContent   = '주제별 필수 표현 · 고득점 담화 연결어';
+  } else {
+    if (headerTitle) headerTitle.textContent = '빈출단어';
+    if (headerSub)   headerSub.textContent   = '단원별 핵심 어휘 · 예문 · 학습 팁';
+  }
+
   showScreen('vocab-home');
 }
 
@@ -303,7 +499,9 @@ async function loadVocabPhonetics(words) {
 }
 
 function openVocabModule(moduleId) {
-  const mod = VOCAB_MODULES.find(m => m.id === moduleId);
+  const modules = currentMode === 'opic-jp' ? OPIC_JP_VOCAB_MODULES
+    : currentMode === 'opic' ? OPIC_VOCAB_MODULES : VOCAB_MODULES;
+  const mod = modules.find(m => m.id === moduleId);
   if (!mod) return;
   document.getElementById('vocab-screen-title').textContent = mod.moduleTitle;
   document.getElementById('vocab-word-count').textContent = `총 ${mod.words.length}개 단어`;
@@ -370,10 +568,20 @@ function toggleVocabCard(card) {
 
 // ── 연습 문제 목록 화면 ────────────────────────────────────────
 function showPracticeList(part) {
-  document.getElementById('pl-part-badge').textContent = `Part ${part}`;
-  document.getElementById('pl-type').textContent       = PART_TYPE_LABEL[part] || '';
+  const isOpJpPL  = currentMode === 'opic-jp';
+  const isOpPL    = currentMode === 'opic' || isOpJpPL;
+  const plTopicMap = isOpJpPL ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+  const plTypeMap  = isOpJpPL ? OPIC_JP_PART_TYPE_LABEL : OPIC_PART_TYPE_LABEL;
+  document.getElementById('pl-part-badge').textContent = isOpPL
+    ? (plTopicMap[part] || `Topic ${part}`)
+    : `Part ${part}`;
+  document.getElementById('pl-type').textContent = isOpPL
+    ? (plTypeMap[part] || '')
+    : (PART_TYPE_LABEL[part] || '');
 
-  const items = PRACTICE_DATA[part] || [];
+  const items = isOpJpPL ? (OPIC_JP_PRACTICE_DATA[part] || [])
+    : isOpPL ? (OPIC_PRACTICE_DATA[part] || [])
+    : (PRACTICE_DATA[part] || []);
   document.getElementById('practice-item-list').innerHTML = items.map((item, idx) => {
     const imgHtml = item.image
       ? `<img class="pi-img" src="${item.image}" alt="사진 묘사">`
@@ -458,8 +666,17 @@ function enterAnswerPhase() { showRecordScreen(); }
 function showQuestion(question) {
   currentQuestion = question;
   currentImageSrc = null;
-  document.getElementById('q-part-badge').textContent = `Part ${question.part}`;
-  document.getElementById('q-type').textContent        = PART_TYPE_LABEL[question.part] || '';
+  const isOpicJp = currentMode === 'opic-jp';
+  const isOpic   = currentMode === 'opic';
+  const partLabel = (isOpic || isOpicJp)
+    ? ((isOpicJp ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL)[question.part] || `Topic ${question.part}`)
+    : `Part ${question.part}`;
+  document.getElementById('q-part-badge').textContent = partLabel;
+  document.getElementById('q-type').textContent = isOpicJp
+    ? (OPIC_JP_PART_TYPE_LABEL[question.part] || question.type || '')
+    : isOpic
+      ? (OPIC_PART_TYPE_LABEL[question.part] || question.type || '')
+      : (PART_TYPE_LABEL[question.part] || '');
   document.getElementById('q-instruction').textContent = question.instruction;
   document.getElementById('q-content').textContent     = question.question;
 
@@ -532,6 +749,47 @@ async function generateQuestionImage(description) {
 async function generateQuestion(part) {
   currentPart = part;
   showScreen('loading');
+
+  if (currentMode === 'opic') {
+    try {
+      const res  = await fetch('/api/generate-opic-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic: part })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('opic-practice'); return; }
+        showQuestion(LOCAL_OPIC_QUESTIONS[part][0]);
+        return;
+      }
+      showQuestion(data);
+    } catch {
+      showQuestion(LOCAL_OPIC_QUESTIONS[part][0]);
+    }
+    return;
+  }
+
+  if (currentMode === 'opic-jp') {
+    try {
+      const res  = await fetch('/api/generate-opic-jp-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic: part })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('opic-jp-practice'); return; }
+        showQuestion(LOCAL_OPIC_JP_QUESTIONS[part][0]);
+        return;
+      }
+      showQuestion(data);
+    } catch {
+      showQuestion(LOCAL_OPIC_JP_QUESTIONS[part][0]);
+    }
+    return;
+  }
+
   try {
     const res  = await fetch('/api/generate-question', {
       method: 'POST',
@@ -541,13 +799,11 @@ async function generateQuestion(part) {
     const data = await res.json();
     if (!res.ok) {
       if (res.status === 429) { showError(data.error || 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.'); showScreen('practice'); return; }
-      // 서버 오류 — 로컬 샘플로 계속 진행
       showQuestion(pickLocalQuestion(part));
       return;
     }
     showQuestion(data);
   } catch {
-    // 네트워크 완전 불가 — 로컬 샘플로 계속 진행
     showQuestion(pickLocalQuestion(part));
   }
 }
@@ -558,7 +814,11 @@ async function generateQuestion(part) {
 
 function showRecordScreen() {
   finalTranscript = '';
-  document.getElementById('rec-part-badge').textContent  = `Part ${currentQuestion.part}`;
+  const recTopicMap = currentMode === 'opic-jp' ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+  const partLabel = (currentMode === 'opic' || currentMode === 'opic-jp')
+    ? (recTopicMap[currentQuestion.part] || `Topic ${currentQuestion.part}`)
+    : `Part ${currentQuestion.part}`;
+  document.getElementById('rec-part-badge').textContent = partLabel;
 
   // Part 1: 이미지 표시 / 텍스트는 간략히
   const recPhoto    = document.getElementById('rec-photo');
@@ -615,7 +875,7 @@ function clearWaveform() {
 function startRecording() {
   if (recognition) { try { recognition.abort(); } catch {} }
   recognition = new SpeechRecognition();
-  recognition.lang           = 'en-US';
+  recognition.lang           = currentMode === 'opic-jp' ? 'ja-JP' : 'en-US';
   recognition.continuous     = true;
   recognition.interimResults = true;
 
@@ -674,6 +934,21 @@ function startRecordTimer(seconds) {
 // ══════════════════════════════════════════════════════════════
 
 function offlineFeedback() {
+  if (currentMode === 'opic') {
+    return {
+      scores: { task_completion: 0, discourse: 0, vocabulary: 0, grammar: 0, fluency: 0 },
+      total_score: null, grade: '--',
+      feedback: {
+        task_completion: 'AI 서버 미연결 — 직접 평가해보세요.',
+        discourse:       'AI 서버 미연결 — 직접 평가해보세요.',
+        vocabulary:      'AI 서버 미연결 — 직접 평가해보세요.',
+        grammar:         'AI 서버 미연결 — 직접 평가해보세요.',
+        fluency:         'AI 서버 미연결 — 직접 평가해보세요.'
+      },
+      sample_answer: '',
+      overall_comment: 'AI 서버에 연결되지 않아 자동 채점을 할 수 없습니다. 답변을 저장하고 스스로 평가해보세요.'
+    };
+  }
   return {
     scores: { pronunciation: 0, intonation: 0, grammar: 0, content: 0, fluency: 0 },
     total_score: null,
@@ -692,8 +967,11 @@ function offlineFeedback() {
 
 async function analyzeAnswer() {
   showScreen('analyzing');
+  const endpoint = currentMode === 'opic-jp' ? '/api/analyze-opic-jp-answer'
+    : currentMode === 'opic' ? '/api/analyze-opic-answer'
+    : '/api/analyze-answer';
   try {
-    const res  = await fetch('/api/analyze-answer', {
+    const res  = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: currentQuestion, userAnswer: finalTranscript })
@@ -719,8 +997,13 @@ function showFeedback(data) {
   const gradeEl = document.getElementById('fb-grade');
   gradeEl.textContent       = data.grade || '--';
   gradeEl.style.background  = GRADE_COLORS[data.grade] || '#6B7280';
-  document.getElementById('fb-part-badge').textContent     = `Part ${currentQuestion.part}`;
+  const fbTopicMap = currentMode === 'opic-jp' ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+  const fbPartLabel = (currentMode === 'opic' || currentMode === 'opic-jp')
+    ? (fbTopicMap[currentQuestion.part] || `Topic ${currentQuestion.part}`)
+    : `Part ${currentQuestion.part}`;
+  document.getElementById('fb-part-badge').textContent     = fbPartLabel;
   document.getElementById('fb-total').textContent          = data.total_score ?? '---';
+  document.getElementById('fb-score-max').textContent      = (currentMode === 'opic' || currentMode === 'opic-jp') ? '/ 10' : '/ 200';
   document.getElementById('fb-overall-comment').textContent = data.overall_comment || '';
   document.getElementById('fb-user-answer').textContent    = finalTranscript || '(답변 없음)';
   document.getElementById('fb-sample-answer').textContent  = data.sample_answer || '';
@@ -736,18 +1019,20 @@ function showFeedback(data) {
 }
 
 function renderAccordion(containerId, scores, feedback) {
-  document.getElementById(containerId).innerHTML = Object.entries(SCORE_LABELS).map(([key, label]) => {
+  const labels   = (currentMode === 'opic' || currentMode === 'opic-jp') ? OPIC_SCORE_LABELS : SCORE_LABELS;
+  const maxScore = (currentMode === 'opic' || currentMode === 'opic-jp') ? 2 : 3;
+  document.getElementById(containerId).innerHTML = Object.entries(labels).map(([key, label]) => {
     const score = scores?.[key] ?? 0;
     return `
       <div class="accordion-item">
         <button class="accordion-header" onclick="toggleAccordion(this)">
           <span class="acc-label">${label}</span>
-          <span class="acc-score">${score} / 3</span>
+          <span class="acc-score">${score} / ${maxScore}</span>
           <span class="acc-arrow">▼</span>
         </button>
         <div class="accordion-body">
           <div class="score-bar-container">
-            <div class="score-bar" style="width:${Math.round((score/3)*100)}%"></div>
+            <div class="score-bar" style="width:${Math.round((score/maxScore)*100)}%"></div>
           </div>
           <p>${feedback?.[key] || ''}</p>
         </div>
@@ -762,15 +1047,26 @@ function renderRadarChart(scores) {
 }
 
 function makeRadarChart(ctx, scores) {
+  const isOpic   = currentMode === 'opic';
+  const isOpicJp = currentMode === 'opic-jp';
+  const labels = (isOpic || isOpicJp)
+    ? ['課題達成', '談話構成', '語彙力', '文法', '流暢さ']
+    : ['발음', '억양', '문법', '내용', '유창성'];
+  const data = (isOpic || isOpicJp)
+    ? [scores?.task_completion ?? 0, scores?.discourse ?? 0, scores?.vocabulary ?? 0, scores?.grammar ?? 0, scores?.fluency ?? 0]
+    : [scores?.pronunciation ?? 0, scores?.intonation ?? 0, scores?.grammar ?? 0, scores?.content ?? 0, scores?.fluency ?? 0];
+  const maxVal = (isOpic || isOpicJp) ? 2 : 3;
+  const rgb    = isOpicJp ? '220,38,38' : isOpic ? '13,148,136' : '79,70,229';
+  const point  = isOpicJp ? '#DC2626' : isOpic ? '#0D9488' : '#4F46E5';
   return new Chart(ctx, {
     type: 'radar',
     data: {
-      labels: ['발음', '억양', '문법', '내용', '유창성'],
+      labels,
       datasets: [{
-        data: [scores?.pronunciation ?? 0, scores?.intonation ?? 0, scores?.grammar ?? 0, scores?.content ?? 0, scores?.fluency ?? 0],
-        backgroundColor: 'rgba(79,70,229,0.15)',
-        borderColor:     'rgba(79,70,229,0.85)',
-        pointBackgroundColor: '#4F46E5',
+        data,
+        backgroundColor: `rgba(${rgb},0.15)`,
+        borderColor:     `rgba(${rgb},0.85)`,
+        pointBackgroundColor: point,
         pointRadius: 4,
         borderWidth: 2
       }]
@@ -779,7 +1075,7 @@ function makeRadarChart(ctx, scores) {
       responsive: false,
       scales: {
         r: {
-          min: 0, max: 3,
+          min: 0, max: maxVal,
           ticks:       { stepSize: 1, font: { size: 10 }, color: '#9CA3AF' },
           pointLabels: { font: { size: 11 }, color: '#374151' },
           grid:        { color: 'rgba(0,0,0,0.07)' },
@@ -804,19 +1100,25 @@ function toggleAccordion(btn) {
 // STEP 3 — LocalStorage
 // ══════════════════════════════════════════════════════════════
 
+function getHistoryKey() {
+  if (currentMode === 'opic')    return OPIC_STORAGE_KEY;
+  if (currentMode === 'opic-jp') return OPIC_JP_STORAGE_KEY;
+  return STORAGE_KEY;
+}
+
 function getHistory() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+  try { return JSON.parse(localStorage.getItem(getHistoryKey()) || '[]'); } catch { return []; }
 }
 
 function saveRecord(record) {
   const history = getHistory();
   history.unshift({ id: crypto.randomUUID(), ...record });
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    localStorage.setItem(getHistoryKey(), JSON.stringify(history));
   } catch (e) {
     if (e.name === 'QuotaExceededError' && history.length > 1) {
       history.pop();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      localStorage.setItem(getHistoryKey(), JSON.stringify(history));
       showError('저장 공간 부족으로 가장 오래된 기록 1건이 삭제되었습니다.');
     }
   }
@@ -824,20 +1126,21 @@ function saveRecord(record) {
 
 function deleteRecord(id) {
   const updated = getHistory().filter(r => r.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  localStorage.setItem(getHistoryKey(), JSON.stringify(updated));
 }
 
 function clearHistory() {
-  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(getHistoryKey());
 }
 
 function exportHistory() {
-  const data = JSON.stringify(getHistory(), null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = `toeic_history_${new Date().toISOString().slice(0, 10)}.json`;
+  const data   = JSON.stringify(getHistory(), null, 2);
+  const blob   = new Blob([data], { type: 'application/json' });
+  const url    = URL.createObjectURL(blob);
+  const a      = document.createElement('a');
+  a.href       = url;
+  const prefix = currentMode === 'opic' ? 'opic' : 'toeic';
+  a.download   = `${prefix}_history_${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -872,12 +1175,28 @@ function saveResult() {
 // STEP 3 — History Dashboard
 // ══════════════════════════════════════════════════════════════
 
+function updateHistoryFilterTabs() {
+  const tabs      = document.getElementById('filter-tabs');
+  const isOpicJp  = currentMode === 'opic-jp';
+  const isOp      = currentMode === 'opic' || isOpicJp;
+  const topicMap  = isOpicJp ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+  const all       = `<button class="filter-tab active" data-filter="all">전체</button>`;
+  const maxTopics = isOp ? 8 : 6;
+  const items = Array.from({length: maxTopics}, (_, i) => i + 1).map(t =>
+    `<button class="filter-tab" data-filter="${t}">${isOp ? (topicMap[t] || `Topic ${t}`) : `Part ${t}`}</button>`
+  ).join('');
+  tabs.innerHTML = all + items;
+}
+
 function showHistoryScreen() {
   const history = getHistory();
   currentFilter = 'all';
+  updateHistoryFilterTabs();
 
-  // Reset filter tab UI
-  document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
+  const titleEl = document.querySelector('.history-title');
+  const histTitle = currentMode === 'opic-jp' ? 'OPIc 日本語 히스토리'
+    : currentMode === 'opic' ? 'OPIc 히스토리' : '학습 히스토리';
+  if (titleEl) titleEl.textContent = histTitle;
 
   // Summary stats
   document.getElementById('stat-count').textContent = history.length;
@@ -912,25 +1231,31 @@ function renderTrendChart(history) {
   const ctx = document.getElementById('trend-chart').getContext('2d');
   if (trendChart) trendChart.destroy();
 
-  const chronological = [...history].reverse(); // oldest first
-  const labels = chronological.map((r, i) =>
+  const isOpic       = currentMode === 'opic';
+  const chronological = [...history].reverse();
+  const labels = chronological.map(r =>
     new Date(r.date).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' })
   );
   const scores = chronological.map(r => r.total_score);
+  const lineColor = isOpic ? '#0D9488' : '#4F46E5';
+  const fillColor = isOpic ? 'rgba(13,148,136,0.08)' : 'rgba(79,70,229,0.08)';
+  const yMax      = isOpic ? 12 : 210;
+  const yMin      = isOpic ? 0  : 100;
+  const yStep     = isOpic ? 2  : 20;
 
   trendChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels,
       datasets: [{
-        label: '환산 점수',
+        label: isOpic ? '점수' : '환산 점수',
         data:  scores,
-        borderColor:     '#4F46E5',
-        backgroundColor: 'rgba(79,70,229,0.08)',
+        borderColor:     lineColor,
+        backgroundColor: fillColor,
         tension:  0.35,
         fill:     true,
         pointRadius:          5,
-        pointBackgroundColor: '#4F46E5',
+        pointBackgroundColor: lineColor,
         pointBorderColor:     'white',
         pointBorderWidth:     2
       }]
@@ -939,7 +1264,7 @@ function renderTrendChart(history) {
       responsive:          true,
       maintainAspectRatio: false,
       scales: {
-        y: { min: 100, max: 210, ticks: { stepSize: 20 }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        y: { min: yMin, max: yMax, ticks: { stepSize: yStep }, grid: { color: 'rgba(0,0,0,0.05)' } },
         x: { grid: { display: false }, ticks: { font: { size: 11 } } }
       },
       plugins: { legend: { display: false } }
@@ -963,7 +1288,12 @@ function renderAvgRadarChart(history) {
 function renderWeakAnalysis(history) {
   if (history.length === 0) return;
 
-  // Part averages
+  const isOpicJp2    = currentMode === 'opic-jp';
+  const isOpic       = currentMode === 'opic' || isOpicJp2;
+  const partNameMap  = isOpicJp2 ? OPIC_JP_PART_NAME_KO : isOpic ? OPIC_PART_NAME_KO : PART_NAME_KO;
+  const scoreLabels  = isOpic ? OPIC_SCORE_LABELS : SCORE_LABELS;
+  const maxDimScore  = isOpic ? 2 : 3;
+
   const partMap = {};
   history.forEach(r => {
     if (!partMap[r.part]) partMap[r.part] = [];
@@ -976,15 +1306,14 @@ function renderWeakAnalysis(history) {
   const weakPartBanner = document.getElementById('weak-part-banner');
   if (partEntries.length > 0) {
     const wp = partEntries[0];
-    document.getElementById('weak-part-text').textContent = `${PART_NAME_KO[wp.part]} (평균 ${Math.round(wp.avg)}점)`;
+    document.getElementById('weak-part-text').textContent = `${partNameMap[wp.part]} (평균 ${Math.round(wp.avg)}점)`;
     document.getElementById('btn-weak-challenge').onclick = () => generateQuestion(wp.part);
     weakPartBanner.classList.remove('hidden');
   } else {
     weakPartBanner.classList.add('hidden');
   }
 
-  // Dimension averages
-  const dims = ['pronunciation', 'intonation', 'grammar', 'content', 'fluency'];
+  const dims    = Object.keys(scoreLabels);
   const dimAvgs = dims.map(d => ({
     name: d,
     avg:  history.reduce((s, r) => s + (r.scores?.[d] ?? 0), 0) / history.length
@@ -994,7 +1323,7 @@ function renderWeakAnalysis(history) {
   if (dimAvgs.length > 0) {
     const wd = dimAvgs[0];
     document.getElementById('weak-area-text').textContent =
-      `${SCORE_LABELS[wd.name]} (평균 ${wd.avg.toFixed(1)} / 3점) — 집중 연습이 필요합니다`;
+      `${scoreLabels[wd.name]} (평균 ${wd.avg.toFixed(1)} / ${maxDimScore}점) — 집중 연습이 필요합니다`;
     weakAreaBanner.classList.remove('hidden');
   } else {
     weakAreaBanner.classList.add('hidden');
@@ -1011,20 +1340,27 @@ function renderHistoryList(history, filter) {
   }
 
   list.innerHTML = filtered.map(r => {
-    const date  = new Date(r.date).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-    const warn  = (r.total_score || 0) <= 140 ? '<span class="warn-icon">⚠️</span>' : '';
-    const color = GRADE_COLORS[r.grade] || '#6B7280';
+    const isOpicJp   = currentMode === 'opic-jp';
+    const isOpic     = currentMode === 'opic' || isOpicJp;
+    const topicMapH  = isOpicJp ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+    const date       = new Date(r.date).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const warn       = isOpic
+      ? ((r.total_score || 0) <= 5 ? '<span class="warn-icon">⚠️</span>' : '')
+      : ((r.total_score || 0) <= 140 ? '<span class="warn-icon">⚠️</span>' : '');
+    const color      = GRADE_COLORS[r.grade] || '#6B7280';
+    const badgeLabel = isOpic ? (topicMapH[r.part] || `Topic ${r.part}`) : `Part ${r.part}`;
+    const scoreText  = isOpic ? `${r.total_score || '--'}/10` : `${r.total_score || '--'}점`;
     return `
       <div class="history-card">
         <div class="hc-main" onclick="showHistoryDetail('${r.id}')">
           <div class="hc-left">
-            <span class="part-badge">Part ${r.part}</span>
+            <span class="part-badge">${badgeLabel}</span>
             <span class="hc-date">${date}</span>
           </div>
           <div class="hc-right">
             ${warn}
             <span class="hc-grade" style="color:${color}">${r.grade || '--'}</span>
-            <span class="hc-score">${r.total_score || '--'}점</span>
+            <span class="hc-score">${scoreText}</span>
           </div>
         </div>
         <div class="hc-actions">
@@ -1042,7 +1378,12 @@ function showHistoryDetail(id) {
   if (!record) return;
   currentDetailId = id;
 
-  document.getElementById('hd-part-badge').textContent    = `Part ${record.part}`;
+  const hdTopicMap = currentMode === 'opic-jp' ? OPIC_JP_TOPIC_LABEL : OPIC_TOPIC_LABEL;
+  const partLabel = (currentMode === 'opic' || currentMode === 'opic-jp')
+    ? (hdTopicMap[record.part] || `Topic ${record.part}`)
+    : `Part ${record.part}`;
+  document.getElementById('hd-part-badge').textContent    = partLabel;
+  document.getElementById('hd-score-max').textContent     = (currentMode === 'opic' || currentMode === 'opic-jp') ? '/ 10' : '/ 200';
   document.getElementById('hd-date').textContent          =
     new Date(record.date).toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
   document.getElementById('hd-total').textContent         = record.total_score ?? '---';
@@ -1109,8 +1450,8 @@ function showSuccess(msg) {
 // Event Listeners
 // ══════════════════════════════════════════════════════════════
 
-// Practice screen
-document.querySelectorAll('.part-card').forEach(card => {
+// TOEIC Practice screen
+document.querySelectorAll('#screen-practice .part-card').forEach(card => {
   card.addEventListener('click', () => {
     setActiveTab('practice');
     generateQuestion(parseInt(card.dataset.part, 10));
@@ -1121,15 +1462,53 @@ document.getElementById('btn-random').addEventListener('click', () => {
   generateQuestion(Math.ceil(Math.random() * 6));
 });
 
+// OPIc Practice screen
+document.querySelectorAll('#screen-opic-practice .opic-topic-card').forEach(card => {
+  card.addEventListener('click', () => {
+    setActiveTab('practice');
+    generateQuestion(parseInt(card.dataset.topic, 10));
+  });
+});
+document.getElementById('btn-opic-random').addEventListener('click', () => {
+  setActiveTab('practice');
+  generateQuestion(Math.ceil(Math.random() * 8));
+});
+
+// OPIc JP Practice screen
+document.querySelectorAll('#screen-opic-jp-practice .opic-jp-topic-card').forEach(card => {
+  card.addEventListener('click', () => {
+    setActiveTab('practice');
+    generateQuestion(parseInt(card.dataset.topic, 10));
+  });
+});
+document.getElementById('btn-opic-jp-random').addEventListener('click', () => {
+  setActiveTab('practice');
+  generateQuestion(Math.ceil(Math.random() * 8));
+});
+
 // Question screen
-document.getElementById('btn-back').addEventListener('click', () => { clearTimer(); showScreen('practice'); });
+function getPracticeScreen() {
+  if (currentMode === 'opic')    return 'opic-practice';
+  if (currentMode === 'opic-jp') return 'opic-jp-practice';
+  return 'practice';
+}
+document.getElementById('btn-back').addEventListener('click', () => {
+  clearTimer();
+  showScreen(getPracticeScreen());
+});
 
 // Recording screen
-document.getElementById('btn-rec-back').addEventListener('click', () => { fullCleanup(); showScreen('practice'); });
+document.getElementById('btn-rec-back').addEventListener('click', () => {
+  fullCleanup();
+  showScreen(getPracticeScreen());
+});
 document.getElementById('btn-stop-record').addEventListener('click', stopRecording);
 
 // Feedback screen
-document.getElementById('btn-feedback-home').addEventListener('click', () => { fullCleanup(); showScreen('practice'); });
+document.getElementById('btn-feedback-home').addEventListener('click', () => {
+  fullCleanup();
+  showScreen(getPracticeScreen());
+});
 document.getElementById('btn-save').addEventListener('click', saveResult);
 document.getElementById('btn-retry-question').addEventListener('click', () => { fullCleanup(); showQuestion(currentQuestion); });
 
@@ -1163,9 +1542,14 @@ document.getElementById('btn-vocab-back').addEventListener('click', showVocabHom
 
 // ── 학습 홈 ──────────────────────────────────────────────────
 function showStudyScreen() {
-  const list = document.getElementById('study-module-list');
-  if (!list.hasChildNodes()) {
-    list.innerHTML = STUDY_MODULES.map(mod => `
+  const modules = currentMode === 'opic-jp' ? OPIC_JP_STUDY_MODULES
+    : currentMode === 'opic' ? OPIC_STUDY_MODULES : STUDY_MODULES;
+  const list    = document.getElementById('study-module-list');
+
+  // 모드가 바뀌면 항상 재렌더링
+  list.dataset.renderedMode = list.dataset.renderedMode || '';
+  if (list.dataset.renderedMode !== currentMode) {
+    list.innerHTML = modules.map(mod => `
       <div class="study-module-card" onclick="openModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -1176,12 +1560,30 @@ function showStudyScreen() {
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
+    list.dataset.renderedMode = currentMode;
   }
+
+  // 섹션 헤더 텍스트 갱신
+  const headerTitle = document.querySelector('.ssh-study .screen-section-title');
+  const headerSub   = document.querySelector('.ssh-study .screen-section-sub');
+  if (currentMode === 'opic-jp') {
+    if (headerTitle) headerTitle.textContent = 'OPIc 日本語 学習課程';
+    if (headerSub)   headerSub.textContent   = '시험 기초 · 주제별 일본어 표현 · 고득점 전략';
+  } else if (currentMode === 'opic') {
+    if (headerTitle) headerTitle.textContent = 'OPIc 학습 과정';
+    if (headerSub)   headerSub.textContent   = '등급 전략 · 주제별 답변법 · 롤플레이';
+  } else {
+    if (headerTitle) headerTitle.textContent = '학습 과정';
+    if (headerSub)   headerSub.textContent   = '파트별 이론 · 전략 · 표현 학습';
+  }
+
   showScreen('study');
 }
 
 function openModule(moduleId) {
-  const mod = STUDY_MODULES.find(m => m.id === moduleId);
+  const modules = currentMode === 'opic-jp' ? OPIC_JP_STUDY_MODULES
+    : currentMode === 'opic' ? OPIC_STUDY_MODULES : STUDY_MODULES;
+  const mod     = modules.find(m => m.id === moduleId);
   if (!mod) return;
   openLesson(mod.lessons[0].id);
 }
@@ -1194,12 +1596,20 @@ function openGrammarModule(moduleId) {
 
 // ── 레슨 뷰어 ───────────────────────────────────────────────
 let currentLessonId      = null;
-let currentLessonContext = 'study'; // 'study' | 'grammar'
+let currentLessonContext = 'study'; // 'study' | 'opic-study' | 'opic-jp-study' | 'grammar'
 
 function openLesson(lessonId) {
-  currentLessonId      = lessonId;
-  currentLessonContext = 'study';
-  _renderLessonView(lessonId, STUDY_MODULES, 'openLesson');
+  currentLessonId = lessonId;
+  if (currentMode === 'opic-jp') {
+    currentLessonContext = 'opic-jp-study';
+    _renderLessonView(lessonId, OPIC_JP_STUDY_MODULES, 'openLesson');
+  } else if (currentMode === 'opic') {
+    currentLessonContext = 'opic-study';
+    _renderLessonView(lessonId, OPIC_STUDY_MODULES, 'openLesson');
+  } else {
+    currentLessonContext = 'study';
+    _renderLessonView(lessonId, STUDY_MODULES, 'openLesson');
+  }
 }
 
 function openGrammarLesson(lessonId) {
@@ -1235,8 +1645,15 @@ function _renderLessonView(lessonId, modules, openFn) {
   document.getElementById('screen-study-lesson').scrollTop = 0;
 }
 
+function _getContextModules() {
+  if (currentLessonContext === 'grammar')        return GRAMMAR_MODULES;
+  if (currentLessonContext === 'opic-study')     return OPIC_STUDY_MODULES;
+  if (currentLessonContext === 'opic-jp-study')  return OPIC_JP_STUDY_MODULES;
+  return STUDY_MODULES;
+}
+
 function prevLesson() {
-  const modules = currentLessonContext === 'grammar' ? GRAMMAR_MODULES : STUDY_MODULES;
+  const modules = _getContextModules();
   const openFn  = currentLessonContext === 'grammar' ? openGrammarLesson : openLesson;
   let prevId = null;
   for (let mi = 0; mi < modules.length; mi++) {
@@ -1253,7 +1670,7 @@ function prevLesson() {
 }
 
 function nextLesson() {
-  const modules = currentLessonContext === 'grammar' ? GRAMMAR_MODULES : STUDY_MODULES;
+  const modules = _getContextModules();
   const openFn  = currentLessonContext === 'grammar' ? openGrammarLesson : openLesson;
   let nextId = null;
   for (let mi = 0; mi < modules.length; mi++) {

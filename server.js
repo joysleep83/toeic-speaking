@@ -271,6 +271,268 @@ app.post('/api/generate-image', async (req, res) => {
   }
 });
 
+// ── OPIc: Topic config ────────────────────────────────────────
+const OPIC_TOPIC_CONFIG = {
+  1: { type: 'Self-Introduction',           prep_time: 5,  answer_time: 120 },
+  2: { type: 'Daily Routine',               prep_time: 5,  answer_time: 120 },
+  3: { type: 'Home & Neighborhood',         prep_time: 5,  answer_time: 120 },
+  4: { type: 'Hobbies & Leisure',           prep_time: 5,  answer_time: 120 },
+  5: { type: 'Travel',                      prep_time: 5,  answer_time: 120 },
+  6: { type: 'Work & School',               prep_time: 5,  answer_time: 120 },
+  7: { type: 'Role-play',                   prep_time: 20, answer_time: 90  },
+  8: { type: 'Experiences & Comparisons',   prep_time: 10, answer_time: 120 }
+};
+
+const OPIC_SAMPLE_QUESTIONS = {
+  1: [
+    { topic: 1, part: 1, type: 'Self-Introduction', instruction: '자기소개에 대해 2분 동안 답변하세요.', question: "Tell me about yourself — what you do, where you live, and what kind of person you are.", prep_time: 5, answer_time: 120 },
+    { topic: 1, part: 1, type: 'Self-Introduction', instruction: '자기소개에 대해 2분 동안 답변하세요.', question: "Please tell me a bit about your background. Where are you from originally, and what brought you to where you are now?", prep_time: 5, answer_time: 120 },
+    { topic: 1, part: 1, type: 'Self-Introduction', instruction: '자기소개에 대해 2분 동안 답변하세요.', question: "Tell me about your daily life — your job or school, who you spend time with, and what matters most to you.", prep_time: 5, answer_time: 120 }
+  ],
+  2: [
+    { topic: 2, part: 2, type: 'Daily Routine', instruction: '하루 일과에 대해 2분 동안 답변하세요.', question: "Describe your typical weekday from the time you wake up to when you go to bed.", prep_time: 5, answer_time: 120 },
+    { topic: 2, part: 2, type: 'Daily Routine', instruction: '아침 루틴에 대해 2분 동안 답변하세요.', question: "Tell me about your morning routine. How do you prepare for the day?", prep_time: 5, answer_time: 120 },
+    { topic: 2, part: 2, type: 'Daily Routine', instruction: '주말 루틴에 대해 2분 동안 답변하세요.', question: "How is your weekend routine different from your weekdays? What do you usually do on weekends?", prep_time: 5, answer_time: 120 }
+  ],
+  3: [
+    { topic: 3, part: 3, type: 'Home & Neighborhood', instruction: '거주지와 동네에 대해 2분 동안 답변하세요.', question: "Tell me about the place where you live. Describe your home and the area around it.", prep_time: 5, answer_time: 120 },
+    { topic: 3, part: 3, type: 'Home & Neighborhood', instruction: '동네에 대해 2분 동안 답변하세요.', question: "What do you like most about your neighborhood? What makes it a good place to live?", prep_time: 5, answer_time: 120 },
+    { topic: 3, part: 3, type: 'Home & Neighborhood', instruction: '거주지 비교에 대해 2분 동안 답변하세요.', question: "Compare your current home to the place where you grew up. What are the biggest differences?", prep_time: 5, answer_time: 120 }
+  ],
+  4: [
+    { topic: 4, part: 4, type: 'Hobbies & Leisure', instruction: '취미와 여가 활동에 대해 2분 동안 답변하세요.', question: "What do you usually do in your free time? Tell me about your hobbies and interests in detail.", prep_time: 5, answer_time: 120 },
+    { topic: 4, part: 4, type: 'Hobbies & Leisure', instruction: '최근 즐기는 취미에 대해 2분 동안 답변하세요.', question: "Tell me about a hobby you have recently started. How did you get into it, and why do you enjoy it?", prep_time: 5, answer_time: 120 },
+    { topic: 4, part: 4, type: 'Hobbies & Leisure', instruction: '스트레스 해소 방법에 대해 2분 동안 답변하세요.', question: "How do you usually relax after a long or stressful day? What helps you unwind?", prep_time: 5, answer_time: 120 }
+  ],
+  5: [
+    { topic: 5, part: 5, type: 'Travel', instruction: '기억에 남는 여행에 대해 2분 동안 답변하세요.', question: "Tell me about a trip that was memorable for you. Where did you go and what made it stand out?", prep_time: 5, answer_time: 120 },
+    { topic: 5, part: 5, type: 'Travel', instruction: '여행 스타일에 대해 2분 동안 답변하세요.', question: "Describe the type of traveler you are. Do you prefer to plan everything or go with the flow?", prep_time: 5, answer_time: 120 },
+    { topic: 5, part: 5, type: 'Travel', instruction: '추천 여행지에 대해 2분 동안 답변하세요.', question: "Tell me about a place you have visited that you would recommend to others. Why should they go there?", prep_time: 5, answer_time: 120 }
+  ],
+  6: [
+    { topic: 6, part: 6, type: 'Work & School', instruction: '직장 또는 학교 일과에 대해 2분 동안 답변하세요.', question: "Tell me about your job or school. What do you usually do there on a typical day?", prep_time: 5, answer_time: 120 },
+    { topic: 6, part: 6, type: 'Work & School', instruction: '업무 환경에 대해 2분 동안 답변하세요.', question: "Describe your work or study environment. What does the space look like and how does it affect you?", prep_time: 5, answer_time: 120 },
+    { topic: 6, part: 6, type: 'Work & School', instruction: '어려운 점과 대처법에 대해 2분 동안 답변하세요.', question: "What do you find most challenging about your job or school, and how do you deal with it?", prep_time: 5, answer_time: 120 }
+  ],
+  7: [
+    { topic: 7, part: 7, type: 'Role-play', instruction: '롤플레이 상황에서 90초 동안 답변하세요.', question: "I'd like you to role-play. You made a hotel reservation for two nights, but you need to extend it to three nights. Call the hotel and make the change.", prep_time: 20, answer_time: 90 },
+    { topic: 7, part: 7, type: 'Role-play', instruction: '롤플레이 상황에서 90초 동안 답변하세요.', question: "Let's role-play. You ordered a jacket online two weeks ago, but it still hasn't arrived. Call customer service to find out what's happening and request a solution.", prep_time: 20, answer_time: 90 },
+    { topic: 7, part: 7, type: 'Role-play', instruction: '롤플레이 상황에서 90초 동안 답변하세요.', question: "I'd like to role-play. You want to book a table at a restaurant for a birthday dinner for four people next Saturday evening. Call and make the reservation.", prep_time: 20, answer_time: 90 }
+  ],
+  8: [
+    { topic: 8, part: 8, type: 'Experiences & Comparisons', instruction: '예상치 못한 경험에 대해 2분 동안 답변하세요.', question: "Tell me about a time when you faced an unexpected problem. What happened and how did you handle it?", prep_time: 10, answer_time: 120 },
+    { topic: 8, part: 8, type: 'Experiences & Comparisons', instruction: '삶의 변화에 대해 2분 동안 답변하세요.', question: "How has your daily life or lifestyle changed compared to five years ago? What caused these changes?", prep_time: 10, answer_time: 120 },
+    { topic: 8, part: 8, type: 'Experiences & Comparisons', instruction: '새로운 시도에 대한 경험을 2분 동안 답변하세요.', question: "Tell me about a time you tried something completely new or out of your comfort zone. What happened and what did you learn?", prep_time: 10, answer_time: 120 }
+  ]
+};
+
+function randomOpicSample(topic) {
+  const bank = OPIC_SAMPLE_QUESTIONS[topic];
+  return { ...bank[Math.floor(Math.random() * bank.length)], ai_generated: false };
+}
+
+function buildOpicPrompt(topic) {
+  const { type, prep_time, answer_time } = OPIC_TOPIC_CONFIG[topic];
+  return `Generate a realistic OPIc (Oral Proficiency Interview - computer) Topic ${topic} (${type}) practice question. The question should be natural, conversational, and open-ended — encouraging the test-taker to speak at length.
+Respond with ONLY valid JSON — no markdown, no explanation, no code block:
+{"topic":${topic},"part":${topic},"type":"${type}","instruction":"한국어로 무엇을 해야 하는지 설명하는 지시문 (${answer_time}초 답변)","question":"The actual English OPIc question (conversational, open-ended, 1-3 sentences)","prep_time":${prep_time},"answer_time":${answer_time}}`;
+}
+
+function buildOpicAnalysisPrompt(question, userAnswer) {
+  const topicNum = question.topic || question.part;
+  const type = question.type || OPIC_TOPIC_CONFIG[topicNum]?.type || 'General';
+  return `You are an OPIc (Oral Proficiency Interview - computer) examiner. Evaluate the response holistically. Output ONLY valid JSON — no markdown, no explanation.
+
+[Topic ${topicNum}: ${type}]
+Question: ${question.question}
+User Answer: "${userAnswer || '(no answer — score 0 on all dimensions)'}"
+
+Score each dimension 0–2:
+  0 = insufficient  1 = developing  2 = proficient
+• task_completion — fully addressed all parts of the question with sufficient detail
+• discourse       — well-organized with clear transitions and cohesion
+• vocabulary      — appropriate and varied word choice
+• grammar         — accurate and complex sentence structures
+• fluency         — natural, smooth delivery appropriate for the task
+
+Grade scale (sum of 5 scores, max 10):
+  9–10 → AL   7–8 → IH   4–6 → IM   2–3 → IL   0–1 → NH
+
+Output ONLY this JSON (all feedback MUST be in Korean):
+{"scores":{"task_completion":N,"discourse":N,"vocabulary":N,"grammar":N,"fluency":N},"total_score":N,"grade":"XX","feedback":{"task_completion":"한국어 피드백","discourse":"한국어 피드백","vocabulary":"한국어 피드백","grammar":"한국어 피드백","fluency":"한국어 피드백"},"sample_answer":"Full high-scoring English model answer","overall_comment":"2–3문장 한국어 종합 평가"}`;
+}
+
+// ── OPIc: Question generation ──────────────────────────────────
+app.post('/api/generate-opic-question', async (req, res) => {
+  const topic = parseInt(req.body?.topic, 10);
+  if (!topic || topic < 1 || topic > 6)
+    return res.status(400).json({ error: '유효하지 않은 토픽입니다.' });
+
+  try {
+    const result = await tryModels(
+      QUESTION_MODELS,
+      [{ role: 'user', content: buildOpicPrompt(topic) }],
+      6000,
+      (content, model) => {
+        const match = content.match(/\{[\s\S]*?\}/s) || content.match(/\{[\s\S]*\}/);
+        if (!match) throw new Error('No JSON');
+        return { ...JSON.parse(match[0]), ai_generated: true, model };
+      }
+    );
+    return res.json(result);
+  } catch (err) {
+    if (err.status === 429)
+      return res.status(429).json({ error: 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.' });
+    console.warn('[opic-q-all-failed] 샘플 문제로 대체:', err.message);
+    return res.json(randomOpicSample(topic));
+  }
+});
+
+// ── OPIc: Answer analysis ──────────────────────────────────────
+app.post('/api/analyze-opic-answer', async (req, res) => {
+  const { question, userAnswer } = req.body ?? {};
+  if (!question?.part && !question?.topic)
+    return res.status(400).json({ error: '문제 데이터가 없습니다.' });
+
+  try {
+    const result = await tryModels(
+      ANALYSIS_MODELS,
+      [{ role: 'user', content: buildOpicAnalysisPrompt(question, userAnswer) }],
+      30000,
+      (content) => {
+        const match = content.match(/\{[\s\S]*\}/);
+        if (!match) throw new Error('No JSON');
+        return JSON.parse(match[0]);
+      }
+    );
+    return res.json(result);
+  } catch (err) {
+    if (err.status === 429)
+      return res.status(429).json({ error: 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.' });
+    console.error('[opic-a-all-failed]', err.message);
+    return res.status(503).json({ error: '분석에 실패했습니다. 잠시 후 다시 시도해주세요.' });
+  }
+});
+
+// ── OPIc 日本語: Topic config ──────────────────────────────────
+const OPIC_JP_TOPIC_CONFIG = {
+  1: { type: '自己紹介',     prep_time: 5,  answer_time: 120 },
+  2: { type: '日課・日常',   prep_time: 5,  answer_time: 120 },
+  3: { type: '住まい・近所', prep_time: 5,  answer_time: 120 },
+  4: { type: '趣味・余暇',   prep_time: 5,  answer_time: 120 },
+  5: { type: '旅行',         prep_time: 5,  answer_time: 120 },
+  6: { type: '職場・学校',   prep_time: 5,  answer_time: 120 },
+  7: { type: 'ロールプレイ', prep_time: 20, answer_time: 90  },
+  8: { type: '経験・比較',   prep_time: 10, answer_time: 120 }
+};
+
+const OPIC_JP_SAMPLE_QUESTIONS = {
+  1: [{ topic:1,part:1,type:'自己紹介',instruction:'自己紹介をしてください。2分間答えてください。',question:'自己紹介をお願いします。お名前とお仕事、趣味などについて教えてください。',prep_time:5,answer_time:120 },
+      { topic:1,part:1,type:'自己紹介',instruction:'出身と現在地について話してください。',question:'あなたの出身はどちらですか？今はどこに住んでいますか？',prep_time:5,answer_time:120 }],
+  2: [{ topic:2,part:2,type:'日課・日常',instruction:'平日の一日のスケジュールについて話してください。',question:'平日の一日のスケジュールについて詳しく教えてください。',prep_time:5,answer_time:120 },
+      { topic:2,part:2,type:'日課・日常',instruction:'朝の準備について話してください。',question:'朝の準備はどのようにしていますか？毎朝何をしますか？',prep_time:5,answer_time:120 }],
+  3: [{ topic:3,part:3,type:'住まい・近所',instruction:'今住んでいる場所について話してください。',question:'今住んでいる場所について教えてください。どんな家に住んでいますか？',prep_time:5,answer_time:120 },
+      { topic:3,part:3,type:'住まい・近所',instruction:'近所の雰囲気について話してください。',question:'近所はどんな雰囲気ですか？どんな場所がありますか？',prep_time:5,answer_time:120 }],
+  4: [{ topic:4,part:4,type:'趣味・余暇',instruction:'趣味や余暇の過ごし方について話してください。',question:'趣味や余暇の過ごし方について教えてください。',prep_time:5,answer_time:120 },
+      { topic:4,part:4,type:'趣味・余暇',instruction:'最近始めた趣味について話してください。',question:'最近新しく始めた趣味や活動はありますか？きっかけは何でしたか？',prep_time:5,answer_time:120 }],
+  5: [{ topic:5,part:5,type:'旅行',instruction:'印象に残っている旅行について話してください。',question:'印象に残っている旅行について教えてください。',prep_time:5,answer_time:120 },
+      { topic:5,part:5,type:'旅行',instruction:'旅行スタイルについて話してください。',question:'あなたはどんな旅行スタイルが好きですか？計画的に行く方ですか、それとも気ままに楽しみますか？',prep_time:5,answer_time:120 }],
+  6: [{ topic:6,part:6,type:'職場・学校',instruction:'仕事や学校について話してください。',question:'お仕事または学校について教えてください。普段どんなことをしていますか？',prep_time:5,answer_time:120 },
+      { topic:6,part:6,type:'職場・学校',instruction:'職場や学校の雰囲気について話してください。',question:'職場や学校の雰囲気はどんな感じですか？どんな人たちと一緒に働いていますか？',prep_time:5,answer_time:120 }],
+  7: [{ topic:7,part:7,type:'ロールプレイ',instruction:'ロールプレイをしてみましょう。',question:'ロールプレイをしてみましょう。レストランに電話して、来週の土曜日の夜7時に4名で予約をしてください。',prep_time:20,answer_time:90 },
+      { topic:7,part:7,type:'ロールプレイ',instruction:'ロールプレイをしてみましょう。',question:'ロールプレイをしてみましょう。先週注文したジャケットが届いていません。カスタマーサービスに電話して、状況を確認して解決策を求めてください。',prep_time:20,answer_time:90 }],
+  8: [{ topic:8,part:8,type:'経験・比較',instruction:'予想外の経験について話してください。',question:'予想外のことが起きた時の経験を教えてください。その時どう対応しましたか？',prep_time:10,answer_time:120 },
+      { topic:8,part:8,type:'経験・比較',instruction:'5年前と今を比べて話してください。',question:'5年前と比べて、生活はどのように変わりましたか？変化の理由も教えてください。',prep_time:10,answer_time:120 }]
+};
+
+function randomOpicJpSample(topic) {
+  const bank = OPIC_JP_SAMPLE_QUESTIONS[topic];
+  return { ...bank[Math.floor(Math.random() * bank.length)], ai_generated: false };
+}
+
+function buildOpicJpPrompt(topic) {
+  const { type, prep_time, answer_time } = OPIC_JP_TOPIC_CONFIG[topic];
+  return `Generate a realistic OPIc Japanese (OPIc日本語) Topic ${topic} (${type}) practice question. The question MUST be written entirely in natural Japanese, as it would appear in an actual OPIc Japanese test.
+Respond with ONLY valid JSON — no markdown, no explanation:
+{"topic":${topic},"part":${topic},"type":"${type}","instruction":"日本語でどう答えるか説明する指示文 (${answer_time}秒で答えてください)","question":"実際の日本語OPIc質問文（自然な日本語で）","prep_time":${prep_time},"answer_time":${answer_time}}`;
+}
+
+function buildOpicJpAnalysisPrompt(question, userAnswer) {
+  const topicNum = question.topic || question.part;
+  const type = question.type || OPIC_JP_TOPIC_CONFIG[topicNum]?.type || 'General';
+  return `You are an OPIc Japanese (OPIc日本語) examiner. Evaluate the Japanese response holistically. Output ONLY valid JSON — no markdown, no explanation.
+
+[Topic ${topicNum}: ${type}]
+Question: ${question.question}
+User Answer (in Japanese): "${userAnswer || '(no answer — score 0 on all dimensions)'}"
+
+Score each dimension 0–2:
+  0 = insufficient  1 = developing  2 = proficient
+• task_completion — fully addressed all parts of the question in Japanese
+• discourse       — well-organized with appropriate Japanese connectives (それから、しかし、ところで etc.)
+• vocabulary      — appropriate and varied Japanese vocabulary (は/が particles, verb forms, etc.)
+• grammar         — accurate Japanese grammar (です/ます体, conjugation, particles)
+• fluency         — natural, smooth Japanese delivery appropriate for the task
+
+Grade scale (sum of 5 scores, max 10):
+  9–10 → AL   7–8 → IH   4–6 → IM   2–3 → IL   0–1 → NH
+
+Output ONLY this JSON (all feedback MUST be in Korean):
+{"scores":{"task_completion":N,"discourse":N,"vocabulary":N,"grammar":N,"fluency":N},"total_score":N,"grade":"XX","feedback":{"task_completion":"한국어 피드백","discourse":"한국어 피드백","vocabulary":"한국어 피드백","grammar":"한국어 피드백","fluency":"한국어 피드백"},"sample_answer":"Full high-scoring Japanese model answer","overall_comment":"2–3문장 한국어 종합 평가"}`;
+}
+
+// ── OPIc 日本語: Question generation ──────────────────────────
+app.post('/api/generate-opic-jp-question', async (req, res) => {
+  const topic = parseInt(req.body?.topic, 10);
+  if (!topic || topic < 1 || topic > 8)
+    return res.status(400).json({ error: '유효하지 않은 토픽입니다.' });
+
+  try {
+    const result = await tryModels(
+      QUESTION_MODELS,
+      [{ role: 'user', content: buildOpicJpPrompt(topic) }],
+      6000,
+      (content, model) => {
+        const match = content.match(/\{[\s\S]*?\}/s) || content.match(/\{[\s\S]*\}/);
+        if (!match) throw new Error('No JSON');
+        return { ...JSON.parse(match[0]), ai_generated: true, model };
+      }
+    );
+    return res.json(result);
+  } catch (err) {
+    if (err.status === 429)
+      return res.status(429).json({ error: 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.' });
+    console.warn('[opic-jp-q-all-failed] 샘플 문제로 대체:', err.message);
+    return res.json(randomOpicJpSample(topic));
+  }
+});
+
+// ── OPIc 日本語: Answer analysis ──────────────────────────────
+app.post('/api/analyze-opic-jp-answer', async (req, res) => {
+  const { question, userAnswer } = req.body ?? {};
+  if (!question?.part && !question?.topic)
+    return res.status(400).json({ error: '문제 데이터가 없습니다.' });
+
+  try {
+    const result = await tryModels(
+      ANALYSIS_MODELS,
+      [{ role: 'user', content: buildOpicJpAnalysisPrompt(question, userAnswer) }],
+      30000,
+      (content) => {
+        const match = content.match(/\{[\s\S]*\}/);
+        if (!match) throw new Error('No JSON');
+        return JSON.parse(match[0]);
+      }
+    );
+    return res.json(result);
+  } catch (err) {
+    if (err.status === 429)
+      return res.status(429).json({ error: 'API 요청 한도 초과. 잠시 후 다시 시도해주세요.' });
+    console.error('[opic-jp-a-all-failed]', err.message);
+    return res.status(503).json({ error: '분석에 실패했습니다. 잠시 후 다시 시도해주세요.' });
+  }
+});
+
 // ── Global error handler ───────────────────────────────────────
 app.use((err, _req, res, _next) => {
   console.error('[express-error]', err);

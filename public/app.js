@@ -241,7 +241,15 @@ function speak(btn, text) {
 
 function speakEl(btn, id) {
   const el = document.getElementById(id);
-  if (el) speak(btn, el.textContent);
+  if (!el) return;
+  // ruby 태그가 있으면 rt(후리가나) 내용을 제외한 순수 텍스트로 읽음
+  if (el.querySelector('rt')) {
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll('rt').forEach(rt => rt.remove());
+    speak(btn, clone.textContent);
+  } else {
+    speak(btn, el.textContent);
+  }
 }
 
 // ── Screen management ──────────────────────────────────────────
@@ -378,7 +386,7 @@ function showVocabHomeScreen() {
 
   list.dataset.renderedMode = list.dataset.renderedMode || '';
   if (list.dataset.renderedMode !== currentMode) {
-    list.innerHTML = modules.map(mod => `
+    let vocabListHtml = modules.map(mod => `
       <div class="study-module-card" onclick="openVocabModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -389,6 +397,8 @@ function showVocabHomeScreen() {
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
+    if (currentMode === 'opic-jp') vocabListHtml = applyJpFurigana(vocabListHtml);
+    list.innerHTML = vocabListHtml;
     list.dataset.renderedMode = currentMode;
   }
 
@@ -503,17 +513,18 @@ function openVocabModule(moduleId) {
     : currentMode === 'opic' ? OPIC_VOCAB_MODULES : VOCAB_MODULES;
   const mod = modules.find(m => m.id === moduleId);
   if (!mod) return;
-  document.getElementById('vocab-screen-title').textContent = mod.moduleTitle;
+  const vocabTitleEl = document.getElementById('vocab-screen-title');
+  vocabTitleEl.innerHTML = currentMode === 'opic-jp' ? applyJpFurigana(mod.moduleTitle) : mod.moduleTitle;
   document.getElementById('vocab-word-count').textContent = `총 ${mod.words.length}개 단어`;
 
-  document.getElementById('vocab-word-list').innerHTML = mod.words.map(w => `
+  let vocabHtml = mod.words.map(w => `
     <div class="vocab-card" data-word="${w.word}" onclick="toggleVocabCard(this)">
       <div class="vocab-card-front">
         <div class="vocab-left">
           <div class="vocab-word-row">
             <span class="vocab-word">${w.word}</span>
             <span class="vocab-pos">${w.pos}</span>
-            <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.closest('.vocab-word-row').querySelector('.vocab-word').textContent)" title="소리로 듣기">🔊</button>
+            <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.dataset.t)" data-t="${w.word.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>
           </div>
           <span class="vocab-phonetic" data-word="${w.word}"></span>
           <span class="vocab-expand-hint">탭하여 예문 보기 ▼</span>
@@ -526,13 +537,15 @@ function openVocabModule(moduleId) {
       <div class="vocab-card-back hidden">
         <div class="vocab-example-wrap">
           <p class="vocab-example">"${w.example}"</p>
-          <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.previousElementSibling.textContent.trim())" title="소리로 듣기">🔊</button>
+          <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.dataset.t)" data-t="${w.example.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>
         </div>
         ${w.exampleKo ? `<p class="vocab-example-ko">${w.exampleKo}</p>` : ''}
         <p class="vocab-tip">💡 ${w.tip}</p>
       </div>
     </div>
   `).join('');
+  if (currentMode === 'opic-jp') vocabHtml = applyJpFurigana(vocabHtml);
+  document.getElementById('vocab-word-list').innerHTML = vocabHtml;
 
   // 저장된 북마크 상태 복원
   const bookmarks = getVocabBookmarks();
@@ -582,7 +595,7 @@ function showPracticeList(part) {
   const items = isOpJpPL ? (OPIC_JP_PRACTICE_DATA[part] || [])
     : isOpPL ? (OPIC_PRACTICE_DATA[part] || [])
     : (PRACTICE_DATA[part] || []);
-  document.getElementById('practice-item-list').innerHTML = items.map((item, idx) => {
+  let practiceHtml = items.map((item, idx) => {
     const imgHtml = item.image
       ? `<img class="pi-img" src="${item.image}" alt="사진 묘사">`
       : '';
@@ -614,6 +627,8 @@ function showPracticeList(part) {
       </div>
     </div>`;
   }).join('');
+  if (currentMode === 'opic-jp') practiceHtml = applyJpFurigana(practiceHtml);
+  document.getElementById('practice-item-list').innerHTML = practiceHtml;
 
   setActiveTab('exercise');
   showScreen('practice-list');
@@ -1549,7 +1564,7 @@ function showStudyScreen() {
   // 모드가 바뀌면 항상 재렌더링
   list.dataset.renderedMode = list.dataset.renderedMode || '';
   if (list.dataset.renderedMode !== currentMode) {
-    list.innerHTML = modules.map(mod => `
+    let studyListHtml = modules.map(mod => `
       <div class="study-module-card" onclick="openModule('${mod.id}')">
         <div class="smc-body">
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
@@ -1560,6 +1575,8 @@ function showStudyScreen() {
           <div class="smc-right"><span class="smc-arrow">›</span></div>
         </div>
       </div>`).join('');
+    if (currentMode === 'opic-jp') studyListHtml = applyJpFurigana(studyListHtml);
+    list.innerHTML = studyListHtml;
     list.dataset.renderedMode = currentMode;
   }
 
@@ -1589,7 +1606,8 @@ function openModule(moduleId) {
 }
 
 function openGrammarModule(moduleId) {
-  const mod = GRAMMAR_MODULES.find(m => m.id === moduleId);
+  const mods = currentMode === 'opic-jp' ? OPIC_JP_GRAMMAR_MODULES : GRAMMAR_MODULES;
+  const mod = mods.find(m => m.id === moduleId);
   if (!mod) return;
   openGrammarLesson(mod.lessons[0].id);
 }
@@ -1615,7 +1633,8 @@ function openLesson(lessonId) {
 function openGrammarLesson(lessonId) {
   currentLessonId      = lessonId;
   currentLessonContext = 'grammar';
-  _renderLessonView(lessonId, GRAMMAR_MODULES, 'openGrammarLesson');
+  const mods = currentMode === 'opic-jp' ? OPIC_JP_GRAMMAR_MODULES : GRAMMAR_MODULES;
+  _renderLessonView(lessonId, mods, 'openGrammarLesson');
 }
 
 function _renderLessonView(lessonId, modules, openFn) {
@@ -1639,14 +1658,16 @@ function _renderLessonView(lessonId, modules, openFn) {
   document.getElementById('btn-lesson-prev').disabled = (lessonIdx === 0 && modules.indexOf(mod) === 0);
   document.getElementById('btn-lesson-next').disabled = (lessonIdx === mod.lessons.length - 1 && modules.indexOf(mod) === modules.length - 1);
 
-  document.getElementById('lesson-content-area').innerHTML = lesson.content.map(renderBlock).join('');
+  let lessonHtml = lesson.content.map(renderBlock).join('');
+  if (currentMode === 'opic-jp') lessonHtml = applyJpFurigana(lessonHtml);
+  document.getElementById('lesson-content-area').innerHTML = lessonHtml;
 
   showScreen('study-lesson');
   document.getElementById('screen-study-lesson').scrollTop = 0;
 }
 
 function _getContextModules() {
-  if (currentLessonContext === 'grammar')        return GRAMMAR_MODULES;
+  if (currentLessonContext === 'grammar')        return currentMode === 'opic-jp' ? OPIC_JP_GRAMMAR_MODULES : GRAMMAR_MODULES;
   if (currentLessonContext === 'opic-study')     return OPIC_STUDY_MODULES;
   if (currentLessonContext === 'opic-jp-study')  return OPIC_JP_STUDY_MODULES;
   return STUDY_MODULES;
@@ -1727,7 +1748,7 @@ function renderBlock(block) {
         <div class="expr-item">
           <div class="expr-en-wrap">
             <div class="expr-en">${i.en}</div>
-            <button class="speak-btn" onclick="speak(this, this.previousElementSibling.textContent.trim())" title="소리로 듣기">🔊</button>
+            <button class="speak-btn" onclick="speak(this, this.dataset.t)" data-t="${i.en.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>
           </div>
           <div class="expr-ko">${i.ko}</div>
         </div>`).join('');

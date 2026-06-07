@@ -539,8 +539,8 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
 .step-desc-wrap .step-desc { flex: 1; }
 .step-desc-wrap .speak-btn { flex-shrink: 0; margin-top: 2px; }
 .step-desc { font-size: .83rem; line-height: 1.6; color: var(--muted); white-space: pre-line; }
-.td-jp-wrap { display: flex; align-items: center; gap: 5px; }
-.td-jp-wrap .speak-btn { flex-shrink: 0; }
+.td-jp-wrap { display: block; line-height: 1.7; }
+.td-jp-wrap .speak-btn { vertical-align: middle; margin-left: 3px; }
 .td-ko { font-size: .75rem; color: #9CA3AF; padding: 3px 0 1px; line-height: 1.4; }
 .speak-btn-sm { width: 22px !important; height: 22px !important; font-size: .68rem !important; }
 .step-desc-ko { font-size: .8rem; color: #9CA3AF; margin-top: 5px; line-height: 1.5; padding-left: 8px; border-left: 2px solid rgba(99,102,241,.25); }

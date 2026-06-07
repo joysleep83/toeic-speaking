@@ -1824,20 +1824,35 @@ function renderBlock(block) {
       return `<ol class="cb-numbered">${block.items.map(i => `<li>${i}</li>`).join('')}</ol>`;
 
     case 'table': {
+      const _jpRe = /[ぁ-ゖ゠-ヿ]/;
       const ths = block.headers.map(h => `<th>${h}</th>`).join('');
-      const trs = block.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
+      const trs = block.rows.map(r => `<tr>${r.map(c => {
+        if (_jpRe.test(c)) {
+          const t = c.replace(/"/g, '&quot;');
+          return `<td><div class="td-jp-wrap">${c}<button class="speak-btn speak-btn-sm" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t}" title="소리로 듣기">🔊</button></div></td>`;
+        }
+        return `<td>${c}</td>`;
+      }).join('')}</tr>`).join('');
       return `<div class="cb-table-wrap"><table class="cb-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
     }
 
-    case 'structure':
-      return `<div class="cb-structure">${block.steps.map(s => `
+    case 'structure': {
+      const _jpRe2 = /[ぁ-ゖ゠-ヿ]/;
+      return `<div class="cb-structure">${block.steps.map(s => {
+        const descT = s.desc.replace(/\n/g, ' ').replace(/"/g, '&quot;');
+        const speakBtn = _jpRe2.test(s.desc)
+          ? `<button class="speak-btn speak-btn-sm" onclick="speak(this,this.dataset.t)" data-t="${descT}" title="소리로 듣기">🔊</button>`
+          : '';
+        return `
         <div class="cb-step">
           <div class="step-num">${s.num}</div>
           <div class="step-body">
             <div class="step-title">${s.title}</div>
-            <div class="step-desc">${s.desc}</div>
+            <div class="step-desc-wrap"><div class="step-desc">${s.desc}</div>${speakBtn}</div>
           </div>
-        </div>`).join('')}</div>`;
+        </div>`;
+      }).join('')}</div>`;
+    }
 
     case 'example': {
       const rows = block.items.map(i => `

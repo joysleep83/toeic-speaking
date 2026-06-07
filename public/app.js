@@ -1804,17 +1804,51 @@ function nextLesson() {
 }
 
 // ── 컨텐츠 블록 렌더러 ────────────────────────────────────────
+
+// 텍스트에서 "..." 인용 중 일본어(히라가나/가타카나) 비중이 높은 부분만 추출
+function _extractJpQuotes(text) {
+  const parts = [];
+  const re = /"([^"]+)"/g;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    const s = m[1];
+    const jp = (s.match(/[ぁ-ゖ゠-ヿ]/g) || []).length;
+    const ko = (s.match(/[가-힣]/g) || []).length;
+    if (jp > 0 && jp >= ko) parts.push(s);
+  }
+  return parts.join(' ');
+}
+
+function _jpSpeakBtn(tText) {
+  const t = tText.replace(/"/g, '&quot;');
+  return `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="speak(this,this.dataset.t)" data-t="${t}" title="소리로 듣기">🔊</button>`;
+}
+
 function renderBlock(block) {
   switch (block.type) {
-    case 'heading':
+    case 'heading': {
+      const jpRe = /[ぁ-ゖ゠-ヿ]/;
+      if (jpRe.test(block.text)) {
+        const extracted = _extractJpQuotes(block.text);
+        const tText = extracted || block.text;
+        return `<div class="cb-heading">${block.text} ${_jpSpeakBtn(tText)}</div>`;
+      }
       return `<div class="cb-heading">${block.text}</div>`;
+    }
 
-    case 'text':
+    case 'text': {
+      const extracted = _extractJpQuotes(block.text);
+      if (extracted) {
+        return `<p class="cb-text">${block.text} ${_jpSpeakBtn(extracted)}</p>`;
+      }
       return `<p class="cb-text">${block.text}</p>`;
+    }
 
     case 'tip': {
       const cls = block.icon === '⚠️' ? 'tip-warn' : block.icon === '🎯' ? 'tip-success' : 'tip-info';
-      return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${block.text}</div>`;
+      const extracted = _extractJpQuotes(block.text);
+      const btn = extracted ? ' ' + _jpSpeakBtn(extracted) : '';
+      return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${block.text}${btn}</div>`;
     }
 
     case 'list':

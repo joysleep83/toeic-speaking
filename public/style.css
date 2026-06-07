@@ -516,6 +516,7 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
 .cb-tip.tip-warn    { background: #FEF3C7; color: #92400E; border-left: 4px solid #F59E0B; }
 .cb-tip.tip-success { background: #D1FAE5; color: #065F46; border-left: 4px solid #10B981; }
 .cb-tip .tip-icon   { font-size: 1.1em; margin-right: 6px; }
+.speak-btn-inline { vertical-align: middle; }
 
 .cb-list { display: flex; flex-direction: column; gap: 6px; }
 .cb-list li { font-size: .88rem; line-height: 1.55; color: #374151; list-style: none; padding-left: 4px; }

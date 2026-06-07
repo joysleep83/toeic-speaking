@@ -1824,6 +1824,28 @@ function _jpSpeakBtn(tText) {
   return `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="speak(this,this.dataset.t)" data-t="${t}" title="소리로 듣기">🔊</button>`;
 }
 
+// Render JP text with per-segment buttons — splits on ' / ' when present
+function _jpCellBtns(text) {
+  const btn = t => `<button class="speak-btn speak-btn-sm" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>`;
+  if (!text.includes(' / ')) return text + btn(text);
+  return text.split(' / ').map(seg => seg.trim() + btn(seg.trim())).join(' / ');
+}
+
+// Insert inline speak buttons right after each "QuotedJP" segment in mixed text
+function _inlineJpSpeakBtns(text) {
+  return text.replace(/"([^"]+)"/g, (match, s) => {
+    const jp = (s.match(/[ぁ-ゖ゠-ヿ]/g) || []).length;
+    const ko = (s.match(/[가-힣]/g) || []).length;
+    if (jp === 0 || jp < ko) return match;
+    const btn = t => `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="speak(this,this.dataset.t)" data-t="${t.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>`;
+    if (s.includes(' / ')) {
+      const parts = s.split(' / ').map(seg => { seg = seg.trim(); return seg + btn(seg); });
+      return `"${parts.join(' / ')}"`;
+    }
+    return `"${s}"${btn(s)}`;
+  });
+}
+
 function renderBlock(block) {
   switch (block.type) {
     case 'heading': {
@@ -1837,18 +1859,12 @@ function renderBlock(block) {
     }
 
     case 'text': {
-      const extracted = _extractJpQuotes(block.text);
-      if (extracted) {
-        return `<p class="cb-text">${block.text} ${_jpSpeakBtn(extracted)}</p>`;
-      }
-      return `<p class="cb-text">${block.text}</p>`;
+      return `<p class="cb-text">${_inlineJpSpeakBtns(block.text)}</p>`;
     }
 
     case 'tip': {
       const cls = block.icon === '⚠️' ? 'tip-warn' : block.icon === '🎯' ? 'tip-success' : 'tip-info';
-      const extracted = _extractJpQuotes(block.text);
-      const btn = extracted ? ' ' + _jpSpeakBtn(extracted) : '';
-      return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${block.text}${btn}</div>`;
+      return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${_inlineJpSpeakBtns(block.text)}</div>`;
     }
 
     case 'list':
@@ -1862,12 +1878,10 @@ function renderBlock(block) {
       const ths = block.headers.map(h => `<th>${h}</th>`).join('');
       const trs = block.rows.map(r => `<tr>${r.map(c => {
         if (typeof c === 'object' && c !== null && c.jp) {
-          const t = c.jp.replace(/"/g, '&quot;');
-          return `<td><div class="td-jp-wrap">${c.jp}<button class="speak-btn speak-btn-sm" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t}" title="소리로 듣기">🔊</button></div><div class="td-ko">${c.ko}</div></td>`;
+          return `<td><div class="td-jp-wrap">${_jpCellBtns(c.jp)}</div><div class="td-ko">${c.ko}</div></td>`;
         }
         if (typeof c === 'string' && _jpRe.test(c)) {
-          const t = c.replace(/"/g, '&quot;');
-          return `<td><div class="td-jp-wrap">${c}<button class="speak-btn speak-btn-sm" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t}" title="소리로 듣기">🔊</button></div></td>`;
+          return `<td><div class="td-jp-wrap">${_jpCellBtns(c)}</div></td>`;
         }
         return `<td>${c}</td>`;
       }).join('')}</tr>`).join('');
@@ -1879,17 +1893,27 @@ function renderBlock(block) {
         const jpCount = (s.desc.match(/[ぁ-ゖ゠-ヿ]/g) || []).length;
         const koCount = (s.desc.match(/[가-힣]/g) || []).length;
         const isJpDominant = jpCount > 0 && jpCount >= koCount;
-        const descT = s.desc.replace(/\n/g, ' ').replace(/"/g, '&quot;');
-        const speakBtn = isJpDominant
-          ? `<button class="speak-btn speak-btn-sm" onclick="speak(this,this.dataset.t)" data-t="${descT}" title="소리로 듣기">🔊</button>`
-          : '';
         const koDiv = s.desc_ko ? `<div class="step-desc-ko">${s.desc_ko}</div>` : '';
+        let descWrap;
+        if (isJpDominant) {
+          if (s.desc.includes(' / ')) {
+            const sBtn = t => `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="speak(this,this.dataset.t)" data-t="${t.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>`;
+            const descHtml = s.desc.split(' / ').map(seg => seg.trim() + sBtn(seg.trim())).join(' / ');
+            descWrap = `<div class="step-desc-wrap"><div class="step-desc">${descHtml}</div></div>`;
+          } else {
+            const descT = s.desc.replace(/\n/g, ' ').replace(/"/g, '&quot;');
+            const speakBtn = `<button class="speak-btn speak-btn-sm" onclick="speak(this,this.dataset.t)" data-t="${descT}" title="소리로 듣기">🔊</button>`;
+            descWrap = `<div class="step-desc-wrap"><div class="step-desc">${s.desc}</div>${speakBtn}</div>`;
+          }
+        } else {
+          descWrap = `<div class="step-desc-wrap"><div class="step-desc">${s.desc}</div></div>`;
+        }
         return `
         <div class="cb-step">
           <div class="step-num">${s.num}</div>
           <div class="step-body">
             <div class="step-title">${s.title}</div>
-            <div class="step-desc-wrap"><div class="step-desc">${s.desc}</div>${speakBtn}</div>
+            ${descWrap}
             ${koDiv}
           </div>
         </div>`;

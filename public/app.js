@@ -698,6 +698,13 @@ function showPracticeList(part) {
     const qSpeakBtn = !item.image
       ? `<button class="speak-btn" onclick="speakEl(this,'pq-${idx}')" title="소리로 듣기">🔊</button>`
       : '';
+    const qKoHtml = (isOpJpPL && item.question_ko)
+      ? `<p class="practice-item-question-ko">${item.question_ko}</p>`
+      : '';
+    const answerKoHtml = (isOpJpPL && item.model_answer_ko)
+      ? `<div class="answer-section-label model-ko">한국어 번역</div>
+        <p class="answer-text answer-text-ko">${item.model_answer_ko.replace(/\n/g, '<br>')}</p>`
+      : '';
     return `
     <div class="practice-item">
       <div class="practice-item-q">
@@ -707,6 +714,7 @@ function showPracticeList(part) {
           <p class="practice-item-question" id="pq-${idx}">${item.question}</p>
           ${qSpeakBtn}
         </div>
+        ${qKoHtml}
       </div>
       <button class="practice-item-toggle" onclick="togglePracticeAnswer(this)">
         <span>모범 답안 · 해설 보기</span>
@@ -718,6 +726,7 @@ function showPracticeList(part) {
           <button class="speak-btn" onclick="speakEl(this,'pa-${idx}')" title="소리로 듣기">🔊</button>
         </div>
         <p class="answer-text" id="pa-${idx}">${item.model_answer}</p>
+        ${answerKoHtml}
         <div class="answer-section-label explain">답안 해설</div>
         <div class="explain-text">${item.explanation}</div>
       </div>

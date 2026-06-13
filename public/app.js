@@ -305,11 +305,12 @@ function cleanForSpeech(text) {
 
 function speak(btn, text) {
   if (!text || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
   if (btn.classList.contains('speaking')) {
+    window.speechSynthesis.cancel();
     btn.classList.remove('speaking');
     return;
   }
+  window.speechSynthesis.cancel();
   document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
   const cleaned = cleanForSpeech(text);
   if (!cleaned) return;
@@ -319,7 +320,8 @@ function speak(btn, text) {
   btn.classList.add('speaking');
   utt.onend   = () => btn.classList.remove('speaking');
   utt.onerror = () => btn.classList.remove('speaking');
-  window.speechSynthesis.speak(utt);
+  // cancel() 직후 즉시 speak()하면 Chrome에서 첫 음절이 잘리는 버그 → 딜레이로 회피
+  setTimeout(() => window.speechSynthesis.speak(utt), 100);
 }
 
 function speakEl(btn, id) {
@@ -379,7 +381,8 @@ function switchMode(mode) {
     btn.classList.toggle('active', btn.dataset.mode === mode);
   });
   const brandNames = { toeic: 'TOEIC 스피킹', opic: 'OPIc', 'opic-jp': 'OPIc 日本語' };
-  document.getElementById('nav-brand-text').textContent = brandNames[mode] || 'TOEIC 스피킹';
+  const brandEl = document.getElementById('nav-brand-text');
+  if (brandEl) brandEl.textContent = brandNames[mode] || 'TOEIC 스피킹';
   navTo('practice');
 }
 
@@ -513,6 +516,7 @@ function renderVocabMeanings(meaning) {
 }
 
 let vocabShowBookmarksOnly = false;
+let vocabHideMeaning = false;
 
 function getVocabBookmarks() {
   try { return new Set(JSON.parse(localStorage.getItem('vocab_bookmarks') || '[]')); }
@@ -549,6 +553,20 @@ function updateVocabToolbar() {
   filterBtn.textContent = vocabShowBookmarksOnly
     ? `★ 복습만 보기 (${n}개) ✓`
     : `☆ 복습만 보기${n > 0 ? ` (${n}개)` : ''}`;
+}
+
+function toggleVocabMeaning() {
+  vocabHideMeaning = !vocabHideMeaning;
+  const list = document.getElementById('vocab-word-list');
+  if (list) list.classList.toggle('meaning-hidden', vocabHideMeaning);
+  if (!vocabHideMeaning) {
+    document.querySelectorAll('#vocab-word-list .meaning-revealed').forEach(c => c.classList.remove('meaning-revealed'));
+  }
+  const btn = document.getElementById('vocab-hide-meaning-btn');
+  if (btn) {
+    btn.classList.toggle('vocab-filter-active', vocabHideMeaning);
+    btn.textContent = vocabHideMeaning ? '👁 뜻 가리기 ✓' : '👁 뜻 가리기';
+  }
 }
 
 function toggleVocabFilter() {
@@ -655,8 +673,13 @@ function openVocabModule(moduleId) {
 
   // 필터 초기화
   vocabShowBookmarksOnly = false;
+  vocabHideMeaning = false;
   const filterBtn = document.getElementById('vocab-filter-btn');
   if (filterBtn) filterBtn.classList.remove('vocab-filter-active');
+  const hideMeaningBtn = document.getElementById('vocab-hide-meaning-btn');
+  if (hideMeaningBtn) { hideMeaningBtn.classList.remove('vocab-filter-active'); hideMeaningBtn.textContent = '👁 뜻 가리기'; }
+  const list = document.getElementById('vocab-word-list');
+  if (list) list.classList.remove('meaning-hidden');
   updateVocabToolbar();
 
   setActiveTab('vocab');
@@ -666,12 +689,19 @@ function openVocabModule(moduleId) {
 }
 
 function toggleVocabCard(card) {
+  // 뜻 가리기 모드: 첫 탭은 뜻 공개, 두 번째 탭부터 예문 토글
+  if (vocabHideMeaning && !card.classList.contains('meaning-revealed')) {
+    card.classList.add('meaning-revealed');
+    return;
+  }
   const back = card.querySelector('.vocab-card-back');
   const hint = card.querySelector('.vocab-expand-hint');
   const isOpen = !back.classList.contains('hidden');
   back.classList.toggle('hidden', isOpen);
   hint.textContent = isOpen ? '탭하여 예문 보기 ▼' : '접기 ▲';
   card.classList.toggle('vocab-card-open', !isOpen);
+  // 카드 닫힐 때 뜻도 다시 가림
+  if (vocabHideMeaning && isOpen) card.classList.remove('meaning-revealed');
 }
 
 

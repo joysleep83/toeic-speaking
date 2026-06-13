@@ -13,7 +13,6 @@
   <nav id="app-nav">
     <div class="nav-inner">
       <div class="nav-top-bar">
-        <div class="nav-brand" id="nav-brand-text">TOEIC 스피킹</div>
         <div class="mode-switch">
           <button class="mode-switch-btn active" data-mode="toeic" onclick="switchMode('toeic')">TOEIC</button>
           <button class="mode-switch-btn" data-mode="opic" onclick="switchMode('opic')">OPIc</button>
@@ -535,7 +534,10 @@
     </div>
     <div class="vocab-toolbar">
       <p id="vocab-word-count" class="vocab-word-count"></p>
-      <button id="vocab-filter-btn" class="vocab-filter-btn" onclick="toggleVocabFilter()">☆ 복습만 보기</button>
+      <div class="vocab-toolbar-btns">
+        <button id="vocab-hide-meaning-btn" class="vocab-filter-btn" onclick="toggleVocabMeaning()">👁 뜻 가리기</button>
+        <button id="vocab-filter-btn" class="vocab-filter-btn" onclick="toggleVocabFilter()">☆ 복습만 보기</button>
+      </div>
     </div>
     <div id="vocab-word-list" class="vocab-word-list"></div>
   </div>

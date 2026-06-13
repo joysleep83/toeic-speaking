@@ -533,31 +533,6 @@ app.post('/api/analyze-opic-jp-answer', async (req, res) => {
   }
 });
 
-// ── Pexels image proxy ─────────────────────────────────────────
-app.get('/api/pexels-image', async (req, res) => {
-  const q = req.query.q?.trim();
-  if (!q) return res.status(400).json({ error: '검색어가 없습니다.' });
-
-  const controller = new AbortController();
-  const timeoutId  = setTimeout(() => controller.abort(), 5000);
-  try {
-    const response = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&per_page=1&orientation=landscape`,
-      { headers: { Authorization: process.env.PEXELS_API_KEY }, signal: controller.signal }
-    );
-    clearTimeout(timeoutId);
-    if (!response.ok) return res.status(response.status).json({ error: 'Pexels API 오류' });
-    const data = await response.json();
-    const photo = data.photos?.[0];
-    if (!photo) return res.json({ url: null });
-    return res.json({ url: photo.src.medium, alt: photo.alt || q });
-  } catch (err) {
-    clearTimeout(timeoutId);
-    console.error('[pexels]', err.message);
-    return res.status(503).json({ error: '이미지 검색 실패' });
-  }
-});
-
 // ── Global error handler ───────────────────────────────────────
 app.use((err, _req, res, _next) => {
   console.error('[express-error]', err);

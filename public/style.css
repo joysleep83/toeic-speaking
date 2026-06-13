@@ -711,6 +711,15 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
   padding: 8px 12px;
 }
 
+.vocab-card-img {
+  display: block;
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 auto 12px;
+}
+
 /* ── 가나 50음도 테이블 ── */
 .kana-view        { padding: 4px 0 12px; }
 .kana-sec         { margin-bottom: 20px; }

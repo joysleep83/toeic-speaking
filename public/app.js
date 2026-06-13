@@ -513,6 +513,7 @@ function renderVocabMeanings(meaning) {
 }
 
 let vocabShowBookmarksOnly = false;
+let currentVocabModuleId  = null;
 
 function getVocabBookmarks() {
   try { return new Set(JSON.parse(localStorage.getItem('vocab_bookmarks') || '[]')); }
@@ -592,6 +593,7 @@ async function loadVocabPhonetics(words) {
 }
 
 function openVocabModule(moduleId) {
+  currentVocabModuleId = moduleId;
   const modules = currentMode === 'opic-jp' ? OPIC_JP_VOCAB_MODULES
     : currentMode === 'opic' ? OPIC_VOCAB_MODULES : VOCAB_MODULES;
   const mod = modules.find(m => m.id === moduleId);
@@ -631,6 +633,7 @@ function openVocabModule(moduleId) {
         </div>
       </div>
       <div class="vocab-card-back hidden">
+        ${w.imageUrl ? `<img class="vocab-card-img" src="${w.imageUrl}" alt="${w.imageAlt || ''}" loading="lazy">` : ''}
         <div class="vocab-example-wrap">
           <p class="vocab-example">"${w.example}"</p>
           <button class="speak-btn" onclick="event.stopPropagation(); speak(this, this.dataset.t)" data-t="${w.example.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>

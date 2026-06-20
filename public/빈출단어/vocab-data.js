@@ -1,5 +1,5 @@
 ﻿// ── TOEIC Speaking 단원별 빈출단어 ──────────────────────────────
-// 8개 모듈 · 각 모듈 45개 단어 · 총 360개 (기존 120개 → 3배 확장)
+// 9개 모듈 · Part 5·6 분리 + 파트별 핵심 표현 추가
 
 const VOCAB_MODULES = [
 
@@ -170,7 +170,13 @@ const VOCAB_MODULES = [
       { word: 'shelves', meaning: '선반 (복수)', pos: '명사', example: 'The shelves are fully stocked with products.', exampleKo: '선반에는 제품이 가득 채워져 있습니다.', tip: '단수: shelf / 상점·사무실 사진에서 빈출' },
       { word: 'caption', meaning: '설명문, 캡션', pos: '명사', example: 'There is no caption in the photo, so describe what you see.', exampleKo: '사진에는 ​​캡션이 없으므로, 본 내용을 설명해주세요.', tip: '사진 설명 맥락에서 사용' },
       { word: 'setting', meaning: '배경, 환경', pos: '명사', example: 'The setting appears to be a busy airport terminal.', exampleKo: '배경은 분주한 공항 터미널인 것 같습니다.', tip: '"The setting appears to be..." — Part 1 도입 표현' },
-      { word: 'landscape', meaning: '풍경, 경관', pos: '명사', example: 'The photo shows a beautiful mountain landscape at sunrise.', exampleKo: '사진은 일출 때의 아름다운 산 풍경을 보여줍니다.', tip: '야외·자연 사진 묘사 시 배경 묘사 어휘' }
+      { word: 'landscape', meaning: '풍경, 경관', pos: '명사', example: 'The photo shows a beautiful mountain landscape at sunrise.', exampleKo: '사진은 일출 때의 아름다운 산 풍경을 보여줍니다.', tip: '야외·자연 사진 묘사 시 배경 묘사 어휘' },
+      { word: 'take place', meaning: '개최되다, 일어나다', pos: '숙어', example: 'A professional conference appears to be taking place in the main hall.', exampleKo: '메인 홀에서 전문 컨퍼런스가 열리고 있는 것 같습니다.', tip: '= happen / 행사·회의·사건이 진행될 때 사용하는 핵심 숙어' },
+      { word: 'give a presentation', meaning: '발표를 하다', pos: '숙어', example: 'A woman appears to be giving a presentation to her colleagues.', exampleKo: '한 여성이 동료들에게 발표를 하고 있는 것처럼 보입니다.', tip: '"give / make / deliver a presentation" 모두 가능 — give가 가장 자연스러운 콜로케이션' },
+      { word: 'pay attention', meaning: '주의를 기울이다, 집중하다', pos: '숙어', example: 'The audience is paying attention to the speaker at the front.', exampleKo: '청중은 앞에 있는 연사에게 주의를 기울이고 있습니다.', tip: '"pay attention to + 명사"로 활용 — 집중하는 사람 묘사에 자연스러운 표현' },
+      { word: 'things like ~', meaning: '~와 같은 것들', pos: '표현', example: 'I can see things like chairs, tables, and a projector screen in the room.', exampleKo: '방 안에는 의자, 테이블, 프로젝터 화면 같은 것들이 보입니다.', tip: 'Such as보다 대화체에서 훨씬 많이 쓰임 — Part 1 묘사에서 자연스럽게 열거할 때' },
+      { word: 'what appears to be ~', meaning: '~인 것으로 보이는', pos: '표현', example: 'The photo was taken on what appears to be a sunny afternoon.', exampleKo: '사진은 화창한 오후로 보이는 날에 촬영된 것 같습니다.', tip: '날씨·상황을 100% 단정하지 않고 추측할 때 쓰는 세련된 표현' },
+      { word: 'full of activity', meaning: '활동으로 가득한, 북적이는', pos: '표현', example: 'The outdoor market looks full of activity with vendors and shoppers.', exampleKo: '야외 시장은 판매상과 쇼핑객들로 활기차 보입니다.', tip: '시장·공공장소가 사람들로 북적이는 활기찬 모습을 묘사할 때 사용' }
     ]
   },
 
@@ -227,7 +233,8 @@ const VOCAB_MODULES = [
       { word: 'generally', meaning: '일반적으로', pos: '부사', example: 'People generally perform better when they enjoy their work.', exampleKo: '사람들은 일반적으로 일을 즐길 때 더 나은 성과를 냅니다.', tip: '= in general / 일반적 경향 설명에 사용' },
       { word: 'balance', meaning: 'n. 균형; 잔액, 잔고 · v. 균형을 맞추다', pos: '명사/동사', example: 'I try to balance work and personal life as much as possible.', exampleKo: '나는 가능한 한 일과 개인 생활의 균형을 맞추려고 노력합니다.', tip: '"work-life balance" = 일·생활 균형 / "bank balance" = 잔고' },
       { word: 'highlight', meaning: 'n. 하이라이트, 최고의 순간 · v. 강조하다, 부각시키다', pos: '명사/동사', example: 'The highlight of my week is usually the team lunch on Fridays.', exampleKo: '내 주의 하이라이트는 대개 금요일에 열리는 팀 점심입니다.', tip: '"the highlight of..." — 경험 중 가장 좋았던 부분 표현에 활용' },
-      { word: 'rewarding', meaning: '보람 있는', pos: '형용사', example: 'I find teaching others to be one of the most rewarding activities.', exampleKo: '나는 다른 사람을 가르치는 것이 가장 보람 있는 활동 중 하나라고 생각합니다.', tip: '= fulfilling / 직업·취미 관련 이유 제시에 활용' }
+      { word: 'rewarding', meaning: '보람 있는', pos: '형용사', example: 'I find teaching others to be one of the most rewarding activities.', exampleKo: '나는 다른 사람을 가르치는 것이 가장 보람 있는 활동 중 하나라고 생각합니다.', tip: '= fulfilling / 직업·취미 관련 이유 제시에 활용' },
+      { word: 'that said', meaning: '그렇긴 하지만, 그렇다고는 해도', pos: '전환어', example: 'Working from home saves commute time. That said, I miss team interaction.', exampleKo: '재택근무는 출퇴근 시간을 절약해 줍니다. 그렇긴 하지만, 팀과의 교류가 그립습니다.', tip: 'However나 But보다 부드러운 전환어 — 앞 내용을 인정하면서도 다른 측면을 시작할 때 사용' }
     ]
   },
 
@@ -284,7 +291,10 @@ const VOCAB_MODULES = [
       { word: 'document', meaning: '서류, 문서', pos: '명사', example: 'The document indicates that the meeting starts at 10 AM.', exampleKo: '문서에는 회의가 오전 10시에 시작된다고 나와 있습니다.', tip: '"The document indicates/states..." — Part 3 자료 인용 핵심 표현' },
       { word: 'restricted', meaning: '제한된', pos: '형용사', example: 'Parking is restricted to registered participants only.', exampleKo: '주차는 등록된 참가자만 이용할 수 있습니다.', tip: '= limited / restrict (동사) — 규정·제한 정보에서 빈출' },
       { word: 'waive', meaning: '면제하다, 포기하다', pos: '동사', example: 'The fee will be waived for members who register early.', exampleKo: '조기 등록 회원에게는 수수료가 면제됩니다.', tip: '"waive the fee" = 요금 면제 / 할인·면제 조건 설명에 사용' },
-      { word: 'accompany', meaning: '동반하다, 함께 오다', pos: '동사', example: 'Children must be accompanied by an adult at all times.', exampleKo: '어린이는 항상 성인과 동반해야 합니다.', tip: '안내문·규정에서 동반 요건 표현에 빈출' }
+      { word: 'accompany', meaning: '동반하다, 함께 오다', pos: '동사', example: 'Children must be accompanied by an adult at all times.', exampleKo: '어린이는 항상 성인과 동반해야 합니다.', tip: '안내문·규정에서 동반 요건 표현에 빈출' },
+      { word: 'be likely to ~', meaning: '~할 가능성이 있다, ~일 것 같다', pos: '구문', example: 'This event is likely to attract more than 500 attendees.', exampleKo: '이 행사는 500명 이상의 참가자를 끌어들일 가능성이 있습니다.', tip: '"is/are likely to + 동사원형" — 부드러운 추측 표현으로 정보 자료 답변에 자주 사용' },
+      { word: 'qualify for ~', meaning: '~의 자격을 얻다, ~ 조건에 부합하다', pos: '동사', example: 'Attendees who register early may qualify for a discounted rate.', exampleKo: '일찍 등록한 참가자는 할인 요금 혜택을 받을 수 있습니다.', tip: '= be eligible for / 조건 충족 여부를 표현할 때 사용' },
+      { word: 'as well', meaning: '~도 역시', pos: '부사', example: 'The venue has parking available, and there is a shuttle service as well.', exampleKo: '행사장에는 주차 공간이 있으며, 셔틀 서비스도 있습니다.', tip: '문장 끝에 붙여 "~도 역시"를 나타냄 — "too"와 같은 의미이나 더 격식 있음' }
     ]
   },
 
@@ -341,16 +351,22 @@ const VOCAB_MODULES = [
       { word: 'promptly', meaning: '즉시, 신속하게', pos: '부사', example: 'Our team will respond to your complaint promptly.', exampleKo: '저희 팀은 귀하의 불만 사항에 대해 신속하게 답변해 드리겠습니다.', tip: '= immediately / 신속한 대응을 약속할 때 사용' },
       { word: 'concern', meaning: '걱정, 우려', pos: '명사', example: 'I completely understand your concern about the delivery delay.', exampleKo: '배송 지연에 대한 귀하의 우려를 충분히 이해합니다.', tip: '"I understand your concern" — Part 4 공감 표현 핵심 어휘' },
       { word: 'inconvenient', meaning: '불편한', pos: '형용사', example: 'I know this change may be inconvenient for you, but it is necessary.', exampleKo: '이러한 변화가 귀하에게 불편할 수 있다는 것을 알고 있지만 필요한 것입니다.', tip: '= troublesome / 반대어: convenient — 상황 인정 시 사용' },
-      { word: 'initiative', meaning: '주도, 계획', pos: '명사', example: 'I will take the initiative to resolve this before your next appointment.', exampleKo: '다음 약속 전에 이 문제를 해결하기 위해 주도적으로 노력하겠습니다.', tip: '"take the initiative" = 주도적으로 나서다 / 적극적 해결 의지 표현' }
+      { word: 'initiative', meaning: '주도, 계획', pos: '명사', example: 'I will take the initiative to resolve this before your next appointment.', exampleKo: '다음 약속 전에 이 문제를 해결하기 위해 주도적으로 노력하겠습니다.', tip: '"take the initiative" = 주도적으로 나서다 / 적극적 해결 의지 표현' },
+      { word: "here's what I suggest", meaning: '제가 제안하는 건 이거예요', pos: '구문', example: "Here's what I suggest — let's book the venue two months in advance.", exampleKo: '제가 제안하는 건 이거예요 — 2개월 전에 행사장을 예약합시다.', tip: '"Here\'s what ~" 패턴으로 상대방의 주의를 집중시킨 후 제안을 이어가는 비즈니스 표현' },
+      { word: 'frustrating', meaning: '답답한, 짜증스러운', pos: '형용사', example: 'It can be frustrating when plans change at the last minute.', exampleKo: '마지막 순간에 계획이 바뀌면 답답할 수 있습니다.', tip: 'frustrate (동사) / frustration (명사) — 상대방 상황에 공감할 때 사용' },
+      { word: 'with enough notice', meaning: '충분한 사전 통보가 있으면', pos: '표현', example: 'We can accommodate your request with enough notice beforehand.', exampleKo: '충분한 사전 통보가 있으면 귀하의 요청을 수용할 수 있습니다.', tip: '= if notified in advance / 미리 연락하면 준비가 가능하다는 뉘앙스' },
+      { word: 'redirect A to B', meaning: 'A를 B로 방향을 돌리다', pos: '동사', example: 'We can redirect the budget from travel costs to online tools.', exampleKo: '출장 비용 예산을 온라인 도구로 전환할 수 있습니다.', tip: '자원이나 흐름의 방향을 바꿀 때 사용하는 비즈니스 표현' },
+      { word: 'meanwhile', meaning: '그동안에, 한편', pos: '부사', example: 'Meanwhile, I will contact the vendor to check availability.', exampleKo: '그동안 저는 공급업체에 연락해 가용 여부를 확인하겠습니다.', tip: '상대방이 한 가지를 처리하는 동안 자신은 다른 일을 하겠다는 표현 — 대화의 화제를 부드럽게 전환' },
+      { word: 'to see if ~', meaning: '~인지 확인하기 위해', pos: '구문', example: 'I will call the supplier to see if we can get a discount.', exampleKo: '할인이 가능한지 알아보기 위해 공급업체에 전화하겠습니다.', tip: '비즈니스 대화에서 조건이나 가능 여부를 알아본다고 할 때 사용하는 패턴' }
     ]
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 7 — Part 5 & 6: 의견 제시
+  // Module 7 — Part 5: 의견 제시
   // ══════════════════════════════════════════════════════════
   {
     id: 'm7',
-    moduleTitle: 'Part 5 & 6 — 의견 제시',
+    moduleTitle: 'Part 5 — 의견 제시',
     icon: '🎯',
     color: '#F97316',
     words: [
@@ -376,6 +392,28 @@ const VOCAB_MODULES = [
       { word: 'illustrate', meaning: '예시로 보여주다', pos: '동사', example: 'This example illustrates how technology shapes our daily lives.', exampleKo: '이 예는 기술이 우리의 일상 생활을 어떻게 형성하는지 보여줍니다.', tip: '= demonstrate, show / 예시 연결 시 사용' },
       { word: 'emphasize', meaning: '강조하다', pos: '동사', example: 'I want to emphasize that both approaches have their merits.', exampleKo: '두 가지 접근 방식 모두 장점이 있다는 점을 강조하고 싶습니다.', tip: '= stress, highlight / emphasis (n.)' },
       { word: 'underscore', meaning: '강조하다', pos: '동사', example: 'These statistics underscore the need for immediate action.', exampleKo: '이러한 통계는 즉각적인 조치의 필요성을 강조합니다.', tip: '= highlight / emphasize보다 강한 강조 뉘앙스' },
+      { word: 'properly', meaning: '적절히, 제대로', pos: '부사', example: 'Employees who rest properly tend to be more focused and productive at work.', exampleKo: '제대로 쉬는 직원들이 업무에 더 집중하고 생산적인 경향이 있습니다.', tip: '= adequately / 올바른 방식으로 행해진다는 뉘앙스 — Part 5 답변에서 이유 설명에 활용' },
+      { word: 'in the long run', meaning: '결국에는, 장기적으로', pos: '숙어', example: 'Investing in employee well-being pays off in the long run.', exampleKo: '직원 복지에 투자하는 것은 장기적으로 효과를 발휘합니다.', tip: '= eventually, over time / Part 5 결론에서 자주 사용하는 정리 표현' },
+      { word: 'taking into account', meaning: '~을 고려하다, 참작하다', pos: '표현', example: 'Taking into account all the evidence, I believe the benefits outweigh the risks.', exampleKo: '모든 증거를 고려해 볼 때, 이점이 위험보다 크다고 생각합니다.', tip: '= considering / 결론을 내리기 전에 전반적인 상황을 종합하는 표현' },
+      { word: 'be entirely up to ~', meaning: '전적으로 ~에게 달려있다', pos: '숙어', example: 'Whether to take a vacation should be entirely up to each employee.', exampleKo: '휴가를 가는지 여부는 전적으로 각 직원에게 달려 있어야 합니다.', tip: '"be up to ~" = ~에게 달려있다 / entirely(전적으로)를 더해 자율성을 강조' },
+      { word: 'require A to B', meaning: 'A에게 B하도록 요구하다', pos: '동사구', example: 'Companies should not require employees to work without adequate breaks.', exampleKo: '회사는 직원들에게 충분한 휴식 없이 일하도록 요구해서는 안 됩니다.', tip: '"require + 사람 + to + 동사원형" 구조 — 의무나 규정 표현에 사용' },
+      { word: 'take time off', meaning: '쉬다, 휴가를 내다', pos: '숙어', example: 'It is important to take time off to prevent burnout and stay healthy.', exampleKo: '번아웃을 예방하고 건강을 유지하기 위해 휴식을 취하는 것이 중요합니다.', tip: '= take a break / "take time off work" = 업무에서 잠시 벗어나다' },
+      { word: 'end up -ing', meaning: '결국 ~하게 되다', pos: '구문', example: 'Overworked employees often end up making more mistakes than usual.', exampleKo: '과로한 직원들은 종종 평소보다 더 많은 실수를 하게 됩니다.', tip: '의도치 않은 결과를 맞이했을 때 쓰는 표현 — "end up in a bad situation"도 같은 구조' },
+      { word: 'value (동사)', meaning: '~를 소중하게 여기다', pos: '동사', example: 'Employees who feel valued tend to stay longer at a company.', exampleKo: '소중하게 여겨진다는 느낌을 받는 직원들은 회사에 더 오래 머무르는 경향이 있습니다.', tip: '"value"가 명사가 아닌 동사로 쓰인 것에 주의 — "value someone/something"' },
+      { word: 'morale', meaning: '(직원) 사기, 의욕', pos: '명사', example: 'Flexible working hours can greatly improve employee morale.', exampleKo: '유연한 근무 시간은 직원들의 사기를 크게 높일 수 있습니다.', tip: '직장 내 집단적 의욕·사기를 의미 — "boost/raise morale" = 사기를 높이다' },
+      { word: 'retention', meaning: '직원 유지, 이직 방지', pos: '명사', example: 'Better benefits lead to higher employee retention rates.', exampleKo: '더 나은 혜택은 높은 직원 유지율로 이어집니다.', tip: '"employee retention" = 인재를 회사에 계속 머무르게 하는 것 — 반대: turnover(이직률)' }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════
+  // Module 8 — Part 6: 의견 제시
+  // ══════════════════════════════════════════════════════════
+  {
+    id: 'm8',
+    moduleTitle: 'Part 6 — 의견 제시',
+    icon: '🌐',
+    color: '#EC4899',
+    words: [
       { word: 'whereas', meaning: '반면에, ~인 데 반하여', pos: '접속사', example: 'Online learning offers flexibility, whereas traditional classrooms provide structure.', exampleKo: '온라인 학습은 유연성을 제공하는 반면 기존 교실은 구조를 제공합니다.', tip: '= while / 두 가지를 대조할 때 가장 자연스러운 접속사' },
       { word: 'nevertheless', meaning: '그럼에도 불구하고', pos: '부사', example: 'The cost is high; nevertheless, the long-term benefits are clear.', exampleKo: '비용이 많이 듭니다. 그럼에도 불구하고 장기적인 이점은 분명합니다.', tip: '= however, still / 반론 인정 후 주장 강화에 사용' },
       { word: 'consequently', meaning: '결과적으로', pos: '부사', example: 'The company reduced costs; consequently, profits increased.', exampleKo: '회사는 비용을 절감했습니다. 결과적으로 이익은 증가했다.', tip: '= as a result / 원인-결과 연결에 사용' },
@@ -398,15 +436,31 @@ const VOCAB_MODULES = [
       { word: 'insight', meaning: '통찰, 식견', pos: '명사', example: 'This experience gave me a valuable insight into leadership.', exampleKo: '이 경험은 나에게 리더십에 대한 귀중한 통찰력을 주었다.', tip: '"provide insight into..." — 개인 경험과 연결할 때 고급 표현' },
       { word: 'notion', meaning: '개념, 생각', pos: '명사', example: 'The notion that failure leads to success is widely accepted.', exampleKo: '실패가 성공으로 이어진다는 개념은 널리 받아들여지고 있습니다.', tip: '= idea, concept / 격식 있는 의견 표현에 사용' },
       { word: 'perspective', meaning: '관점, 시각', pos: '명사', example: 'From a student\'s perspective, online learning is more accessible.', exampleKo: '학생의 관점에서 보면 온라인 학습이 더 접근하기 쉽습니다.', tip: '"From my perspective" / "From a ... perspective" — Part 5/6 도입 표현' },
-      { word: 'implication', meaning: '함의, 결과', pos: '명사', example: 'The implications of this policy could affect millions of people.', exampleKo: '이 정책의 의미는 수백만 명의 사람들에게 영향을 미칠 수 있습니다.', tip: 'imply (동사) / 사회·기술 주제에서 결과·영향 표현에 사용' }
+      { word: 'implication', meaning: '함의, 결과', pos: '명사', example: 'The implications of this policy could affect millions of people.', exampleKo: '이 정책의 의미는 수백만 명의 사람들에게 영향을 미칠 수 있습니다.', tip: 'imply (동사) / 사회·기술 주제에서 결과·영향 표현에 사용' },
+      { word: 'while ~ (양보)', meaning: '~이긴 하지만, 반면 (양보)', pos: '접속사', example: 'While social media has its benefits, it can also lead to feelings of isolation.', exampleKo: '소셜 미디어에는 장점이 있지만, 고립감으로 이어질 수도 있습니다.', tip: '"동안에"가 아닌 "~이기는 하지만(although)"이라는 양보 의미 — 상대 의견을 인정한 후 주장을 강화할 때' },
+      { word: 'play a role', meaning: '역할을 하다, 영향을 미치다', pos: '숙어', example: 'Education plays a crucial role in shaping a person\'s future.', exampleKo: '교육은 사람의 미래를 형성하는 데 중요한 역할을 합니다.', tip: '"play a key/crucial/significant role in ~" — 어떤 결과에 한몫하다는 의미' },
+      { word: 'challenging circumstances', meaning: '힘든 환경, 도전적인 상황', pos: '표현', example: 'Success achieved despite challenging circumstances is far more meaningful.', exampleKo: '힘든 환경에서 이루어낸 성공은 훨씬 더 의미 있습니다.', tip: '"difficult/hard" 대신 쓸 수 있는 격식체 표현 — circumstances는 개인이 처한 환경·상황을 뜻함' },
+      { word: 'through sheer persistence', meaning: '오직 끈기 하나로', pos: '표현', example: 'Some people succeed through sheer persistence rather than natural talent.', exampleKo: '타고난 재능보다 오직 끈기 하나로 성공하는 사람들이 있습니다.', tip: '"sheer"는 "다른 것 없이 순전히"라는 뉘앙스 — "through sheer hard work/determination"도 같은 구조' },
+      { word: 'global phenomenon', meaning: '세계적인 현상, 신드롬', pos: '표현', example: 'Social media addiction has become a global phenomenon affecting all age groups.', exampleKo: '소셜 미디어 중독은 모든 연령층에 영향을 미치는 세계적인 현상이 되었습니다.', tip: '단순히 "유명한" 수준을 넘어 전 세계적 문화·사회 현상으로 자리잡았을 때 쓰는 표현' },
+      { word: 'privilege', meaning: '특권', pos: '명사', example: 'Access to quality education is a privilege not everyone enjoys equally.', exampleKo: '양질의 교육을 받을 기회는 모두가 동등하게 누리는 특권이 아닙니다.', tip: '노력 없이 선천적·환경적으로 가진 유리한 조건 — 현대 사회 논쟁이나 에세이에서 자주 등장하는 키워드' },
+      { word: 'meaningful achievement', meaning: '의미 있는 성취, 진정한 결실', pos: '표현', example: 'Hard work, not luck, leads to truly meaningful achievement in life.', exampleKo: '운이 아니라 노력이 삶에서 진정으로 의미 있는 성취로 이어집니다.', tip: '단순한 물질적 성공이 아닌, 사회적으로 인정받거나 스스로 떳떳한 가치 있는 성취를 뜻함' },
+      { word: 'what truly matters is ~', meaning: '정말로 중요한 것은 ~이다', pos: '구문', example: 'What truly matters is not how much you earn, but how much you contribute.', exampleKo: '정말로 중요한 것은 얼마를 버느냐가 아니라 얼마나 기여하느냐입니다.', tip: '"matter"가 동사로 쓰인 것 — "What matters most is..." 변형도 함께 사용' },
+      { word: 'respond to ~', meaning: '~에 대응하다, 반응하다', pos: '동사', example: 'Leaders must respond to social challenges with creativity and confidence.', exampleKo: '리더는 창의성과 자신감으로 사회적 도전에 대응해야 합니다.', tip: '단순히 끌려가는 게 아니라 주체적으로 대처하는 뉘앙스 — "respond to a problem/crisis/question"' },
+      { word: 'isolated', meaning: '고립된', pos: '형용사', example: 'People who rely solely on social media can feel isolated in real life.', exampleKo: '소셜 미디어에만 의존하는 사람들은 현실에서 고립감을 느낄 수 있습니다.', tip: '물리적·사회적으로 고립된 상태 — "feel isolated" = 고립감을 느끼다' },
+      { word: 'stay in touch with ~', meaning: '~와 연락을 유지하다', pos: '숙어', example: 'Technology lets us stay in touch with people around the world instantly.', exampleKo: '기술 덕분에 우리는 전 세계 사람들과 즉시 연락을 유지할 수 있습니다.', tip: '= keep in contact / "let + 목적어 + 동사원형" 구조에서 자주 등장하는 숙어' },
+      { word: 'superficial', meaning: '피상적인, 표면적인', pos: '형용사', example: 'Online interactions can sometimes remain superficial without real emotional depth.', exampleKo: '온라인 상호작용은 때로 실질적인 감정적 깊이 없이 피상적인 수준에 머무를 수 있습니다.', tip: '속 깊은 정서적 교감 없이 가벼운 수준에 그치는 관계를 묘사 — "deep vs. superficial"' },
+      { word: 'correlate with ~', meaning: '~와 상호 관련이 있다', pos: '동사', example: 'Heavy social media use often correlates with lower levels of life satisfaction.', exampleKo: '과도한 소셜 미디어 사용은 종종 낮은 삶의 만족도와 상관관계가 있습니다.', tip: '"A correlates with B" = A와 B는 서로 연관이 있다 — 인과관계는 아니지만 패턴이 있음을 나타냄' },
+      { word: 'struggles', meaning: '고난, 고충, 어려움', pos: '명사', example: 'Seeing only others\' highlights on social media ignores the real struggles behind the scenes.', exampleKo: '소셜 미디어에서 타인의 하이라이트만 보면 그 이면의 진짜 어려움은 놓치게 됩니다.', tip: '삶의 고난, 우울함, 어려운 순간 등을 포괄적으로 뜻함 — "daily struggles" = 일상적인 어려움' },
+      { word: 'inadequate', meaning: '불충분한, 초라한 느낌', pos: '형용사', example: 'Comparing yourself to others on social media can make you feel inadequate.', exampleKo: '소셜 미디어에서 자신을 타인과 비교하면 초라함을 느낄 수 있습니다.', tip: '단순히 "부족한"을 넘어, 남들과 비교되어 자괴감을 느끼는 심리적 뉘앙스 — "feel inadequate"' },
+      { word: 'genuinely', meaning: '진정으로, 진짜로', pos: '부사', example: 'We should genuinely connect with others, not just collect followers online.', exampleKo: '팔로워를 모으는 것이 아니라 진정으로 사람들과 연결되어야 합니다.', tip: '= truly, sincerely / genuine (형용사) — 겉치레 없이 진심으로라는 뉘앙스' }
     ]
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 8 — 실전 고득점 전략
+  // Module 9 — 실전 고득점 전략
   // ══════════════════════════════════════════════════════════
   {
-    id: 'm8',
+    id: 'm9',
     moduleTitle: '실전 고득점 전략',
     icon: '🏆',
     color: '#6B7280',

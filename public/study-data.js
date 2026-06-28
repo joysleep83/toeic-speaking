@@ -562,62 +562,210 @@ const STUDY_MODULES = [
     color: '#8B5CF6',
     lessons: [
       {
-        id: 'm5l1', title: '정보 활용 답변 전략', duration: '8분',
+        id: 'm5l1', title: 'Part 3 개요 & 30초 스캔 전략', duration: '4분',
         content: [
-          { type: 'text', text: 'Part 3은 화면에 표시된 일정표, 안내문, 이메일 등을 읽고 그에 관한 질문에 답하는 파트입니다. 정보를 빠르게 찾아 정확하게 전달하는 능력이 핵심입니다.' },
-          { type: 'heading', text: '자주 나오는 정보 유형' },
-          { type: 'list', items: [
-            '📅 일정표 (schedule) — 날짜, 시간, 장소, 비용',
-            '📋 안내문 (notice/flyer) — 행사 정보, 규정, 절차',
-            '📧 이메일 (email) — 요청 사항, 중요 내용',
-            '🏪 메뉴/가격표 — 품목, 가격, 조건',
-            '🗺️ 안내도/지도 — 위치, 방향'
-          ]},
-          { type: 'heading', text: '준비 시간(30초) 스캔 전략' },
+          { type: 'text', text: 'Part 3은 화면의 자료(일정표, 안내문, 이메일 등)를 읽고 질문에 답하는 파트입니다. 자료를 만들어서 말하면 안 되고, 자료에 있는 정보를 정확히 찾아 전달하는 것이 핵심입니다.' },
+          { type: 'heading', text: '30초 준비 시간 스캔 전략' },
           { type: 'numbered', items: [
-            '제목과 소제목을 먼저 읽어 자료 유형 파악',
-            '숫자(날짜·시간·가격)와 고유명사(장소·인물명) 위치 확인',
-            '자료 전체를 처음부터 끝까지 읽지 말고 키워드만 스캔',
-            '질문을 읽기 전에 정보 위치를 파악해두면 답변이 빠름'
+            '제목·소제목으로 자료 유형 파악 (일정표인지, 안내문인지 등)',
+            '숫자(날짜·시간·가격)와 고유명사(장소·이름) 위치 먼저 확인',
+            '전체를 읽지 말고 키워드 위치만 눈으로 찍어두기',
           ]},
-          { type: 'heading', text: '답변 구조 (30초)' },
+          { type: 'heading', text: '30초 답변 공통 구조' },
           { type: 'structure', steps: [
-            { num: '①', title: '정보 출처 언급 (5초)', desc: '자료를 참조한다는 것을 밝힙니다.\n예: "According to the schedule, ..." / "Based on the information provided, ..."' },
-            { num: '②', title: '핵심 정보 전달 (20초)', desc: '질문에 정확히 답하는 정보를 말합니다.\n예: "The yoga class is held on Tuesdays and Thursdays from 6 to 7:30 PM."' },
-            { num: '③', title: '추가 관련 정보 (5초)', desc: '질문과 연관된 유용한 추가 정보를 덧붙입니다.\n예: "Each session costs $30."' }
+            { num: '①', title: '출처 언급 (3초)', desc: '"According to the schedule/notice/email, ..."' },
+            { num: '②', title: '핵심 정보 전달 (22초)', desc: '질문에 정확히 답하는 정보 — 날짜·시간·가격·조건 등' },
+            { num: '③', title: '관련 추가 정보 (5초)', desc: '질문과 연관된 유용한 정보 한 가지 추가' }
           ]},
-          { type: 'tip', icon: '⚠️', text: '자료에 없는 정보를 만들어내면 감점입니다. 정보가 없으면 "The information provided doesn\'t mention..." 라고 말하는 것이 더 좋습니다.' }
+          { type: 'tip', icon: '⚠️', text: '자료에 없는 정보를 만들어내면 감점. 정보가 없으면 "The information provided doesn\'t mention that." 이라고 말하세요.' }
         ]
       },
       {
-        id: 'm5l2', title: 'Part 3 핵심 표현 & 모범 답안', duration: '8분',
+        id: 'm5l2', title: '유형 1 — 📅 일정표 (Schedule)', duration: '5분',
         content: [
-          { type: 'heading', text: '정보 인용 표현' },
-          { type: 'example', label: '자료 참조 표현', items: [
-            { en: 'According to the schedule, ...', ko: '일정표에 따르면...' },
-            { en: 'Based on the information provided, ...', ko: '제공된 정보에 따르면...' },
-            { en: 'The notice states that ...', ko: '안내문에 ~라고 나와 있습니다' },
-            { en: 'As shown in the table, ...', ko: '표에 나타난 것처럼...' },
-            { en: 'The document indicates that ...', ko: '문서에는 ~라고 나와 있습니다' }
+          { type: 'text', text: '가장 자주 나오는 유형입니다. 수업·행사·회의 등의 일정표가 주어지고 날짜, 시간, 장소, 비용을 묻는 질문이 나옵니다.' },
+          { type: 'heading', text: '스캔 포인트' },
+          { type: 'example', label: '일정표에서 눈으로 먼저 찍어둘 항목', items: [
+            { en: 'Date / Day', ko: '날짜 / 요일' },
+            { en: 'Time (start ~ end)', ko: '시작 시간 ~ 종료 시간' },
+            { en: 'Location / Venue', ko: '장소' },
+            { en: 'Cost / Fee / Price', ko: '비용 / 요금' },
+            { en: 'Registration deadline / Requirements', ko: '등록 마감 / 조건' },
           ]},
-          { type: 'heading', text: '날짜·시간·가격 전달 표현' },
-          { type: 'example', label: '정보 전달 표현', items: [
-            { en: 'It takes place on... / It is scheduled for...', ko: '~에 열립니다 / ~로 예정되어 있습니다' },
-            { en: 'The cost is $... per session / person', ko: '비용은 세션/인당 $...입니다' },
-            { en: 'It runs from ... to ...', ko: '~부터 ~까지 진행됩니다' },
-            { en: 'Registration is required by...', ko: '~까지 등록이 필요합니다' },
-            { en: 'It is available / offered every...', ko: '매 ~마다 이용 가능합니다' }
+          { type: 'heading', text: '자주 나오는 질문 패턴' },
+          { type: 'example', label: '예상 질문', items: [
+            { en: 'When is the [event] and where is it held?', ko: '[행사]는 언제, 어디서 열리나요?' },
+            { en: 'How much does it cost to attend?', ko: '참가 비용은 얼마인가요?' },
+            { en: 'What time does it start / end?', ko: '시작/종료 시간이 언제인가요?' },
           ]},
-          { type: 'heading', text: '정보 없을 때 표현' },
-          { type: 'example', label: '정보 부재 표현', items: [
-            { en: 'The information provided doesn\'t mention that.', ko: '제공된 정보에는 그 내용이 없습니다.' },
-            { en: 'I\'m afraid that detail isn\'t included in the document.', ko: '그 세부 정보는 문서에 포함되어 있지 않습니다.' }
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '일정표 유형 표현', items: [
+            { en: 'According to the schedule, it is held on [요일], from [시간] to [시간].', ko: '일정표에 따르면, [요일] [시간]부터 [시간]까지 열립니다.' },
+            { en: 'The fee is $[금액] per person / session.', ko: '참가비는 인당/세션당 $[금액]입니다.' },
+            { en: 'It takes place at [장소].', ko: '[장소]에서 열립니다.' },
+            { en: 'Registration must be completed by [날짜].', ko: '[날짜]까지 등록을 완료해야 합니다.' },
           ]},
           { type: 'heading', text: '모범 답안' },
-          { type: 'example', label: '질문: "I want to sign up for yoga. When are the classes and how much?"', items: [
-            { en: 'According to the schedule, yoga classes are offered on Tuesdays and Thursdays, from 6:00 PM to 7:30 PM. Each session costs $30. So if you want to attend both sessions per week, that would be $60 per week total.', ko: '[정보 출처 → 날짜/시간 → 비용 → 계산 추가 정보]' }
+          { type: 'example', label: '질문: "When is the yoga class and how much does it cost?"', items: [
+            { en: 'According to the schedule, the yoga class is held on Tuesdays and Thursdays, from 6:00 to 7:30 PM. The fee is $30 per session, so attending both sessions in a week would cost $60 in total.', ko: '[출처 → 날짜/시간 → 비용 → 계산 추가]' }
           ]},
-          { type: 'tip', icon: '💡', text: '30초 내에 핵심 정보를 모두 전달하기 위해 준비 시간에 정확히 어디에 필요한 정보가 있는지 위치를 파악해두세요.' }
+          { type: 'tip', icon: '💡', text: '비용이나 횟수를 직접 계산해서 말해주면("so that would be $60 total") 추가 정보로 인정되어 점수에 유리합니다.' }
+        ]
+      },
+      {
+        id: 'm5l3', title: '유형 2 — 📋 안내문 (Notice/Flyer)', duration: '5분',
+        content: [
+          { type: 'text', text: '행사 공지, 시설 이용 규정, 절차 안내 등이 나옵니다. 조건·제한 사항·절차 순서를 정확히 파악하는 것이 핵심입니다.' },
+          { type: 'heading', text: '스캔 포인트' },
+          { type: 'example', label: '안내문에서 눈으로 먼저 찍어둘 항목', items: [
+            { en: 'Event name / Purpose', ko: '행사 이름 / 목적' },
+            { en: 'Who can participate / Eligibility', ko: '참가 자격 / 대상' },
+            { en: 'Rules / Requirements / Restrictions', ko: '규정 / 요건 / 제한 사항' },
+            { en: 'How to apply / Steps', ko: '신청 방법 / 절차' },
+            { en: 'Contact information', ko: '문의처' },
+          ]},
+          { type: 'heading', text: '자주 나오는 질문 패턴' },
+          { type: 'example', label: '예상 질문', items: [
+            { en: 'Who is eligible to participate?', ko: '참가 자격은 어떻게 되나요?' },
+            { en: 'What are the requirements / rules?', ko: '요건 / 규정이 무엇인가요?' },
+            { en: 'How can I sign up / apply?', ko: '어떻게 신청하나요?' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '안내문 유형 표현', items: [
+            { en: 'According to the notice, [대상] are eligible to participate.', ko: '안내문에 따르면, [대상]이 참가 자격이 있습니다.' },
+            { en: 'The flyer states that participants must [조건].', ko: '전단지에는 참가자가 [조건]을 충족해야 한다고 나와 있습니다.' },
+            { en: 'To apply, you need to [절차].', ko: '신청하려면 [절차]가 필요합니다.' },
+            { en: 'Please note that [제한 사항].', ko: '[제한 사항]에 유의하시기 바랍니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "Who can join the workshop and how do I sign up?"', items: [
+            { en: 'According to the notice, the workshop is open to all full-time employees who have been with the company for at least six months. To sign up, you need to complete the online registration form by this Friday and get approval from your manager.', ko: '[출처 → 참가 자격 → 신청 절차]' }
+          ]},
+          { type: 'tip', icon: '💡', text: '조건이 두 가지 이상이면 "First... and also..." 또는 "you need to... and you must..."로 연결해서 모두 전달하세요.' }
+        ]
+      },
+      {
+        id: 'm5l4', title: '유형 3 — 📧 이메일 (Email)', duration: '5분',
+        content: [
+          { type: 'text', text: '업무 이메일이나 고객 문의 이메일이 주어집니다. 발신자가 무엇을 요청하는지, 어떤 문제가 있는지, 어떤 정보를 전달하는지를 빠르게 파악하는 것이 핵심입니다.' },
+          { type: 'heading', text: '스캔 포인트' },
+          { type: 'example', label: '이메일에서 눈으로 먼저 찍어둘 항목', items: [
+            { en: 'From / To / Subject', ko: '발신자 / 수신자 / 제목' },
+            { en: 'Main request or problem', ko: '핵심 요청 또는 문제' },
+            { en: 'Specific details (date, amount, item)', ko: '구체적 정보 (날짜, 금액, 항목)' },
+            { en: 'Deadline or urgency', ko: '마감 또는 긴급 여부' },
+          ]},
+          { type: 'heading', text: '자주 나오는 질문 패턴' },
+          { type: 'example', label: '예상 질문', items: [
+            { en: 'What is the purpose of this email?', ko: '이 이메일의 목적이 무엇인가요?' },
+            { en: 'What is the sender asking for?', ko: '발신자가 무엇을 요청하고 있나요?' },
+            { en: 'What problem does the email mention?', ko: '이메일에 언급된 문제가 무엇인가요?' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '이메일 유형 표현', items: [
+            { en: 'According to the email, the sender is requesting [내용].', ko: '이메일에 따르면, 발신자는 [내용]을 요청하고 있습니다.' },
+            { en: 'The email mentions that there is a problem with [문제].', ko: '이메일에는 [문제]에 대한 문제가 언급되어 있습니다.' },
+            { en: 'The sender needs this done by [날짜].', ko: '발신자는 [날짜]까지 처리되기를 원합니다.' },
+            { en: 'The main purpose of the email is to [목적].', ko: '이메일의 주된 목적은 [목적]입니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "What is the sender asking for in the email?"', items: [
+            { en: 'According to the email, the sender is a customer who ordered a laptop two weeks ago but hasn\'t received it yet. She is asking the company to either send a replacement immediately or issue a full refund. She also mentions that she needs it by Friday for an important presentation.', ko: '[출처 → 발신자 정보 → 핵심 요청 → 마감 이유]' }
+          ]},
+          { type: 'tip', icon: '💡', text: '이메일 유형은 "발신자가 누구인지"를 먼저 한 문장으로 설명하고 요청 내용을 말하면 자연스럽게 30초를 채울 수 있습니다.' }
+        ]
+      },
+      {
+        id: 'm5l5', title: '유형 4 — 🏪 메뉴/가격표', duration: '5분',
+        content: [
+          { type: 'text', text: '식당 메뉴, 서비스 가격표, 상품 목록 등이 나옵니다. 품목명·가격·조건(최소 주문량, 할인 조건 등)을 정확히 전달하는 것이 핵심입니다.' },
+          { type: 'heading', text: '스캔 포인트' },
+          { type: 'example', label: '메뉴/가격표에서 눈으로 먼저 찍어둘 항목', items: [
+            { en: 'Item names and prices', ko: '품목명과 가격' },
+            { en: 'Categories (e.g., lunch/dinner, size options)', ko: '카테고리 (예: 점심/저녁, 사이즈 옵션)' },
+            { en: 'Conditions (minimum order, discount, set price)', ko: '조건 (최소 주문, 할인, 세트 가격)' },
+            { en: 'Availability (days/hours)', ko: '이용 가능 시간/요일' },
+          ]},
+          { type: 'heading', text: '자주 나오는 질문 패턴' },
+          { type: 'example', label: '예상 질문', items: [
+            { en: 'How much does [item] cost?', ko: '[품목]은 얼마인가요?' },
+            { en: 'What is included in the [set/package]?', ko: '[세트/패키지]에 무엇이 포함되어 있나요?' },
+            { en: 'Is there a discount for [조건]?', ko: '[조건]에 대한 할인이 있나요?' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '메뉴/가격표 유형 표현', items: [
+            { en: 'According to the menu, [품목] is priced at $[금액].', ko: '메뉴에 따르면, [품목]의 가격은 $[금액]입니다.' },
+            { en: 'The [set/package] includes [품목] and costs $[금액].', ko: '[세트/패키지]에는 [품목]이 포함되며 $[금액]입니다.' },
+            { en: 'There is a [%] discount if you [조건].', ko: '[조건]을 충족하면 [%] 할인이 적용됩니다.' },
+            { en: 'This is only available during [시간/요일].', ko: '이것은 [시간/요일]에만 이용 가능합니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "How much is the lunch set and what does it include?"', items: [
+            { en: 'According to the menu, the lunch set is priced at $15 per person. It includes a soup, a main course of your choice, and a dessert. The lunch set is available only on weekdays from 11:30 AM to 2:00 PM.', ko: '[출처 → 가격 → 구성 내용 → 이용 조건]' }
+          ]},
+          { type: 'tip', icon: '💡', text: '가격과 함께 이용 조건(시간, 요일, 최소 인원 등)까지 말해주면 추가 정보로 자연스럽게 30초를 채울 수 있습니다.' }
+        ]
+      },
+      {
+        id: 'm5l6', title: '유형 5 — 🗺️ 안내도/지도 (Map/Directory)', duration: '5분',
+        content: [
+          { type: 'text', text: '건물 안내도, 행사장 배치도, 지역 지도 등이 나옵니다. 위치와 방향을 말로 정확히 설명하는 것이 핵심입니다.' },
+          { type: 'heading', text: '스캔 포인트' },
+          { type: 'example', label: '안내도에서 눈으로 먼저 찍어둘 항목', items: [
+            { en: 'Target location name', ko: '찾는 장소 이름' },
+            { en: 'Floor / Building', ko: '층 / 건물' },
+            { en: 'Landmark nearby (elevator, entrance, stairs)', ko: '주변 랜드마크 (엘리베이터, 입구, 계단)' },
+            { en: 'Direction from entrance', ko: '입구에서의 방향' },
+          ]},
+          { type: 'heading', text: '자주 나오는 질문 패턴' },
+          { type: 'example', label: '예상 질문', items: [
+            { en: 'Where is the [장소] located?', ko: '[장소]는 어디에 있나요?' },
+            { en: 'How do I get to [장소] from [기준점]?', ko: '[기준점]에서 [장소]까지 어떻게 가나요?' },
+            { en: 'What floor is the [장소] on?', ko: '[장소]는 몇 층에 있나요?' },
+          ]},
+          { type: 'heading', text: '방향 설명 핵심 표현' },
+          { type: 'example', label: '위치·방향 표현', items: [
+            { en: 'According to the map, it is located on the [층] floor.', ko: '지도에 따르면, [층]층에 위치해 있습니다.' },
+            { en: 'Take the elevator / stairs to the [층] floor.', ko: '엘리베이터 / 계단을 이용해 [층]층으로 가세요.' },
+            { en: 'Turn left / right at the [랜드마크].', ko: '[랜드마크]에서 왼쪽 / 오른쪽으로 도세요.' },
+            { en: 'It is next to / across from / at the end of [장소].', ko: '[장소] 옆 / 맞은편 / 끝에 있습니다.' },
+            { en: 'You will see it on your left / right.', ko: '왼쪽 / 오른쪽에 보일 것입니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "Where is the registration desk?"', items: [
+            { en: 'According to the map, the registration desk is located on the first floor. When you enter through the main entrance, turn left and walk straight past the elevator. The registration desk will be on your right, just across from the information center.', ko: '[출처 → 층 → 입구 기준 방향 → 랜드마크 기준 위치]' }
+          ]},
+          { type: 'tip', icon: '💡', text: '방향을 설명할 때는 반드시 "기준점(입구, 엘리베이터 등)"을 먼저 잡고 설명하세요. 기준점 없이 "왼쪽으로 가세요"만 말하면 상대방이 이해하기 어렵습니다.' }
+        ]
+      },
+      {
+        id: 'm5l7', title: '핵심 표현 총정리', duration: '4분',
+        content: [
+          { type: 'heading', text: '유형별 출처 인용 표현' },
+          { type: 'table',
+            headers: ['자료 유형', '출처 표현'],
+            rows: [
+              ['📅 일정표', '"According to the schedule, ..."'],
+              ['📋 안내문', '"According to the notice / flyer, ..."'],
+              ['📧 이메일', '"According to the email, ..."'],
+              ['🏪 메뉴/가격표', '"According to the menu / price list, ..."'],
+              ['🗺️ 안내도', '"According to the map / directory, ..."'],
+            ]
+          },
+          { type: 'heading', text: '정보 전달 공통 표현' },
+          { type: 'example', label: '날짜·시간', items: [
+            { en: 'It is scheduled for [날짜], from [시간] to [시간].', ko: '[날짜] [시간]부터 [시간]까지 예정되어 있습니다.' },
+            { en: 'It runs from [날짜] to [날짜].', ko: '[날짜]부터 [날짜]까지 진행됩니다.' },
+          ]},
+          { type: 'example', label: '가격·조건', items: [
+            { en: 'The cost is $[금액] per person / session.', ko: '비용은 인당/세션당 $[금액]입니다.' },
+            { en: 'A [%] discount applies if [조건].', ko: '[조건]인 경우 [%] 할인이 적용됩니다.' },
+          ]},
+          { type: 'example', label: '정보 없을 때', items: [
+            { en: 'The information provided doesn\'t mention that.', ko: '제공된 정보에는 그 내용이 없습니다.' },
+            { en: 'That detail isn\'t included in the document.', ko: '그 세부 정보는 문서에 포함되어 있지 않습니다.' },
+          ]},
+          { type: 'tip', icon: '🎯', text: '어떤 유형이 나와도 흐름은 같습니다: "According to the [자료]" → 핵심 정보 → 추가 정보 한 가지. 이 3단계 흐름만 자동으로 나오면 30초를 안정적으로 채울 수 있습니다.' }
         ]
       }
     ]

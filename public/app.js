@@ -279,6 +279,7 @@ let finalTranscript  = '';
 let recTimerInterval = null;
 let recTimerTotal    = 0;
 let waveformInterval = null;
+let micWarmStream    = null;
 
 // Chart instances
 let radarChart    = null;
@@ -361,7 +362,10 @@ function navTo(tab) {
       break;
     case 'exercise': showExerciseScreen(); break;
     case 'study':    showStudyScreen();      break;
-    case 'grammar':  showGrammarScreen();    break;
+    case 'grammar':
+      if (currentMode === 'opic') { navTo('practice'); return; }
+      showGrammarScreen();
+      break;
     case 'vocab':    showVocabHomeScreen();  break;
     case 'history':  showHistoryScreen();    break;
   }
@@ -788,8 +792,16 @@ function clearTimer() {
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
+function prewarmMic() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+  navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => { micWarmStream = stream; })
+    .catch(() => {});
+}
+
 function startTimer(seconds) {
   clearTimer();
+  prewarmMic();
   timerTotal = seconds;
   let timeLeft = seconds;
   const display = document.getElementById('timer-display');
@@ -1038,12 +1050,20 @@ function startRecording() {
 
   isRecording = true;
   try { recognition.start(); } catch (e) { console.warn('STT start failed:', e); }
+
+  // 예열 스트림 정리 — recognition이 마이크를 인계받은 후 닫음
+  if (micWarmStream) {
+    setTimeout(() => {
+      if (micWarmStream) { micWarmStream.getTracks().forEach(t => t.stop()); micWarmStream = null; }
+    }, 500);
+  }
 }
 
 function stopRecording() {
   document.getElementById('btn-stop-record').disabled = true;
   isRecording = false;
   if (recognition) { try { recognition.stop(); } catch {} }
+  if (micWarmStream) { micWarmStream.getTracks().forEach(t => t.stop()); micWarmStream = null; }
   clearWaveform();
   clearRecordTimer();
   if (!SpeechRecognition) {

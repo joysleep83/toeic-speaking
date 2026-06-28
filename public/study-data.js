@@ -246,9 +246,9 @@ const STUDY_MODULES = [
           { type: 'heading', text: '동작·상태 표현' },
           { type: 'example', label: '현재진행형 활용', items: [
             { en: 'is walking toward / away from', ko: '~을 향해 / ~에서 멀어지며 걷고 있다' },
-            { en: 'appears to be looking at', ko: '~을 보고 있는 것 같다' },
-            { en: 'seems to be working on', ko: '~을 하고 있는 것처럼 보인다' },
-            { en: 'is engaged in a conversation', ko: '대화를 나누고 있다' },
+            { en: 'appears to be looking at', ko: '~을 보고 있는 것 같다 — 눈의 방향 등 시각적 증거가 있을 때' },
+            { en: 'seems to be working on', ko: '~을 하고 있는 것처럼 보인다 — 전반적 인상·느낌으로 추측할 때' },
+            { en: 'is engaged in a conversation', ko: '대화를 나누고 있다 — 활동 자체에 몰입·참여 중임을 강조' },
             { en: 'is surrounded by', ko: '~에 둘러싸여 있다' }
           ]},
           { type: 'heading', text: '배경/분위기 표현' },
@@ -278,66 +278,275 @@ const STUDY_MODULES = [
     color: '#EF4444',
     lessons: [
       {
-        id: 'm4l1', title: '즉흥 답변 전략', duration: '7분',
+        id: 'm4l1', title: 'Part 2 개요 & 3초 준비 전략', duration: '5분',
         content: [
-          { type: 'text', text: 'Part 2는 준비 시간이 단 3초인 파트입니다. 보통 가상의 설문 조사 상황에서 2~3개의 질문에 답하게 됩니다. 핵심은 질문 유형을 빠르게 파악하고 즉시 말하는 것입니다.' },
-          { type: 'heading', text: '자주 나오는 질문 유형' },
+          { type: 'text', text: 'Part 2는 가상의 설문 조사 상황에서 준비 시간 단 3초 후 2~3개의 질문에 연속으로 답하는 파트입니다. 핵심은 질문 유형을 즉시 파악하고 정해진 구조로 바로 말하는 것입니다.' },
+          { type: 'heading', text: '5가지 질문 유형 — 한눈에 보기' },
           { type: 'table',
-            headers: ['질문 유형', '예시', '답변 전략'],
+            headers: ['유형', '질문 신호어', '핵심 전략'],
             rows: [
-              ['선호도', 'Do you prefer A or B?', '명확히 선택 후 이유 1~2가지'],
-              ['의견', 'What do you think about X?', '의견 + 이유 + 예시'],
-              ['경험', 'Have you ever...?', 'Yes/No + 경험 구체 설명'],
-              ['빈도', 'How often do you...?', '빈도 표현 + 이유'],
-              ['방법', 'How do you usually...?', '방법 순서대로 설명']
+              ['선호도', 'prefer, like better, rather', '명확히 선택 → 이유 2가지 → 예시'],
+              ['의견', 'think, feel, believe, opinion', '입장 표명 → 이유 → 구체 예시'],
+              ['경험', 'ever, before, have you', 'Yes/No → 언제/어디서 → 무엇을 느꼈나'],
+              ['빈도', 'how often, how many times', '빈도 표현 → 이유/상황 설명'],
+              ['방법', 'how do you, what do you do', '순서·방법 2~3단계 → 이유나 효과'],
             ]
           },
-          { type: 'heading', text: '3초 준비 전략' },
+          { type: 'heading', text: '3초 준비 전략 — 4단계' },
           { type: 'numbered', items: [
-            '질문의 핵심 키워드 파악 (무엇을 묻는가?)',
-            '답변 방향 결정 (Yes/No 또는 A/B 선택)',
-            '이유 1가지를 머릿속으로 준비',
-            '시작 문장 암기 (I personally prefer... / In my opinion...)'
+            '질문의 첫 단어로 유형 파악 (prefer → 선호도 / how often → 빈도)',
+            '답변 방향 즉시 결정 (찬성/반대, A/B 선택, Yes/No)',
+            '이유 1가지를 머릿속에 떠올리기',
+            '시작 문장 자동 발사 — 유형별 도입 문장을 미리 암기해 둘 것'
           ]},
-          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'heading', text: '30초 답변 공통 구조' },
           { type: 'structure', steps: [
-            { num: '①', title: '직접 답변 (5초)', desc: '질문에 바로 답합니다. Yes/No, A/B 등 명확하게.\n예: "I personally prefer working independently."' },
-            { num: '②', title: '이유/설명 (15초)', desc: '이유를 한두 가지 제시합니다.\n예: "This is because I can focus better without distractions and set my own schedule."' },
-            { num: '③', title: '예시/경험 (10초)', desc: '구체적인 예나 경험을 덧붙입니다.\n예: "For example, when I work alone, I can finish tasks much more quickly."' }
+            { num: '①', title: '직접 답변 (5초)', desc: '질문에 핵심만 바로 답합니다.\n"I personally prefer..." / "In my opinion..." / "Yes, I have..."' },
+            { num: '②', title: '이유·설명 (15초)', desc: '이유를 1~2가지 제시합니다.\n"This is because..." / "The main reason is that..."' },
+            { num: '③', title: '예시·마무리 (10초)', desc: '구체적인 예나 경험으로 뒷받침합니다.\n"For example..." / "In fact..." / "So, that\'s why I..."' }
           ]},
-          { type: 'tip', icon: '⚠️', text: '"I don\'t know" 또는 침묵은 절대 금물입니다. 질문을 잘 못 들었어도 비슷한 주제로 계속 말하면 부분 점수를 받을 수 있습니다.' }
+          { type: 'tip', icon: '⚠️', text: '"I don\'t know" 또는 침묵은 절대 금물입니다. 질문을 잘 못 들었어도 비슷한 주제로 계속 말하면 부분 점수를 받을 수 있습니다. 다음 레슨에서 각 유형별 전략을 상세히 익혀보세요.' }
         ]
       },
       {
-        id: 'm4l2', title: 'Part 2 핵심 표현 & 모범 답안', duration: '7분',
+        id: 'm4l2', title: '유형 1 — 선호도 (Preference)', duration: '6분',
         content: [
-          { type: 'heading', text: '즉각 답변 시작 표현' },
-          { type: 'example', label: '도입 표현', items: [
-            { en: 'Personally, I prefer...', ko: '개인적으로 저는 ~을 선호합니다' },
-            { en: 'In my opinion, ...', ko: '제 생각에는...' },
-            { en: 'I would have to say that...', ko: '저는 ~라고 말해야 할 것 같습니다' },
-            { en: 'To be honest, ...', ko: '솔직히 말하면...' },
-            { en: 'From my experience, ...', ko: '제 경험상...' }
+          { type: 'text', text: '"Do you prefer A or B?", "Which do you like better?" 처럼 두 가지 중 하나를 고르도록 유도하는 질문입니다. 가장 자주 나오는 유형으로, 반드시 하나를 명확히 선택해야 합니다.' },
+          { type: 'heading', text: '선호도 질문 신호어' },
+          { type: 'example', label: '이런 단어가 보이면 선호도 유형!', items: [
+            { en: 'Do you prefer A or B?', ko: 'A와 B 중 무엇을 더 좋아하나요?' },
+            { en: 'Which do you like better, A or B?', ko: 'A와 B 중 어느 쪽이 더 좋으신가요?' },
+            { en: 'Would you rather A or B?', ko: 'A와 B 중 어느 쪽을 선택하시겠어요?' },
+            { en: 'Do you enjoy A more than B?', ko: 'B보다 A를 더 즐기시나요?' },
           ]},
+          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '명확한 선택 (3초)', desc: '"Personally, I prefer A."\n"I would definitely choose A over B."\n절대로 "Both are good..." 처럼 모호하게 시작하지 마세요.' },
+            { num: '②', title: '이유 1 (10초)', desc: '"The main reason is that..."\n"This is because..."\n가장 강한 이유 한 가지를 먼저 제시합니다.' },
+            { num: '③', title: '이유 2 또는 예시 (10초)', desc: '"Also, / In addition, ..."\n"For example, ..."\n두 번째 이유나 구체적인 경험으로 보강합니다.' },
+            { num: '④', title: '간단한 마무리 (7초)', desc: '"So, for me, A is definitely the better choice."\n"That\'s why I always choose A."\n한 문장으로 깔끔하게 마무리합니다.' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '선호도 유형 필수 표현', items: [
+            { en: 'Personally, I prefer A to B.', ko: '개인적으로 저는 B보다 A를 선호합니다.' },
+            { en: 'I would definitely choose A over B.', ko: '저는 B보다 A를 확실히 선택하겠습니다.' },
+            { en: 'I find A much more + 형용사 than B.', ko: 'A가 B보다 훨씬 더 ~하다고 생각합니다.' },
+            { en: 'The main reason is that A allows me to...', ko: '주된 이유는 A를 통해 제가 ~할 수 있기 때문입니다.' },
+            { en: 'That\'s why A is my preferred choice.', ko: '그래서 A가 제 선택입니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "Do you prefer working from home or in an office?"', items: [
+            { en: 'Personally, I prefer working from home.', ko: '[① 명확한 선택]' },
+            { en: 'The main reason is that it saves me a lot of commuting time, so I can start work earlier and feel less stressed.', ko: '[② 이유 1 — 구체적 이점]' },
+            { en: 'Also, I find it much easier to focus at home since there are fewer interruptions from colleagues.', ko: '[③ 이유 2]' },
+            { en: 'So, for me, working from home is definitely the better option.', ko: '[④ 마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '중립적인 답변("both have pros and cons")은 점수를 깎습니다. 실제로 그렇게 생각하더라도 하나를 명확히 선택하고 이유를 만들어야 합니다.' }
+        ]
+      },
+      {
+        id: 'm4l3', title: '유형 2 — 의견 (Opinion)', duration: '6분',
+        content: [
+          { type: 'text', text: '"What do you think about X?", "Do you agree or disagree?" 처럼 어떤 주제에 대한 자신의 생각이나 입장을 묻는 질문입니다. 핵심은 입장을 먼저 밝히고 이유를 논리적으로 전개하는 것입니다.' },
+          { type: 'heading', text: '의견 질문 신호어' },
+          { type: 'example', label: '이런 단어가 보이면 의견 유형!', items: [
+            { en: 'What do you think about...?', ko: '~에 대해 어떻게 생각하시나요?' },
+            { en: 'Do you agree or disagree that...?', ko: '~에 동의하십니까, 아니면 동의하지 않으십니까?' },
+            { en: 'What is your opinion on...?', ko: '~에 대한 당신의 의견은 무엇인가요?' },
+            { en: 'How do you feel about...?', ko: '~에 대해 어떻게 느끼시나요?' },
+          ]},
+          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '입장 표명 (3초)', desc: '"In my opinion, ..."\n"I strongly believe that..."\n"I think X is + 형용사."\n찬성/반대를 즉시 밝힙니다.' },
+            { num: '②', title: '이유 (12초)', desc: '"I feel this way because..."\n"The reason is that..."\n가장 설득력 있는 이유 한 가지를 제시합니다.' },
+            { num: '③', title: '구체 예시 (10초)', desc: '"For example, ..."\n"In fact, ..."\n실제 사례나 경험으로 뒷받침합니다.' },
+            { num: '④', title: '마무리 (5초)', desc: '"Therefore, I think X is very important."\n"That\'s why I believe..."' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '의견 유형 필수 표현', items: [
+            { en: 'In my opinion, ...', ko: '제 생각에는...' },
+            { en: 'I strongly believe that...', ko: '저는 ~을 강하게 믿습니다.' },
+            { en: 'I feel this way because...', ko: '제가 이렇게 생각하는 이유는...' },
+            { en: 'I agree / disagree with the idea that...', ko: '저는 ~라는 생각에 동의합니다 / 동의하지 않습니다.' },
+            { en: 'From my perspective, ...', ko: '제 관점에서는...' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "Do you think technology has made our lives better?"', items: [
+            { en: 'In my opinion, technology has definitely made our lives better.', ko: '[① 입장 표명 — "definitely"로 확신 표현]' },
+            { en: 'I feel this way because technology saves us a tremendous amount of time in our daily lives.', ko: '[② 이유]' },
+            { en: 'For example, with smartphones, we can shop, pay bills, and communicate with anyone in the world instantly.', ko: '[③ 구체 예시]' },
+            { en: 'Therefore, I strongly believe that technology has had a very positive impact on our lives.', ko: '[④ 마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '"I think... because..." 처럼 접속사로 바로 연결하면 30초가 금방 차지 않습니다. "I think → I feel this way because → For example → Therefore" 4단계 흐름을 자동으로 나오게 연습하세요.' }
+        ]
+      },
+      {
+        id: 'm4l4', title: '유형 3 — 경험 (Experience)', duration: '6분',
+        content: [
+          { type: 'text', text: '"Have you ever...?", "Tell me about a time when..." 처럼 과거의 경험을 묻는 질문입니다. 없는 경험도 만들어서 구체적으로 말해야 합니다 — 사실 여부보다 유창성이 더 중요합니다.' },
+          { type: 'heading', text: '경험 질문 신호어' },
+          { type: 'example', label: '이런 단어가 보이면 경험 유형!', items: [
+            { en: 'Have you ever + p.p. ...?', ko: '~해본 적이 있나요?' },
+            { en: 'Tell me about a time when...', ko: '~했던 때에 대해 말해주세요.' },
+            { en: 'What was the most memorable...?', ko: '가장 기억에 남는 ~은 무엇이었나요?' },
+            { en: 'Describe an experience you had...', ko: '~했던 경험을 묘사해 주세요.' },
+          ]},
+          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: 'Yes/No 즉시 답변 (3초)', desc: '"Yes, I have. / Yes, actually, I remember one time..."\n"No, I haven\'t, but I once..."\nYes가 더 답변을 풍부하게 만들 수 있습니다.' },
+            { num: '②', title: '언제·어디서 (8초)', desc: '"A few years ago, when I was in..."\n"Last year, I had a chance to..."\n시간과 배경을 간단히 설정합니다.' },
+            { num: '③', title: '무슨 일이 있었나 (12초)', desc: '"I + 과거시제 동사..."\n핵심 사건을 구체적으로 묘사합니다.' },
+            { num: '④', title: '느낌·배운 점 (7초)', desc: '"It was an amazing / challenging experience."\n"I learned that..." / "Since then, I have..."\n감정이나 교훈으로 마무리합니다.' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '경험 유형 필수 표현', items: [
+            { en: 'Yes, I have. I remember one time...', ko: '네, 있습니다. 한 번은...' },
+            { en: 'A few years ago, I had an opportunity to...', ko: '몇 년 전, 저는 ~할 기회가 있었습니다.' },
+            { en: 'It was one of the most + 형용사 + experiences I\'ve ever had.', ko: '그것은 제가 경험한 가장 ~한 경험 중 하나였습니다.' },
+            { en: 'I learned that / Since then, I have...', ko: '저는 ~을 배웠습니다 / 그 이후로 저는...' },
+            { en: 'Looking back, I think it was...', ko: '돌이켜보면, 그것은 ~였다고 생각합니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "Have you ever had to deal with a difficult situation at work?"', items: [
+            { en: 'Yes, I have. I remember one time when I was in a really tough situation at work.', ko: '[① Yes + 경험 도입]' },
+            { en: 'A few years ago, my team had to finish a big project, but one of our key members suddenly got sick right before the deadline.', ko: '[② 언제·배경 설정]' },
+            { en: 'I had to step up and take on extra responsibilities, working late nights to make sure everything was done on time.', ko: '[③ 핵심 사건]' },
+            { en: 'It was very stressful, but I learned that staying calm and organized is the key to handling pressure. Since then, I always prepare backup plans.', ko: '[④ 느낌·교훈]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '경험이 없더라도 "I haven\'t, but if I did, I would..." 로 가정법을 써서 답변을 이어가거나, 비슷한 경험으로 대체해서 말하면 됩니다. 사실 여부보다 유창하게 말하는 것이 더 중요합니다.' }
+        ]
+      },
+      {
+        id: 'm4l5', title: '유형 4 — 빈도 (Frequency)', duration: '6분',
+        content: [
+          { type: 'text', text: '"How often do you...?", "How many times a week do you...?" 처럼 어떤 활동을 얼마나 자주 하는지 묻는 질문입니다. 빈도 표현을 정확히 쓰고 이유나 상황을 덧붙이면 충분합니다.' },
+          { type: 'heading', text: '빈도 질문 신호어' },
+          { type: 'example', label: '이런 단어가 보이면 빈도 유형!', items: [
+            { en: 'How often do you...?', ko: '얼마나 자주 ~하시나요?' },
+            { en: 'How many times a day / week / month do you...?', ko: '하루/일주일/한 달에 몇 번이나 ~하시나요?' },
+            { en: 'Do you...regularly / usually?', ko: '~을 규칙적으로/보통 하시나요?' },
+          ]},
+          { type: 'heading', text: '빈도 표현 총정리' },
+          { type: 'table',
+            headers: ['빈도', '영어 표현', '예문'],
+            rows: [
+              ['매일', 'every day / daily', '"I check my email every day."'],
+              ['거의 매일', 'almost every day', '"I exercise almost every day."'],
+              ['주 2~3회', 'two or three times a week', '"I go to the gym two or three times a week."'],
+              ['가끔', 'occasionally / sometimes', '"I eat out occasionally, maybe once a week."'],
+              ['거의 안 함', 'rarely / hardly ever', '"I rarely watch TV these days."'],
+              ['전혀 안 함', 'never', '"I never skip breakfast."'],
+            ]
+          },
+          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '빈도 바로 답변 (5초)', desc: '"I + 빈도 표현 + 동사."\n예: "I go to the gym about three times a week."' },
+            { num: '②', title: '이유·상황 설명 (15초)', desc: '"This is because..."\n"I usually do this because..."\n왜 그 빈도인지, 어떤 상황인지 설명합니다.' },
+            { num: '③', title: '추가 정보·마무리 (10초)', desc: '"When I have more time, I try to..."\n"I think this habit helps me..."\n변수나 효과로 마무리합니다.' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '빈도 유형 필수 표현', items: [
+            { en: 'I usually / generally + 동사 + 빈도.', ko: '저는 보통 ~을 [빈도]로 합니다.' },
+            { en: 'On average, I + 동사 + about + 횟수.', ko: '평균적으로 저는 약 ~번 정도 합니다.' },
+            { en: 'I try to + 동사 + at least + 횟수.', ko: '저는 적어도 ~번은 ~하려고 노력합니다.' },
+            { en: 'It depends on my schedule, but typically...', ko: '일정에 따라 다르지만, 보통...' },
+            { en: 'I make it a habit to + 동사.', ko: '저는 ~하는 것을 습관으로 삼고 있습니다.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "How often do you exercise?"', items: [
+            { en: 'I usually exercise about three or four times a week.', ko: '[① 빈도 바로 답변]' },
+            { en: 'This is because I find that regular exercise helps me stay focused and reduces stress from work.', ko: '[② 이유 — 구체적 이유 제시]' },
+            { en: 'I typically go for a jog in the morning or do a workout at the gym in the evening, depending on my schedule.', ko: '[③ 구체적 상황 설명]' },
+            { en: 'I think maintaining this habit has really improved my overall energy levels.', ko: '[③ 효과·마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '"It depends" 로 시작하면 이어서 설명이 길어지므로 점수에 유리합니다. "It depends on my schedule, but typically I..." 처럼 변수를 언급한 뒤 일반적인 빈도를 말하면 자연스럽습니다.' }
+        ]
+      },
+      {
+        id: 'm4l6', title: '유형 5 — 방법 (Method/Process)', duration: '6분',
+        content: [
+          { type: 'text', text: '"How do you usually...?", "What do you do when...?" 처럼 어떤 일을 어떻게 하는지 방법·과정을 묻는 질문입니다. 단계적으로 설명하면 자연스럽게 시간을 채울 수 있습니다.' },
+          { type: 'heading', text: '방법 질문 신호어' },
+          { type: 'example', label: '이런 단어가 보이면 방법 유형!', items: [
+            { en: 'How do you usually...?', ko: '보통 어떻게 ~하시나요?' },
+            { en: 'What do you do when...?', ko: '~할 때 무엇을 하시나요?' },
+            { en: 'How do you deal with / handle...?', ko: '~을 어떻게 처리/해결하시나요?' },
+            { en: 'What steps do you take to...?', ko: '~하기 위해 어떤 절차를 밟으시나요?' },
+          ]},
+          { type: 'heading', text: '30초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '개요 한 문장 (5초)', desc: '"When it comes to [주제], I usually follow a few steps."\n"I have a specific routine for..."' },
+            { num: '②', title: '1단계 방법 (10초)', desc: '"First, I..."\n"The first thing I do is..."' },
+            { num: '③', title: '2단계 방법 (10초)', desc: '"Then / After that, I..."\n"Next, I..."\n두 번째 단계를 이어서 설명합니다.' },
+            { num: '④', title: '마무리·효과 (5초)', desc: '"This way, I can..."\n"I think this approach helps me..."' },
+          ]},
+          { type: 'heading', text: '순서 연결 표현' },
+          { type: 'example', label: '단계 연결 필수 표현', items: [
+            { en: 'First of all, / To start with,', ko: '우선 / 먼저' },
+            { en: 'Then / After that, / Next,', ko: '그 다음에 / 그리고 나서' },
+            { en: 'Finally, / Lastly,', ko: '마지막으로' },
+            { en: 'This way, I can... / By doing this,', ko: '이렇게 하면 ~할 수 있습니다 / 이렇게 함으로써' },
+            { en: 'I find that this method works really well because...', ko: '이 방법이 정말 잘 통한다고 생각하는데, 그 이유는...' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '질문: "How do you usually manage your time when you have a lot of work to do?"', items: [
+            { en: 'When it comes to managing my time, I usually follow a simple routine.', ko: '[① 개요]' },
+            { en: 'First of all, I make a to-do list at the beginning of the day, prioritizing the most urgent tasks.', ko: '[② 1단계]' },
+            { en: 'Then, I set a timer and focus on one task at a time, without checking my phone or email.', ko: '[③ 2단계]' },
+            { en: 'This way, I can stay focused and get things done much more efficiently. I find that this approach really reduces stress.', ko: '[④ 효과·마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '"First... Then... Finally..." 3단계 구조는 방법 유형뿐 아니라 어떤 유형에서도 30초를 자연스럽게 채울 수 있는 만능 구조입니다. 평소에 이 패턴으로 다양한 주제를 말하는 연습을 해 두세요.' }
+        ]
+      },
+      {
+        id: 'm4l7', title: '핵심 표현 총정리 & 실전 연습', duration: '8분',
+        content: [
+          { type: 'text', text: '5가지 질문 유형에서 공통으로 쓰이는 핵심 표현을 유형별로 정리합니다. 이 표현들을 완전히 자동화될 때까지 연습하세요.' },
+          { type: 'heading', text: '도입 표현 — 유형별 첫 문장' },
+          { type: 'table',
+            headers: ['유형', '첫 문장 패턴'],
+            rows: [
+              ['선호도', '"Personally, I prefer A to B." / "I would definitely choose A."'],
+              ['의견', '"In my opinion, ..." / "I strongly believe that..."'],
+              ['경험', '"Yes, I have. I remember one time..." / "A few years ago, I..."'],
+              ['빈도', '"I usually + 동사 + 빈도." / "On average, I..."'],
+              ['방법', '"When it comes to [주제], I usually..." / "First of all, I..."'],
+            ]
+          },
           { type: 'heading', text: '이유 제시 표현' },
-          { type: 'example', label: '이유 표현', items: [
+          { type: 'example', label: '이유·근거', items: [
             { en: 'This is because...', ko: '그 이유는...' },
             { en: 'The main reason is that...', ko: '주된 이유는...' },
             { en: 'I feel this way because...', ko: '제가 이렇게 생각하는 이유는...' },
-            { en: 'One of the biggest advantages is...', ko: '가장 큰 장점 중 하나는...' }
+            { en: 'One of the biggest advantages is...', ko: '가장 큰 장점 중 하나는...' },
           ]},
           { type: 'heading', text: '예시·경험 연결 표현' },
-          { type: 'example', label: '예시 표현', items: [
+          { type: 'example', label: '예시·근거', items: [
             { en: 'For example, ...', ko: '예를 들어...' },
             { en: 'For instance, ...', ko: '예를 들면...' },
             { en: 'In fact, ...', ko: '사실...' },
-            { en: 'Based on my experience, ...', ko: '제 경험을 바탕으로 하면...' }
+            { en: 'Based on my experience, ...', ko: '제 경험을 바탕으로 하면...' },
           ]},
-          { type: 'heading', text: '모범 답안' },
-          { type: 'example', label: '질문: "Do you prefer shopping online or in stores?"', items: [
-            { en: 'Personally, I prefer shopping online. The main reason is that it saves me a lot of time and effort. I don\'t have to travel to a store or wait in long lines. For example, last week I ordered some books online and they were delivered to my door the next day. Also, it\'s much easier to compare prices and find the best deals. So, for me, online shopping is definitely more convenient.', ko: '[직접 답변 → 이유 → 구체 예시 → 추가 이유 → 결론]' }
+          { type: 'heading', text: '마무리 표현' },
+          { type: 'example', label: '마무리', items: [
+            { en: 'So, that\'s why I + 동사.', ko: '그래서 그것이 제가 ~하는 이유입니다.' },
+            { en: 'That\'s why I think / prefer / believe...', ko: '그래서 저는 ~라고 생각/선호/믿습니다.' },
+            { en: 'Overall, I feel that...', ko: '전반적으로 저는 ~라고 생각합니다.' },
+            { en: 'I think this approach / habit / choice works best for me.', ko: '이 방법/습관/선택이 저에게 가장 잘 맞는다고 생각합니다.' },
           ]},
-          { type: 'tip', icon: '💡', text: '30초는 생각보다 짧습니다. 미리 "Personally, I prefer..." "This is because..." "For example..." 세 문장 패턴을 자동으로 나올 수 있을 때까지 연습하세요.' }
+          { type: 'heading', text: '5유형 통합 연습 — 같은 주제로 유형 바꾸기' },
+          { type: 'text', text: '주제: "독서(Reading)" — 같은 주제라도 질문 유형에 따라 답변 구조가 완전히 달라집니다.' },
+          { type: 'table',
+            headers: ['질문 유형', '질문 예시', '첫 문장'],
+            rows: [
+              ['선호도', 'Do you prefer physical books or e-books?', '"I personally prefer physical books because..."'],
+              ['의견', 'Do you think reading is important?', '"In my opinion, reading is extremely important because..."'],
+              ['경험', 'Have you ever read a book that changed your life?', '"Yes, I have. A few years ago, I read a book that..."'],
+              ['빈도', 'How often do you read books?', '"I usually read for about 30 minutes every night before bed."'],
+              ['방법', 'How do you choose what book to read next?', '"When it comes to choosing a book, I usually start by..."'],
+            ]
+          },
+          { type: 'tip', icon: '🎯', text: '실전 연습 방법: 하나의 주제(여행, 음식, 운동 등)를 정하고 5가지 유형으로 각각 30초 답변을 만들어 보세요. 패턴이 몸에 배면 실전에서 어떤 질문이 나와도 3초 안에 답변 구조가 자동으로 떠오릅니다.' }
         ]
       }
     ]
@@ -424,62 +633,233 @@ const STUDY_MODULES = [
     color: '#06B6D4',
     lessons: [
       {
-        id: 'm6l1', title: '제안·해결책 답변 전략', duration: '9분',
+        id: 'm6l1', title: 'Part 4 개요 & 60초 황금 공식', duration: '6분',
         content: [
-          { type: 'text', text: 'Part 4는 음성 메시지를 듣고 그 문제나 요청에 대한 해결책을 제안하는 파트입니다. 문제를 인식하고, 공감을 표현하고, 구체적인 해결책을 제시하는 능력이 핵심입니다.' },
-          { type: 'heading', text: '메시지 유형' },
-          { type: 'list', items: [
-            '📞 불만 전화 (고객이 문제를 호소하는 상황)',
-            '📧 업무 요청 (동료나 상사가 해결책을 구하는 상황)',
-            '🏠 일상 문제 (예약, 배송, 시설 문제 등)',
-            '🏢 직장 상황 (일정 충돌, 자원 부족, 의사소통 문제 등)'
-          ]},
-          { type: 'heading', text: '3단계 답변 구조 (황금 공식)' },
+          { type: 'text', text: 'Part 4는 음성 메시지를 듣고 그 문제나 요청에 대한 해결책을 제안하는 파트입니다. 준비 45초, 답변 60초로 모든 파트 중 답변 시간이 가장 깁니다. 메시지 유형을 빠르게 파악하고 3단계 구조로 60초를 자연스럽게 채우는 것이 핵심입니다.' },
+          { type: 'heading', text: '4가지 메시지 유형 — 한눈에 보기' },
+          { type: 'table',
+            headers: ['유형', '상황', '핵심 전략'],
+            rows: [
+              ['📞 불만 전화', '고객이 문제를 호소', '공감 강조 → 보상/재처리 제안'],
+              ['📧 업무 요청', '동료·상사가 해결책 요청', '문제 확인 → 실행 가능한 방법 2가지'],
+              ['🏠 일상 문제', '예약·배송·시설 문제', '대안 제시 → 불편 최소화 방법'],
+              ['🏢 직장 상황', '일정 충돌·자원 부족 등', '우선순위 재조정 → 협업 해결'],
+            ]
+          },
+          { type: 'heading', text: '60초 답변 황금 공식 (3단계)' },
           { type: 'structure', steps: [
-            { num: '①', title: '공감·인정 (10초)', desc: '상대방의 상황을 이해한다는 것을 먼저 표현합니다. 이것이 없으면 답변이 차갑게 들립니다.\n예: "I understand this is a very urgent situation for you."' },
-            { num: '②', title: '구체적 해결책 제시 (35초)', desc: '명확하고 실행 가능한 해결책을 최소 1~2가지 제시합니다.\n예: "I suggest you... / One option would be to... / You could also consider..."' },
-            { num: '③', title: '대안 또는 마무리 (15초)', desc: '첫 번째 해결책이 효과 없을 경우의 대안을 언급하고, 도움이 되길 바란다고 마무리합니다.\n예: "If that doesn\'t work, another option would be... I hope this helps."' }
+            { num: '①', title: '공감·인정 (10초)', desc: '상대방 상황을 먼저 인정합니다. 이것 없이 바로 해결책을 말하면 차갑게 들립니다.\n"I understand how frustrating this must be..."\n"I\'m sorry to hear that you\'re dealing with this."' },
+            { num: '②', title: '해결책 1 + 2 제시 (35초)', desc: '구체적이고 실행 가능한 해결책을 2가지 제시합니다.\n"First, I would suggest... / One option would be to..."\n"Also, you could consider... / Another possibility is..."' },
+            { num: '③', title: '대안 또는 마무리 (15초)', desc: '대안이나 후속 조치를 언급하고 도움이 되길 바란다고 마무리합니다.\n"If that doesn\'t work, another option would be..."\n"I hope this helps. Please feel free to contact me if you need anything else."' }
           ]},
-          { type: 'heading', text: '준비 시간(45초) 활용법' },
+          { type: 'heading', text: '준비 시간(45초) 4단계 전략' },
           { type: 'numbered', items: [
-            '메시지의 핵심 문제 1가지 파악 (무엇이 문제인가?)',
-            '해결책 2가지 생각하기 (주요 해결책 + 대안)',
-            '공감 표현 문장 1개 준비',
-            '시작 문장: "I understand that..." 형태로 준비'
+            '메시지 유형 파악 — 불만/요청/일상/직장 중 어느 상황?',
+            '핵심 문제 1가지 정리 — "무엇이 문제인가?"를 한 문장으로',
+            '해결책 2가지 떠올리기 — 주요 해결책 + 대안',
+            '시작 문장 준비 — "I understand that..." / "I\'m sorry to hear that..."'
           ]},
-          { type: 'tip', icon: '💡', text: '해결책이 완벽할 필요는 없습니다. 중요한 것은 상황에 적절한 제안을 자신 있게 전달하는 것입니다.' }
+          { type: 'tip', icon: '⚠️', text: '해결책이 완벽할 필요는 없습니다. 유창하게 60초를 채우는 것이 더 중요합니다. 다음 레슨에서 각 유형별 전략과 모범 답안을 익혀보세요.' }
         ]
       },
       {
-        id: 'm6l2', title: 'Part 4 핵심 표현 & 모범 답안', duration: '8분',
+        id: 'm6l2', title: '유형 1 — 📞 불만 전화', duration: '8분',
         content: [
-          { type: 'heading', text: '공감·이해 표현' },
-          { type: 'example', label: '공감 표현', items: [
-            { en: 'I understand how frustrating this must be for you.', ko: '얼마나 답답하실지 이해합니다.' },
-            { en: 'I completely understand your concern.', ko: '걱정이 충분히 이해됩니다.' },
-            { en: 'I\'m sorry to hear that you\'re experiencing this issue.', ko: '이런 문제를 겪고 계시다니 죄송합니다.' },
-            { en: 'I can see why this is urgent for you.', ko: '이것이 왜 급한지 이해할 수 있습니다.' }
+          { type: 'text', text: '고객이 제품 결함, 서비스 불만, 약속 불이행 등의 문제를 전화로 호소하는 상황입니다. 이 유형에서는 공감 표현이 가장 중요하며, 사과와 보상 또는 재처리를 제안하는 것이 핵심입니다.' },
+          { type: 'heading', text: '불만 전화 신호어' },
+          { type: 'example', label: '이런 표현이 들리면 불만 전화 유형!', items: [
+            { en: 'I\'m calling to complain about...', ko: '~에 대해 불만을 제기하려고 전화했습니다.' },
+            { en: 'I\'m really disappointed / frustrated with...', ko: '~에 정말 실망했습니다 / 답답합니다.' },
+            { en: 'This is unacceptable. / I expected better.', ko: '이건 받아들일 수 없습니다. / 더 잘해주실 거라 기대했습니다.' },
+            { en: 'I\'d like a refund / replacement / explanation.', ko: '환불 / 교환 / 설명을 요청합니다.' },
           ]},
-          { type: 'heading', text: '해결책 제시 표현' },
-          { type: 'example', label: '제안 표현', items: [
-            { en: 'I would suggest that you...', ko: '제 제안은 ~하시는 것입니다' },
-            { en: 'One option would be to...', ko: '한 가지 방법은 ~하는 것입니다' },
-            { en: 'Why don\'t you try...?', ko: '~을 시도해 보시는 건 어떨까요?' },
-            { en: 'I recommend that you...', ko: '~하시기를 권합니다' },
-            { en: 'You could also consider...', ko: '~도 고려해 볼 수 있습니다' }
+          { type: 'heading', text: '60초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '사과 + 공감 (12초)', desc: '"I\'m truly sorry to hear about this experience."\n"I completely understand how frustrating this must be for you."\n진심 어린 사과가 먼저입니다. "I\'m sorry" 한 마디로는 부족합니다.' },
+            { num: '②', title: '즉각 해결책 제시 (25초)', desc: '"I\'d like to offer you a full refund / replacement right away."\n"I can arrange for someone to fix this as soon as possible."\n고객이 원하는 것(환불/교환/재처리)을 명확히 제안합니다.' },
+            { num: '③', title: '추가 보상 또는 재발 방지 (15초)', desc: '"As a gesture of goodwill, I\'d also like to offer you a discount on your next purchase."\n"We will make sure this doesn\'t happen again."\n한 발 더 나아간 보상이나 재발 방지를 언급합니다.' },
+            { num: '④', title: '마무리 (8초)', desc: '"Thank you for bringing this to our attention."\n"We truly value your business and hope to serve you better in the future."' },
           ]},
-          { type: 'heading', text: '대안·마무리 표현' },
-          { type: 'example', label: '대안 표현', items: [
-            { en: 'If that doesn\'t work, another option would be...', ko: '그것이 효과 없다면, 또 다른 방법은...' },
-            { en: 'Alternatively, you might want to...', ko: '또는 ~하시는 것도 좋습니다' },
-            { en: 'I hope this helps resolve the situation.', ko: '이것이 상황 해결에 도움이 되길 바랍니다.' },
-            { en: 'Please let me know if you need further assistance.', ko: '추가 도움이 필요하시면 알려주세요.' }
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '불만 전화 필수 표현', items: [
+            { en: 'I\'m truly sorry for the inconvenience this has caused.', ko: '이로 인해 불편을 드려서 진심으로 사과드립니다.' },
+            { en: 'I completely understand your frustration.', ko: '답답함을 충분히 이해합니다.' },
+            { en: 'I\'d like to offer you a full refund immediately.', ko: '즉시 전액 환불을 드리겠습니다.' },
+            { en: 'We can arrange a replacement to be sent out today.', ko: '오늘 중으로 교체품을 발송해 드릴 수 있습니다.' },
+            { en: 'As a gesture of goodwill, I\'d like to offer...', ko: '성의 표시로 ~을 드리고 싶습니다.' },
+            { en: 'We will make sure this doesn\'t happen again.', ko: '이런 일이 재발하지 않도록 하겠습니다.' },
+            { en: 'Thank you for bringing this to our attention.', ko: '알려주셔서 감사합니다.' },
           ]},
           { type: 'heading', text: '모범 답안' },
-          { type: 'example', label: '상황: 예약된 회의실이 없어서 곤란한 상황', items: [
-            { en: 'I understand how stressful this must be, especially with such an important client presentation coming up. Here\'s what I suggest: First, you could check with the reception team to see if any other meeting rooms, even smaller ones, are available for that time. If there are none, another option would be to use a collaborative space or even a private office temporarily. You might also want to consider reaching out to the facilities team — they sometimes have emergency room arrangements. I hope one of these options works for you. Please let me know how it goes, and good luck with the presentation.', ko: '[공감 → 첫 번째 해결책 → 두 번째 해결책 → 세 번째 대안 → 마무리]' }
+          { type: 'example', label: '상황: 주문한 제품이 파손된 채로 배송됨', items: [
+            { en: 'I\'m truly sorry to hear that your order arrived damaged. I completely understand how frustrating and disappointing that must be, especially if you were looking forward to receiving it.', ko: '[① 사과 + 공감]' },
+            { en: 'I\'d like to resolve this for you right away. First, I can arrange for a replacement item to be shipped out to you today at no extra charge. You don\'t need to return the damaged product.', ko: '[② 즉각 해결책 — 교환 제안]' },
+            { en: 'Additionally, as a gesture of goodwill for the inconvenience this has caused, I\'d like to offer you a 20% discount on your next purchase.', ko: '[③ 추가 보상]' },
+            { en: 'We truly value your business and will make sure this doesn\'t happen again. Thank you for bringing this to our attention.', ko: '[④ 재발 방지 + 마무리]' },
           ]},
-          { type: 'tip', icon: '🎯', text: '해결책을 제시할 때 "You should do X." 보다 "You could consider X." 처럼 부드러운 표현을 쓰면 더 자연스럽고 높은 점수를 받습니다.' }
+          { type: 'tip', icon: '💡', text: '"I\'m sorry" 한 마디보다 "I\'m truly sorry to hear that..." 처럼 구체적으로 무엇에 대해 사과하는지를 밝히면 훨씬 진정성 있게 들립니다. 그리고 해결책은 반드시 "즉시(right away / immediately / today)" 라는 단어를 넣어야 고객 불만에 적절히 대응하는 것으로 평가됩니다.' }
+        ]
+      },
+      {
+        id: 'm6l3', title: '유형 2 — 📧 업무 요청', duration: '8분',
+        content: [
+          { type: 'text', text: '동료나 상사가 업무상 문제나 도움이 필요한 상황을 메시지로 남기고 해결책을 구하는 상황입니다. 공감보다는 실용적이고 구체적인 해결 방법을 제시하는 것이 핵심입니다.' },
+          { type: 'heading', text: '업무 요청 신호어' },
+          { type: 'example', label: '이런 표현이 들리면 업무 요청 유형!', items: [
+            { en: 'I was wondering if you could help me with...', ko: '~에 도움을 주실 수 있는지 궁금합니다.' },
+            { en: 'I\'m having trouble with... / I\'m not sure how to...', ko: '~에 어려움을 겪고 있습니다 / ~을 어떻게 해야 할지 모르겠습니다.' },
+            { en: 'Could you give me some advice on...?', ko: '~에 대해 조언을 주실 수 있나요?' },
+            { en: 'I need to find a solution for... by [날짜].', ko: '[날짜]까지 ~에 대한 해결책이 필요합니다.' },
+          ]},
+          { type: 'heading', text: '60초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '상황 이해 + 공감 (8초)', desc: '"I understand you\'re in a tough spot with..."\n"I can see this is quite urgent, so let me help."\n불만 유형보다 공감은 짧게, 빨리 해결책으로 넘어갑니다.' },
+            { num: '②', title: '해결책 1 (20초)', desc: '"I would suggest that you first..."\n"One effective approach would be to..."\n가장 실용적인 방법을 구체적으로 설명합니다.' },
+            { num: '③', title: '해결책 2 (20초)', desc: '"Also, you might want to consider..."\n"Another option that could work is..."\n두 번째 방법이나 보완책을 추가합니다.' },
+            { num: '④', title: '후속 조치 + 마무리 (12초)', desc: '"If you need any more help, feel free to reach out to me."\n"I hope these suggestions are helpful. Good luck!"' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '업무 요청 필수 표현', items: [
+            { en: 'I can see this is quite urgent, so let me help.', ko: '이것이 꽤 급하다는 것을 알겠습니다, 제가 도와드리겠습니다.' },
+            { en: 'I would suggest that you first...', ko: '먼저 ~하시는 것을 제안합니다.' },
+            { en: 'One effective approach would be to...', ko: '효과적인 방법 중 하나는 ~하는 것입니다.' },
+            { en: 'You might also want to consider...', ko: '~도 고려해 보시면 좋겠습니다.' },
+            { en: 'This way, you\'ll be able to...', ko: '이렇게 하면 ~할 수 있게 됩니다.' },
+            { en: 'Feel free to reach out if you need more help.', ko: '추가 도움이 필요하시면 언제든지 연락 주세요.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '상황: 보고서 마감이 내일인데 데이터 정리가 안 됨', items: [
+            { en: 'I can see you\'re under a lot of pressure with tomorrow\'s deadline, so let me give you some practical suggestions.', ko: '[① 상황 이해 + 공감]' },
+            { en: 'First, I would suggest prioritizing the most critical data points that your manager will focus on, rather than trying to include everything. This way, you can submit a clean, focused report on time.', ko: '[② 해결책 1 — 우선순위 조정]' },
+            { en: 'Also, you might want to consider using a simple spreadsheet template to organize the data more efficiently. There are several ready-made templates available online that could save you a lot of time.', ko: '[③ 해결책 2 — 도구 활용]' },
+            { en: 'If you\'re still struggling, feel free to reach out and I can take a look at it with you. Good luck with the deadline!', ko: '[④ 후속 지원 + 마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '업무 요청 유형에서는 "You should..."보다 "I would suggest that you..." 또는 "You might want to consider..." 처럼 제안하는 말투를 쓰세요. 상사에게 말하는 상황일 수도 있으므로 항상 정중한 어조를 유지하는 것이 중요합니다.' }
+        ]
+      },
+      {
+        id: 'm6l4', title: '유형 3 — 🏠 일상 문제', duration: '8분',
+        content: [
+          { type: 'text', text: '예약 실수, 배송 지연, 시설 고장, 서비스 취소 등 일상생활에서 발생하는 문제 상황입니다. 불편함을 최소화하는 구체적인 대안을 제시하는 것이 핵심입니다.' },
+          { type: 'heading', text: '일상 문제 신호어' },
+          { type: 'example', label: '이런 표현이 들리면 일상 문제 유형!', items: [
+            { en: 'My reservation / booking was cancelled without notice.', ko: '예약이 사전 공지 없이 취소됐습니다.' },
+            { en: 'My package / order hasn\'t arrived yet.', ko: '소포 / 주문이 아직 도착하지 않았습니다.' },
+            { en: 'The [시설] in my room / apartment isn\'t working.', ko: '방 / 아파트의 [시설]이 작동하지 않습니다.' },
+            { en: 'I was told [X], but [Y] happened instead.', ko: '[X]라고 들었는데, 실제로는 [Y]가 발생했습니다.' },
+          ]},
+          { type: 'heading', text: '60초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '공감 + 불편 인정 (10초)', desc: '"I\'m sorry you\'re dealing with this inconvenience."\n"I understand how disruptive this must be for you."\n일상 문제는 작은 것이라도 진심으로 공감해야 합니다.' },
+            { num: '②', title: '즉각 대안 제시 (25초)', desc: '"I can arrange an alternative / reschedule / replacement immediately."\n예약 취소 → 다른 날짜/장소 대안\n배송 지연 → 환불 또는 재발송\n시설 고장 → 수리 또는 다른 방 제공' },
+            { num: '③', title: '불편 보상 (15초)', desc: '"As compensation for the inconvenience, I\'d like to offer..."\n할인, 무료 업그레이드, 다음 방문 혜택 등' },
+            { num: '④', title: '마무리 (10초)', desc: '"I assure you we\'ll do everything we can to make this right."\n"Please don\'t hesitate to contact us if there\'s anything else we can do."' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '일상 문제 필수 표현', items: [
+            { en: 'I\'m sorry for the inconvenience this has caused you.', ko: '이로 인해 불편을 드려서 죄송합니다.' },
+            { en: 'I can arrange an alternative for you right away.', ko: '즉시 대안을 마련해 드리겠습니다.' },
+            { en: 'We can reschedule this for a more convenient time.', ko: '더 편리한 시간으로 일정을 변경해 드릴 수 있습니다.' },
+            { en: 'I\'d like to offer a complimentary upgrade / discount.', ko: '무료 업그레이드 / 할인을 제공해 드리겠습니다.' },
+            { en: 'I assure you we\'ll do everything we can to make this right.', ko: '이 상황을 바로잡기 위해 최선을 다할 것을 약속드립니다.' },
+            { en: 'Please don\'t hesitate to contact us if you need anything else.', ko: '다른 필요한 것이 있으시면 언제든지 연락해 주세요.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '상황: 호텔 예약이 시스템 오류로 취소됨', items: [
+            { en: 'I\'m truly sorry to hear that your reservation was cancelled due to a system error. I completely understand how inconvenient and stressful this must be, especially if you have travel plans already arranged.', ko: '[① 공감 + 불편 인정]' },
+            { en: 'I\'d like to resolve this immediately. I can book you into one of our available rooms right now at the same rate you originally reserved, or if you prefer a different room type, I\'d be happy to upgrade you at no additional charge.', ko: '[② 즉각 대안 — 같은 가격 재예약 또는 무료 업그레이드]' },
+            { en: 'Additionally, as compensation for this inconvenience, I\'d like to offer you a complimentary breakfast for the duration of your stay.', ko: '[③ 보상]' },
+            { en: 'I assure you we\'ll look into this system issue to make sure it doesn\'t happen again. Please let me know how you\'d like to proceed.', ko: '[④ 재발 방지 + 마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '일상 문제 유형에서는 "즉시(immediately / right away / right now)"라는 단어가 매우 중요합니다. 고객이나 상대방이 느끼는 불편함의 크기와 관계없이, 즉각적인 대응 의지를 보여주는 것이 높은 점수를 받는 핵심입니다.' }
+        ]
+      },
+      {
+        id: 'm6l5', title: '유형 4 — 🏢 직장 상황', duration: '8분',
+        content: [
+          { type: 'text', text: '일정 충돌, 인원 부족, 자원 부족, 팀 내 의사소통 문제처럼 직장 내부에서 발생하는 복잡한 상황입니다. 현실적이고 실행 가능한 우선순위 재조정과 협업 방안을 제시하는 것이 핵심입니다.' },
+          { type: 'heading', text: '직장 상황 신호어' },
+          { type: 'example', label: '이런 표현이 들리면 직장 상황 유형!', items: [
+            { en: 'We have a scheduling conflict on...', ko: '~에 일정 충돌이 있습니다.' },
+            { en: 'We don\'t have enough staff / resources / budget for...', ko: '~을 위한 직원 / 자원 / 예산이 충분하지 않습니다.' },
+            { en: 'There seems to be a miscommunication between...', ko: '~사이에 의사소통 오류가 있는 것 같습니다.' },
+            { en: 'The project is behind schedule because...', ko: '프로젝트가 ~때문에 일정보다 늦어지고 있습니다.' },
+          ]},
+          { type: 'heading', text: '60초 답변 구조' },
+          { type: 'structure', steps: [
+            { num: '①', title: '상황 이해 (8초)', desc: '"I understand there\'s a challenging situation with..."\n"I can see this is affecting the team significantly."\n업무 상황이므로 공감보다 문제 인식을 빠르게 표현합니다.' },
+            { num: '②', title: '우선순위 재조정 제안 (20초)', desc: '"First, I would recommend prioritizing... over..."\n"It might be best to postpone [낮은 우선순위] and focus on [높은 우선순위] first."\n모든 것을 동시에 해결하려 하지 않고 순서를 정합니다.' },
+            { num: '③', title: '협업·자원 활용 방안 (20초)', desc: '"You could reach out to [팀/부서] for additional support."\n"Another option is to redistribute the workload among team members."\n내부 자원과 협업으로 해결하는 방법을 제시합니다.' },
+            { num: '④', title: '후속 조치 + 마무리 (12초)', desc: '"I suggest scheduling a brief team meeting to align everyone."\n"Let me know if you need any additional support from my end."' },
+          ]},
+          { type: 'heading', text: '핵심 표현' },
+          { type: 'example', label: '직장 상황 필수 표현', items: [
+            { en: 'I would recommend prioritizing A over B for now.', ko: '지금은 B보다 A를 우선시할 것을 권합니다.' },
+            { en: 'It might be best to postpone [X] until [Y] is resolved.', ko: '[Y]가 해결될 때까지 [X]를 미루는 것이 나을 수 있습니다.' },
+            { en: 'You could redistribute the workload among the team.', ko: '팀 내에서 업무를 재분배할 수 있습니다.' },
+            { en: 'I suggest reaching out to [팀/부서] for support.', ko: '[팀/부서]에 지원을 요청해 보시기를 제안합니다.' },
+            { en: 'A brief team meeting might help clarify things.', ko: '짧은 팀 회의가 상황 정리에 도움이 될 수 있습니다.' },
+            { en: 'Let me know if you need any support from my end.', ko: '제 쪽에서 도움이 필요하시면 알려주세요.' },
+          ]},
+          { type: 'heading', text: '모범 답안' },
+          { type: 'example', label: '상황: 두 프로젝트 마감이 같은 날 겹쳐 팀 인원이 부족한 상황', items: [
+            { en: 'I understand you\'re facing a very challenging situation with two project deadlines overlapping and limited team capacity.', ko: '[① 상황 이해]' },
+            { en: 'First, I would recommend assessing which project has the greater business impact and prioritizing that one. If the client presentation is more critical, it might be best to allocate most of the team\'s resources to that first, and then shift focus to the internal report afterward.', ko: '[② 우선순위 재조정]' },
+            { en: 'Also, you could consider reaching out to another department for temporary support, or identify which parts of each project can be simplified or delegated to free up some capacity.', ko: '[③ 협업·자원 활용]' },
+            { en: 'I suggest holding a quick 15-minute team meeting first thing tomorrow to align everyone on the new priorities. Let me know if there\'s anything I can help with from my end.', ko: '[④ 후속 조치 + 마무리]' },
+          ]},
+          { type: 'tip', icon: '💡', text: '직장 상황 유형에서 가장 좋은 해결책은 "우선순위 재조정"과 "협업 요청"입니다. "We can\'t do everything at once, so let\'s prioritize..." 이 한 문장이 자동으로 나올 수 있도록 연습하세요. 그리고 마지막에 팀 미팅 제안을 넣으면 현실적인 해결책으로 높은 점수를 받을 수 있습니다.' }
+        ]
+      },
+      {
+        id: 'm6l6', title: '핵심 표현 총정리 & 실전 연습', duration: '8분',
+        content: [
+          { type: 'text', text: '4가지 유형에서 공통으로 쓰이는 핵심 표현과 유형별 특화 표현을 정리합니다. 60초를 자연스럽게 채우는 흐름을 몸에 익혀 두세요.' },
+          { type: 'heading', text: '공감 표현 — 유형별 강도 조절' },
+          { type: 'table',
+            headers: ['유형', '공감 강도', '첫 문장 예시'],
+            rows: [
+              ['📞 불만 전화', '강함 (가장 중요)', '"I\'m truly sorry to hear about this. I completely understand your frustration."'],
+              ['📧 업무 요청', '보통 (빠르게 넘어감)', '"I can see this is urgent, so let me help you right away."'],
+              ['🏠 일상 문제', '보통~강함', '"I\'m sorry for the inconvenience. I understand how disruptive this must be."'],
+              ['🏢 직장 상황', '약함 (빠르게 해결로)', '"I understand the situation. Let me suggest a few practical options."'],
+            ]
+          },
+          { type: 'heading', text: '해결책 제시 표현 — 강도별 정리' },
+          { type: 'example', label: '직접 제안 (강함)', items: [
+            { en: 'I\'d like to offer you a full refund immediately.', ko: '즉시 전액 환불을 드리겠습니다.' },
+            { en: 'I can arrange this for you right away.', ko: '즉시 처리해 드릴 수 있습니다.' },
+          ]},
+          { type: 'example', label: '제안 (보통)', items: [
+            { en: 'I would suggest that you...', ko: '~하시는 것을 제안합니다.' },
+            { en: 'One option would be to...', ko: '한 가지 방법은 ~하는 것입니다.' },
+            { en: 'I recommend that you...', ko: '~하시기를 권합니다.' },
+          ]},
+          { type: 'example', label: '부드러운 제안 (완곡)', items: [
+            { en: 'You might want to consider...', ko: '~을 고려해 보시면 어떨까요.' },
+            { en: 'It might be a good idea to...', ko: '~하는 것이 좋은 생각일 수 있습니다.' },
+            { en: 'You could also try...', ko: '~도 시도해 볼 수 있습니다.' },
+          ]},
+          { type: 'heading', text: '대안 + 마무리 표현' },
+          { type: 'example', label: '대안·마무리', items: [
+            { en: 'If that doesn\'t work, another option would be...', ko: '그것이 효과 없다면, 또 다른 방법은...' },
+            { en: 'Alternatively, you might want to...', ko: '또는 ~하시는 것도 좋습니다.' },
+            { en: 'I hope this helps resolve the situation.', ko: '이것이 상황 해결에 도움이 되길 바랍니다.' },
+            { en: 'Please let me know if you need further assistance.', ko: '추가 도움이 필요하시면 알려주세요.' },
+            { en: 'Thank you for bringing this to our attention.', ko: '알려주셔서 감사합니다.' },
+          ]},
+          { type: 'heading', text: '4유형 통합 연습 — 같은 문제, 다른 상황' },
+          { type: 'text', text: '문제: "회의가 취소됐다" — 같은 문제라도 누가 말하느냐에 따라 대응 방식이 완전히 달라집니다.' },
+          { type: 'table',
+            headers: ['유형', '메시지 발신자', '핵심 대응 방향'],
+            rows: [
+              ['📞 불만 전화', '예약 취소에 화난 고객', '사과 → 즉시 재예약 or 환불 → 보상 제공'],
+              ['📧 업무 요청', '미팅 일정을 잡아야 하는 동료', '대안 날짜 제안 → 온라인 미팅 옵션 → 일정 조율 방법'],
+              ['🏠 일상 문제', '예약한 공간을 못 쓰게 된 개인', '공간 대안 제시 → 환불 → 다음 이용 혜택'],
+              ['🏢 직장 상황', '팀 회의 일정이 겹친 매니저', '우선순위 파악 → 일정 재조정 → 참석자 조율'],
+            ]
+          },
+          { type: 'tip', icon: '🎯', text: '실전 연습 방법: 하나의 문제 상황을 정해서 4가지 유형으로 각각 60초 답변을 만들어 보세요. 유형에 따라 공감의 강도, 해결책의 방향, 마무리 표현이 어떻게 달라지는지 느끼는 것이 Part 4 고득점의 핵심입니다.' }
         ]
       }
     ]

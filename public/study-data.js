@@ -309,22 +309,14 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l2', title: '유형 1 — 선호도 (Preference)', duration: '6분',
+        id: 'm4l2', title: '유형 1 — 선호도 (Preference)', duration: '4분',
         content: [
-          { type: 'text', text: '"Do you prefer A or B?", "Which do you like better?" 처럼 두 가지 중 하나를 고르도록 유도하는 질문입니다. 가장 자주 나오는 유형으로, 반드시 하나를 명확히 선택해야 합니다.' },
-          { type: 'heading', text: '선호도 질문 신호어' },
+          { type: 'text', text: '"Do you prefer A or B?", "Which do you like better?" 처럼 두 가지 중 하나를 고르도록 유도하는 질문입니다. 반드시 하나를 명확히 선택해야 하며, "Both are good..." 처럼 모호하게 시작하면 감점입니다.' },
+          { type: 'heading', text: '신호어' },
           { type: 'example', label: '이런 단어가 보이면 선호도 유형!', items: [
             { en: 'Do you prefer A or B?', ko: 'A와 B 중 무엇을 더 좋아하나요?' },
             { en: 'Which do you like better, A or B?', ko: 'A와 B 중 어느 쪽이 더 좋으신가요?' },
             { en: 'Would you rather A or B?', ko: 'A와 B 중 어느 쪽을 선택하시겠어요?' },
-            { en: 'Do you enjoy A more than B?', ko: 'B보다 A를 더 즐기시나요?' },
-          ]},
-          { type: 'heading', text: '30초 답변 구조' },
-          { type: 'structure', steps: [
-            { num: '①', title: '명확한 선택 (3초)', desc: '"Personally, I prefer A."\n"I would definitely choose A over B."\n절대로 "Both are good..." 처럼 모호하게 시작하지 마세요.' },
-            { num: '②', title: '이유 1 (10초)', desc: '"The main reason is that..."\n"This is because..."\n가장 강한 이유 한 가지를 먼저 제시합니다.' },
-            { num: '③', title: '이유 2 또는 예시 (10초)', desc: '"Also, / In addition, ..."\n"For example, ..."\n두 번째 이유나 구체적인 경험으로 보강합니다.' },
-            { num: '④', title: '간단한 마무리 (7초)', desc: '"So, for me, A is definitely the better choice."\n"That\'s why I always choose A."\n한 문장으로 깔끔하게 마무리합니다.' },
           ]},
           { type: 'heading', text: '핵심 표현' },
           { type: 'example', label: '선호도 유형 필수 표현', items: [
@@ -345,22 +337,15 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l3', title: '유형 2 — 의견 (Opinion)', duration: '6분',
+        id: 'm4l3', title: '유형 2 — 의견 (Opinion)', duration: '4분',
         content: [
-          { type: 'text', text: '"What do you think about X?", "Do you agree or disagree?" 처럼 어떤 주제에 대한 자신의 생각이나 입장을 묻는 질문입니다. 핵심은 입장을 먼저 밝히고 이유를 논리적으로 전개하는 것입니다.' },
-          { type: 'heading', text: '의견 질문 신호어' },
+          { type: 'text', text: '"What do you think about X?", "Do you agree or disagree?" 처럼 어떤 주제에 대한 자신의 생각이나 입장을 묻는 질문입니다. 찬성/반대를 즉시 밝히고 이유 → 예시 → 마무리 순으로 전개합니다.' },
+          { type: 'heading', text: '신호어' },
           { type: 'example', label: '이런 단어가 보이면 의견 유형!', items: [
             { en: 'What do you think about...?', ko: '~에 대해 어떻게 생각하시나요?' },
             { en: 'Do you agree or disagree that...?', ko: '~에 동의하십니까, 아니면 동의하지 않으십니까?' },
             { en: 'What is your opinion on...?', ko: '~에 대한 당신의 의견은 무엇인가요?' },
             { en: 'How do you feel about...?', ko: '~에 대해 어떻게 느끼시나요?' },
-          ]},
-          { type: 'heading', text: '30초 답변 구조' },
-          { type: 'structure', steps: [
-            { num: '①', title: '입장 표명 (3초)', desc: '"In my opinion, ..."\n"I strongly believe that..."\n"I think X is + 형용사."\n찬성/반대를 즉시 밝힙니다.' },
-            { num: '②', title: '이유 (12초)', desc: '"I feel this way because..."\n"The reason is that..."\n가장 설득력 있는 이유 한 가지를 제시합니다.' },
-            { num: '③', title: '구체 예시 (10초)', desc: '"For example, ..."\n"In fact, ..."\n실제 사례나 경험으로 뒷받침합니다.' },
-            { num: '④', title: '마무리 (5초)', desc: '"Therefore, I think X is very important."\n"That\'s why I believe..."' },
           ]},
           { type: 'heading', text: '핵심 표현' },
           { type: 'example', label: '의견 유형 필수 표현', items: [
@@ -381,22 +366,15 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l4', title: '유형 3 — 경험 (Experience)', duration: '6분',
+        id: 'm4l4', title: '유형 3 — 경험 (Experience)', duration: '4분',
         content: [
-          { type: 'text', text: '"Have you ever...?", "Tell me about a time when..." 처럼 과거의 경험을 묻는 질문입니다. 없는 경험도 만들어서 구체적으로 말해야 합니다 — 사실 여부보다 유창성이 더 중요합니다.' },
-          { type: 'heading', text: '경험 질문 신호어' },
+          { type: 'text', text: '"Have you ever...?", "Tell me about a time when..." 처럼 과거 경험을 묻는 질문입니다. 없는 경험도 만들어도 됩니다 — 사실 여부보다 유창성이 더 중요합니다. Yes로 시작해 배경 → 사건 → 느낌 순으로 전개합니다.' },
+          { type: 'heading', text: '신호어' },
           { type: 'example', label: '이런 단어가 보이면 경험 유형!', items: [
             { en: 'Have you ever + p.p. ...?', ko: '~해본 적이 있나요?' },
             { en: 'Tell me about a time when...', ko: '~했던 때에 대해 말해주세요.' },
             { en: 'What was the most memorable...?', ko: '가장 기억에 남는 ~은 무엇이었나요?' },
             { en: 'Describe an experience you had...', ko: '~했던 경험을 묘사해 주세요.' },
-          ]},
-          { type: 'heading', text: '30초 답변 구조' },
-          { type: 'structure', steps: [
-            { num: '①', title: 'Yes/No 즉시 답변 (3초)', desc: '"Yes, I have. / Yes, actually, I remember one time..."\n"No, I haven\'t, but I once..."\nYes가 더 답변을 풍부하게 만들 수 있습니다.' },
-            { num: '②', title: '언제·어디서 (8초)', desc: '"A few years ago, when I was in..."\n"Last year, I had a chance to..."\n시간과 배경을 간단히 설정합니다.' },
-            { num: '③', title: '무슨 일이 있었나 (12초)', desc: '"I + 과거시제 동사..."\n핵심 사건을 구체적으로 묘사합니다.' },
-            { num: '④', title: '느낌·배운 점 (7초)', desc: '"It was an amazing / challenging experience."\n"I learned that..." / "Since then, I have..."\n감정이나 교훈으로 마무리합니다.' },
           ]},
           { type: 'heading', text: '핵심 표현' },
           { type: 'example', label: '경험 유형 필수 표현', items: [
@@ -417,10 +395,10 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l5', title: '유형 4 — 빈도 (Frequency)', duration: '6분',
+        id: 'm4l5', title: '유형 4 — 빈도 (Frequency)', duration: '4분',
         content: [
-          { type: 'text', text: '"How often do you...?", "How many times a week do you...?" 처럼 어떤 활동을 얼마나 자주 하는지 묻는 질문입니다. 빈도 표현을 정확히 쓰고 이유나 상황을 덧붙이면 충분합니다.' },
-          { type: 'heading', text: '빈도 질문 신호어' },
+          { type: 'text', text: '"How often do you...?", "How many times a week do you...?" 처럼 활동 빈도를 묻는 질문입니다. 빈도 표현을 정확히 쓰고 이유나 상황을 덧붙이면 30초를 채울 수 있습니다.' },
+          { type: 'heading', text: '신호어' },
           { type: 'example', label: '이런 단어가 보이면 빈도 유형!', items: [
             { en: 'How often do you...?', ko: '얼마나 자주 ~하시나요?' },
             { en: 'How many times a day / week / month do you...?', ko: '하루/일주일/한 달에 몇 번이나 ~하시나요?' },
@@ -438,12 +416,6 @@ const STUDY_MODULES = [
               ['전혀 안 함', 'never', '"I never skip breakfast."'],
             ]
           },
-          { type: 'heading', text: '30초 답변 구조' },
-          { type: 'structure', steps: [
-            { num: '①', title: '빈도 바로 답변 (5초)', desc: '"I + 빈도 표현 + 동사."\n예: "I go to the gym about three times a week."' },
-            { num: '②', title: '이유·상황 설명 (15초)', desc: '"This is because..."\n"I usually do this because..."\n왜 그 빈도인지, 어떤 상황인지 설명합니다.' },
-            { num: '③', title: '추가 정보·마무리 (10초)', desc: '"When I have more time, I try to..."\n"I think this habit helps me..."\n변수나 효과로 마무리합니다.' },
-          ]},
           { type: 'heading', text: '핵심 표현' },
           { type: 'example', label: '빈도 유형 필수 표현', items: [
             { en: 'I usually / generally + 동사 + 빈도.', ko: '저는 보통 ~을 [빈도]로 합니다.' },
@@ -463,22 +435,15 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l6', title: '유형 5 — 방법 (Method/Process)', duration: '6분',
+        id: 'm4l6', title: '유형 5 — 방법 (Method/Process)', duration: '4분',
         content: [
-          { type: 'text', text: '"How do you usually...?", "What do you do when...?" 처럼 어떤 일을 어떻게 하는지 방법·과정을 묻는 질문입니다. 단계적으로 설명하면 자연스럽게 시간을 채울 수 있습니다.' },
-          { type: 'heading', text: '방법 질문 신호어' },
+          { type: 'text', text: '"How do you usually...?", "What do you do when...?" 처럼 방법·과정을 묻는 질문입니다. "First... Then... Finally..." 3단계로 단계적으로 설명하면 자연스럽게 30초를 채울 수 있습니다.' },
+          { type: 'heading', text: '신호어' },
           { type: 'example', label: '이런 단어가 보이면 방법 유형!', items: [
             { en: 'How do you usually...?', ko: '보통 어떻게 ~하시나요?' },
             { en: 'What do you do when...?', ko: '~할 때 무엇을 하시나요?' },
             { en: 'How do you deal with / handle...?', ko: '~을 어떻게 처리/해결하시나요?' },
             { en: 'What steps do you take to...?', ko: '~하기 위해 어떤 절차를 밟으시나요?' },
-          ]},
-          { type: 'heading', text: '30초 답변 구조' },
-          { type: 'structure', steps: [
-            { num: '①', title: '개요 한 문장 (5초)', desc: '"When it comes to [주제], I usually follow a few steps."\n"I have a specific routine for..."' },
-            { num: '②', title: '1단계 방법 (10초)', desc: '"First, I..."\n"The first thing I do is..."' },
-            { num: '③', title: '2단계 방법 (10초)', desc: '"Then / After that, I..."\n"Next, I..."\n두 번째 단계를 이어서 설명합니다.' },
-            { num: '④', title: '마무리·효과 (5초)', desc: '"This way, I can..."\n"I think this approach helps me..."' },
           ]},
           { type: 'heading', text: '순서 연결 표현' },
           { type: 'example', label: '단계 연결 필수 표현', items: [
@@ -499,10 +464,9 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm4l7', title: '핵심 표현 총정리 & 실전 연습', duration: '8분',
+        id: 'm4l7', title: '유형별 첫 문장 & 통합 연습', duration: '4분',
         content: [
-          { type: 'text', text: '5가지 질문 유형에서 공통으로 쓰이는 핵심 표현을 유형별로 정리합니다. 이 표현들을 완전히 자동화될 때까지 연습하세요.' },
-          { type: 'heading', text: '도입 표현 — 유형별 첫 문장' },
+          { type: 'heading', text: '유형별 첫 문장 — 암기 목록' },
           { type: 'table',
             headers: ['유형', '첫 문장 패턴'],
             rows: [
@@ -513,27 +477,6 @@ const STUDY_MODULES = [
               ['방법', '"When it comes to [주제], I usually..." / "First of all, I..."'],
             ]
           },
-          { type: 'heading', text: '이유 제시 표현' },
-          { type: 'example', label: '이유·근거', items: [
-            { en: 'This is because...', ko: '그 이유는...' },
-            { en: 'The main reason is that...', ko: '주된 이유는...' },
-            { en: 'I feel this way because...', ko: '제가 이렇게 생각하는 이유는...' },
-            { en: 'One of the biggest advantages is...', ko: '가장 큰 장점 중 하나는...' },
-          ]},
-          { type: 'heading', text: '예시·경험 연결 표현' },
-          { type: 'example', label: '예시·근거', items: [
-            { en: 'For example, ...', ko: '예를 들어...' },
-            { en: 'For instance, ...', ko: '예를 들면...' },
-            { en: 'In fact, ...', ko: '사실...' },
-            { en: 'Based on my experience, ...', ko: '제 경험을 바탕으로 하면...' },
-          ]},
-          { type: 'heading', text: '마무리 표현' },
-          { type: 'example', label: '마무리', items: [
-            { en: 'So, that\'s why I + 동사.', ko: '그래서 그것이 제가 ~하는 이유입니다.' },
-            { en: 'That\'s why I think / prefer / believe...', ko: '그래서 저는 ~라고 생각/선호/믿습니다.' },
-            { en: 'Overall, I feel that...', ko: '전반적으로 저는 ~라고 생각합니다.' },
-            { en: 'I think this approach / habit / choice works best for me.', ko: '이 방법/습관/선택이 저에게 가장 잘 맞는다고 생각합니다.' },
-          ]},
           { type: 'heading', text: '5유형 통합 연습 — 같은 주제로 유형 바꾸기' },
           { type: 'text', text: '주제: "독서(Reading)" — 같은 주제라도 질문 유형에 따라 답변 구조가 완전히 달라집니다.' },
           { type: 'table',
@@ -739,19 +682,8 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm5l7', title: '핵심 표현 총정리', duration: '4분',
+        id: 'm5l7', title: '공통 표현 & 주의사항', duration: '3분',
         content: [
-          { type: 'heading', text: '유형별 출처 인용 표현' },
-          { type: 'table',
-            headers: ['자료 유형', '출처 표현'],
-            rows: [
-              ['📅 일정표', '"According to the schedule, ..."'],
-              ['📋 안내문', '"According to the notice / flyer, ..."'],
-              ['📧 이메일', '"According to the email, ..."'],
-              ['🏪 메뉴/가격표', '"According to the menu / price list, ..."'],
-              ['🗺️ 안내도', '"According to the map / directory, ..."'],
-            ]
-          },
           { type: 'heading', text: '정보 전달 공통 표현' },
           { type: 'example', label: '날짜·시간', items: [
             { en: 'It is scheduled for [날짜], from [시간] to [시간].', ko: '[날짜] [시간]부터 [시간]까지 예정되어 있습니다.' },
@@ -960,9 +892,8 @@ const STUDY_MODULES = [
         ]
       },
       {
-        id: 'm6l6', title: '핵심 표현 총정리 & 실전 연습', duration: '8분',
+        id: 'm6l6', title: '공감 강도 비교 & 통합 연습', duration: '5분',
         content: [
-          { type: 'text', text: '4가지 유형에서 공통으로 쓰이는 핵심 표현과 유형별 특화 표현을 정리합니다. 60초를 자연스럽게 채우는 흐름을 몸에 익혀 두세요.' },
           { type: 'heading', text: '공감 표현 — 유형별 강도 조절' },
           { type: 'table',
             headers: ['유형', '공감 강도', '첫 문장 예시'],
@@ -973,21 +904,6 @@ const STUDY_MODULES = [
               ['🏢 직장 상황', '약함 (빠르게 해결로)', '"I understand the situation. Let me suggest a few practical options."'],
             ]
           },
-          { type: 'heading', text: '해결책 제시 표현 — 강도별 정리' },
-          { type: 'example', label: '직접 제안 (강함)', items: [
-            { en: 'I\'d like to offer you a full refund immediately.', ko: '즉시 전액 환불을 드리겠습니다.' },
-            { en: 'I can arrange this for you right away.', ko: '즉시 처리해 드릴 수 있습니다.' },
-          ]},
-          { type: 'example', label: '제안 (보통)', items: [
-            { en: 'I would suggest that you...', ko: '~하시는 것을 제안합니다.' },
-            { en: 'One option would be to...', ko: '한 가지 방법은 ~하는 것입니다.' },
-            { en: 'I recommend that you...', ko: '~하시기를 권합니다.' },
-          ]},
-          { type: 'example', label: '부드러운 제안 (완곡)', items: [
-            { en: 'You might want to consider...', ko: '~을 고려해 보시면 어떨까요.' },
-            { en: 'It might be a good idea to...', ko: '~하는 것이 좋은 생각일 수 있습니다.' },
-            { en: 'You could also try...', ko: '~도 시도해 볼 수 있습니다.' },
-          ]},
           { type: 'heading', text: '대안 + 마무리 표현' },
           { type: 'example', label: '대안·마무리', items: [
             { en: 'If that doesn\'t work, another option would be...', ko: '그것이 효과 없다면, 또 다른 방법은...' },

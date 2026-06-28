@@ -22,6 +22,8 @@ body.opic-mode {
   --primary-light: #F1F5F9;
 }
 
+body.opic-mode .nav-tab[data-tab="grammar"] { display: none; }
+
 body.opic-jp-mode {
   --primary:       #4B5563;
   --primary-light: #F1F5F9;

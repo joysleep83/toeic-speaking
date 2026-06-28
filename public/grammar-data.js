@@ -838,12 +838,12 @@ const GRAMMAR_MODULES = [
           { type: 'text', text: '연결 부사는 접속사와 달리 두 문장을 문법적으로 연결하지는 않지만, 앞뒤 문장의 논리 관계를 명확히 알려줍니다. "First... Furthermore... However... Overall..." 같은 틀을 만들면 어떤 주제든 구조적인 답변이 됩니다.' },
           { type: 'heading', text: '기능별 연결 부사 정리' },
           { type: 'example', label: '연결 부사 분류', items: [
-            { en: 'First, / Second, / Finally, / Lastly,', ko: '순서 나열 — 이유나 단계를 번호처럼 정리할 때' },
-            { en: 'In addition, / Furthermore, / Moreover, / What is more,', ko: '추가 정보 — "게다가, 더불어"로 두 번째 이유 도입' },
-            { en: 'However, / On the other hand, / In contrast, / That said,', ko: '반론 도입 — "하지만, 반면에"로 균형 잡힌 의견 표현' },
-            { en: 'Therefore, / As a result, / Consequently, / Thus,', ko: '결론·결과 도입 — "따라서, 그 결과"' },
-            { en: 'For example, / For instance, / To illustrate,', ko: '예시 도입 — "예를 들어"' },
-            { en: 'In conclusion, / To sum up, / Overall, / In summary,', ko: '마무리 도입 — 답변 끝을 자연스럽게 닫을 때' },
+            { en: 'First, / Second, / Finally, / Lastly,', ko: '첫째로 / 둘째로 / 마지막으로 / 끝으로 ✦ 순서 나열 — 이유나 단계를 번호처럼 정리할 때' },
+            { en: 'In addition, / Furthermore, / Moreover, / What is more,', ko: '또한 / 더 나아가 / 더욱이 / 게다가 ✦ 추가 정보 — "게다가, 더불어"로 두 번째 이유 도입' },
+            { en: 'However, / On the other hand, / In contrast, / That said,', ko: '하지만 / 반면에 / 대조적으로 / 그렇긴 해도 ✦ 반론 도입 — "하지만, 반면에"로 균형 잡힌 의견 표현' },
+            { en: 'Therefore, / As a result, / Consequently, / Thus,', ko: '따라서 / 그 결과 / 결과적으로 / 그러므로 ✦ 결론·결과 도입' },
+            { en: 'For example, / For instance, / To illustrate,', ko: '예를 들어 / 예를 들면 / 예를 들어 설명하자면 ✦ 예시 도입' },
+            { en: 'In conclusion, / To sum up, / Overall, / In summary,', ko: '결론적으로 / 요약하자면 / 전반적으로 / 정리하자면 ✦ 마무리 도입 — 답변 끝을 자연스럽게 닫을 때' },
           ]},
           { type: 'heading', text: 'Part 5/6 답변 구조에 연결 부사 적용' },
           { type: 'structure', steps: [
@@ -874,50 +874,105 @@ const GRAMMAR_MODULES = [
           { type: 'text', text: '명사절은 절(문장 덩어리) 전체가 하나의 명사 역할을 하는 구조입니다. 예를 들어 "I believe that communication is key."에서 "that communication is key" 전체가 believe의 목적어입니다. 이 구조를 자유롭게 쓰면 문장이 길어지고 생각이 더 정교하게 표현됩니다.' },
           { type: 'heading', text: '명사절의 종류와 역할' },
           { type: 'table',
-            headers: ['접속사', '역할', '예문'],
+            headers: ['접속사', '역할', '예문 / 한글 해석'],
             rows: [
-              ['that', '목적어·주어·보어로 사용 가능', '"I believe that communication is key." (목적어)'],
-              ['what', '주어 또는 목적어 역할 (선행사 포함)', '"What I find interesting is the variety of options." (주어)'],
-              ['whether / if', '목적어 — 간접의문문(~인지 아닌지)', '"I wonder whether this approach will work."'],
-              ['wh- 의문사', '목적어 — 간접의문문(무엇·언제·왜)', '"I don\'t know why the meeting was cancelled."'],
+              ['that', '목적어·주어·보어로 사용 가능', '"I believe that communication is key." (목적어)\n→ 저는 소통이 핵심이라고 믿습니다.'],
+              ['what', '주어 또는 목적어 역할 (선행사 포함)', '"What I find interesting is the variety of options." (주어)\n→ 제가 흥미롭다고 생각하는 것은 선택지의 다양함입니다.'],
+              ['whether / if', '목적어 — 간접의문문(~인지 아닌지)', '"I wonder whether this approach will work."\n→ 저는 이 방법이 효과가 있을지 궁금합니다.'],
+              ['wh- 의문사', '목적어 — 간접의문문(무엇·언제·왜)', '"I don\'t know why the meeting was cancelled."\n→ 저는 왜 회의가 취소되었는지 모릅니다.'],
             ]
           },
           { type: 'example', label: '명사절 활용 — 의견을 정교하게 표현', items: [
-            { en: '"What I believe is that hard work always pays off."', ko: '"What I ~ is that ..." 패턴 — 내 핵심 신념을 강조해서 시작하는 구조' },
-            { en: '"It is clear that communication is essential in the workplace."', ko: '"It is + 형용사 + that ..." — 가주어(It) 구문으로 자연스럽게 강조' },
-            { en: '"The fact that remote work is becoming more common suggests a major shift."', ko: '"The fact that ..." — "that절"이 fact와 동격, 고급 명사절 구조' },
+            { en: '"What I believe is that hard work always pays off."', ko: '제가 믿는 것은 열심히 노력하면 반드시 보답이 온다는 것입니다. ✦ "What I ~ is that ..." 패턴 — 내 핵심 신념을 강조해서 시작하는 구조' },
+            { en: '"It is clear that communication is essential in the workplace."', ko: '직장에서 소통이 필수적이라는 것은 분명합니다. ✦ "It is + 형용사 + that ..." — 가주어(It) 구문으로 자연스럽게 강조' },
+            { en: '"The fact that remote work is becoming more common suggests a major shift."', ko: '재택근무가 점점 보편화되고 있다는 사실은 큰 변화를 시사합니다. ✦ "The fact that ..." — "that절"이 fact와 동격, 고급 명사절 구조' },
           ]},
           { type: 'tip', icon: '💡', text: '이 세 패턴은 답변 도입부에 즉시 활용 가능합니다: "I think that...", "I believe that...", "It is important that..." / "What I find most important is..." — 입에 붙을 때까지 반복 연습하세요.' }
         ]
       },
       {
-        id: 'g9l2', title: '강조 구문과 도치 — IH·AL 고급 문법', duration: '8분',
+        id: 'g9l2', title: '강조 구문 — It is~that / What I~ 완전 정복', duration: '10분',
         content: [
-          { type: 'text', text: '강조 구문과 도치는 원어민이 특정 내용을 부각시킬 때 자연스럽게 쓰는 고급 문법입니다. 무작정 외우기보다 "어떤 내용을 부각시키고 싶은가"를 먼저 생각하고 쓰는 것이 핵심입니다. 한 답변에 1~2개만 써도 IH/AL 수준의 인상을 줍니다.' },
-          { type: 'heading', text: '① 강조 구문 — It is ~ that ...' },
-          { type: 'text', text: '일반 문장에서 강조하고 싶은 부분을 "It is"와 "that" 사이에 끼워 넣으면 됩니다.' },
-          { type: 'example', label: '강조 구문 예시', items: [
-            { en: '일반: "Employers value communication skills the most."\n강조: "It is communication skills that employers value the most."', ko: '"It is ~ that ..." — communication skills를 앞으로 빼내어 강조' },
-            { en: '일반: "The pandemic changed the way we work."\n강조: "It was the pandemic that changed the way we work."', ko: '과거 사건의 핵심 원인을 강조할 때 효과적' },
-            { en: '"What I find most important is maintaining a work-life balance."', ko: '"What I find ~" — 자신의 핵심 의견을 앞으로 끌어내는 강조 구문' },
+          { type: 'text', text: '강조 구문은 평범한 문장에서 핵심 정보를 앞으로 끌어내어 청자의 주의를 집중시키는 고급 문법입니다. 내용은 같지만 "무엇을 강조하느냐"에 따라 문장의 무게가 달라집니다. IH·AL 채점관은 이 구조가 자연스럽게 나오는지를 봅니다.' },
+          { type: 'heading', text: '① It is ~ that 강조 구문 — 구조 공식' },
+          { type: 'text', text: '공식: It is/was + [강조할 요소] + that + [나머지 문장]\n강조하고 싶은 부분(주어·목적어·부사구)을 "It is"와 "that" 사이에 끼워 넣으면 됩니다. 과거 사건이면 "It was"를 씁니다.' },
+          { type: 'table',
+            headers: ['강조 대상', '원래 문장', '강조 구문', '한글 해석'],
+            rows: [
+              ['주어 강조', '"Communication skills make a difference."', '"It is communication skills that make a difference."', '차이를 만드는 것은 바로 소통 능력입니다.'],
+              ['목적어 강조', '"Employers value teamwork the most."', '"It is teamwork that employers value the most."', '고용주가 가장 중시하는 것은 바로 팀워크입니다.'],
+              ['부사구 강조', '"The pandemic changed everything in 2020."', '"It was in 2020 that the pandemic changed everything."', '팬데믹이 모든 것을 바꾼 것은 바로 2020년이었습니다.'],
+              ['원인 강조', '"Stress leads to lower productivity."', '"It is stress that leads to lower productivity."', '생산성을 떨어뜨리는 것은 바로 스트레스입니다.'],
+            ]
+          },
+          { type: 'heading', text: '② What I ~ 강조 패턴 — 의견을 앞으로 끌어내기' },
+          { type: 'text', text: '"What I ..."는 "내가 ~하는 것은"이라는 뜻으로, 자신의 핵심 생각을 문장 맨 앞에 배치하는 고급 구조입니다. 답변 첫 문장으로 쓰면 강한 첫인상을 줍니다.' },
+          { type: 'example', label: 'What I ~ 핵심 패턴 5가지', items: [
+            { en: '"What I find most important is teamwork and clear communication."', ko: '제가 가장 중요하다고 생각하는 것은 팀워크와 명확한 소통입니다. ✦ find + 형용사 — 평가·판단을 앞에 제시' },
+            { en: '"What I believe is that a positive attitude leads to better results."', ko: '제가 믿는 것은 긍정적인 태도가 더 나은 결과를 가져온다는 것입니다. ✦ believe + that절 — 신념을 강하게 표현' },
+            { en: '"What I value most in a workplace is a collaborative environment."', ko: '제가 직장에서 가장 중시하는 것은 협력적인 분위기입니다. ✦ value most — 우선순위를 명확히 제시' },
+            { en: '"What surprises me is how quickly technology is changing our lives."', ko: '저를 놀라게 하는 것은 기술이 우리 삶을 얼마나 빠르게 바꾸고 있는가입니다. ✦ surprises me — 감정 반응으로 생동감 부여' },
+            { en: '"What makes this job rewarding is the opportunity to help others."', ko: '이 일을 보람있게 만드는 것은 다른 사람을 도울 수 있는 기회입니다. ✦ makes ~ rewarding — 가치 표현에 효과적' },
           ]},
-          { type: 'heading', text: '② 부사구 도치 — Not only, Never, Rarely' },
-          { type: 'text', text: '부정어·빈도 부사(Not only, Never, Rarely 등)를 문장 맨 앞에 두면 주어와 조동사 순서가 뒤집힙니다.' },
-          { type: 'example', label: '도치 표현 — "Not only + 조동사 + 주어"', items: [
-            { en: '일반: "Remote work not only saves time, but it also reduces stress."\n도치: "Not only does remote work save time, but it also reduces stress."', ko: '"Not only + does/did + 주어 + 동사원형" — does가 앞으로 나옴' },
-            { en: '"Rarely do we have such a great opportunity to improve our skills."', ko: '"Rarely / Seldom / Never + 조동사 + 주어" — 강한 강조' },
-          ]},
-          { type: 'heading', text: '③ 분사구문으로 유창하게 연결' },
-          { type: 'example', label: '분사구문 고급 활용', items: [
-            { en: '"Having worked in various industries, I can say that communication is the most important skill."', ko: '"Having + p.p." — 경험을 앞에 제시하고 결론으로 이어지는 고급 구조' },
-            { en: '"Given the rapid development of technology, it is essential to adapt quickly."', ko: '"Given (that) ..." — 전제 조건을 간결하게 제시 (고급 분사구문)' },
-            { en: '"All things considered, I believe remote work is the future of modern business."', ko: '"All things considered" — 모든 면을 고려했을 때, 마무리 표현으로 효과적' },
-          ]},
-          { type: 'tip', icon: '🏆', text: '강조 구문은 한 답변에 최대 1~2개만 씁니다. 억지로 쑤셔 넣다가 문법 오류가 나면 오히려 점수가 깎힙니다. "Not only does...", "What I find...", "Given that..." 중 가장 익숙한 것 하나부터 자동으로 나오도록 연습하세요.' }
+          { type: 'heading', text: '③ 흔한 실수 & 주의사항' },
+          { type: 'table',
+            headers: ['틀린 예', '올바른 예', '이유'],
+            rows: [
+              ['"It is that communication is important."', '"It is communication that is important."', 'that 앞에 반드시 강조할 명사/부사구가 있어야 함'],
+              ['"It is communication skills is important."', '"It is communication skills that are important."', '"that" 생략 불가, 동사도 수 일치 필요'],
+              ['"What I find it interesting..."', '"What I find interesting is..."', 'find 뒤에 목적어 it 불필요, 보어만 씀'],
+              ['"What I believe that teamwork is key."', '"What I believe is that teamwork is key."', '"is" 누락 — What절 + is + that절 구조 필수'],
+            ]
+          },
+          { type: 'tip', icon: '💡', text: '처음에는 "It is ~ that"과 "What I find ~" 둘 중 하나만 골라 완벽하게 익히세요. 두 구조를 한 답변에 모두 쓰려다 문법 오류가 나면 오히려 감점입니다. 하나를 자동으로 쓸 수 있게 된 뒤 나머지를 추가하세요.' }
         ]
       },
       {
-        id: 'g9l3', title: '기본 vs 고급 답변 비교 — 수준별 문법 총정리', duration: '9분',
+        id: 'g9l3', title: '도치 & 분사구문 — IH·AL 유창성의 핵심', duration: '10분',
+        content: [
+          { type: 'text', text: '도치(Inversion)와 분사구문(Participial Phrase)은 원어민이 문장에 강조·리듬·간결함을 더할 때 자연스럽게 쓰는 고급 구조입니다. 도치는 강조, 분사구문은 유창한 연결이 목적입니다. 각각 하나씩만 익혀도 IH→AL 점프에 직접적인 영향을 줍니다.' },
+          { type: 'heading', text: '① 부정어 도치 — Not only, Never, Rarely, Seldom' },
+          { type: 'text', text: '공식: 부정어/빈도부사 + 조동사(do/does/did/can/will) + 주어 + 동사원형\n부정어를 문장 맨 앞에 놓으면 주어와 조동사의 위치가 뒤집힙니다. 이 구조 하나로 문장이 즉시 고급스럽게 들립니다.' },
+          { type: 'table',
+            headers: ['부정어', '도치 공식', '예문', '한글 해석'],
+            rows: [
+              ['Not only', 'Not only + does/did + 주어 + V', '"Not only does remote work save time, but it also reduces stress."', '재택근무는 시간을 절약할 뿐만 아니라 스트레스도 줄여줍니다.'],
+              ['Never', 'Never + have/has + 주어 + p.p.', '"Never have I seen such rapid technological advancement."', '저는 이처럼 빠른 기술 발전을 본 적이 없습니다.'],
+              ['Rarely', 'Rarely + do/does + 주어 + V', '"Rarely do we get a chance to develop both technical and social skills."', '기술적·사회적 역량을 동시에 키울 기회는 좀처럼 없습니다.'],
+              ['Seldom', 'Seldom + do/does + 주어 + V', '"Seldom does a single decision impact the entire team so significantly."', '단 하나의 결정이 팀 전체에 이토록 큰 영향을 미치는 경우는 드뭅니다.'],
+            ]
+          },
+          { type: 'example', label: 'Not only ~ but also 변환 연습 (일반 → 도치)', items: [
+            { en: '일반: "Exercise not only improves health, but it also boosts mood."\n도치: "Not only does exercise improve health, but it also boosts mood."', ko: '운동은 건강을 개선할 뿐만 아니라 기분도 향상시킵니다. ✦ does가 앞으로 이동, 동사는 원형(improve)으로' },
+            { en: '일반: "The new policy did not only reduce costs, but also increased efficiency."\n도치: "Not only did the new policy reduce costs, but it also increased efficiency."', ko: '새 정책은 비용을 절감했을 뿐 아니라 효율도 높였습니다. ✦ 과거면 did 사용' },
+          ]},
+          { type: 'heading', text: '② 분사구문 — 문장을 유창하게 연결하는 고급 구조' },
+          { type: 'text', text: '분사구문은 "접속사 + 주어"를 분사(-ing / p.p.)로 압축하여 더 세련되고 자연스러운 영어를 만드는 구조입니다. 배경·경험·전제를 한 덩어리로 앞에 제시하고, 핵심 주장으로 이어집니다.' },
+          { type: 'example', label: 'Having p.p. — 경험을 앞에 제시하는 완료 분사구문', items: [
+            { en: '"Having worked in various industries, I can say that communication is the most important skill."', ko: '다양한 업계에서 일해본 경험으로 미루어, 소통이 가장 중요한 역량이라고 말할 수 있습니다. ✦ "Having + p.p." = 경험·완료된 사실을 배경으로 제시' },
+            { en: '"Having studied both online and offline, I believe blended learning is more effective."', ko: '온라인과 오프라인 모두 경험해본 결과, 혼합형 학습이 더 효과적이라고 생각합니다. ✦ 비교 경험을 근거로 의견 제시할 때 강력함' },
+          ]},
+          { type: 'example', label: 'Given (that) — 전제·배경을 간결하게 제시', items: [
+            { en: '"Given the rapid development of technology, it is essential to adapt quickly."', ko: '기술이 빠르게 발전하고 있는 상황을 고려하면, 빠르게 적응하는 것이 필수적입니다. ✦ "Given + 명사구" 또는 "Given that + 절" 모두 가능' },
+            { en: '"Given that many companies now operate globally, cross-cultural communication skills are critical."', ko: '많은 기업이 이제 글로벌하게 운영된다는 점을 감안하면, 다문화 소통 역량은 매우 중요합니다.' },
+          ]},
+          { type: 'example', label: '마무리 분사구문 — 답변 끝을 격조있게 닫기', items: [
+            { en: '"All things considered, I believe remote work is the future of modern business."', ko: '모든 면을 고려했을 때, 재택근무가 현대 비즈니스의 미래라고 생각합니다. ✦ 결론 첫 문장으로 사용하면 AL 수준의 마무리' },
+            { en: '"Considering all the factors mentioned, flexible working arrangements seem to be the most practical solution."', ko: '언급한 모든 요소들을 고려하면, 유연한 근무 형태가 가장 현실적인 해결책으로 보입니다.' },
+          ]},
+          { type: 'heading', text: '③ 도치 & 분사구문 — 답변 구조 속 배치 전략' },
+          { type: 'structure', steps: [
+            { num: '도입', title: 'What I ~ 또는 It is ~ that으로 시작', desc: '"What I find most important about this topic is that flexibility plays a key role."' },
+            { num: '이유 1', title: 'Having p.p. 로 경험·배경 제시', desc: '"Having experienced both environments, I can confidently say that a collaborative setting boosts creativity."' },
+            { num: '이유 2', title: 'Not only ~ but also 도치로 두 번째 근거 강조', desc: '"Not only does it improve individual performance, but it also strengthens team dynamics."' },
+            { num: '반론', title: 'Given that + 양보', desc: '"Given that some people thrive in independent settings, personal preference should also be considered."' },
+            { num: '결론', title: 'All things considered 분사구문으로 마무리', desc: '"All things considered, I firmly believe that a balanced approach leads to the best outcomes."' },
+          ]},
+          { type: 'tip', icon: '🏆', text: '도치는 답변 1회, 분사구문은 도입부와 결론에 1회씩 — 총 3개 이내가 자연스럽습니다. 억지로 넣은 구조는 채점관이 즉시 알아챕니다. "Not only does...", "Having worked...", "All things considered" 이 세 문장을 주제와 무관하게 즉시 말할 수 있을 때까지 반복 연습하세요.' }
+        ]
+      },
+      {
+        id: 'g9l4', title: '기본 vs 고급 답변 비교 — 수준별 문법 총정리', duration: '9분',
         content: [
           { type: 'text', text: '같은 주제라도 어떤 문법 구조와 어휘를 쓰느냐에 따라 IL, IM, IH, AL이 결정됩니다. 단순히 단어를 바꾸는 것이 아니라, 문장 구조 자체가 달라져야 점수가 오릅니다. 아래 비교를 통해 자신의 현재 수준을 파악하고 목표 수준의 구조를 연습하세요.' },
           { type: 'heading', text: '수준별 답변 비교 — 원격 근무에 대한 의견' },

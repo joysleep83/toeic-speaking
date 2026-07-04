@@ -176,7 +176,8 @@ const VOCAB_MODULES = [
       { word: 'pay attention', meaning: '주의를 기울이다, 집중하다', pos: '숙어', example: 'The audience is paying attention to the speaker at the front.', exampleKo: '청중은 앞에 있는 연사에게 주의를 기울이고 있습니다.', tip: '"pay attention to + 명사"로 활용 — 집중하는 사람 묘사에 자연스러운 표현' },
       { word: 'things like ~', meaning: '~와 같은 것들', pos: '표현', example: 'I can see things like chairs, tables, and a projector screen in the room.', exampleKo: '방 안에는 의자, 테이블, 프로젝터 화면 같은 것들이 보입니다.', tip: 'Such as보다 대화체에서 훨씬 많이 쓰임 — Part 1 묘사에서 자연스럽게 열거할 때' },
       { word: 'what appears to be ~', meaning: '~인 것으로 보이는', pos: '표현', example: 'The photo was taken on what appears to be a sunny afternoon.', exampleKo: '사진은 화창한 오후로 보이는 날에 촬영된 것 같습니다.', tip: '날씨·상황을 100% 단정하지 않고 추측할 때 쓰는 세련된 표현' },
-      { word: 'full of activity', meaning: '활동으로 가득한, 북적이는', pos: '표현', example: 'The outdoor market looks full of activity with vendors and shoppers.', exampleKo: '야외 시장은 판매상과 쇼핑객들로 활기차 보입니다.', tip: '시장·공공장소가 사람들로 북적이는 활기찬 모습을 묘사할 때 사용' }
+      { word: 'full of activity', meaning: '활동으로 가득한, 북적이는', pos: '표현', example: 'The outdoor market looks full of activity with vendors and shoppers.', exampleKo: '야외 시장은 판매상과 쇼핑객들로 활기차 보입니다.', tip: '시장·공공장소가 사람들로 북적이는 활기찬 모습을 묘사할 때 사용' },
+      { word: 'suggesting it might be ~', meaning: '~일 수도 있음을 시사하며', pos: '표현', example: 'The airport in the background looks quite busy, suggesting it might be a peak travel time.', exampleKo: '배경의 공항이 꽤 붐벼 보여서, 성수기 여행 시간대일 수도 있음을 시사합니다.', tip: '분사구문(-ing)으로 앞 내용을 근거로 추측할 때 사용 — "~인 것을 보니 ~인 것 같다"는 뉘앙스' }
     ]
   },
 
@@ -234,7 +235,11 @@ const VOCAB_MODULES = [
       { word: 'balance', meaning: 'n. 균형; 잔액, 잔고 · v. 균형을 맞추다', pos: '명사/동사', example: 'I try to balance work and personal life as much as possible.', exampleKo: '나는 가능한 한 일과 개인 생활의 균형을 맞추려고 노력합니다.', tip: '"work-life balance" = 일·생활 균형 / "bank balance" = 잔고' },
       { word: 'highlight', meaning: 'n. 하이라이트, 최고의 순간 · v. 강조하다, 부각시키다', pos: '명사/동사', example: 'The highlight of my week is usually the team lunch on Fridays.', exampleKo: '내 주의 하이라이트는 대개 금요일에 열리는 팀 점심입니다.', tip: '"the highlight of..." — 경험 중 가장 좋았던 부분 표현에 활용' },
       { word: 'rewarding', meaning: '보람 있는', pos: '형용사', example: 'I find teaching others to be one of the most rewarding activities.', exampleKo: '나는 다른 사람을 가르치는 것이 가장 보람 있는 활동 중 하나라고 생각합니다.', tip: '= fulfilling / 직업·취미 관련 이유 제시에 활용' },
-      { word: 'that said', meaning: '그렇긴 하지만, 그렇다고는 해도', pos: '전환어', example: 'Working from home saves commute time. That said, I miss team interaction.', exampleKo: '재택근무는 출퇴근 시간을 절약해 줍니다. 그렇긴 하지만, 팀과의 교류가 그립습니다.', tip: 'However나 But보다 부드러운 전환어 — 앞 내용을 인정하면서도 다른 측면을 시작할 때 사용' }
+      { word: 'that said', meaning: '그렇긴 하지만, 그렇다고는 해도', pos: '전환어', example: 'Working from home saves commute time. That said, I miss team interaction.', exampleKo: '재택근무는 출퇴근 시간을 절약해 줍니다. 그렇긴 하지만, 팀과의 교류가 그립습니다.', tip: 'However나 But보다 부드러운 전환어 — 앞 내용을 인정하면서도 다른 측면을 시작할 때 사용' },
+      { word: 'After a long day', meaning: '긴 하루를 보낸 후에, 힘든 하루 끝에', pos: '표현', example: 'After a long day, I usually unwind by watching a TV show or listening to music.', exampleKo: '긴 하루를 보낸 후에는 보통 TV를 보거나 음악을 들으며 긴장을 풉니다.', tip: '단순히 시간이 길었다는 뜻이 아니라, 바쁘고 고단했던 하루를 뜻하는 관용 표현' },
+      { word: 'unwind', meaning: '긴장을 풀다, 휴식하다', pos: '동사', example: 'After a long day, I usually unwind by watching a TV show or listening to music.', exampleKo: '긴 하루를 보낸 후에는 보통 TV를 보거나 음악을 들으며 긴장을 풉니다.', tip: '= relax보다 "긴장을 해소하다"는 뉘앙스가 강해 원어민이 자주 쓰는 표현' },
+      { word: 'in my neighborhood', meaning: '우리 동네에서, 집 근처에서', pos: '표현', example: 'Sometimes I also go for a short walk in my neighborhood, which I find very refreshing.', exampleKo: '가끔은 동네에서 짧게 산책을 하기도 하는데, 그게 아주 상쾌하게 느껴집니다.', tip: '내가 사는 주변 지역이나 이웃 동네를 편하게 가리킬 때 사용' },
+      { word: ', which I find ~', meaning: '그런데 그것이 ~라고 느껴지다', pos: '표현', example: 'I go for a short walk in my neighborhood, which I find very refreshing.', exampleKo: '동네에서 짧게 산책을 하는데, 그게 아주 상쾌하게 느껴집니다.', tip: '계속적 용법(콤마+which)으로 앞 내용 전체를 받아 보충 설명 — find는 "찾다"가 아니라 "~라고 느끼다"' }
     ]
   },
 
@@ -294,7 +299,8 @@ const VOCAB_MODULES = [
       { word: 'accompany', meaning: '동반하다, 함께 오다', pos: '동사', example: 'Children must be accompanied by an adult at all times.', exampleKo: '어린이는 항상 성인과 동반해야 합니다.', tip: '안내문·규정에서 동반 요건 표현에 빈출' },
       { word: 'be likely to ~', meaning: '~할 가능성이 있다, ~일 것 같다', pos: '구문', example: 'This event is likely to attract more than 500 attendees.', exampleKo: '이 행사는 500명 이상의 참가자를 끌어들일 가능성이 있습니다.', tip: '"is/are likely to + 동사원형" — 부드러운 추측 표현으로 정보 자료 답변에 자주 사용' },
       { word: 'qualify for ~', meaning: '~의 자격을 얻다, ~ 조건에 부합하다', pos: '동사', example: 'Attendees who register early may qualify for a discounted rate.', exampleKo: '일찍 등록한 참가자는 할인 요금 혜택을 받을 수 있습니다.', tip: '= be eligible for / 조건 충족 여부를 표현할 때 사용' },
-      { word: 'as well', meaning: '~도 역시', pos: '부사', example: 'The venue has parking available, and there is a shuttle service as well.', exampleKo: '행사장에는 주차 공간이 있으며, 셔틀 서비스도 있습니다.', tip: '문장 끝에 붙여 "~도 역시"를 나타냄 — "too"와 같은 의미이나 더 격식 있음' }
+      { word: 'as well', meaning: '~도 역시', pos: '부사', example: 'The venue has parking available, and there is a shuttle service as well.', exampleKo: '행사장에는 주차 공간이 있으며, 셔틀 서비스도 있습니다.', tip: '문장 끝에 붙여 "~도 역시"를 나타냄 — "too"와 같은 의미이나 더 격식 있음' },
+      { word: 'heading to ~', meaning: '~를 향해 가다, ~로 이동하다', pos: '동사구', example: 'I suggest visiting the Tech booth before 1 PM and heading to the Finance booth when it opens at 2 PM.', exampleKo: '1시 전에 기술 부스를 방문하고, 2시에 문을 여는 금융 부스로 이동하는 것을 제안합니다.', tip: 'go to보다 훨씬 자연스럽고 자주 쓰이는 표현 — 일정 안내에 유용' }
     ]
   },
 
@@ -357,7 +363,19 @@ const VOCAB_MODULES = [
       { word: 'with enough notice', meaning: '충분한 사전 통보가 있으면', pos: '표현', example: 'We can accommodate your request with enough notice beforehand.', exampleKo: '충분한 사전 통보가 있으면 귀하의 요청을 수용할 수 있습니다.', tip: '= if notified in advance / 미리 연락하면 준비가 가능하다는 뉘앙스' },
       { word: 'redirect A to B', meaning: 'A를 B로 방향을 돌리다', pos: '동사', example: 'We can redirect the budget from travel costs to online tools.', exampleKo: '출장 비용 예산을 온라인 도구로 전환할 수 있습니다.', tip: '자원이나 흐름의 방향을 바꿀 때 사용하는 비즈니스 표현' },
       { word: 'meanwhile', meaning: '그동안에, 한편', pos: '부사', example: 'Meanwhile, I will contact the vendor to check availability.', exampleKo: '그동안 저는 공급업체에 연락해 가용 여부를 확인하겠습니다.', tip: '상대방이 한 가지를 처리하는 동안 자신은 다른 일을 하겠다는 표현 — 대화의 화제를 부드럽게 전환' },
-      { word: 'to see if ~', meaning: '~인지 확인하기 위해', pos: '구문', example: 'I will call the supplier to see if we can get a discount.', exampleKo: '할인이 가능한지 알아보기 위해 공급업체에 전화하겠습니다.', tip: '비즈니스 대화에서 조건이나 가능 여부를 알아본다고 할 때 사용하는 패턴' }
+      { word: 'to see if ~', meaning: '~인지 확인하기 위해', pos: '구문', example: 'I will call the supplier to see if we can get a discount.', exampleKo: '할인이 가능한지 알아보기 위해 공급업체에 전화하겠습니다.', tip: '비즈니스 대화에서 조건이나 가능 여부를 알아본다고 할 때 사용하는 패턴' },
+      { word: 'Even if', meaning: '비록 ~일지라도', pos: '접속사', example: 'Even if not ideal, large meeting rooms could serve as a temporary training space.', exampleKo: '이상적이지는 않더라도, 큰 회의실이 임시 교육 공간 역할을 할 수 있습니다.', tip: '가정·양보를 나타내는 접속사 — 차선책을 제안할 때 유용' },
+      { word: 'Check if + 주어 + 동사', meaning: '~인지 아닌지 확인해보다', pos: '구문', example: 'Check if any large meeting rooms are available all day Monday.', exampleKo: '월요일 하루 종일 큰 회의실을 이용할 수 있는지 확인해 보세요.', tip: '여기서 if는 "만약"이 아니라 "~인지 아닌지"로 해석되는 필수 확인 패턴' },
+      { word: 'serve as', meaning: '~의 역할을 하다, ~로 대체되어 쓰이다', pos: '동사구', example: 'Even if not ideal, they could serve as a temporary training space.', exampleKo: '이상적이지는 않더라도, 임시 교육 공간 역할을 할 수 있습니다.', tip: '원래 용도는 아니지만 대체 용도로 기능할 수 있다는 뜻' },
+      { word: 'By the day', meaning: '일 단위로, 하루 기준으로', pos: '표현', example: 'A nearby co-working space can often be booked by the day on short notice.', exampleKo: '근처 코워킹 스페이스는 촉박하게라도 하루 단위로 예약할 수 있는 경우가 많습니다.', tip: '참고: 시간 단위는 by the hour, 월 단위는 by the month' },
+      { word: '★ on short notice', meaning: '갑작스럽게, 촉박하게', pos: '표현', example: 'A nearby co-working space can often be booked by the day on short notice.', exampleKo: '근처 코워킹 스페이스는 촉박하게라도 하루 단위로 예약할 수 있는 경우가 많습니다.', tip: '사전 통보 없이 급하게 무언가를 진행해야 할 때 쓰는 비즈니스 핵심 숙어' },
+      { word: 'Affordable', meaning: '가격이 알맞은, 비용 부담이 적은', pos: '형용사', example: 'A nearby co-working space is quite affordable and easy to book on short notice.', exampleKo: '근처 코워킹 스페이스는 비용도 합리적이고 촉박하게도 예약하기 쉽습니다.', tip: 'Cheap 대신 격식 있게 "가격이 합리적"임을 나타낼 때 사용' },
+      { word: 'Be delivered', meaning: '(강의·교육 등이) 제공되다, 진행되다', pos: '동사구', example: 'Some orientation sessions could be delivered online via video call if needed.', exampleKo: '필요하다면 일부 오리엔테이션 세션은 화상 통화로 온라인 제공될 수 있습니다.', tip: '지식·메시지·교육과 함께 쓰이면 "배달되다"가 아니라 "제공되다"라는 뜻이 됨' },
+      { word: 'Via', meaning: '~를 통해, ~를 경유하여', pos: '전치사', example: 'Some orientation sessions could be delivered online via video call.', exampleKo: '일부 오리엔테이션 세션은 화상 통화를 통해 온라인으로 제공될 수 있습니다.', tip: '"via email", "via Zoom"처럼 비즈니스 상황에서 수단을 나타낼 때 빈출' },
+      { word: 'Video call', meaning: '화상 회의, 화상 통화', pos: '명사', example: 'Some orientation sessions could be delivered online via video call if needed.', exampleKo: '필요하다면 일부 오리엔테이션 세션은 화상 통화로 온라인 제공될 수 있습니다.', tip: '줌(Zoom), 팀즈(Teams) 등을 이용한 화상 회의를 통칭' },
+      { word: 'Internal room', meaning: '(회사) 내부 회의실', pos: '명사', example: "I'll start checking internal room availability right now.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인해 보겠습니다.', tip: '회사 내부의 방(회의실)들을 가리키는 표현' },
+      { word: 'Availability', meaning: '이용 가능 여부, 여유 있음', pos: '명사', example: "I'll start checking internal room availability right now.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인해 보겠습니다.', tip: 'available의 명사형 — 호텔·회의실 예약 상황에서 가장 많이 쓰는 단어' },
+      { word: '★ get back to (someone)', meaning: '~에게 (알아본 후) 다시 연락하다', pos: '동사구', example: "I'll start checking internal room availability right now and get back to you within the hour.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인하고 한 시간 안에 다시 연락드리겠습니다.', tip: 'contact you again보다 훨씬 자연스럽고 세련된 원어민 표현' }
     ]
   },
 
@@ -401,7 +419,15 @@ const VOCAB_MODULES = [
       { word: 'end up -ing', meaning: '결국 ~하게 되다', pos: '구문', example: 'Overworked employees often end up making more mistakes than usual.', exampleKo: '과로한 직원들은 종종 평소보다 더 많은 실수를 하게 됩니다.', tip: '의도치 않은 결과를 맞이했을 때 쓰는 표현 — "end up in a bad situation"도 같은 구조' },
       { word: 'value (동사)', meaning: '~를 소중하게 여기다', pos: '동사', example: 'Employees who feel valued tend to stay longer at a company.', exampleKo: '소중하게 여겨진다는 느낌을 받는 직원들은 회사에 더 오래 머무르는 경향이 있습니다.', tip: '"value"가 명사가 아닌 동사로 쓰인 것에 주의 — "value someone/something"' },
       { word: 'morale', meaning: '(직원) 사기, 의욕', pos: '명사', example: 'Flexible working hours can greatly improve employee morale.', exampleKo: '유연한 근무 시간은 직원들의 사기를 크게 높일 수 있습니다.', tip: '직장 내 집단적 의욕·사기를 의미 — "boost/raise morale" = 사기를 높이다' },
-      { word: 'retention', meaning: '직원 유지, 이직 방지', pos: '명사', example: 'Better benefits lead to higher employee retention rates.', exampleKo: '더 나은 혜택은 높은 직원 유지율로 이어집니다.', tip: '"employee retention" = 인재를 회사에 계속 머무르게 하는 것 — 반대: turnover(이직률)' }
+      { word: 'retention', meaning: '직원 유지, 이직 방지', pos: '명사', example: 'Better benefits lead to higher employee retention rates.', exampleKo: '더 나은 혜택은 높은 직원 유지율로 이어집니다.', tip: '"employee retention" = 인재를 회사에 계속 머무르게 하는 것 — 반대: turnover(이직률)' },
+      { word: 'Productivity boost', meaning: '생산성 향상, 생산성 급증', pos: '명사', example: 'Microsoft Japan saw a 40% productivity boost after a mandatory rest period.', exampleKo: '일본 마이크로소프트는 의무 휴식 기간 이후 생산성이 40% 급증했습니다.', tip: 'boost는 increase보다 "확 밀어 올려진 것"을 뜻해 "급증"에 가까운 뉘앙스' },
+      { word: 'To a limited extent', meaning: '제한적인 범위 내에서, 어느 정도까지만', pos: '표현', example: 'I think employee monitoring is acceptable to a limited extent, but it must be handled carefully.', exampleKo: '직원 모니터링은 어느 정도까지는 받아들일 수 있다고 생각하지만, 신중하게 다뤄져야 합니다.', tip: 'extent(정도)에 limited가 붙어 "무조건 허용이 아니라 일정 선까지만"이라는 조건부 입장을 표현' },
+      { word: 'On one hand', meaning: '한편으로는', pos: '표현', example: 'On one hand, companies have a legitimate interest in ensuring employees stay focused.', exampleKo: '한편으로는, 회사가 직원들의 업무 집중을 보장하는 데 정당한 이해관계를 가지고 있습니다.', tip: '곧 반대 측면(On the other hand)이 이어질 것을 암시 — 균형 잡힌 의견 제시에 사용' },
+      { word: 'Legitimate interest', meaning: '정당한 이해관계', pos: '표현', example: 'Companies have a legitimate interest in ensuring employees stay focused and that data remains secure.', exampleKo: '회사는 직원들이 집중하고 데이터가 안전하게 유지되도록 할 정당한 이해관계가 있습니다.', tip: 'Legitimate은 "타당한, 정당한" / Interest는 여기서 "이해관계"를 뜻함 — 비즈니스·법률 영어에 빈출' },
+      { word: 'Ensuring', meaning: '반드시 ~하도록 보장하는 것', pos: '동명사', example: 'Companies have a legitimate interest in ensuring employees stay focused.', exampleKo: '회사는 직원들이 집중하도록 보장할 정당한 이해관계가 있습니다.', tip: 'making(하게 만들기)보다 훨씬 강한 책임감을 담은 단어 — "반드시 그렇게 되도록 확실히 해두다"' },
+      { word: 'excessive surveillance', meaning: '과도한 감시', pos: '표현', example: 'Excessive surveillance can erode trust and create a stressful environment.', exampleKo: '과도한 감시는 신뢰를 조금씩 무너뜨리고 스트레스가 많은 환경을 만들 수 있습니다.', tip: 'Excessive(도를 지나친) + Surveillance(감시) — 선을 넘은 직원 감시 상태를 뜻함' },
+      { word: 'is a leading cause of ~', meaning: '~의 주된 원인이다', pos: '표현', example: 'Research shows that distrust is a leading cause of employee dissatisfaction.', exampleKo: '연구에 따르면 불신은 직원 불만족의 주된 원인입니다.', tip: '여러 원인 중 가장 앞 순위에 있는 결정적 원인을 뜻함' },
+      { word: 'respectful practice', meaning: '(직원을) 존중하는 관행', pos: '표현', example: 'If employees are informed about what is monitored and why, it becomes a reasonable and respectful practice.', exampleKo: '무엇을, 왜 모니터링하는지 직원에게 알린다면 합리적이고 직원을 존중하는 관행이 됩니다.', tip: 'Practice는 "연습"이 아니라 조직 내에 굳어진 "관행, 제도"를 뜻함' }
     ]
   },
 
@@ -452,7 +478,15 @@ const VOCAB_MODULES = [
       { word: 'correlate with ~', meaning: '~와 상호 관련이 있다', pos: '동사', example: 'Heavy social media use often correlates with lower levels of life satisfaction.', exampleKo: '과도한 소셜 미디어 사용은 종종 낮은 삶의 만족도와 상관관계가 있습니다.', tip: '"A correlates with B" = A와 B는 서로 연관이 있다 — 인과관계는 아니지만 패턴이 있음을 나타냄' },
       { word: 'struggles', meaning: '고난, 고충, 어려움', pos: '명사', example: 'Seeing only others\' highlights on social media ignores the real struggles behind the scenes.', exampleKo: '소셜 미디어에서 타인의 하이라이트만 보면 그 이면의 진짜 어려움은 놓치게 됩니다.', tip: '삶의 고난, 우울함, 어려운 순간 등을 포괄적으로 뜻함 — "daily struggles" = 일상적인 어려움' },
       { word: 'inadequate', meaning: '불충분한, 초라한 느낌', pos: '형용사', example: 'Comparing yourself to others on social media can make you feel inadequate.', exampleKo: '소셜 미디어에서 자신을 타인과 비교하면 초라함을 느낄 수 있습니다.', tip: '단순히 "부족한"을 넘어, 남들과 비교되어 자괴감을 느끼는 심리적 뉘앙스 — "feel inadequate"' },
-      { word: 'genuinely', meaning: '진정으로, 진짜로', pos: '부사', example: 'We should genuinely connect with others, not just collect followers online.', exampleKo: '팔로워를 모으는 것이 아니라 진정으로 사람들과 연결되어야 합니다.', tip: '= truly, sincerely / genuine (형용사) — 겉치레 없이 진심으로라는 뉘앙스' }
+      { word: 'genuinely', meaning: '진정으로, 진짜로', pos: '부사', example: 'We should genuinely connect with others, not just collect followers online.', exampleKo: '팔로워를 모으는 것이 아니라 진정으로 사람들과 연결되어야 합니다.', tip: '= truly, sincerely / genuine (형용사) — 겉치레 없이 진심으로라는 뉘앙스' },
+      { word: 'I find ~', meaning: '나는 ~라고 생각한다, 느낀다', pos: '표현', example: 'I find the second perspective more convincing — cultures must evolve to remain relevant.', exampleKo: '저는 두 번째 관점이 더 설득력 있다고 생각합니다 — 문화는 시대에 맞게 진화해야 합니다.', tip: '"찾다"가 아니라 스스로 판단한 의견을 정중하게 제시할 때 쓰는 표현' },
+      { word: 'more convincing', meaning: '더 설득력 있는', pos: '형용사', example: 'I find the second perspective more convincing.', exampleKo: '저는 두 번째 관점이 더 설득력 있다고 생각합니다.', tip: 'convince(설득하다)에 -ing가 붙어 "설득력 있는, 고개가 끄덕여지는"이라는 뜻의 형용사가 됨' },
+      { word: 'must evolve', meaning: '반드시 진화해야 한다', pos: '표현', example: 'Cultures must evolve to remain relevant.', exampleKo: '문화는 시대에 맞게 살아남기 위해 반드시 진화해야 합니다.', tip: 'should보다 훨씬 강한 당위성을 나타내는 must — 선택이 아닌 필수 조건임을 강조' },
+      { word: 'to remain relevant', meaning: '시대에 뒤처지지 않기 위해, 생명력을 유지하기 위해', pos: '표현', example: 'Cultures must evolve to remain relevant.', exampleKo: '문화는 시대에 맞게 살아남기 위해 반드시 진화해야 합니다.', tip: 'relevant는 단순히 "관련 있다"가 아니라 지금 시대에 여전히 의미와 쓸모가 있다는 뜻' },
+      { word: 'rigidly clinging to them', meaning: '그것들에 완고하게 집착하는 것', pos: '표현', example: 'While traditions create a sense of shared identity, rigidly clinging to them can lead to stagnation.', exampleKo: '전통이 공동체 정체성을 만들어주기도 하지만, 그것에 완고하게 집착하면 정체로 이어질 수 있습니다.', tip: 'rigidly(융통성 없이) + cling to(매달리다) — 시대가 변해도 옛것만 고집하는 부정적 뉘앙스' },
+      { word: 'lead to stagnation', meaning: '정체로 이어지다', pos: '동사구', example: 'Rigidly clinging to traditions can lead to stagnation.', exampleKo: '전통에 완고하게 집착하면 정체로 이어질 수 있습니다.', tip: 'stagnation은 고인 물이 썩듯 더 이상 발전하지 못하는 상태를 뜻함' },
+      { word: 'thrived', meaning: '번창했다, 전성기를 누렸다', pos: '동사', example: 'History shows that cultures which adapted to new ideas thrived.', exampleKo: '역사를 보면 새로운 사상에 적응한 문화는 번창했습니다.', tip: '단순히 살아남은 것을 넘어 크게 번성했다는 긍정적 의미' },
+      { word: 'abandoning', meaning: '저버리는 것, 포기하는 것', pos: '동명사', example: 'Evolution should not mean abandoning everything from the past.', exampleKo: '진화한다고 해서 과거의 모든 것을 저버려야 한다는 뜻은 아닙니다.', tip: '단순히 치우는 게 아니라 책임이나 소중한 유산을 "저버리다"는 무거운 뉘앙스' }
     ]
   },
 

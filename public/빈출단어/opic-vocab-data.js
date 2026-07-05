@@ -1,14 +1,14 @@
 // ── OPIc 주제별 핵심 어휘 ────────────────────────────────────
-// 8개 모듈 · 주제별 30~38개 단어
+// 9개 모듈 · 주제별 30~38개 단어
 
 const OPIC_VOCAB_MODULES = [
 
   // ══════════════════════════════════════════════════════════
-  // Module 1 — 자기소개 & 일상 묘사
+  // Module 1 — 자기소개
   // ══════════════════════════════════════════════════════════
   {
     id: 'ov1',
-    moduleTitle: '자기소개 & 일상 묘사',
+    moduleTitle: '자기소개',
     icon: '🙋',
     color: '#0D9488',
     words: [
@@ -18,6 +18,31 @@ const OPIC_VOCAB_MODULES = [
       { word: 'currently', meaning: '현재, 지금', pos: '부사', example: "I'm currently working as a graphic designer at a small agency.", exampleKo: '현재 작은 에이전시에서 그래픽 디자이너로 일하고 있어요.', tip: '자기소개 첫 문장에 자연스럽게 사용' },
       { word: 'based in', meaning: '~에 거주하다, ~에 본사를 두다', pos: '구동사', example: "I'm based in Seoul but originally from Daejeon.", exampleKo: '현재 서울에 살고 있지만 원래는 대전 출신이에요.', tip: '"I live in"보다 세련된 표현' },
       { word: 'background', meaning: '배경, 출신', pos: '명사', example: "I have a background in economics, which led me to finance.", exampleKo: '경제학 배경이 있어서 금융 쪽으로 가게 됐어요.', tip: '"I have a background in + 분야" — 전공·경력 설명에 필수' },
+      { word: 'overall', meaning: '전반적으로', pos: '부사', example: "Overall, I think I lead a pretty balanced and fulfilling life.", exampleKo: '전반적으로 꽤 균형 잡히고 보람 있는 삶을 살고 있다고 생각해요.', tip: '답변 마무리 문장에 자연스럽게 사용' },
+      { word: 'genuine', meaning: '진심 어린, 진짜의', pos: '형용사', example: "I genuinely enjoy cooking — it's not just a hobby, it's a passion.", exampleKo: '정말 진심으로 요리를 즐겨요 — 단순한 취미가 아니라 열정이에요.', tip: '"genuinely" 부사형이 대화체에서 더 자주 사용' },
+      { word: 'in terms of', meaning: '~의 측면에서, ~에 관해서', pos: '구', example: "In terms of my personality, I'd say I'm actually a bit introverted.", exampleKo: '성격 면에서는, 저는 사실 다소 내성적이라고 할 수 있어요.', tip: '화제를 부드럽게 전환할 때 쓰는 표현 — "In terms of + 명사"로 새로운 주제를 자연스럽게 도입' },
+      { word: "I'd say", meaning: '~라고 할 수 있어요, ~인 편이에요', pos: '관용구', example: "I'd say I'm someone who values honesty above almost everything else.", exampleKo: '저는 거의 무엇보다 정직함을 중요하게 여기는 사람이라고 할 수 있어요.', tip: '"I am ~"이라고 단정하기보다 겸손하고 부드럽게 의견을 제시하는 표현 (= I would say)' },
+      { word: 'try out', meaning: '(한번) 시도해보다, 경험해보다', pos: '구동사', example: "Whenever I visit a new city, I like to try out the local restaurants.", exampleKo: '새로운 도시를 방문할 때마다 현지 식당을 한번 가보는 것을 좋아해요.', tip: '단순히 "먹어보다"를 넘어 새로운 것을 경험해보고 알아간다는 뉘앙스' },
+      { word: 'be into', meaning: '~에 푹 빠져 있다, ~를 좋아하다', pos: '구동사', example: "I'm really into photography these days.", exampleKo: '요즘 사진 찍는 것에 푹 빠져 있어요.', tip: 'like/love 대신 자주 쓰는 생생한 표현 — "really into"로 강조 가능' },
+      { word: "have ~ under one's belt", meaning: '(경험·기술을) 쌓다, 보유하다', pos: '관용구', example: "I've been in this field for about twelve years now, so I have quite a bit of experience under my belt.", exampleKo: '이 분야에서 일한 지 약 12년이 되어서, 꽤 많은 경험을 쌓았어요.', tip: '벨트 아래를 채웠다는 이미지에서 유래 — 경험·지식·성과를 "내 것으로 축적했다"는 의미' },
+      { word: 'quite a bit of', meaning: '꽤 많은, 상당한', pos: '구', example: "I have quite a bit of experience under my belt.", exampleKo: '저는 꽤 많은 경험을 갖고 있어요.', tip: '= a lot of / a lot of보다 세련되고 원어민들이 자주 쓰는 표현' },
+      { word: 'for everyday life', meaning: '일상생활에, 일상적인 삶에', pos: '구', example: "There are several nice cafes nearby, so it's really convenient for everyday life.", exampleKo: '근처에 괜찮은 카페가 여러 개 있어서 일상생활에 정말 편리해요.', tip: 'everyday(붙여쓰기)는 "일상적인, 매일의"라는 뜻의 형용사' },
+      { word: 'at first glance', meaning: '언뜻 보기에, 첫눈에', pos: '관용구', example: "I'm much more curious than people might expect at first glance.", exampleKo: '저는 사람들이 언뜻 보기에 예상하는 것보다 훨씬 호기심이 많아요.', tip: '사람·사물의 첫인상을 말할 때 자주 쓰는 표현' },
+      { word: 'come across', meaning: '우연히 마주치다, 발견하다', pos: '구동사', example: "I enjoy digging into new topics — whether it's something related to my work or just something random I came across online.", exampleKo: '일과 관련된 것이든 온라인에서 우연히 발견한 무작위 주제든, 새로운 주제를 파고드는 것을 즐겨요.', tip: '"우연히 마주치다/발견하다"라는 뜻의 중요 숙어 — came across는 과거형' },
+      { word: 'on the surface', meaning: '겉보기에는, 표면적으로는', pos: '구', example: "I think of myself as someone who's quiet on the surface but always exploring something new underneath.", exampleKo: '저는 겉보기에는 조용하지만 내면에서는 항상 새로운 것을 탐구하는 사람이라고 생각해요.', tip: '반대말: underneath (내면에는, 마음속 깊은 곳에서는) — 겉과 속의 대조를 표현할 때 자주 사용' },
+      { word: 'think of A as B', meaning: 'A를 B라고 생각하다', pos: '패턴', example: "Overall, I think of myself as someone who's quiet on the surface but always exploring something new underneath.", exampleKo: '전반적으로, 저는 스스로를 겉보기엔 조용하지만 항상 새로운 것을 탐구하는 사람이라고 생각해요.', tip: '자기소개 마무리 문장에 유용한 핵심 패턴 — A자리에 myself를 넣으면 "스스로를 ~라 여기다"' }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════
+  // Module 2 — 일상 & 루틴
+  // ══════════════════════════════════════════════════════════
+  {
+    id: 'ov2',
+    moduleTitle: '일상 & 루틴',
+    icon: '⏰',
+    color: '#0EA5E9',
+    words: [
       { word: 'routine', meaning: '일상, 루틴', pos: '명사', example: "My morning routine usually takes about an hour from start to finish.", exampleKo: '저의 아침 루틴은 처음부터 끝까지 보통 한 시간 정도 걸려요.', tip: '"daily routine", "morning routine" 형태로 OPIc 빈출' },
       { word: 'commute', meaning: '통근하다 / 통근', pos: '동사·명사', example: "My commute to work takes about 40 minutes by subway.", exampleKo: '지하철로 출근하는 데 약 40분 걸려요.', tip: '"commute to work/school"로 일상 묘사에 자주 사용' },
       { word: 'typically', meaning: '보통, 일반적으로', pos: '부사', example: "I typically wake up around 7 and have breakfast before heading out.", exampleKo: '저는 보통 7시쯤 일어나서 외출 전에 아침을 먹어요.', tip: '= usually, generally / 일과 묘사 필수 부사' },
@@ -25,20 +50,27 @@ const OPIC_VOCAB_MODULES = [
       { word: 'set aside', meaning: '따로 마련하다, 시간을 내다', pos: '구동사', example: "I try to set aside at least 30 minutes a day for reading.", exampleKo: '하루에 최소 30분은 독서를 위해 시간을 내려고 해요.', tip: '"set aside time for" = ~을 위해 시간을 내다' },
       { word: 'tend to', meaning: '~하는 경향이 있다', pos: '구동사', example: "I tend to stay up late on weekends and sleep in on Sunday.", exampleKo: '주말에는 늦게까지 깨어 있다가 일요일에 늦잠을 자는 편이에요.', tip: 'OPIc 고득점자들이 자주 쓰는 자연스러운 습관 표현' },
       { word: 'wind down', meaning: '긴장을 풀다, 마무리하다', pos: '구동사', example: "In the evening, I like to wind down by watching a show or reading.", exampleKo: '저녁에는 드라마를 보거나 책을 읽으며 긴장을 푸는 것을 좋아해요.', tip: '"unwind"와 같은 의미 — 하루 마무리 묘사에 사용' },
-      { word: 'overall', meaning: '전반적으로', pos: '부사', example: "Overall, I think I lead a pretty balanced and fulfilling life.", exampleKo: '전반적으로 꽤 균형 잡히고 보람 있는 삶을 살고 있다고 생각해요.', tip: '답변 마무리 문장에 자연스럽게 사용' },
       { word: 'primarily', meaning: '주로', pos: '부사', example: "I primarily spend my free time outdoors — hiking or cycling.", exampleKo: '주로 야외에서 여가 시간을 보내요 — 하이킹이나 자전거 타기를 해요.', tip: '= mainly, mostly / 조금 더 격식 있는 표현' },
-      { word: 'revolve around', meaning: '~를 중심으로 돌아가다', pos: '구동사', example: "My daily life revolves around work and spending time with family.", exampleKo: '제 일상은 일과 가족과의 시간을 중심으로 돌아가요.', tip: 'OPIc 자기소개에서 자주 쓰이는 고급 표현' },
-      { word: 'genuine', meaning: '진심 어린, 진짜의', pos: '형용사', example: "I genuinely enjoy cooking — it's not just a hobby, it's a passion.", exampleKo: '정말 진심으로 요리를 즐겨요 — 단순한 취미가 아니라 열정이에요.', tip: '"genuinely" 부사형이 대화체에서 더 자주 사용' },
-      { word: 'maintain', meaning: '유지하다', pos: '동사', example: "I try to maintain a healthy work-life balance as much as possible.", exampleKo: '가능한 한 건강한 일-생활 균형을 유지하려고 노력해요.', tip: '"maintain a balance/routine/habit" 형태로 빈출' }
+      { word: 'revolve around', meaning: '~를 중심으로 돌아가다', pos: '구동사', example: "My daily life revolves around work and spending time with family.", exampleKo: '제 일상은 일과 가족과의 시간을 중심으로 돌아가요.', tip: 'OPIc 일상 묘사에서 자주 쓰이는 고급 표현' },
+      { word: 'maintain', meaning: '유지하다', pos: '동사', example: "I try to maintain a healthy work-life balance as much as possible.", exampleKo: '가능한 한 건강한 일-생활 균형을 유지하려고 노력해요.', tip: '"maintain a balance/routine/habit" 형태로 빈출' },
+      { word: 'head out', meaning: '(집을) 나서다, 출발하다', pos: '구동사', example: "I just get ready and head out of the house by around 6:20.", exampleKo: '준비를 마치고 6시 20분쯤 집을 나서요.', tip: '출근·등교 시 집을 나설 때 자주 쓰는 구어체 표현' },
+      { word: 'catch up on', meaning: '(밀린 것을) 따라잡다, 알아보다', pos: '구동사', example: "I usually listen to a podcast or the news on the radio to catch up on what's happening before the day starts.", exampleKo: '보통 팟캐스트나 라디오 뉴스를 들으며 하루가 시작되기 전에 소식을 따라잡아요.', tip: '밀린 대화·소식을 "따라잡다"는 뜻 — "catch up on the news/sleep" 형태로 빈출' },
+      { word: 'weekday', meaning: '평일', pos: '명사', example: "On a typical weekday, I wake up around 6 AM.", exampleKo: '평범한 평일에는 아침 6시쯤 일어나요.', tip: '주말(weekend)과 대비되는 "평일" — "on weekdays" 형태로 자주 사용' },
+      { word: 'out of habit', meaning: '습관적으로, 습관에서 비롯되어', pos: '구', example: "The first thing I do — out of habit, honestly — is check my phone right after I open my eyes.", exampleKo: '제가 가장 먼저 하는 일은 — 솔직히 습관적으로 — 눈을 뜨자마자 휴대폰을 확인하는 거예요.', tip: '무의식적으로 반복하는 행동을 솔직하게 인정할 때 사용하는 자연스러운 삽입구' },
+      { word: 'right after', meaning: '~한 직후에, ~하자마자', pos: '부사구', example: "I check my phone right after I open my eyes.", exampleKo: '눈을 뜨자마자 휴대폰을 확인해요.', tip: '시간적으로 바로 이어지는 타이밍을 강조하는 표현' },
+      { word: 'second nature', meaning: '완전히 몸에 밴 습관, 제2의 천성', pos: '관용구', example: "I know it's not the healthiest habit, but it's become second nature at this point.", exampleKo: '건강한 습관은 아니라는 걸 알지만, 지금은 완전히 몸에 뱄어요.', tip: '오랜 반복으로 저절로 나오는 행동을 표현 — "unwind"와 함께 하루 마무리 묘사에도 활용 가능' },
+      { word: 'before the day starts', meaning: '하루가 시작되기 전에', pos: '구', example: "I like to catch up on what's happening before the day starts.", exampleKo: '하루가 시작되기 전에 소식을 따라잡는 것을 좋아해요.', tip: '아침 루틴을 마무리하며 하루 일과로 넘어가는 시점을 나타낼 때 사용' },
+      { word: 'so (that) + 주어 + can', meaning: '~가 ~할 수 있도록 (목적)', pos: '패턴', example: "I try to get to bed at a reasonable hour so I can do it all again the next day.", exampleKo: '다음 날 다시 그 모든 걸 할 수 있도록 적당한 시간에 자려고 해요.', tip: '원래 so that이지만 구어체에서는 that을 생략 — 목적을 나타내는 필수 접속 구조' },
+      { word: 'get home', meaning: '집에 도착하다', pos: '구동사', example: "By the time I get home in the evening, I try to relax a bit before getting to bed.", exampleKo: '저녁에 집에 도착할 때쯤이면, 자기 전에 좀 쉬려고 해요.', tip: 'home은 부사이므로 전치사 없이 사용 — "get to home"이 아니라 "get home"' }
     ]
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 2 — 거주지 & 장소 묘사
+  // Module 3 — 거주지 & 동네
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov2',
-    moduleTitle: '거주지 & 장소 묘사',
+    id: 'ov3',
+    moduleTitle: '거주지 & 동네',
     icon: '🏠',
     color: '#059669',
     words: [
@@ -63,10 +95,10 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 3 — 취미 & 여가
+  // Module 4 — 취미 & 여가
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov3',
+    id: 'ov4',
     moduleTitle: '취미 & 여가',
     icon: '🎯',
     color: '#D97706',
@@ -91,10 +123,10 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 4 — 여행
+  // Module 5 — 여행
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov4',
+    id: 'ov5',
     moduleTitle: '여행',
     icon: '✈️',
     color: '#0284C7',
@@ -119,10 +151,10 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 5 — 직장 & 학교
+  // Module 6 — 직장 & 학교
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov5',
+    id: 'ov6',
     moduleTitle: '직장 & 학교',
     icon: '💼',
     color: '#7C3AED',
@@ -146,11 +178,11 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 6 — 롤플레이 상황 표현
+  // Module 7 — 롤플레이
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov6',
-    moduleTitle: '롤플레이 상황 표현',
+    id: 'ov7',
+    moduleTitle: '롤플레이',
     icon: '🎭',
     color: '#BE185D',
     words: [
@@ -173,11 +205,11 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 7 — 경험 & 감정 표현
+  // Module 8 — 경험 & 비교
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov7',
-    moduleTitle: '경험 & 감정 표현',
+    id: 'ov8',
+    moduleTitle: '경험 & 비교',
     icon: '💬',
     color: '#0891B2',
     words: [
@@ -200,10 +232,10 @@ const OPIC_VOCAB_MODULES = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // Module 8 — 고득점 담화 연결 표현
+  // Module 9 — 고득점 담화 연결 표현
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ov8',
+    id: 'ov9',
     moduleTitle: '고득점 담화 연결 표현',
     icon: '⭐',
     color: '#4F46E5',

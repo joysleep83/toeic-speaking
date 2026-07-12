@@ -7,7 +7,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 0a — ひらがな一覧表 (테이블 형식)
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv_hira', moduleTitle: 'ひらがな一覧表', icon: 'あ', color: '#0369A1',
+    id: 'ojv_hira', moduleTitle: 'ひらがな一覧表', titleKo: '히라가나 일람표', icon: 'あ', color: '#0369A1',
     type: 'kana-table', kanaType: 'hiragana', words: []
   },
 
@@ -15,7 +15,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 0b — カタカナ一覧表 (테이블 형식)
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv_kata', moduleTitle: 'カタカナ一覧表', icon: 'ア', color: '#7C3AED',
+    id: 'ojv_kata', moduleTitle: 'カタカナ一覧表', titleKo: '가타카나 일람표', icon: 'ア', color: '#7C3AED',
     type: 'kana-table', kanaType: 'katakana', words: []
   },
 
@@ -23,7 +23,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 1 — 自己紹介・基本表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv1', moduleTitle: '自己紹介・基本表現', icon: '🙋', color: '#DC2626',
+    id: 'ojv1', moduleTitle: '自己紹介・基本表現', titleKo: '자기소개·기본표현', icon: '🙋', color: '#DC2626',
     words: [
       { word: '〜と申します', meaning: '~라고 합니다 (정중한 자기소개)', pos: '표현', example: 'はじめまして、キムと申します。', exampleKo: '처음 뵙겠습니다, 김이라고 합니다.', tip: '"〜と言います"보다 정중 — OPIc 자기소개 필수' },
       { word: '〜に住んでいます', meaning: '~에 살고 있습니다', pos: '표현', example: 'ソウルの麻浦区に住んでいます。', exampleKo: '서울 마포구에 살고 있습니다.', tip: '현재 거주지 표현의 기본 패턴' },
@@ -47,7 +47,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 2 — 日課・ルーティン表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv2', moduleTitle: '日課・ルーティン表現', icon: '📅', color: '#7C3AED',
+    id: 'ojv2', moduleTitle: '日課・ルーティン表現', titleKo: '일과·루틴 표현', icon: '📅', color: '#7C3AED',
     words: [
       { word: '〜頃に起きます', meaning: '~쯤에 일어납니다', pos: '표현', example: '毎朝7時頃に起きます。', exampleKo: '매일 아침 7시쯤에 일어납니다.', tip: '"ごろ"는 어림잡은 시간 — "大体"와 함께 자주 사용' },
       { word: 'まず〜、それから〜', meaning: '우선 ~, 그러고 나서 ~', pos: '연결 표현', example: 'まずシャワーを浴びて、それから朝ごはんを食べます。', exampleKo: '우선 샤워를 하고, 그러고 나서 아침을 먹습니다.', tip: '하루 일과를 순서대로 설명하는 기본 연결 패턴' },
@@ -71,7 +71,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 3 — 住まい・場所の表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv3', moduleTitle: '住まい・場所の表現', icon: '🏠', color: '#059669',
+    id: 'ojv3', moduleTitle: '住まい・場所の表現', titleKo: '거주지·장소 표현', icon: '🏠', color: '#059669',
     words: [
       { word: '〜LDKのマンション', meaning: '~LDK 아파트/맨션', pos: '표현', example: '2LDKのマンションに住んでいます。', exampleKo: '2LDK 아파트에 살고 있습니다.', tip: 'LDK = 거실(L)+식당(D)+주방(K) — 일본식 간표기' },
       { word: '日当たりがいい', meaning: '햇볕이 잘 든다', pos: '표현', example: 'リビングは日当たりがよくて、明るいです。', exampleKo: '거실은 햇볕이 잘 들어서 밝습니다.', tip: '집 내부 묘사의 단골 표현 — 매우 자주 등장' },
@@ -95,7 +95,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 4 — 趣味・余暇表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv4', moduleTitle: '趣味・余暇表現', icon: '🎯', color: '#D97706',
+    id: 'ojv4', moduleTitle: '趣味・余暇表現', titleKo: '취미·여가 표현', icon: '🎯', color: '#D97706',
     words: [
       { word: '〜にはまっています', meaning: '~에 빠져 있습니다', pos: '표현', example: '最近、写真にはまっています。', exampleKo: '최근에 사진에 빠져 있습니다.', tip: '= 〜に夢中です — 최근 빠진 취미를 말할 때 자연스러운 표현' },
       { word: '〜のが好きです', meaning: '~하는 것을 좋아합니다', pos: '표현', example: '料理するのが好きです。', exampleKo: '요리하는 것을 좋아합니다.', tip: '동사+のが好き — OPIc 취미 표현 가장 기본 패턴' },
@@ -119,7 +119,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 5 — 旅行表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv5', moduleTitle: '旅行表現', icon: '✈️', color: '#0284C7',
+    id: 'ojv5', moduleTitle: '旅行表現', titleKo: '여행 표현', icon: '✈️', color: '#0284C7',
     words: [
       { word: '〜に行ったことがあります', meaning: '~에 간 적이 있습니다', pos: '표현', example: '京都に行ったことがあります。', exampleKo: '교토에 간 적이 있습니다.', tip: '경험을 나타내는 〜たことがある — 여행 경험 표현 기본' },
       { word: '〜で有名な場所です', meaning: '~으로 유명한 곳입니다', pos: '표현', example: '京都は歴史と文化で有名な場所です。', exampleKo: '교토는 역사와 문화로 유명한 곳입니다.', tip: '여행지 소개의 기본 패턴' },
@@ -143,7 +143,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 6 — 職場・学校表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv6', moduleTitle: '職場・学校表現', icon: '💼', color: '#5B21B6',
+    id: 'ojv6', moduleTitle: '職場・学校表現', titleKo: '직장·학교 표현', icon: '💼', color: '#5B21B6',
     words: [
       { word: 'やりがいがあります', meaning: '보람이 있습니다', pos: '표현', example: '大変ですが、とてもやりがいのある仕事です。', exampleKo: '힘들지만 매우 보람 있는 일입니다.', tip: '직업 만족도를 표현하는 핵심 어휘 — OPIc 단골' },
       { word: '〜を担当しています', meaning: '~를 담당하고 있습니다', pos: '표현', example: '主にSNSマーケティングを担当しています。', exampleKo: '주로 SNS 마케팅을 담당하고 있습니다.', tip: '업무 내용을 간결하게 전달하는 핵심 표현' },
@@ -167,7 +167,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 7 — ロールプレイ表現
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv7', moduleTitle: 'ロールプレイ表現', icon: '🎭', color: '#BE185D',
+    id: 'ojv7', moduleTitle: 'ロールプレイ表現', titleKo: '롤플레이 표현', icon: '🎭', color: '#BE185D',
     words: [
       { word: 'もしもし', meaning: '여보세요 (전화 시작)', pos: '표현', example: 'もしもし、予約の件でお電話したんですが。', exampleKo: '여보세요, 예약 건으로 전화했는데요.', tip: '전화 롤플레이 반드시 이 한 마디로 시작 — 빠뜨리면 감점' },
       { word: '〜の予約をしたいのですが', meaning: '~를 예약하고 싶은데요', pos: '표현', example: '来週の土曜日に4名で予約をしたいのですが。', exampleKo: '다음 주 토요일에 4명으로 예약하고 싶은데요.', tip: '예약 롤플레이의 핵심 시작 표현' },
@@ -215,7 +215,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 9 — 感情・反応・経験表現 (NEW)
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv9', moduleTitle: '感情・反応・経験表現', icon: '💫', color: '#0891B2',
+    id: 'ojv9', moduleTitle: '感情・反応・経験表現', titleKo: '감정·반응·경험 표현', icon: '💫', color: '#0891B2',
     words: [
       { word: '感動しました / 〜に感動しました', meaning: '감동했습니다 / ~에 감동했습니다', pos: '표현', example: '景色の美しさに本当に感動しました。', exampleKo: '경치의 아름다움에 정말 감동했습니다.', tip: '여행·경험 묘사에서 가장 많이 쓰이는 감정 표현' },
       { word: 'びっくりしました / 驚きました', meaning: '깜짝 놀랐습니다', pos: '표현', example: '予想以上に素晴らしくて、本当にびっくりしました。', exampleKo: '예상 이상으로 훌륭해서 정말 깜짝 놀랐습니다.', tip: '강한 놀라움 표현 — "驚きました"는 약간 더 격식체' },
@@ -239,7 +239,7 @@ const OPIC_JP_VOCAB_MODULES = [
   // Module 10 — 理由・意見・比較表現 (NEW)
   // ══════════════════════════════════════════════════════════
   {
-    id: 'ojv10', moduleTitle: '理由・意見・比較表現', icon: '💬', color: '#7C3AED',
+    id: 'ojv10', moduleTitle: '理由・意見・比較表現', titleKo: '이유·의견·비교 표현', icon: '💬', color: '#7C3AED',
     words: [
       { word: 'なぜなら〜からです', meaning: '왜냐하면 ~이기 때문입니다', pos: '표현', example: '好きです。なぜなら、達成感があるからです。', exampleKo: '좋아합니다. 왜냐하면 성취감이 있기 때문입니다.', tip: '이유를 문장 뒤에 강조할 때 사용 — IM→IH 변환 핵심 패턴' },
       { word: '〜ので〜しています', meaning: '~이기 때문에 ~하고 있습니다', pos: '표현', example: 'ストレス解消になるので、毎日運動しています。', exampleKo: '스트레스 해소가 되기 때문에 매일 운동하고 있습니다.', tip: '이유와 결과를 연결하는 가장 자연스러운 패턴' },

@@ -325,13 +325,38 @@ function speak(btn, text) {
   setTimeout(() => window.speechSynthesis.speak(utt), 100);
 }
 
+// 모범 답안을 문장 단위로 나눠 각 문장 옆에 개별 듣기 버튼을 붙임
+function sentenceSpeakBtns(text) {
+  const btn = t => `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t.replace(/"/g, '&quot;')}" title="문장 듣기">🔊</button>`;
+  const sentences = text.match(/[^.!?]+[.!?]+(?:["'\)\]]+)?|[^.!?]+$/g);
+  if (!sentences || sentences.length <= 1) return `${text}${btn(text.trim())}`;
+  return sentences
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map(s => `${s}${btn(s)}`)
+    .join(' ');
+}
+
+// 일본어 모범 답안을 문장 단위(。！？)로 나눠 각 문장 옆에 개별 듣기 버튼을 붙임
+function jpSentenceSpeakBtns(text) {
+  const btn = t => `<button class="speak-btn speak-btn-sm speak-btn-inline" onclick="event.stopPropagation();speak(this,this.dataset.t)" data-t="${t.replace(/"/g, '&quot;')}" title="문장 듣기">🔊</button>`;
+  const cleaned = text.replace(/\n+/g, ' ').trim();
+  const sentences = cleaned.match(/[^。！？]+[。！？]+(?:[」』）】]+)?|[^。！？]+$/g);
+  if (!sentences || sentences.length <= 1) return `${cleaned}${btn(cleaned)}`;
+  return sentences
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map(s => `${s}${btn(s)}`)
+    .join(' ');
+}
+
 function speakEl(btn, id) {
   const el = document.getElementById(id);
   if (!el) return;
-  // ruby 태그가 있으면 rt(후리가나) 내용을 제외한 순수 텍스트로 읽음
-  if (el.querySelector('rt')) {
+  // ruby(후리가나) 태그나 중첩된 버튼(문장별 듣기 버튼 등)이 있으면 제외하고 순수 텍스트만 읽음
+  if (el.querySelector('rt, button')) {
     const clone = el.cloneNode(true);
-    clone.querySelectorAll('rt').forEach(rt => rt.remove());
+    clone.querySelectorAll('rt, button').forEach(node => node.remove());
     speak(btn, clone.textContent);
   } else {
     speak(btn, el.textContent);
@@ -482,6 +507,7 @@ function showVocabHomeScreen() {
           <div class="smc-icon" style="background:${mod.color}22">${mod.icon}</div>
           <div class="smc-info">
             <div class="smc-title">${mod.moduleTitle}</div>
+            ${mod.titleKo ? `<div class="smc-title-ko">${mod.titleKo}</div>` : ''}
             <div class="smc-subtitle">${mod.type === 'kana-table' ? '일람표 · 탁음 · 요음' : mod.words.length + '개 단어'}</div>
           </div>
           <div class="smc-right"><span class="smc-arrow">›</span></div>
@@ -739,6 +765,7 @@ function showPracticeList(part) {
       ? `<div class="answer-section-label model-ko">한국어 번역</div>
         <p class="answer-text answer-text-ko">${item.model_answer_ko.replace(/\n/g, '<br>')}</p>`
       : '';
+    const modelAnswerHtml = isOpJpPL ? jpSentenceSpeakBtns(item.model_answer) : sentenceSpeakBtns(item.model_answer);
     return `
     <div class="practice-item">
       <div class="practice-item-q">
@@ -757,9 +784,9 @@ function showPracticeList(part) {
       <div class="practice-item-answer">
         <div class="answer-section-header">
           <div class="answer-section-label model">모범 답안</div>
-          <button class="speak-btn" onclick="speakEl(this,'pa-${idx}')" title="소리로 듣기">🔊</button>
+          <button class="speak-btn" onclick="speakEl(this,'pa-${idx}')" title="전체 듣기">🔊</button>
         </div>
-        <p class="answer-text" id="pa-${idx}">${item.model_answer}</p>
+        <p class="answer-text" id="pa-${idx}">${modelAnswerHtml}</p>
         ${answerKoHtml}
         <div class="answer-section-label explain">답안 해설</div>
         <div class="explain-text">${item.explanation}</div>

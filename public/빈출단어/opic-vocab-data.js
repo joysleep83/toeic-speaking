@@ -30,7 +30,11 @@ const OPIC_VOCAB_MODULES = [
       { word: 'at first glance', meaning: '언뜻 보기에, 첫눈에', pos: '관용구', example: "I'm much more curious than people might expect at first glance.", exampleKo: '저는 사람들이 언뜻 보기에 예상하는 것보다 훨씬 호기심이 많아요.', tip: '사람·사물의 첫인상을 말할 때 자주 쓰는 표현' },
       { word: 'come across', meaning: '우연히 마주치다, 발견하다', pos: '구동사', example: "I enjoy digging into new topics — whether it's something related to my work or just something random I came across online.", exampleKo: '일과 관련된 것이든 온라인에서 우연히 발견한 무작위 주제든, 새로운 주제를 파고드는 것을 즐겨요.', tip: '"우연히 마주치다/발견하다"라는 뜻의 중요 숙어 — came across는 과거형' },
       { word: 'on the surface', meaning: '겉보기에는, 표면적으로는', pos: '구', example: "I think of myself as someone who's quiet on the surface but always exploring something new underneath.", exampleKo: '저는 겉보기에는 조용하지만 내면에서는 항상 새로운 것을 탐구하는 사람이라고 생각해요.', tip: '반대말: underneath (내면에는, 마음속 깊은 곳에서는) — 겉과 속의 대조를 표현할 때 자주 사용' },
-      { word: 'think of A as B', meaning: 'A를 B라고 생각하다', pos: '패턴', example: "Overall, I think of myself as someone who's quiet on the surface but always exploring something new underneath.", exampleKo: '전반적으로, 저는 스스로를 겉보기엔 조용하지만 항상 새로운 것을 탐구하는 사람이라고 생각해요.', tip: '자기소개 마무리 문장에 유용한 핵심 패턴 — A자리에 myself를 넣으면 "스스로를 ~라 여기다"' }
+      { word: 'think of A as B', meaning: 'A를 B라고 생각하다', pos: '패턴', example: "Overall, I think of myself as someone who's quiet on the surface but always exploring something new underneath.", exampleKo: '전반적으로, 저는 스스로를 겉보기엔 조용하지만 항상 새로운 것을 탐구하는 사람이라고 생각해요.', tip: '자기소개 마무리 문장에 유용한 핵심 패턴 — A자리에 myself를 넣으면 "스스로를 ~라 여기다"' },
+      { word: 'What I really like about ~', meaning: '~에 대해 내가 정말 좋아하는 점은', pos: '패턴', example: "What I really like about my job is the flexibility it offers.", exampleKo: '제 직업에 대해 정말 좋아하는 점은 그것이 제공하는 유연성이에요.', tip: "What은 의문사가 아니라 '~하는 것'이라는 뜻의 관계대명사로 쓰인 표현 — 좋아하는 점을 강조해서 소개할 때 유용" },
+      { word: 'get comfortable', meaning: '편안해지다', pos: '구동사', example: "It took a while, but I eventually got comfortable speaking in front of others.", exampleKo: '시간이 좀 걸렸지만, 결국 다른 사람들 앞에서 말하는 것이 편안해졌어요.', tip: "be comfortable(이미 편안한 상태)과 달리 get comfortable은 '편안해지는 변화 과정'을 강조" },
+      { word: 'whether A or B', meaning: 'A이든 B이든 (상관없이)', pos: '패턴', example: "I enjoy trying new things, whether it's a new recipe or a new hobby.", exampleKo: '새로운 레시피든 새로운 취미든, 저는 새로운 것을 시도하는 것을 즐겨요.', tip: '두 가지 이상의 가능성을 모두 아우를 때 쓰는 필수 표현' },
+      { word: 'something related to ~', meaning: '~와 관련된 어떤 것', pos: '구', example: "I like reading something related to psychology in my free time.", exampleKo: '여가 시간에는 심리학과 관련된 것을 읽는 것을 좋아해요.', tip: '-thing으로 끝나는 명사(something, anything 등)는 수식어가 뒤에서 앞으로 꾸며줌' }
     ]
   },
 
@@ -118,7 +122,17 @@ const OPIC_VOCAB_MODULES = [
       { word: 'pastime', meaning: '취미, 소일거리', pos: '명사', example: "Baking has become one of my favorite pastimes recently.", exampleKo: '최근에 베이킹이 제가 가장 좋아하는 취미 중 하나가 됐어요.', tip: '= hobby / "a popular pastime" 형태로도 자주 사용' },
       { word: 'immerse oneself in', meaning: '~에 몰두하다', pos: '구동사', example: "When I paint, I completely immerse myself in the process.", exampleKo: '그림을 그릴 때 완전히 그 과정에 몰입해요.', tip: '"get immersed in"으로도 사용 — 몰입 경험 표현에 최적' },
       { word: 'recharge', meaning: '재충전하다', pos: '동사', example: "Hiking in the mountains helps me recharge for the week ahead.", exampleKo: '산 하이킹이 앞으로의 한 주를 위해 재충전하는 데 도움이 돼요.', tip: 'recharge (one\'s batteries) = 에너지를 회복하다' },
-      { word: 'balance', meaning: '균형 / 균형을 유지하다', pos: '명사·동사', example: "I try to balance active hobbies like running with quieter ones like reading.", exampleKo: '달리기 같은 활동적인 취미와 독서 같은 조용한 취미의 균형을 맞추려 해요.', tip: '"strike a balance between A and B" — 취미 다양성 설명에 활용' }
+      { word: 'balance', meaning: '균형 / 균형을 유지하다', pos: '명사·동사', example: "I try to balance active hobbies like running with quieter ones like reading.", exampleKo: '달리기 같은 활동적인 취미와 독서 같은 조용한 취미의 균형을 맞추려 해요.', tip: '"strike a balance between A and B" — 취미 다양성 설명에 활용' },
+      { word: 'Out of all of them,', meaning: '그 모든 것들 중에서', pos: '구', example: "Out of all of them, cooking is the hobby I'm most passionate about.", exampleKo: '그 모든 것들 중에서, 요리가 제가 가장 열정을 느끼는 취미예요.', tip: "Out of는 여기서 '~중에서(among)'라는 범위를 나타내며, 여러 선택지 중 하나를 특히 좁혀줄 때 사용" },
+      { word: 'I try to + 동사원형', meaning: '~하려고 노력하다', pos: '패턴', example: "I try to work out at least three times a week.", exampleKo: '저는 적어도 일주일에 세 번은 운동하려고 노력해요.', tip: '단순히 한번 해보는 것(try + -ing)이 아니라, 목표를 가지고 의지를 내어 실천한다는 뉘앙스' },
+      { word: 'work out', meaning: '운동하다', pos: '구동사', example: "I usually work out at the gym after work.", exampleKo: '저는 보통 퇴근 후 헬스장에서 운동해요.', tip: '헬스·요가·달리기 등 몸을 움직여 운동할 때 가장 일상적으로 쓰는 구동사' },
+      { word: 'Besides', meaning: '~외에도, ~뿐만 아니라', pos: '전치사', example: "Besides going to the gym, I also enjoy hiking on weekends.", exampleKo: '헬스장에 가는 것 외에도, 주말에 하이킹하는 것도 즐겨요.', tip: "이미 언급한 내용을 포함하면서 새로운 내용을 추가할 때 사용 — s가 빠진 beside(~옆에)와 혼동 주의" },
+      { word: 'dishes', meaning: '요리, 음식 (dish의 복수형)', pos: '명사', example: "I love trying to make new dishes from scratch on weekends.", exampleKo: '주말에 새로운 요리를 처음부터 만들어보는 것을 좋아해요.', tip: "food와 달리 조리가 완료되어 접시에 담겨 나오는 '특정 요리 개별 품목'을 지칭" },
+      { word: 'it ~ to (가목적어·진목적어)', meaning: '가짜 목적어 it + 진짜 목적어 to부정사', pos: '패턴', example: "I find it very satisfying to make dishes from scratch.", exampleKo: '저는 재료부터 직접 요리를 만드는 것이 매우 만족스럽다고 느껴요.', tip: '진짜 목적어(to make ~)가 길어서 그 자리에 가짜 목적어 it을 임시로 세운 구조 — it은 따로 해석하지 않음' },
+      { word: 'find + 목적어 + 형용사', meaning: '~가 …하다고 느끼다/생각하다', pos: '패턴', example: "I find cooking very relaxing after a long day.", exampleKo: '긴 하루를 보낸 후 요리하는 것이 매우 편안하게 느껴져요.', tip: "여기서 find는 '찾다'가 아니라 '~가 …하다고 생각하다'라는 뜻으로 쓰인 5형식 동사" },
+      { word: 'from scratch', meaning: '아무것도 없는 상태에서, 처음부터', pos: '숙어', example: "I enjoy making pasta sauce from scratch instead of buying it.", exampleKo: '사서 먹기보다 파스타 소스를 처음부터 직접 만드는 것을 즐겨요.', tip: '★원어민이 자주 쓰는 고급 숙어 — 반조리 식품 등을 쓰지 않고 날것의 재료부터 직접 만든다는 뜻' },
+      { word: 'experimenting', meaning: '실험하다, 새로운 시도를 하다 (experiment의 동명사)', pos: '동명사', example: "I spend a lot of time experimenting with different spices when I cook.", exampleKo: '요리할 때 여러 향신료를 넣어보며 시도해보는 데 많은 시간을 보내요.', tip: "'spend + 시간 + -ing' 구조에 자주 걸리는 동명사 — 새로운 재료·향신료를 넣어보며 시도한다는 뉘앙스" },
+      { word: "It's become", meaning: '~이 되었다 (It has become의 축약)', pos: '패턴', example: "It's become a nice habit to read before bed every night.", exampleKo: '매일 밤 자기 전에 책을 읽는 것이 좋은 습관이 되었어요.', tip: 'It has become의 축약형 — 과거부터 시작된 일이 현재 어떤 상태가 된 것을 나타내는 현재완료 시제' }
     ]
   },
 
@@ -208,7 +222,12 @@ const OPIC_VOCAB_MODULES = [
       { word: 'as for ~', meaning: '~에 대해 말하자면, ~의 경우에는', pos: '관용구', example: "As for my work schedule, it's pretty fixed from 8 AM to 5 PM.", exampleKo: '제 근무 시간표로 말하자면, 오전 8시부터 오후 5시까지 꽤 고정되어 있어요.', tip: '새로운 화제로 자연스럽게 전환할 때 쓰는 표현' },
       { word: 'a team dinner', meaning: '팀 저녁 식사, 팀 회식', pos: '명사', example: "Once a quarter, we usually have a team dinner together.", exampleKo: '분기에 한 번씩 보통 팀 회식을 함께 해요.', tip: '점심 회식은 a team lunch' },
       { word: 'wind down', meaning: '긴장을 풀다, 휴식을 취하다', pos: '구동사', example: "A team dinner is a great way to wind down and catch up with everyone.", exampleKo: '팀 회식은 긴장을 풀고 다 같이 근황을 나누기에 좋은 방법이에요.', tip: '발음은 [와인드 다운], 시계 태엽을 풀듯 긴장을 늦추는 것' },
-      { word: 'catch up with', meaning: '밀린 이야기를 나누다, 근황을 알아가다', pos: '구동사', example: "It's a great way to wind down and just catch up with everyone.", exampleKo: '다 같이 근황을 나누기에 좋은 방법이에요.', tip: '★★★★★ 핵심 구동사' }
+      { word: 'catch up with', meaning: '밀린 이야기를 나누다, 근황을 알아가다', pos: '구동사', example: "It's a great way to wind down and just catch up with everyone.", exampleKo: '다 같이 근황을 나누기에 좋은 방법이에요.', tip: '★★★★★ 핵심 구동사' },
+      { word: 'A typical day', meaning: '보통의 평범한 하루', pos: '구', example: "A typical day for me starts with checking my emails.", exampleKo: '저에게 있어 보통의 하루는 이메일을 확인하는 것으로 시작해요.', tip: '하루 일과를 소개하는 답변의 도입부에 자주 사용' },
+      { word: 'After that,', meaning: '그다음에는, 그 이후에는', pos: '접속부사구', example: "After that, I usually attend a couple of meetings before lunch.", exampleKo: '그다음에는, 보통 점심 전에 회의를 몇 개 참석해요.', tip: '앞 순서의 행동이 끝난 뒤 시간상으로 그다음에 일어날 일을 매끄럽게 연결' },
+      { word: 'This means', meaning: '이것은 ~을 의미합니다, 즉 ~라는 뜻입니다', pos: '패턴', example: "This means I have to double-check every report before submitting it.", exampleKo: '즉, 제출하기 전에 모든 보고서를 다시 확인해야 한다는 뜻이에요.', tip: 'means 뒤에 접속사 that이 생략되어 [주어+동사]가 바로 따라옴 — 앞서 말한 내용을 구체적으로 풀어서 설명할 때 사용' },
+      { word: 'work closely with', meaning: '~와 긴밀하게 일하다, 밀접하게 협력하다', pos: '숙어', example: "Since I work so closely with the marketing team, we communicate every day.", exampleKo: '마케팅팀과 아주 긴밀하게 일하기 때문에, 저희는 매일 소통해요.', tip: "Since는 '~이후로'뿐 아니라 '~이기 때문에'라는 이유의 접속사로도 자주 쓰임 — so를 붙이면 '아주 긴밀하게'로 강조" },
+      { word: 'other times', meaning: '다른 때는, 또 어떤 때는', pos: '구', example: "Sometimes the meetings are quick, but other times they run over an hour.", exampleKo: '가끔은 회의가 짧게 끝나지만, 또 어떤 때는 한 시간 넘게 이어지기도 해요.', tip: '앞의 Sometimes와 대조를 이루며 "항상 좋은 것만은 아니다"라는 뉘앙스를 풍김' }
     ]
   },
 
@@ -297,7 +316,8 @@ const OPIC_VOCAB_MODULES = [
       { word: 'before it even started!', meaning: '그것이 시작되기도 전에!', pos: '구', example: "I almost missed my flight before the trip even started!", exampleKo: '여행이 시작되기도 전에 비행기를 놓칠 뻔했어요!', tip: 'even: 심지어 ~조차도, ~하기도 전에 — 첫 단추부터 잘못 끼워질 뻔했다는 뉘앙스' },
       { word: 'Looking back,', meaning: '돌이켜보면', pos: '분사구문', example: "Looking back, that stressful morning actually makes for a funny story now.", exampleKo: '돌이켜보면 그 스트레스 받았던 아침이 지금은 재미있는 이야기가 됐어요.', tip: 'When I look back에서 주어와 접속사를 생략하고 -ing를 붙인 분사구문' },
       { word: 'taught', meaning: '가르쳤다 (teach의 과거형)', pos: '동사', example: "That experience taught me to always double-check my documents.", exampleKo: '그 경험은 항상 서류를 다시 확인하도록 저를 가르쳐줬어요.', tip: '동사 teach(가르치다)의 과거형' },
-      { word: 'make sure to + 동사원형', meaning: '반드시 ~하다, 꼭 ~하도록 확실히 해두다', pos: '패턴', example: "Now I always make sure to print my boarding pass the night before.", exampleKo: '이제는 항상 전날 밤에 탑승권을 미리 출력해두도록 확실히 해요.', tip: '어떤 일을 빠뜨리지 않고 확실히 챙길 때 쓰는 표현' }
+      { word: 'make sure to + 동사원형', meaning: '반드시 ~하다, 꼭 ~하도록 확실히 해두다', pos: '패턴', example: "Now I always make sure to print my boarding pass the night before.", exampleKo: '이제는 항상 전날 밤에 탑승권을 미리 출력해두도록 확실히 해요.', tip: '어떤 일을 빠뜨리지 않고 확실히 챙길 때 쓰는 표현' },
+      { word: 'stand out', meaning: '도드라지다, 눈에 띄다, 특별하다', pos: '구동사', example: "What made that place stand out was the incredible view from the rooftop.", exampleKo: '그 장소를 특별하게 만든 것은 옥상에서 보이는 놀라운 전망이었어요.', tip: '사역동사(made)의 목적격 보어로 동사원형이 쓰인 구조 — "무엇이 ~을 특별하게 만들었나요?"라는 경험 묘사에 자주 사용' }
     ]
   },
 

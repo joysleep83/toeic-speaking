@@ -94,7 +94,15 @@ const OPIC_VOCAB_MODULES = [
       { word: 'make up for', meaning: '보완하다, 벌충하다', pos: '구동사', example: "The convenience of the location more than makes up for the noise.", exampleKo: '위치의 편리함이 소음을 충분히 보완하고도 남아요.', tip: '"more than make up for" = 남고도 충분히 보완하다' },
       { word: 'feature', meaning: '특징, 기능', pos: '명사', example: "My favorite feature of the apartment is the large balcony.", exampleKo: '아파트에서 가장 마음에 드는 특징은 넓은 발코니예요.', tip: '"my favorite feature of" — 장점 묘사에 자주 사용' },
       { word: 'natural light', meaning: '자연광', pos: '명사', example: "The room gets a lot of natural light in the afternoon, which I love.", exampleKo: '오후에 자연광이 많이 들어오는데, 그게 정말 마음에 들어요.', tip: '집 내부 묘사에서 자주 등장하는 표현' },
-      { word: 'accessible', meaning: '접근하기 쉬운', pos: '형용사', example: "The area is very accessible by public transportation.", exampleKo: '이 지역은 대중교통으로 접근하기 매우 쉬워요.', tip: '"easily accessible" 형태로 자주 사용' }
+      { word: 'accessible', meaning: '접근하기 쉬운', pos: '형용사', example: "The area is very accessible by public transportation.", exampleKo: '이 지역은 대중교통으로 접근하기 매우 쉬워요.', tip: '"easily accessible" 형태로 자주 사용' },
+      { word: 'the view outside the window', meaning: '창밖의 풍경', pos: '명사구', example: "I love sitting by the window and enjoying the view outside the window every morning.", exampleKo: '매일 아침 창가에 앉아 창밖의 풍경을 즐기는 것을 좋아해요.', tip: "the view: '경치·풍경·조망(뷰)'을 뜻함 — 요즘 흔히 말하는 '뷰 맛집'의 그 뷰가 이 단어. outside the window(창문 밖의): 전치사 outside(~의 밖에)가 뒤에서 the view를 꾸며 '창문 밖에 펼쳐진 풍경'이라는 뜻이 됨" },
+      { word: 'moderately', meaning: '적당히, 알맞게', pos: '부사', example: "My neighborhood is moderately busy — not too quiet, not too crowded.", exampleKo: '우리 동네는 적당히 활기차요 — 너무 조용하지도, 너무 붐비지도 않아요.', tip: "'적당히·알맞게·도가 지나치지 않게'라는 뜻의 아주 세련된 부사 — 너무 시끄럽거나 복잡하지도, 반대로 너무 한적하거나 심심하지도 않은 딱 좋은 상태를 말함" },
+      { word: 'lively', meaning: '활기찬, 생기 넘치는', pos: '형용사', example: "Anyang is a lively city with lots of restaurants and shops.", exampleKo: '안양은 식당과 가게가 많은 활기찬 도시예요.', tip: "'활기찬·생기 넘치는'이라는 뜻 — 끝이 -ly로 끝나 부사처럼 보일 수 있지만, 명사(예: Anyang)의 상태를 설명하는 형용사임에 주의. (= vibrant)" },
+      { word: 'plenty of', meaning: '많은, 풍부한', pos: '구', example: "There are plenty of cafes and parks around my place.", exampleKo: '집 주변에 카페와 공원이 많이 있어요.', tip: "'많은·풍부한'이라는 뜻으로, a lot of나 many보다 '넘치지도 모자라지도 않게 충분히 많다'는 긍정적인 뉘앙스를 줌" },
+      { word: 'cute little', meaning: '아기자기한, 소박하고 예쁜', pos: '구', example: "There are lots of cute little shops in the alleys near my house.", exampleKo: '집 근처 골목에는 아기자기한 가게들이 많아요.', tip: "원어민들이 일상에서 정말 자주 붙여 쓰는 표현 — 직역하면 '귀엽고 작은'이지만 자연스럽게는 '소박하고 예쁜·아기자기한' 정도의 뉘앙스. 골목길의 감성적인 소품숍이나 개인 매장을 떠올리면 됨" },
+      { word: 'outdated', meaning: '구식의, 낙후된', pos: '형용사', example: "Some buildings in the old part of town look a bit outdated.", exampleKo: '구도심의 몇몇 건물은 조금 낙후되어 보여요.', tip: "'구식의·시대에 뒤처진·낙후된'이라는 뜻 — 단순히 나이 든 것(old)을 넘어, 주변 개발 속도에 비해 조금 옛날 스타일로 멈춰 있는 느낌을 줄 때 주로 사용(예: 구도심 지역)" },
+      { word: 'honestly', meaning: '솔직히, 진심으로', pos: '부사', example: "Honestly, the location is the best thing about my apartment.", exampleKo: '솔직히, 위치가 제 아파트에서 가장 좋은 점이에요.', tip: "'솔직히·진심으로'라는 뜻의 부사 — 자신의 진솔한 속마음이나 최종 결론을 털어놓을 때 문장 맨 앞에 정말 자주 쓰이는 양념 같은 표현" },
+      { word: 'character', meaning: '(장소의) 독특한 정취, 개성, 매력', pos: '명사', example: "The old part of the neighborhood has a lot of character.", exampleKo: '동네의 오래된 구역은 독특한 정취가 많아요.', tip: "보통 사람의 '성격·인격'으로 알지만, 장소나 건물에 쓰이면 그곳만의 '독특한 정취·개성·매력'을 뜻함 — 오래된 구역이 단순히 낡은 게 아니라 오히려 정감 있고 개성 있는 분위기를 풍긴다는 긍정적 해석. of the area(그 지역의)로 뒤에서 꾸며주기도 함" }
     ]
   },
 
@@ -132,7 +140,8 @@ const OPIC_VOCAB_MODULES = [
       { word: 'find + 목적어 + 형용사', meaning: '~가 …하다고 느끼다/생각하다', pos: '패턴', example: "I find cooking very relaxing after a long day.", exampleKo: '긴 하루를 보낸 후 요리하는 것이 매우 편안하게 느껴져요.', tip: "여기서 find는 '찾다'가 아니라 '~가 …하다고 생각하다'라는 뜻으로 쓰인 5형식 동사" },
       { word: 'from scratch', meaning: '아무것도 없는 상태에서, 처음부터', pos: '숙어', example: "I enjoy making pasta sauce from scratch instead of buying it.", exampleKo: '사서 먹기보다 파스타 소스를 처음부터 직접 만드는 것을 즐겨요.', tip: '★원어민이 자주 쓰는 고급 숙어 — 반조리 식품 등을 쓰지 않고 날것의 재료부터 직접 만든다는 뜻' },
       { word: 'experimenting', meaning: '실험하다, 새로운 시도를 하다 (experiment의 동명사)', pos: '동명사', example: "I spend a lot of time experimenting with different spices when I cook.", exampleKo: '요리할 때 여러 향신료를 넣어보며 시도해보는 데 많은 시간을 보내요.', tip: "'spend + 시간 + -ing' 구조에 자주 걸리는 동명사 — 새로운 재료·향신료를 넣어보며 시도한다는 뉘앙스" },
-      { word: "It's become", meaning: '~이 되었다 (It has become의 축약)', pos: '패턴', example: "It's become a nice habit to read before bed every night.", exampleKo: '매일 밤 자기 전에 책을 읽는 것이 좋은 습관이 되었어요.', tip: 'It has become의 축약형 — 과거부터 시작된 일이 현재 어떤 상태가 된 것을 나타내는 현재완료 시제' }
+      { word: "It's become", meaning: '~이 되었다 (It has become의 축약)', pos: '패턴', example: "It's become a nice habit to read before bed every night.", exampleKo: '매일 밤 자기 전에 책을 읽는 것이 좋은 습관이 되었어요.', tip: 'It has become의 축약형 — 과거부터 시작된 일이 현재 어떤 상태가 된 것을 나타내는 현재완료 시제' },
+      { word: "I'm especially into", meaning: '저는 특히 ~에 푹 빠져 있어요', pos: '관용구', example: "I enjoy all kinds of AI topics, but I'm especially into machine learning.", exampleKo: '온갖 AI 주제를 좋아하지만, 저는 특히 머신러닝에 푹 빠져 있어요.', tip: "핵심 구어체 be into ~: '~에 푹 빠져 있다·아주 좋아하다'라는 뜻으로, like나 enjoy보다 훨씬 캐주얼하면서도 열정적인 뉘앙스. especially를 더해 여러 분야 중에서도 특정 분야를 '특히' 강조. 활용: I'm into Netflix these days.(나 요즘 넷플릭스에 푹 빠졌어)" }
     ]
   },
 
@@ -167,13 +176,13 @@ const OPIC_VOCAB_MODULES = [
       { word: 'spend + 시간 + -ing', meaning: '~하는 데 시간을 보내다', pos: '패턴', example: "We spent about a week traveling between Tokyo and Osaka.", exampleKo: '저희는 도쿄와 오사카를 오가며 약 일주일을 보냈어요.', tip: '매우 유용한 필수 패턴' },
       { word: 'spent', meaning: '보냈다 (spend의 과거형)', pos: '동사', example: "In Osaka, we spent most of our time eating our way through the city.", exampleKo: '오사카에서는 시간을 대부분 이것저것 먹으러 다니며 보냈어요.', tip: '시간이나 돈을 쓰다/보내다' },
       { word: 'we spotted', meaning: '우리는 발견했다/눈에 띄었다', pos: '동사', example: "We spotted Tokyo Tower far off in the distance.", exampleKo: '저희는 저 멀리 도쿄 타워를 발견했어요.', tip: 'saw보다 더 명확하게 "포착했다"는 느낌' },
-      { word: 'far off', meaning: '저 멀리', pos: '부사구', example: "We spotted Tokyo Tower far off in the distance.", exampleKo: '저희는 저 멀리 도쿄 타워를 발견했어요.', tip: '' },
+      { word: 'far off', meaning: '저 멀리', pos: '부사구', example: "We spotted Tokyo Tower far off in the distance.", exampleKo: '저희는 저 멀리 도쿄 타워를 발견했어요.', tip: "far off in the distance는 통째로 외워두면 좋은 표현 — in the distance(저 멀리)에 far off까지 더해져 아주 아득히 먼 거리감을 강조" },
       { word: 'in the distance', meaning: '먼 거리에', pos: '부사구', example: "We spotted Tokyo Tower far off in the distance.", exampleKo: '저희는 저 멀리 도쿄 타워를 발견했어요.', tip: 'far off와 함께 쓰여 "아주 멀리"라는 공간적 느낌 강조' },
       { word: 'think through (thinking it through)', meaning: '깊이 고민하다, 끝까지 생각하다, 신중히 따져보다', pos: '구동사', example: "We decided to walk toward it, without really thinking it through.", exampleKo: '별생각 없이 그쪽으로 걸어가기로 했어요.', tip: '구동사(Phrasal Verb)' },
       { word: 'barely', meaning: '거의 ~않다, 간신히 ~하다', pos: '부사', example: "We barely checked a map — we just kept walking.", exampleKo: '지도도 거의 안 보고 그냥 계속 걸었어요.', tip: '부정의 의미를 가진 부사' },
       { word: 'keep + -ing (kept walking)', meaning: '계속해서 ~하다 (계속 걸어갔다)', pos: '패턴', example: "We just kept walking in that general direction.", exampleKo: '그냥 그 방향으로 계속 걸어갔어요.', tip: '과거의 지속적인 행동을 나타냄' },
       { word: 'get to (got there)', meaning: '~에 도착하다', pos: '구동사', example: "By the time we finally got there, it was late at night.", exampleKo: '마침내 도착했을 때는 이미 밤늦은 시간이었어요.', tip: 'there가 오면 전치사 to 없이 got there' },
-      { word: 'late at night', meaning: '밤늦게, 늦은 밤', pos: '부사구', example: "By the time we finally got there, it was late at night.", exampleKo: '마침내 도착했을 때는 이미 밤늦은 시간이었어요.', tip: '' },
+      { word: 'late at night', meaning: '밤늦게, 늦은 밤', pos: '부사구', example: "By the time we finally got there, it was late at night.", exampleKo: '마침내 도착했을 때는 이미 밤늦은 시간이었어요.', tip: "'밤늦게·깊은 밤에'라는 뜻 — 낮에 출발해 밤이 될 때까지 꽤 오랜 시간 동안 낭만적인 방랑을 했음을 짐작하게 함" },
       { word: 'lit up', meaning: '불이 켜진, 환하게 빛나는', pos: '형용사', example: "Looking up at Tokyo Tower lit up in the dark felt almost magical.", exampleKo: '어둠 속에서 환하게 빛나는 도쿄 타워를 올려다보는 것이 거의 마법 같았어요.', tip: 'light up의 과거분사, 수동의 의미' },
       { word: 'in the dark', meaning: '어둠 속에서', pos: '부사구', example: "Tokyo Tower lit up in the dark felt almost magical.", exampleKo: '어둠 속에서 환하게 빛나는 도쿄 타워는 거의 마법 같았어요.', tip: '주위의 캄캄한 배경을 나타냄' },
       { word: "eat one's way through", meaning: '돌아다니며 이것저것 맛있는 것을 잔뜩 먹다', pos: '구동사', example: "We spent most of our time eating our way through the city.", exampleKo: '저희는 시간을 대부분 그 도시를 돌아다니며 이것저것 먹는 데 보냈어요.', tip: '직역: 먹으면서 길을 뚫고 지나가다' },
@@ -183,7 +192,12 @@ const OPIC_VOCAB_MODULES = [
       { word: 'reckless', meaning: '무모한, 앞뒤 가리지 않는', pos: '형용사', example: "That reckless walk toward Tokyo Tower somehow stands out as a special memory.", exampleKo: '도쿄 타워를 향한 그 무모한 산책이 왠지 특별한 기억으로 남아 있어요.', tip: '' },
       { word: 'somehow', meaning: '왠지 모르게, 어쩐지', pos: '부사', example: "That reckless walk somehow stands out as one of those memories.", exampleKo: '그 무모한 산책이 왠지 특별한 기억 중 하나로 남아 있어요.', tip: '이유를 콕 집어 말할 수 없는 느낌의 부사' },
       { word: 'what it feels(felt) like to ~', meaning: '~하는 것은 어떤 느낌인가', pos: '패턴', example: "That memory captures what it felt like to be young.", exampleKo: '그 기억은 젊었을 때 어떤 느낌이었는지를 그대로 담고 있어요.', tip: '통째로 외우면 좋은 중요 패턴' },
-      { word: 'with + 명사 + 형용사', meaning: '~가 ~한 상태로', pos: '패턴', example: "I felt a bit anxious with the event so close.", exampleKo: '행사가 코앞으로 다가온 상태라 조금 긴장됐어요.', tip: '상황이나 이유를 덧붙일 때 자주 쓰는 구조 (예: with the event so close)' }
+      { word: 'with + 명사 + 형용사', meaning: '~가 ~한 상태로', pos: '패턴', example: "I felt a bit anxious with the event so close.", exampleKo: '행사가 코앞으로 다가온 상태라 조금 긴장됐어요.', tip: '상황이나 이유를 덧붙일 때 자주 쓰는 구조 (예: with the event so close)' },
+      { word: 'abroad', meaning: '해외로, 외국에', pos: '부사', example: "I've always dreamed of traveling abroad on my own someday.", exampleKo: '언젠가 혼자 해외를 여행하는 것을 늘 꿈꿔왔어요.', tip: "'해외로·외국에'라는 뜻의 부사 — 부사이므로 go to abroad처럼 전치사 to를 쓰지 않고, 동사 뒤에 바로 붙여 travel abroad, go abroad라고 표현해야 함" },
+      { word: 'in that general direction', meaning: '대략 그 방향으로, 대충 저쪽쯤으로', pos: '구', example: "We didn't have a map, so we just kept walking in that general direction.", exampleKo: '지도가 없어서 그냥 대략 그 방향으로 계속 걸었어요.', tip: "통째로 기억해 두면 좋은 표현 — general은 원래 '일반적인·전반적인'이라는 뜻이라, general direction은 정확한 나침반 좌표나 주소가 아니라 '대충 저쪽쯤·대략적인 그 방향'을 의미" },
+      { word: 'one of + 복수명사', meaning: '~ 중 하나', pos: '패턴', example: "It's one of the best memories I have from all my travels.", exampleKo: '제 모든 여행 중에서 가장 좋은 추억 중 하나예요.', tip: "문법 시험에도 단골로 나오는 중요 패턴 — '~ 중 하나'라는 뜻이라 뒤에는 반드시 복수 형태의 명사가 옴(memory가 아니라 memories). 수많은 것 중에서도 손에 꼽을 정도로 최고라는 감정을 담음" },
+      { word: 'capture', meaning: '(감정·분위기를) 고스란히 담아내다, 재현하다', pos: '동사', example: "That one photo really captures how magical the trip felt.", exampleKo: '그 사진 한 장이 여행이 얼마나 마법 같았는지를 고스란히 담아내요.', tip: "본래 '붙잡다·포획하다'라는 뜻이지만, 예술이나 글에서 쓰이면 추상적인 감정이나 분위기를 '고스란히 담아내다·재현하다'라는 멋진 뜻이 됨" },
+      { word: 'adventurous', meaning: '모험적인, 모험을 즐기는', pos: '형용사', example: "Wandering around without a map made me feel adventurous.", exampleKo: '지도 없이 돌아다니는 것이 저를 모험적인 기분이 들게 했어요.', tip: "'모험적인·모험을 즐기는'이라는 뜻의 형용사 — 지도를 보지 않고 무작정 걸었던 행동이 짜릿한 '모험(adventure)'으로 기억된다는 것을 보여줌" }
     ]
   },
 
@@ -227,7 +241,9 @@ const OPIC_VOCAB_MODULES = [
       { word: 'After that,', meaning: '그다음에는, 그 이후에는', pos: '접속부사구', example: "After that, I usually attend a couple of meetings before lunch.", exampleKo: '그다음에는, 보통 점심 전에 회의를 몇 개 참석해요.', tip: '앞 순서의 행동이 끝난 뒤 시간상으로 그다음에 일어날 일을 매끄럽게 연결' },
       { word: 'This means', meaning: '이것은 ~을 의미합니다, 즉 ~라는 뜻입니다', pos: '패턴', example: "This means I have to double-check every report before submitting it.", exampleKo: '즉, 제출하기 전에 모든 보고서를 다시 확인해야 한다는 뜻이에요.', tip: 'means 뒤에 접속사 that이 생략되어 [주어+동사]가 바로 따라옴 — 앞서 말한 내용을 구체적으로 풀어서 설명할 때 사용' },
       { word: 'work closely with', meaning: '~와 긴밀하게 일하다, 밀접하게 협력하다', pos: '숙어', example: "Since I work so closely with the marketing team, we communicate every day.", exampleKo: '마케팅팀과 아주 긴밀하게 일하기 때문에, 저희는 매일 소통해요.', tip: "Since는 '~이후로'뿐 아니라 '~이기 때문에'라는 이유의 접속사로도 자주 쓰임 — so를 붙이면 '아주 긴밀하게'로 강조" },
-      { word: 'other times', meaning: '다른 때는, 또 어떤 때는', pos: '구', example: "Sometimes the meetings are quick, but other times they run over an hour.", exampleKo: '가끔은 회의가 짧게 끝나지만, 또 어떤 때는 한 시간 넘게 이어지기도 해요.', tip: '앞의 Sometimes와 대조를 이루며 "항상 좋은 것만은 아니다"라는 뉘앙스를 풍김' }
+      { word: 'other times', meaning: '다른 때는, 또 어떤 때는', pos: '구', example: "Sometimes the meetings are quick, but other times they run over an hour.", exampleKo: '가끔은 회의가 짧게 끝나지만, 또 어떤 때는 한 시간 넘게 이어지기도 해요.', tip: '앞의 Sometimes와 대조를 이루며 "항상 좋은 것만은 아니다"라는 뉘앙스를 풍김' },
+      { word: 'it can be ~', meaning: '~일 수도 있다, ~하는 경향이 있다', pos: '패턴', example: "My job can be stressful at times, but overall I really enjoy it.", exampleKo: '제 일이 가끔은 스트레스가 될 수도 있지만, 전반적으로는 정말 즐거워요.', tip: "'~일 수도 있다·~하는 경향이 있다'라며 자신의 감정을 100% 단정 짓지 않고 부드럽게 표현하는 방식" },
+      { word: 'which (계속적 용법)', meaning: '그리고 그것은 ~ (앞 문장 전체를 받음)', pos: '관계대명사', example: "My hours are fixed from 8 to 5, which makes it easy to plan my evenings.", exampleKo: '제 근무 시간은 8시부터 5시까지로 고정돼 있는데, 그 덕분에 저녁 시간 계획을 세우기 쉬워요.', tip: "쉼표(,) 뒤에 쓰인 which는 앞 문장 전체(예: 출퇴근 시간이 고정되어 있다는 사실)를 선행사로 받아 '그리고 그것은~'이라고 해석하는 계속적 용법" }
     ]
   },
 
@@ -264,7 +280,10 @@ const OPIC_VOCAB_MODULES = [
       { word: "That's fine. (승낙 표현)", meaning: '괜찮아요, 좋아요 (승낙)', pos: '관용구', example: "That's fine. I'm happy to pay the extra fee.", exampleKo: '괜찮아요. 추가 요금은 기꺼이 낼게요.', tip: "Okay보다 자연스럽고 세련된 승낙 표현 — That's perfect./That works for me.(매우 만족), No problem.(양해에 쿨하게 답할 때)도 함께 알아두기" },
       { word: 'higher / lower floor room', meaning: '고층 객실 / 저층 객실', pos: '명사', example: "I'd prefer a higher floor room with a nice view, if possible.", exampleKo: '가능하다면 전망 좋은 고층 객실을 원해요.', tip: '뷰가 좋고 조용한 방은 higher floor room, 저층 방은 lower floor room' },
       { word: 'assigned', meaning: '배정된 (assign의 과거분사)', pos: '형용사', example: "I noticed the room I was assigned doesn't have the view I requested.", exampleKo: '제가 배정받은 방에 제가 요청했던 전망이 없다는 걸 알게 됐어요.', tip: "be assigned = '배정받다'라는 수동태 의미" },
-      { word: 'on file', meaning: '기록(보관)되어 있는, 시스템에 등록된', pos: '구', example: "Could you double-check the address on file for my account?", exampleKo: '제 계정에 등록된 주소를 다시 한번 확인해 주시겠어요?', tip: "명사를 뒤에서 꾸며주는 표현 — 'the address on file'처럼 사용" }
+      { word: 'on file', meaning: '기록(보관)되어 있는, 시스템에 등록된', pos: '구', example: "Could you double-check the address on file for my account?", exampleKo: '제 계정에 등록된 주소를 다시 한번 확인해 주시겠어요?', tip: "명사를 뒤에서 꾸며주는 표현 — 'the address on file'처럼 사용" },
+      { word: 'since', meaning: '~이기 때문에, ~라는 점을 고려하면', pos: '접속사', example: "Since I'll be staying one more night, could you update my reservation?", exampleKo: '하룻밤 더 묵을 거라서, 제 예약을 변경해 주시겠어요?', tip: "여기서는 시간('~이후로')이 아니라 이유를 나타내는 접속사 — because보다 이미 대화에서 밝혀진 당연한 이유를 짚어줄 때 주로 사용" },
+      { word: 'update', meaning: '(예약·정보를) 수정하다, 변경하다', pos: '동사', example: "Could you update my reservation to check out one day later?", exampleKo: '체크아웃을 하루 늦추도록 제 예약을 변경해 주시겠어요?', tip: "보통 '최신화하다·업데이트하다'로 알지만, 호텔·식당 등에서 예약 정보나 계약 조건을 '수정하거나 변경하다'라는 의미로도 정말 많이 사용. (유의어: change the reservation, modify the reservation)" },
+      { word: 'request', meaning: '요청하다, 신청하다', pos: '동사', example: "I'd like to request a room on a higher floor, if possible.", exampleKo: '가능하다면 고층 객실을 요청하고 싶어요.', tip: "ask for보다 조금 더 격식 있고 정중한 동사 — 호텔이나 고객 서비스에서 특정 옵션이나 선호 사항(preference)을 '공식적으로 요청하다'라는 의미로 자주 사용" }
     ]
   },
 
@@ -312,7 +331,7 @@ const OPIC_VOCAB_MODULES = [
       { word: 'boarding pass', meaning: '탑승권', pos: '명사', example: "I couldn't find my boarding pass anywhere in my bag.", exampleKo: '가방 어디에서도 탑승권을 찾을 수 없었어요.', tip: '동사 board(탑승하다)의 명사형이 쓰인 표현' },
       { word: 'caught', meaning: '(교통수단을) 탔다, 잡아탔다 (catch의 과거형)', pos: '동사', example: "I barely caught my connecting flight after all that rushing.", exampleKo: '그렇게 서두른 끝에 겨우 환승 비행기를 탈 수 있었어요.', tip: '시간에 맞춰 딱 잡아탔다는 생동감을 표현하는 catch의 과거형' },
       { word: 'window of time', meaning: '특정 일을 할 수 있는 짧은 기회·시간대, 틈새', pos: '명사', example: "I only had a small window of time to get through security.", exampleKo: '보안 검색대를 통과할 수 있는 짧은 시간밖에 없었어요.', tip: "직역은 '시간의 창문'이지만 짧은 기회의 시간대를 뜻함" },
-      { word: 'ruined', meaning: '망쳤다, 엉망으로 만들었다 (ruin의 과거형)', pos: '동사', example: "That mistake almost ruined the entire trip before it even started.", exampleKo: '그 실수가 여행이 시작되기도 전에 여행 전체를 거의 망칠 뻔했어요.', tip: '동사 ruin(망치다)의 과거형' },
+      { word: 'ruined', meaning: '망쳤다, 엉망으로 만들었다 (ruin의 과거형)', pos: '동사', example: "That mistake almost ruined the entire trip before it even started.", exampleKo: '그 실수가 여행이 시작되기도 전에 여행 전체를 거의 망칠 뻔했어요.', tip: '동사 ruin(망치다·엉망으로 만들다)의 과거형 — ruin은 spoil이나 mess up으로 바꿔 쓸 수도 있음' },
       { word: 'before it even started!', meaning: '그것이 시작되기도 전에!', pos: '구', example: "I almost missed my flight before the trip even started!", exampleKo: '여행이 시작되기도 전에 비행기를 놓칠 뻔했어요!', tip: 'even: 심지어 ~조차도, ~하기도 전에 — 첫 단추부터 잘못 끼워질 뻔했다는 뉘앙스' },
       { word: 'Looking back,', meaning: '돌이켜보면', pos: '분사구문', example: "Looking back, that stressful morning actually makes for a funny story now.", exampleKo: '돌이켜보면 그 스트레스 받았던 아침이 지금은 재미있는 이야기가 됐어요.', tip: 'When I look back에서 주어와 접속사를 생략하고 -ing를 붙인 분사구문' },
       { word: 'taught', meaning: '가르쳤다 (teach의 과거형)', pos: '동사', example: "That experience taught me to always double-check my documents.", exampleKo: '그 경험은 항상 서류를 다시 확인하도록 저를 가르쳐줬어요.', tip: '동사 teach(가르치다)의 과거형' },

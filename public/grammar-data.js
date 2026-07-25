@@ -310,6 +310,20 @@ const GRAMMAR_MODULES = [
               ['along', '~을 따라서 (선형 이동)', '"People are walking along the street."'],
             ]
           },
+          { type: 'heading', text: '사진 전체 구도·위치 표현 — Part 1 필수' },
+          { type: 'text', text: '아래 6가지는 사진 속 사람·사물이 "어디에 위치하는지" 설명할 때 쓰는 Part 1 핵심 표현입니다. 개별 사물의 위치(next to, behind 등)뿐 아니라 사진 전체의 구도(전경/배경, 왼쪽/오른쪽, 중앙)를 잡아줄 때 특히 유용합니다.' },
+          { type: 'table',
+            headers: ['표현', '의미', 'Part 1 예문'],
+            rows: [
+              ['in the foreground / in the background', '전경에 / 배경에', '"In the foreground, there are colorful flowers, and mountains rise in the background."'],
+              ['on the left / on the right side', '왼쪽에 / 오른쪽에', '"There is a plant on the left and a lamp on the right side of the sofa."'],
+              ['in the center of the photo', '사진 중앙에', '"A dog is sitting in the center of the photo."'],
+              ['next to / beside', '~옆에', '"A cat is sitting next to the girl on the bench."'],
+              ['in front of / behind', '~앞에 / ~뒤에', '"One boy is standing in front, and another boy is standing behind him."'],
+              ['across from', '~맞은편에', '"A woman is sitting across from a man at the table."'],
+            ]
+          },
+          { type: 'tip', icon: '📍', text: '이 표현들은 사람이나 사물이 사진의 어느 위치에 있는지 설명할 때 사용합니다. 묘사 순서를 "전경(in the foreground) → 배경(in the background)" 또는 "왼쪽(on the left) → 중앙(in the center) → 오른쪽(on the right)"으로 잡으면 빠짐없이 자연스럽게 이어집니다.' },
           { type: 'heading', text: 'Part 1 위치 묘사 실전 패턴' },
           { type: 'example', label: '위치 전치사 활용', items: [
             { en: '"A woman is standing at the counter."', ko: 'at → 카운터라는 특정 지점에 서 있음' },

@@ -517,25 +517,26 @@ const GRAMMAR_MODULES = [
               ['will', '강한 의지·미래 확실', '95%', '"This will definitely improve productivity." (확신)'],
               ['should', '의무·권고·당연히 해야 함', '75%', '"You should submit the form by Friday." (권고)'],
               ['can', '현재 능력·가능', '70%', '"I can help you with that." (능력)'],
-              ['could', '정중한 가능성·제안', '50%', '"You could contact the manager for help." (부드러운 제안)'],
-              ['would', '정중한 의지·가정적 제안', '45%', '"I would suggest a different approach." (공손한 제안)'],
+              ['would', '확신에 찬 격식체 추천 — 조언자 톤', '60%', '"I would suggest a different approach." (전문가처럼 자신 있게, 그러나 정중하게 권함)'],
+              ['could', '부담 없는 가능성·선택적 제안', '50%', '"You could contact the manager for help." (여러 선택지 중 하나로 가볍게 제시)'],
               ['may', '허가·낮은 가능성', '40%', '"This may cause delays." (가능성 언급)'],
-              ['might', '매우 낮은 가능성·조심스러운 제안', '25%', '"It might be a good idea to call first." (조심스러운 제안)'],
+              ['might', '매우 낮은 가능성·가장 조심스러운 제안', '25%', '"It might be a good idea to call first." (가장 소극적·조심스러운 제안)'],
             ]
           },
           { type: 'heading', text: 'Part 4 — 제안 강도에 따른 조동사 선택' },
+          { type: 'text', text: '아래 4단계는 위 비교표와 동일한 강도 순서(must/have to → should → would → could/might)를 따릅니다. 특히 would는 "I would suggest/recommend~" 형태로 전문가·조언자처럼 확신을 갖고 권하는 격식체라 could보다 강도가 세다는 점에 주의하세요 — could는 "이런 방법도 있어요" 정도로 가볍게 선택지 하나를 던지는 느낌입니다.' },
           { type: 'structure', steps: [
             { num: '강함', title: 'must / have to → 즉각 필요한 조치', desc: '"You must contact the hotel immediately." (긴급·의무)\n"You have to request a refund right away."' },
             { num: '중간', title: 'should → 일반적인 권고', desc: '"You should try to reschedule the meeting." (합리적 권고)\n"You should speak with the manager directly."' },
-            { num: '부드럽', title: 'could / might → 강요 없는 부드러운 제안', desc: '"You could consider reaching out to the team." (선택 가능성)\n"You might want to wait a day before deciding."' },
-            { num: '정중', title: 'would → 가장 공손한 제안 (격식체)', desc: '"I would suggest speaking with the supervisor." (격식)\n"I would recommend contacting customer service."' },
+            { num: '정중', title: 'would → 확신에 찬 격식체 추천 ("I would suggest/recommend")', desc: '"I would suggest speaking with the supervisor." (전문가처럼 자신 있게, 그러나 정중하게 권함)\n"I would recommend contacting customer service."' },
+            { num: '부드러움', title: 'could / might → 강요 없는 부드러운 제안', desc: '"You could consider reaching out to the team." (선택 가능성 — could가 상대적으로 조금 더 적극적)\n"You might want to wait a day before deciding." (might가 이 중 가장 조심스럽고 소극적인 표현)' },
           ]},
           { type: 'example', label: '조동사 문법 오류 교정', items: [
             { en: '❌ "You should to go." → ✅ "You should go."', ko: '조동사 뒤에는 to 없이 동사 원형만 — should to, must to, can to 모두 오류' },
             { en: '❌ "She can speaks English." → ✅ "She can speak English."', ko: '조동사 뒤 동사는 반드시 원형 (speaks → speak)' },
             { en: '❌ "He will goes to work." → ✅ "He will go to work."', ko: 'will 뒤에도 반드시 동사 원형' },
           ]},
-          { type: 'tip', icon: '🎯', text: '이 세 패턴을 Part 4에서 자동으로 나올 때까지 연습하세요: "You could..." / "I would suggest..." / "You might want to..." — 강하지 않으면서도 확실한 제안으로 채점관에게 좋은 인상을 줍니다.' }
+          { type: 'tip', icon: '🎯', text: '이 세 패턴을 Part 4에서 자동으로 나올 때까지 연습하세요 — 강도 순서대로: "I would suggest..." (확신에 찬 격식체) → "You could..." (부담 없는 제안) → "You might want to..." (가장 조심스러운 제안). 강하지 않으면서도 확실한 제안으로 채점관에게 좋은 인상을 줍니다.' }
         ]
       },
       {

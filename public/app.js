@@ -2012,14 +2012,18 @@ function renderBlock(block) {
     }
 
     case 'example': {
-      const rows = block.items.map(i => `
+      const rows = block.items.map(i => {
+        const detail = i.detail ? `<div class="expr-detail">${i.detail}</div>` : '';
+        return `
         <div class="expr-item">
           <div class="expr-en-wrap">
             <div class="expr-en">${i.en}</div>
             <button class="speak-btn" onclick="speak(this, this.dataset.t)" data-t="${i.en.replace(/"/g, '&quot;')}" title="소리로 듣기">🔊</button>
           </div>
           <div class="expr-ko">${i.ko}</div>
-        </div>`).join('');
+          ${detail}
+        </div>`;
+      }).join('');
       return `<div class="cb-expression"><div class="cb-expr-label">${block.label}</div>${rows}</div>`;
     }
 

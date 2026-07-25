@@ -556,6 +556,7 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
 .expr-en-wrap .speak-btn { width: 26px; height: 26px; font-size: .78rem; flex-shrink: 0; margin-top: 2px; }
 .expr-en { flex: 1; padding: 10px 14px 8px; font-size: .9rem; font-style: normal; color: #374151; background: #F3F4F6; font-weight: 600; line-height: 1.7; }
 .expr-ko { padding: 6px 14px 10px; font-size: .82rem; color: #6B7280; background: white; line-height: 1.55; }
+.expr-detail { padding: 4px 14px 14px; font-size: .8rem; color: #4B5563; background: white; line-height: 1.65; border-top: 1px dashed #E5E7EB; margin: 0 14px; padding-left: 0; padding-right: 0; }
 
 .cb-example-block { background: #F8FAFC; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
 .cb-example-label { font-size: .75rem; font-weight: 700; color: white; background: #374151; padding: 7px 12px; }

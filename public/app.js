@@ -1953,6 +1953,11 @@ function renderBlock(block) {
       return `<div class="cb-tip ${cls}"><span class="tip-icon">${block.icon || '💡'}</span>${_inlineJpSpeakBtns(block.text)}</div>`;
     }
 
+    case 'image': {
+      const cap = block.caption ? `<div class="cb-image-caption">${block.caption}</div>` : '';
+      return `<div class="cb-image-wrap"><img class="cb-image" src="${block.src}" alt="${(block.alt || '').replace(/"/g, '&quot;')}" loading="lazy">${cap}</div>`;
+    }
+
     case 'list':
       return `<ul class="cb-list">${block.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
 

@@ -521,6 +521,10 @@ ruby rt { font-size: 0.6em; color: #9CA3AF; font-weight: 400; }
 .cb-numbered { display: flex; flex-direction: column; gap: 6px; }
 .cb-numbered li { font-size: .88rem; line-height: 1.55; color: #374151; }
 
+.cb-image-wrap { border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); background: var(--card); }
+.cb-image { display: block; width: 100%; height: auto; }
+.cb-image-caption { padding: 8px 12px; font-size: .8rem; color: #6B7280; text-align: center; }
+
 .cb-table-wrap { overflow-x: auto; border-radius: 10px; box-shadow: var(--shadow); }
 .cb-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
 .cb-table th { background: var(--primary); color: white; padding: 9px 10px; text-align: left; font-weight: 700; }

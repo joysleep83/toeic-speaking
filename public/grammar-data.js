@@ -311,6 +311,7 @@ const GRAMMAR_MODULES = [
             ]
           },
           { type: 'heading', text: '사진 전체 구도·위치 표현 — Part 1 필수' },
+          { type: 'image', src: '/lesson-images/part1-location-expressions.png', alt: '영어 전치사: 공간 및 위치 표현 학습 가이드', caption: '영어 전치사: 공간 및 위치 표현 학습 가이드' },
           { type: 'text', text: '아래 6가지는 사진 속 사람·사물이 "어디에 위치하는지" 설명할 때 쓰는 Part 1 핵심 표현입니다. 개별 사물의 위치(next to, behind 등)뿐 아니라 사진 전체의 구도(전경/배경, 왼쪽/오른쪽, 중앙)를 잡아줄 때 특히 유용합니다.' },
           { type: 'table',
             headers: ['표현', '의미', 'Part 1 예문'],

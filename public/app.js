@@ -1955,7 +1955,7 @@ function renderBlock(block) {
 
     case 'image': {
       const cap = block.caption ? `<div class="cb-image-caption">${block.caption}</div>` : '';
-      return `<div class="cb-image-wrap"><img class="cb-image" src="${block.src}" alt="${(block.alt || '').replace(/"/g, '&quot;')}" loading="lazy">${cap}</div>`;
+      return `<div class="cb-image-wrap"><img class="cb-image" src="${block.src}" alt="${(block.alt || '').replace(/"/g, '&quot;')}">${cap}</div>`;
     }
 
     case 'list':

@@ -291,6 +291,38 @@ let hdRadarChart  = null;
 let currentImageSrc = null;
 
 // ── TTS ────────────────────────────────────────────────────────
+// 듣기 속도 5단계 — 모드별 기본 속도(영어 0.9 / 일본어 0.85)에 곱해지는 배율(느리게만)
+const SPEECH_SPEED_LEVELS = [0.5, 0.6, 0.7, 0.85, 1.0];
+const SPEECH_SPEED_KEY    = 'tts_speed_level';
+let speechSpeedLevel = 5; // 1~5, 기본 5단계(보통 = 기존 속도)
+
+function loadSpeechSpeed() {
+  const saved = parseInt(localStorage.getItem(SPEECH_SPEED_KEY), 10);
+  if (saved >= 1 && saved <= 5) speechSpeedLevel = saved;
+  syncSpeedSwitchUI();
+}
+
+function syncSpeedSwitchUI() {
+  document.querySelectorAll('.speed-switch-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.speed, 10) === speechSpeedLevel);
+  });
+}
+
+function setSpeechSpeed(level) {
+  if (!(level >= 1 && level <= 5)) return;
+  speechSpeedLevel = level;
+  try { localStorage.setItem(SPEECH_SPEED_KEY, String(level)); } catch {}
+  syncSpeedSwitchUI();
+  // 재생 중이면 새 속도가 반영되지 않으므로 중단
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
+}
+
+function speechRate() {
+  const base = currentMode === 'opic-jp' ? 0.85 : 0.9;
+  return Math.min(10, Math.max(0.1, base * SPEECH_SPEED_LEVELS[speechSpeedLevel - 1]));
+}
+
 function cleanForSpeech(text) {
   return text
     .replace(/\(.*?\)/g, '')           // 괄호 내용 제거
@@ -317,7 +349,7 @@ function speak(btn, text) {
   if (!cleaned) return;
   const utt = new SpeechSynthesisUtterance(cleaned);
   utt.lang = currentMode === 'opic-jp' ? 'ja-JP' : 'en-US';
-  utt.rate = currentMode === 'opic-jp' ? 0.85 : 0.9;
+  utt.rate = speechRate();
   btn.classList.add('speaking');
   utt.onend   = () => btn.classList.remove('speaking');
   utt.onerror = () => btn.classList.remove('speaking');
@@ -2039,4 +2071,7 @@ document.getElementById('btn-lesson-back').addEventListener('click', () => {
 });
 document.getElementById('btn-lesson-prev').addEventListener('click', prevLesson);
 document.getElementById('btn-lesson-next').addEventListener('click', nextLesson);
+
+// 저장된 듣기 속도 복원
+loadSpeechSpeed();
 

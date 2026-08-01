@@ -18,6 +18,14 @@
           <button class="mode-switch-btn" data-mode="opic" onclick="switchMode('opic')">OPIc</button>
           <button class="mode-switch-btn" data-mode="opic-jp" onclick="switchMode('opic-jp')">OPIc日</button>
         </div>
+        <div class="speed-switch" title="듣기 속도 조절">
+          <span class="speed-switch-icon">🔊</span>
+          <button class="speed-switch-btn" data-speed="1" onclick="setSpeechSpeed(1)" title="아주 느리게">0.5×</button>
+          <button class="speed-switch-btn" data-speed="2" onclick="setSpeechSpeed(2)" title="느리게">0.6×</button>
+          <button class="speed-switch-btn" data-speed="3" onclick="setSpeechSpeed(3)" title="조금 느리게">0.7×</button>
+          <button class="speed-switch-btn" data-speed="4" onclick="setSpeechSpeed(4)" title="약간 느리게">0.85×</button>
+          <button class="speed-switch-btn active" data-speed="5" onclick="setSpeechSpeed(5)" title="보통">1.0×</button>
+        </div>
       </div>
       <div class="nav-tabs-row">
         <button class="nav-tab active" data-tab="practice" onclick="navTo('practice')">

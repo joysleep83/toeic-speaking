@@ -171,7 +171,9 @@ const VOCAB_MODULES = [
       { word: 'things like ~', meaning: '~와 같은 것들', pos: '표현', example: 'I can see things like chairs, tables, and a projector screen in the room.', exampleKo: '방 안에는 의자, 테이블, 프로젝터 화면 같은 것들이 보입니다.', tip: 'Such as보다 대화체에서 훨씬 많이 쓰임 — Part 1 묘사에서 자연스럽게 열거할 때' },
       { word: 'what appears to be ~', meaning: '~인 것으로 보이는', pos: '표현', example: 'The photo was taken on what appears to be a sunny afternoon.', exampleKo: '사진은 화창한 오후로 보이는 날에 촬영된 것 같습니다.', tip: '날씨·상황을 100% 단정하지 않고 추측할 때 쓰는 세련된 표현' },
       { word: 'full of activity', meaning: '활동으로 가득한, 북적이는', pos: '표현', example: 'The outdoor market looks full of activity with vendors and shoppers.', exampleKo: '야외 시장은 판매상과 쇼핑객들로 활기차 보입니다.', tip: '시장·공공장소가 사람들로 북적이는 활기찬 모습을 묘사할 때 사용' },
-      { word: 'suggesting it might be ~', meaning: '~일 수도 있음을 시사하며', pos: '표현', example: 'The airport in the background looks quite busy, suggesting it might be a peak travel time.', exampleKo: '배경의 공항이 꽤 붐벼 보여서, 성수기 여행 시간대일 수도 있음을 시사합니다.', tip: '분사구문(-ing)으로 앞 내용을 근거로 추측할 때 사용 — "~인 것을 보니 ~인 것 같다"는 뉘앙스' }
+      { word: 'suggesting it might be ~', meaning: '~일 수도 있음을 시사하며', pos: '표현', example: 'The airport in the background looks quite busy, suggesting it might be a peak travel time.', exampleKo: '배경의 공항이 꽤 붐벼 보여서, 성수기 여행 시간대일 수도 있음을 시사합니다.', tip: '분사구문(-ing)으로 앞 내용을 근거로 추측할 때 사용 — "~인 것을 보니 ~인 것 같다"는 뉘앙스' },
+      { word: 'staff member', meaning: '직원 한 명', pos: '명사', example: 'The woman appears to be handing a boarding pass to an airline staff member.', exampleKo: '여성이 항공사 직원에게 탑승권을 건네고 있는 것처럼 보입니다.', tip: 'staff는 "직원 전체"를 뜻하는 집합명사라 한 사람을 가리킬 때는 staff member라고 표현 — "an airline"처럼 모음 발음 앞에서는 an 사용' },
+      { word: 'stream', meaning: 'v. (빛·공기 등이) 쏟아져 들어오다 · n. 시냇물, 흐름', pos: '동사/명사', example: 'Sunlight is streaming through the large windows into the room.', exampleKo: '햇살이 큰 창문을 통해 방 안으로 쏟아져 들어오고 있습니다.', tip: '원래 "줄줄 흐르다"라는 뜻이지만 빛·공기 묘사에도 자주 사용 — 현재진행형(is streaming)으로 생생한 장면을 표현' }
     ]
   },
 
@@ -288,7 +290,9 @@ const VOCAB_MODULES = [
       { word: 'be likely to ~', meaning: '~할 가능성이 있다, ~일 것 같다', pos: '구문', example: 'This event is likely to attract more than 500 attendees.', exampleKo: '이 행사는 500명 이상의 참가자를 끌어들일 가능성이 있습니다.', tip: '"is/are likely to + 동사원형" — 부드러운 추측 표현으로 정보 자료 답변에 자주 사용' },
       { word: 'qualify for ~', meaning: '~의 자격을 얻다, ~ 조건에 부합하다', pos: '동사', example: 'Attendees who register early may qualify for a discounted rate.', exampleKo: '일찍 등록한 참가자는 할인 요금 혜택을 받을 수 있습니다.', tip: '= be eligible for / 조건 충족 여부를 표현할 때 사용' },
       { word: 'as well', meaning: '~도 역시', pos: '부사', example: 'The venue has parking available, and there is a shuttle service as well.', exampleKo: '행사장에는 주차 공간이 있으며, 셔틀 서비스도 있습니다.', tip: '문장 끝에 붙여 "~도 역시"를 나타냄 — "too"와 같은 의미이나 더 격식 있음' },
-      { word: 'heading to ~', meaning: '~를 향해 가다, ~로 이동하다', pos: '동사구', example: 'I suggest visiting the Tech booth before 1 PM and heading to the Finance booth when it opens at 2 PM.', exampleKo: '1시 전에 기술 부스를 방문하고, 2시에 문을 여는 금융 부스로 이동하는 것을 제안합니다.', tip: 'go to보다 훨씬 자연스럽고 자주 쓰이는 표현 — 일정 안내에 유용' }
+      { word: 'heading to ~', meaning: '~를 향해 가다, ~로 이동하다', pos: '동사구', example: 'I suggest visiting the Tech booth before 1 PM and heading to the Finance booth when it opens at 2 PM.', exampleKo: '1시 전에 기술 부스를 방문하고, 2시에 문을 여는 금융 부스로 이동하는 것을 제안합니다.', tip: 'go to보다 훨씬 자연스럽고 자주 쓰이는 표현 — 일정 안내에 유용' },
+      { word: 'hold', meaning: '열다, 개최하다 (수동태 be held = 열리다)', pos: '동사', example: 'According to the schedule, the workshops are held in the main conference room.', exampleKo: '일정에 따르면 워크숍은 메인 회의실에서 열립니다.', tip: '행사가 주어일 때는 수동태 "be held"로 사용 — hold-held-held' },
+      { word: 'take a break', meaning: '잠깐 휴식을 취하다', pos: '숙어', example: 'Employees are taking a lunch break from 1 to 2 PM.', exampleKo: '직원들은 1시부터 2시까지 점심 휴식을 취하고 있습니다.', tip: '짧은 휴식을 의미 — 장기 휴가를 뜻하는 take time off와 구분' }
     ]
   },
 
@@ -359,7 +363,9 @@ const VOCAB_MODULES = [
       { word: 'Video call', meaning: '화상 회의, 화상 통화', pos: '명사', example: 'Some orientation sessions could be delivered online via video call if needed.', exampleKo: '필요하다면 일부 오리엔테이션 세션은 화상 통화로 온라인 제공될 수 있습니다.', tip: '줌(Zoom), 팀즈(Teams) 등을 이용한 화상 회의를 통칭' },
       { word: 'Internal room', meaning: '(회사) 내부 회의실', pos: '명사', example: "I'll start checking internal room availability right now.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인해 보겠습니다.', tip: '회사 내부의 방(회의실)들을 가리키는 표현' },
       { word: 'Availability', meaning: '이용 가능 여부, 여유 있음', pos: '명사', example: "I'll start checking internal room availability right now.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인해 보겠습니다.', tip: 'available의 명사형 — 호텔·회의실 예약 상황에서 가장 많이 쓰는 단어' },
-      { word: '★ get back to (someone)', meaning: '~에게 (알아본 후) 다시 연락하다', pos: '동사구', example: "I'll start checking internal room availability right now and get back to you within the hour.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인하고 한 시간 안에 다시 연락드리겠습니다.', tip: 'contact you again보다 훨씬 자연스럽고 세련된 원어민 표현' }
+      { word: '★ get back to (someone)', meaning: '~에게 (알아본 후) 다시 연락하다', pos: '동사구', example: "I'll start checking internal room availability right now and get back to you within the hour.", exampleKo: '지금 바로 내부 회의실 이용 가능 여부를 확인하고 한 시간 안에 다시 연락드리겠습니다.', tip: 'contact you again보다 훨씬 자연스럽고 세련된 원어민 표현' },
+      { word: 'a couple of', meaning: '두어 개의, 몇 가지의', pos: '관용구', example: "Here's a couple of options you could consider for the venue.", exampleKo: '장소에 대해 고려해볼 만한 몇 가지 옵션이 있습니다.', tip: '문자 그대로 "2개"가 아니라 구어체·비즈니스 상황에서 "몇 개의"라는 가벼운 의미로 쓰임' },
+      { word: 'close', meaning: '(시간·거리가) 임박한, 가까운', pos: '형용사', example: 'With the event so close, we need to finalize the venue today.', exampleKo: '행사가 이렇게 임박한 상황이라, 오늘 장소를 확정해야 합니다.', tip: '"with + 명사 + 형용사" 부대상황 구문과 함께 자주 사용 — "~가 …한 상태라서"' }
     ]
   },
 
@@ -411,7 +417,8 @@ const VOCAB_MODULES = [
       { word: 'Ensuring', meaning: '반드시 ~하도록 보장하는 것', pos: '동명사', example: 'Companies have a legitimate interest in ensuring employees stay focused.', exampleKo: '회사는 직원들이 집중하도록 보장할 정당한 이해관계가 있습니다.', tip: 'making(하게 만들기)보다 훨씬 강한 책임감을 담은 단어 — "반드시 그렇게 되도록 확실히 해두다"' },
       { word: 'excessive surveillance', meaning: '과도한 감시', pos: '표현', example: 'Excessive surveillance can erode trust and create a stressful environment.', exampleKo: '과도한 감시는 신뢰를 조금씩 무너뜨리고 스트레스가 많은 환경을 만들 수 있습니다.', tip: 'Excessive(도를 지나친) + Surveillance(감시) — 선을 넘은 직원 감시 상태를 뜻함' },
       { word: 'is a leading cause of ~', meaning: '~의 주된 원인이다', pos: '표현', example: 'Research shows that distrust is a leading cause of employee dissatisfaction.', exampleKo: '연구에 따르면 불신은 직원 불만족의 주된 원인입니다.', tip: '여러 원인 중 가장 앞 순위에 있는 결정적 원인을 뜻함' },
-      { word: 'respectful practice', meaning: '(직원을) 존중하는 관행', pos: '표현', example: 'If employees are informed about what is monitored and why, it becomes a reasonable and respectful practice.', exampleKo: '무엇을, 왜 모니터링하는지 직원에게 알린다면 합리적이고 직원을 존중하는 관행이 됩니다.', tip: 'Practice는 "연습"이 아니라 조직 내에 굳어진 "관행, 제도"를 뜻함' }
+      { word: 'respectful practice', meaning: '(직원을) 존중하는 관행', pos: '표현', example: 'If employees are informed about what is monitored and why, it becomes a reasonable and respectful practice.', exampleKo: '무엇을, 왜 모니터링하는지 직원에게 알린다면 합리적이고 직원을 존중하는 관행이 됩니다.', tip: 'Practice는 "연습"이 아니라 조직 내에 굳어진 "관행, 제도"를 뜻함' },
+      { word: ', which + 동사 ~ (계속적 용법)', meaning: '그리고 이는 ~하다', pos: '표현', example: 'Flexible hours let employees recharge properly, which improves morale and retention.', exampleKo: '유연 근무제는 직원들이 제대로 재충전하게 해주며, 이는 사기와 유지율을 향상시킵니다.', tip: '쉼표 뒤의 which는 앞 문장 전체 내용을 선행사로 받음 — "그리고 이것은~", "그 결과~"로 해석' }
     ]
   },
 
@@ -470,7 +477,11 @@ const VOCAB_MODULES = [
       { word: 'rigidly clinging to them', meaning: '그것들에 완고하게 집착하는 것', pos: '표현', example: 'While traditions create a sense of shared identity, rigidly clinging to them can lead to stagnation.', exampleKo: '전통이 공동체 정체성을 만들어주기도 하지만, 그것에 완고하게 집착하면 정체로 이어질 수 있습니다.', tip: 'rigidly(융통성 없이) + cling to(매달리다) — 시대가 변해도 옛것만 고집하는 부정적 뉘앙스' },
       { word: 'lead to stagnation', meaning: '정체로 이어지다', pos: '동사구', example: 'Rigidly clinging to traditions can lead to stagnation.', exampleKo: '전통에 완고하게 집착하면 정체로 이어질 수 있습니다.', tip: 'stagnation은 고인 물이 썩듯 더 이상 발전하지 못하는 상태를 뜻함' },
       { word: 'thrived', meaning: '번창했다, 전성기를 누렸다', pos: '동사', example: 'History shows that cultures which adapted to new ideas thrived.', exampleKo: '역사를 보면 새로운 사상에 적응한 문화는 번창했습니다.', tip: '단순히 살아남은 것을 넘어 크게 번성했다는 긍정적 의미' },
-      { word: 'abandoning', meaning: '저버리는 것, 포기하는 것', pos: '동명사', example: 'Evolution should not mean abandoning everything from the past.', exampleKo: '진화한다고 해서 과거의 모든 것을 저버려야 한다는 뜻은 아닙니다.', tip: '단순히 치우는 게 아니라 책임이나 소중한 유산을 "저버리다"는 무거운 뉘앙스' }
+      { word: 'abandoning', meaning: '저버리는 것, 포기하는 것', pos: '동명사', example: 'Evolution should not mean abandoning everything from the past.', exampleKo: '진화한다고 해서 과거의 모든 것을 저버려야 한다는 뜻은 아닙니다.', tip: '단순히 치우는 게 아니라 책임이나 소중한 유산을 "저버리다"는 무거운 뉘앙스' },
+      { word: 'have overcome', meaning: '극복해 왔다', pos: '동사(현재완료)', example: 'Many successful people have overcome significant obstacles throughout history.', exampleKo: '많은 성공한 사람들은 역사적으로 상당한 장애물을 극복해 왔습니다.', tip: '과거 한 시점의 사건이 아니라 과거부터 현재까지 이어지는 지속적 경향·경험을 나타냄 — overcome-overcame-overcome' },
+      { word: 'Take [명사] —', meaning: '~을 예로 들면', pos: '표현', example: 'Take J. K. Rowling — she faced numerous rejections before finding success.', exampleKo: 'J. K. 롤링을 예로 들어보자면, 그녀는 성공하기 전 수많은 거절을 겪었습니다.', tip: '"Take for example..."의 줄임 표현 — 주장 뒤에 구체적 인물·사례를 제시할 때 사용' },
+      { word: 'agree with', meaning: '~의 의견에 동의하다', pos: '동사구', example: 'I agree with this statement, as history shows countless examples of it.', exampleKo: '역사에는 이를 뒷받침하는 수많은 사례가 있기 때문에 저는 이 의견에 동의합니다.', tip: 'agree with + 사람/의견 = 의견에 동의하다 / agree to + 제안·계획 = 제안을 수락하다' },
+      { word: 'statement', meaning: '진술, 의견, 주장', pos: '명사', example: 'Do you agree or disagree with this statement?', exampleKo: '이 의견에 동의하십니까, 아니면 반대하십니까?', tip: 'state(말하다) + -ment(명사형 접미사) — Part 6에서 주어진 주장·의견을 가리킬 때 사용' }
     ]
   },
 

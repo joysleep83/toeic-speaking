@@ -815,9 +815,9 @@ const GRAMMAR_MODULES = [
     color: '#F97316',
     lessons: [
       {
-        id: 'g8l1', title: '등위·종속 접속사 — 문장을 논리적으로 연결', duration: '8분',
+        id: 'g8l1', title: '등위·종속 접속사 — 문장을 논리적으로 연결', duration: '10분',
         content: [
-          { type: 'text', text: '짧은 단문을 나열하면 IL(낮은 점수) 수준으로 평가됩니다. 접속사로 문장을 연결하면 한 번에 더 많은 정보를 전달하면서 논리적이고 유창하게 들립니다. 단순히 이어 붙이는 것이 아니라, 어떤 논리 관계인지 정확히 전달하는 것이 핵심입니다.' },
+          { type: 'text', text: '짧은 단문을 나열하면 IL(낮은 점수) 수준으로 평가됩니다. 접속사로 문장을 연결하면 한 번에 더 많은 정보를 전달하면서 논리적이고 유창하게 들립니다. 단순히 이어 붙이는 것이 아니라, 어떤 논리 관계인지 정확히 전달하는 것이 핵심입니다. 등위 접속사는 문법적으로 "동등한" 두 절을 나란히 이어주고, 종속 접속사는 한쪽 절을 다른 쪽 절에 "종속(의존)"시켜 이유·시간·조건 같은 배경 정보로 붙여줍니다.' },
           { type: 'heading', text: '등위 접속사 (FANBOYS) — 동등한 두 절 연결' },
           { type: 'table',
             headers: ['접속사', '의미', 'TOEIC 예문'],
@@ -829,6 +829,7 @@ const GRAMMAR_MODULES = [
               ['yet', '그러나 (격식·강한 대조)', '"The task is difficult, yet rewarding."'],
             ]
           },
+          { type: 'tip', icon: '💡', text: '등위 접속사는 앞뒤 두 절이 문법적으로 동등한 지위(독립절 + 독립절)를 가집니다. 반면 종속 접속사가 이끄는 절은 그 자체로 완전한 문장이 아니라 주절에 붙는 부가 정보입니다 — 이 차이 때문에 종속절만 따로 떼어 문장을 시작하면(예: "Because it is better.") 불완전한 문장(fragment)이 됩니다.' },
           { type: 'heading', text: '종속 접속사 — 이유·시간·조건·양보' },
           { type: 'table',
             headers: ['종류', '접속사', '예문'],
@@ -840,10 +841,35 @@ const GRAMMAR_MODULES = [
               ['목적', 'so that / in order to', '"I practice daily so that I can improve."'],
             ]
           },
-          { type: 'example', label: '상관 접속사 — 고득점 표현 (두 항목 연결)', items: [
-            { en: '"Not only does it save time, but it also reduces costs."', ko: '"not only A but also B" — 두 장점을 한 번에 강조 (도치 구문)' },
-            { en: '"Either you contact them directly, or I can help you send an email."', ko: '"either A or B" — 두 선택지를 균등하게 제시' },
-            { en: '"Both communication and time management are essential skills."', ko: '"both A and B" — 두 항목을 동시에 중요하게 언급' },
+          { type: 'example', label: '이유 접속사 뉘앙스 — because vs. since vs. as', items: [
+            { en: '"I prefer remote work because it saves commuting time."', ko: 'because — 가장 직접적이고 강한 인과관계. 상대방이 아직 모르는 "새로운 이유"를 제시할 때 씀. 답변의 핵심 이유를 말할 땐 because가 가장 자연스럽습니다.', detail: 'because는 원인·결과의 연결이 뚜렷해서 이유를 묻는 질문(Why...?)에 대한 직접 답으로 가장 많이 쓰입니다.' },
+            { en: '"Since the office is close to my house, I usually walk to work."', ko: 'since — 이유이면서 동시에 "이미 알려져 있거나 명백한 사실"을 배경으로 깔 때 씀. because보다 강조가 약하고, 문장 맨 앞에 자주 옵니다.', detail: '시간의 since(~이후로)와 헷갈리지 않도록 주의 — 문맥상 이유를 나타낼 땐 보통 문두에서 배경 설명으로 쓰입니다.' },
+            { en: '"As it was raining, the event was moved indoors."', ko: 'as — since와 비슷하게 가벼운 이유를 나타내지만 더 격식적·문어적인 느낌. because보다 인과관계가 약하고 구어에서는 상대적으로 덜 쓰입니다.', detail: 'as는 "~할 때(시간)"의 뜻도 있어 문맥에 따라 이유인지 시간인지 헷갈릴 수 있으니 스피킹 시험에서는 이유가 명확한 because를 우선 사용하는 것이 안전합니다.' },
+          ]},
+          { type: 'example', label: '시간 접속사 뉘앙스 — when / while / after / before / as soon as', items: [
+            { en: '"When I arrived at the office, the meeting had already started."', ko: 'when — 특정 시점("~할 때")을 가리킴. 한 사건이 일어난 순간을 기준으로 다른 일이 일어남을 나타냅니다.' },
+            { en: '"While I was preparing the report, my colleague called me."', ko: 'while — 두 동작이 동시에 진행됨("~하는 동안")을 강조. 배경이 되는 동작은 보통 진행형(was -ing)과 함께 씁니다.' },
+            { en: '"After finishing the project, the team took a short break."', ko: 'after — "~한 후에", 순서상 뒤에 일어나는 일을 나타냄. 앞선 동작이 완전히 끝난 뒤 다음 동작이 이어집니다.' },
+            { en: '"Before submitting the form, please double-check your information."', ko: 'before — "~하기 전에", 순서상 앞서는 동작을 나타냄. after와 정반대의 시간 관계입니다.' },
+            { en: '"As soon as I received the email, I replied immediately."', ko: 'as soon as — "~하자마자", 두 동작 사이의 즉시성(시간차가 거의 없음)을 강조. when보다 훨씬 더 빠른 반응을 나타냅니다.' },
+          ]},
+          { type: 'example', label: '조건 접속사 뉘앙스 — if vs. unless', items: [
+            { en: '"If you need any help, please let me know."', ko: 'if — "만약 ~라면", 긍정적인 조건을 제시. 그 조건이 충족되면 결과가 따라온다는 가장 기본적인 조건문입니다.' },
+            { en: '"You won\'t pass the interview unless you prepare thoroughly."', ko: 'unless — "~하지 않는다면" (= if...not). 부정 조건을 나타내며, 그 예외적인 상황이 아니면 결과가 성립한다는 뉘앙스가 강합니다. if...not보다 더 단정적이고 격식 있게 들립니다.' },
+          ]},
+          { type: 'example', label: '양보 접속사 뉘앙스 — although vs. even though vs. while', items: [
+            { en: '"Although the project was challenging, we finished it on time."', ko: 'although — "~에도 불구하고", 가장 일반적이고 격식 있는 양보 표현. 앞뒤 내용이 대조되지만 감정적 강조는 크지 않습니다.' },
+            { en: '"Even though the deadline was tight, the team delivered high-quality work."', ko: 'even though — although보다 대조·놀라움을 더 강하게 강조. "그럼에도 불구하고 실제로 그랬다"는 의외성을 부각할 때 씁니다.' },
+            { en: '"While some employees prefer working from home, others enjoy the office environment."', ko: 'while — 양보보다는 "~인 반면"이라는 대조의 의미로 자주 쓰임. 시간 접속사(~하는 동안)와 형태가 같으니 문맥으로 구분해야 합니다.' },
+          ]},
+          { type: 'heading', text: '상관 접속사 — 고득점 표현 (두 항목을 짝으로 연결)' },
+          { type: 'text', text: '상관 접속사는 두 개의 단어·구·절을 대등하게 짝지어 연결하는 표현으로, 단순 나열보다 훨씬 세련되고 논리적으로 들립니다. 각 짝마다 강조하는 방향과 수 일치(동사의 단/복수) 규칙이 다르므로 함께 익혀야 합니다.' },
+          { type: 'example', label: '상관 접속사 뜻과 쓰임', items: [
+            { en: '"Not only does it save time, but it also reduces costs."', ko: 'not only A but also B — "A뿐만 아니라 B도" (A, B 둘 다 강조, B 쪽에 조금 더 무게). not only가 문두로 나오면 주어·동사가 도치(does it)되는 점에 주의.', detail: '두 가지 장점·이유를 한 문장에 압축해 강조하고 싶을 때 가장 고득점 표현으로 꼽힙니다.' },
+            { en: '"Either you contact them directly, or I can help you send an email."', ko: 'either A or B — "A 또는 B 둘 중 하나" — 두 선택지를 대등한 비중으로 제시. 동사는 B(더 가까운 주어)에 수를 맞춥니다.', detail: '둘 다 가능한 선택지를 균형 있게 제안할 때 사용 — Part 4 해결책 제시에 유용합니다.' },
+            { en: '"Neither the manager nor the employees were informed about the change."', ko: 'neither A nor B — "A도 B도 아닌" — 두 대상을 동시에 부정. 동사는 either/or와 마찬가지로 B에 수 일치.', detail: 'not...either A or B와 같은 의미이지만 neither/nor 자체에 부정의 의미가 이미 포함되어 있어 not을 따로 쓰지 않습니다.' },
+            { en: '"Both communication and time management are essential skills."', ko: 'both A and B — "A와 B 둘 다" — 두 항목을 동등하게 중요한 것으로 함께 언급. 동사는 항상 복수형.', detail: '두 요소를 나열이 아니라 "둘 다 똑같이 중요하다"고 강조하고 싶을 때 씁니다.' },
+            { en: '"The issue was not the budget but the schedule."', ko: 'not A but B — "A가 아니라 B" — A를 부정하고 진짜 핵심은 B라고 명확히 대비시켜 강조.', detail: '오해를 바로잡거나 진짜 원인·이유를 짚어줄 때 효과적인 표현입니다.' },
           ]},
           { type: 'tip', icon: '⚠️', text: 'because는 문장 중간(절 앞)에만 씁니다. ❌ "I prefer A. Because it is better." → ✅ "I prefer A because it is better." 또는 "The reason is that it is better." because로 새 문장을 시작하면 불완전한 문장(fragment)이 되어 감점입니다.' }
         ]
